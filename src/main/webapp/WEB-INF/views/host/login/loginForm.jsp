@@ -74,7 +74,7 @@ input:focus{
 <body>
 
 	<!-- Header -->
-	<%@ include file="../header.jsp" %>
+	<%@ include file="../../custom/header.jsp" %>
 	<!-- Header End -->
 	<!-- Main Body -->
 	<div
@@ -134,8 +134,8 @@ input:focus{
 							<!-- Login v-on:click="login()" -->
 							<div
 								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;">
-								<label for="login_guest" class="login_guest_lb">게스트 로그인</label> <input
-									type="button" id="login_guest" onclick="login_guest_do()">
+								<label for="login_guest" class="login_guest_lb">호스트 로그인</label> <input
+									type="button" id="login_guest" onclick="loginHostHdo()">
 							</div>
 
 							<div
@@ -166,10 +166,11 @@ input:focus{
 							<p
 								style="margin-left: 8px; margin-right: 8px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
 								onclick="location.href='/find/account/accountForm.do'">아이디 찾기</p>
+								|
 							<div
 								style="width: 10px; height: 1px; transform: rotate(90deg); background-color: var(- -grey-020);"></div>
 
-
+				
                                 <!-- original: "window.location.href='/service'" -->
                                 <!-- <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: var(--grey-050); cursor: pointer;"
                                 onclick="window.location.href='service.html'">
@@ -180,11 +181,11 @@ input:focus{
                                     비밀번호 찾기
                                 </p>
                                 <div style="width: 10px;height: 1px;transform: rotate(90deg);background-color: var(--grey-020);"></div>
-
+								|
                                 <!-- original : "window.location.href='/register'" -->
                                 <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;text-align: right;color: var(--blue-030); cursor: pointer;"
                                 onclick="location.href='/register.do'">
-                                    회원가입
+                                   호스트 회원가입
                                 </p>
                             </div>
                         </div>
@@ -207,7 +208,7 @@ input:focus{
 	<!-- main 끝 -->
 
 	<!-- Footer -->
-	<%@ include file="../footer.jsp" %>
+	<%@ include file="../../custom/footer.jsp" %>
 	<!-- Footer 끝 -->
 
 	<!-- script -->
@@ -250,8 +251,9 @@ input:focus{
 			});
 
 		}
-		function callRegisterFormUser() {
-			location.href = "/register.do";
+
+		function callRegisterFormHost() {
+			location.href = "/register.hdo";
 		}
 	</script>
 </body>

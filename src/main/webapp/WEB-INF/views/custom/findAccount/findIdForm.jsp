@@ -86,7 +86,7 @@
 			</div>
 		</div>
 	</div>
-	<form method="post" action="/find/account/restlt.do" hidden="hidden" id="sendTel">
+	<form method="post" action="/find/account/result.do" hidden="hidden" id="sendTel">
 		<input type="hidden" name="userTel" id="userTel">
 	</form>
 	<script>

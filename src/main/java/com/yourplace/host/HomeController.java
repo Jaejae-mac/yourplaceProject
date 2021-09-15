@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 	@GetMapping("/home.hdo")
 	public String home() {
-		return "index-host";
+		return "indexOurPlace";
 	}
 }

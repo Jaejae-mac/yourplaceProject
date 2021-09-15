@@ -121,7 +121,7 @@ public class FindAccountPwController {
 	//전화번호를 조건으로 회원정보를 검색 후 결과를 리턴해 주는 컨트롤러.
 	//리턴할 정보 : 아이디, 가입일.
 	//아이디는 80%는 보여주고 20%는 '*' 처리하여 보여준다.
-	@PostMapping("/find/account/restlt.do")
+	@PostMapping("/find/account/result.do")
 	public String getAccount(UserVO vo, Model model) {
 		System.out.println(vo.toString());
 		UserVO findAccount = findAccountService.getAccount(vo);

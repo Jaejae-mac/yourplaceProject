@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/card.css" />" />
+ <link rel="stylesheet"
+	href="<c:url value="/resources/custom/css/sample.css" />" /> 
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/sample.css" />" />
+	href="<c:url value="/resources/custom/css/banner.css" />" /> 
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/banner.css" />" />
+	href="<c:url value="/resources/custom/css/mainHome.css" />" /> 
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/mainHome.css" />" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/bodyfont.css" />" />
+	href="<c:url value="/resources/custom/css/bodyfont.css" />" /> 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-
+<%@ include file="header.jsp"%>
 	<!-- 패스워드 재설정 이메일을 보내면 홈으로 이동된다. -->
 	<!-- 홈으로 이동 후 메일이 전송되었다고 사용자에게 알리는 부분이 되겠다. -->
 	<c:if test="${sendEmail == '1' }">
@@ -41,88 +41,6 @@
 		swal('', '유효하지 않은 페이지입니다.\n비밀번호 찾기를 다시 진행해주세요.', "success");
 		</script>
 	</c:if>
-	<%@ include file="header.jsp"%>
-	<div class="category_all"
-		style="position: fixed; top: 100px; left: 0; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.2);"
-		onclick="toggle_category_all()">
-		<div class="h_column_center"
-			style="background-color: #FFFFFF; width: 100%; position: relative;">
-			<div
-				style="padding-top: 10px; padding-bottom: 40px; width: 1160px; display: flex; flex-direction: row;">
-
-				<!-- 메인 카테고리 시작 -->
-				<div v-for="category in categories" style="flex: 1 1 0%;">
-					<p class="h_hover_button"
-						style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-						v-on:click="click_category_main(category.id)">가정집</p>
-					<!-- 상세 카테고리 시작 -->
-					<div class="h_hover_button h_row_center"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_main(category.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							전체</p>
-					</div>
-					<!-- 상세 카테고리 끝 -->
-					<!-- 상세 카테고리 시작 -->
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							아파트</p>
-					</div>
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							주택</p>
-					</div>
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							빌라</p>
-					</div>
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							원룸</p>
-					</div>
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							한옥</p>
-					</div>
-					<div class="h_hover_button h_row_center"
-						v-for="sub in category.subs"
-						style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-						v-on:click="click_category_sub(category.id, sub.id)">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-							홈오피스</p>
-					</div>
-				</div>
-				<!-- 메인 카테고리 끝 -->
-
-			</div>
-		</div>
-	</div>
-	</div>
-
-
-
 
 	<!--배너 스크립트-->
 	<script>

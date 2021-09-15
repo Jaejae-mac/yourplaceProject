@@ -148,7 +148,7 @@
 						</c:when>
 						<c:otherwise>
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="window.location.href='hostLogin.html'"
+							<div onclick="location.href='/loginForm.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p

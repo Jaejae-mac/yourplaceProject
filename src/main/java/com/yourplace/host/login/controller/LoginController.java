@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.yourplace.host.login.service.LoginGetHostService;
@@ -15,6 +16,14 @@ import com.yourplace.host.login.vo.HostVO;
 public class LoginController {
 	@Autowired
 	private LoginGetHostService loginGetHostService;
+	// 로그인 폼을 호출해주는 컨트롤러.
+
+	@GetMapping("/loginForm.hdo")
+	public String loginForm() {
+		System.out.println("[ 호스트 로그인 폼 호출 ]");
+		return "login/loginForm";
+	}
+
 	@PostMapping("/login.hdo")
 	public String login(HostVO vo, Model model, HttpServletRequest request) {
 		int result = loginGetHostService.getHost(vo);

@@ -32,8 +32,8 @@
 						style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 						아이디 찾기</p>
 				</div>
-				<c:choose>
 				<!-- 서버로부터 전달 받은 아이디가 있다면 전달받은 정보를 보여준다. -->
+				<c:choose>
 					<c:when test="${userId != null}">
 						<div id="main_vue" class="h_column_center"
 							style="width: 100%; margin-top: 30px; margin-bottom: 200px"
