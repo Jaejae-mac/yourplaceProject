@@ -69,6 +69,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE member SET user_pw=#{userPw} WHERE user_email=#{userEmail}
 	</update>
 	
+	<update id="updateMyPage" parameterType="myUser">
+		UPDATE member SET 
+			user_nick_name = #{userNickName},
+			user_email = #{userEmail}, 
+			user_intro = #{userIntro},
+			user_sms_agree = #{userSmsAgree},
+			user_email_agree = #{userEmailAgree}
+		WHERE user_id = #{userId}
+	</update>
+	<delete id="deleteUser" parameterType="myUser">
+		DELETE FROM member WHERE user_id = #{userId}
+	</delete>
 	<select id="getAccount" resultMap="userResult">
 		SELECT user_id,user_reg_date FROM member WHERE
 		user_tel = #{userTel}

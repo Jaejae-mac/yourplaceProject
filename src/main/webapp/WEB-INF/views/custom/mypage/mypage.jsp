@@ -9,11 +9,20 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css" />" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
+<!-- SweetAlert Lib -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <title>Yourplace MyPage</title>
 </head>
 <body>
+	
 	<!-- 세션에 아이디 값이 존재 한다면 마이페이지를 불러주어라. -->
-	<c:if test="${userId != null}"></c:if>
+	<c:if test="${userId != null}">
+		MY Page - ${userId }
+	</c:if>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
@@ -62,13 +71,13 @@
                         </div>
                     </div>
                 </div>
-                <div onclick="window.location.href='/guest/edit'" class="h_center h_hover_button"
+                <div onclick="location.href='/gopagefix.do'" class="h_center h_hover_button"
                     style="margin-top: 30px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
                     <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
                     	프로필 편집
                     </p>
                 </div>
-                <p onclick="leave_vue.show()" class="h_hover_text" style="margin-top: 30px; text-decoration: underline; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer;">
+                <p onclick="deleteUser()" class="h_hover_text" style="margin-top: 30px; text-decoration: underline; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer;">
                 	회원 탈퇴
                 </p>
             </div>
@@ -117,10 +126,34 @@
 	<!-- Footer 끝 -->
 	<script>
 	 $(document).ready(function(){
-		if(document.getElementById('Intro').value == null){
+		if(document.getElementById('Intro').value == ''){
 			document.getElementById('Intro').innerHTML='안녕하세요. ${user.userNickName}입니다.'
+		}else{
+			document.getElementById('Intro').innerHTML = '${user.userIntro}'
 		} 
 	 });
+	 function deleteUser(){
+	    	Swal.fire({
+	    		  title: '정말로 탈퇴하시겠습니까?',
+	    		  icon: 'warning',
+	    		  showCancelButton: true,
+	    		  confirmButtonColor: '#3085d6',
+	    		  cancelButtonColor: '#d33',
+	    		  confirmButtonText: '네, 탈퇴하겠습니다!',
+	    		  cancelButtonText: '아니오.'
+	    		}).then((result) => {
+	    		  if (result.isConfirmed) {
+	    		    Swal.fire({
+	    		      title : '성공적으로 탈퇴되었습니다.',
+	    		      text : '지금까지 YourPlace를 이용해 주셔서 감사합니다.',
+	    		      icon :'success'
+	    		    }).then((result) => {
+	    		    	location.href='/deleteUser.do'
+	    		    })
+	    		  }
+	    		})
+	    			 
+	    }
 	</script>
 </body>
 </html>
