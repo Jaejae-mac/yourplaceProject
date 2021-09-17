@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
 			<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO" alias="HostReservVO"/>
+			<typeAlias type="com.yourplace.host.review.vo.HostReviewVO" alias="HostReviewVO"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/test-mapper.xml" />
@@ -23,8 +24,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
-		<mapper resource="mappings/custom/ReserveMapper.xml" />
+
+		
 		<mapper resource="mappings/host/HostReservMapper.xml"/>
+		<mapper resource="mappings/host/HostReviewMapper.xml"/>
 
 	</mappers>
 </configuration>

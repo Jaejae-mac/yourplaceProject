@@ -2,10 +2,6 @@ package com.yourplace.host.reserv.service;
 
 import java.util.List;
 
-import com.yourplace.host.reserv.vo.HostReservVO;
-
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -30,8 +26,5 @@ public class HostReservServiceImpl implements HostReservService{
 		
 	}
 
-	@Override
-	public List<HostReservVO> getReserveDate() throws Exception {
-		return dao.getReserveDate();
-	}
+	
 }

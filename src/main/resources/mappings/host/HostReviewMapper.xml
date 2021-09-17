@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HostReviewMapper">
+
+
+<resultMap type="HostReviewVO" id="getAllReview">
+		<result property="reservNum" column="rsv_num" />
+		<result property="placeNum" column="place_num" />
+		<result property="memId" column="user_id" />
+		<result property="star" column="review_guest_rate" />
+		<result property="regDate" column="review_guest_regd" />
+		<result property="review" column="review_guest_wr" />
+		
+	</resultMap>
+
+	
+	<select id="getAllReview" resultMap="getAllReview">
+	<trim suffixOverrides=",">
+		SELECT rsv_num,
+		place_num,
+		user_id,
+		review_guest_rate,
+		review_guest_regd,
+		review_guest_wr
+		from reviewGuest
+		</trim>
+	</select>
+
+
+
+</mapper>

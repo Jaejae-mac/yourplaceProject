@@ -20,15 +20,15 @@ public class HostReservDAOImpl implements HostReservDAO{
 		return session.selectList("HostReservMapper.getAllReserve");
 	}
 
+	
+
 	@Override
 	public void updatePlaceDetail() throws Exception {
 		session.update("HostReservMapper.updatePlaceDetail");
 		
 	}
 
-	@Override
-	public List<HostReservVO> getReserveDate() throws Exception {
-		return session.selectList("HostReservMapper.getReservDate");
-	}
+
+	
 
 }

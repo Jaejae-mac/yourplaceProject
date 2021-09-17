@@ -2,14 +2,10 @@ package com.yourplace.host.reserv.vo;
 
 import org.springframework.stereotype.Component;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 @Component
-@Getter
-@Setter
-@ToString
+@Data
 public class HostReservVO {
 	private String placeName;
 	private String reserveNum;

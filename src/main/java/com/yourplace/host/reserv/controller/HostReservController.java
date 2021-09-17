@@ -5,10 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.yourplace.host.reserv.service.HostReservService;
 import com.yourplace.host.reserv.vo.HostReservVO;
 
@@ -17,28 +16,35 @@ public class HostReservController {
 	@Inject
 	HostReservService service;
 	
-	@GetMapping(value= "/indexOurPlace.hdo")
-	public ModelAndView getHostReserv() throws Exception {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value= "/indexOurPlace.hdo")
+	public ModelAndView mainView() throws Exception {
 		List<HostReservVO> list = service.getAllReserve();
-		List<HostReservVO> datelist = service.getReserveDate();
-		
-		Gson gson = new Gson();
-		String tojson = gson.toJson(list);
-		System.out.println(tojson);
-		
-		String tojsonDate = gson.toJson(datelist);
-		System.out.println(tojsonDate);
-
-		
-
-		mav.addObject("jsonList", tojson);
-		mav.addObject("jsonDateList", tojsonDate);
-		
-
-	
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
 		mav.setViewName("indexOurPlace");
+
 		return mav;
 		
 	}
+	
+	@RequestMapping(value="/placeReserveListForHost.hdo")
+	public ModelAndView getHostReservList() throws Exception{
+		List<HostReservVO> list = service.getAllReserve();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("placeReserveListForHost");
+		return mav;
+		
+	}
+	
+	
+	
 }
+
+
+
+
+	
+	
+	
+	
