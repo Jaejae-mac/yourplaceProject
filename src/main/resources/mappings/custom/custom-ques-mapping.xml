@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GuestQuesDAO">
+	<resultMap type="myQues" id="quesResult">
+		<id property="reprtSeq" column="reprt_seq" />
+		<result property="userId" column="user_id" />
+		<result property="reprtContent" column="reprt_content" />
+		<result property="reprtDoneYn" column="reprt_done_yn" />
+	</resultMap>
+
+	<insert id="insertQues" parameterType="myQues">
+		INSERT INTO question(
+		user_id,
+		reprt_content
+		)VALUES(
+		'dlrlxor6100',
+		#{reprtContent}
+		)
+	</insert>
+</mapper>
