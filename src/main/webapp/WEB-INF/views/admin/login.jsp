@@ -35,7 +35,7 @@
                   </div>
                   <div class="card-body">
                     <!-- 전송 시작 -->
-                    <form method="POST">
+                    <form method="POST" action="/login.mdo">
                       <div class="form-floating mb-3">
                         <input
                           class="form-control"
@@ -49,8 +49,8 @@
                       <div class="form-floating mb-3">
                         <input
                           class="form-control"
-                          id="adminPassword"
-                          name="adminPassword"
+                          id="adminPw"
+                          name="adminPw"
                           type="password"
                           placeholder="Password"
                         />
@@ -81,7 +81,9 @@
                         <a class="small" href="password.html"
                           >Forgot Password?</a
                         >
-                        <a class="btn btn-primary" href="memberView.mdo">Login</a>
+<!--                         <a id="form_login" class="btn btn-primary" >Login</a> -->
+                        <input type="submit" class="btn btn-primary"
+                        id="login_guest" value="Login" onclick="login_guest_do()"/>
                       </div>
                     </form>
                   </div>
@@ -118,5 +120,13 @@
       crossorigin="anonymous"
     ></script>
     <script src="resources/css/admin/js/scripts.js"></script>
+
+        <script>
+	    function login_guest_do() {
+	      $("#form_login").attr("action", "/login.mdo").submit();
+	
+	   }
+    </script>
+    
   </body>
 </html>

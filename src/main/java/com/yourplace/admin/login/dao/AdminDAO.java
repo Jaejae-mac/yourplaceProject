@@ -10,6 +10,8 @@ public interface AdminDAO {
 	//회원가입
 	void insertAdmin(AdminVO vo);
 	
-	//AdminVO idCheck(AdminVO vo);
+	//id, pw 확인하기
+	AdminVO getIdPw(AdminVO vo);
+
 	
 }
