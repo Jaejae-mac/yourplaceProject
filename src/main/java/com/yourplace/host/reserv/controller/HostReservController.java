@@ -34,7 +34,7 @@ public class HostReservController {
 		
 	}
 	
-	@RequestMapping(value="/placeReserveListForHost.hdo")
+	@RequestMapping(value="/placeReserveListforHost.hdo")
 	public ModelAndView getHostReservList() throws Exception{
 		List<HostReservVO> list = service.getAllReserve();
 		ModelAndView mav = new ModelAndView();

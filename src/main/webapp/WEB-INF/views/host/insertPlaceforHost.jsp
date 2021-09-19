@@ -168,7 +168,7 @@
                     data-bs-parent="#sidenavAccordion"
                   >
                     <nav class="sb-sidenav-menu-nested nav">
-                      <a class="nav-link" href="/placeReserveListForHost.hdo">예약 현황</a>
+                      <a class="nav-link" href="/placeReserveListforHost.hdo">예약 현황</a>
                     </nav>
                   </div>
                   <a
@@ -202,11 +202,7 @@
               </div>
               <div class="sb-sidenav-footer">
                 <div class="small">Logged in as:</div>
-<<<<<<< HEAD
               ${userId }
-=======
-                ID 넣을 곳(호스트 아이디)
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
               </div>
             </nav>
             <!--사이드바 nav태그((사이드메뉴)) 끝-->

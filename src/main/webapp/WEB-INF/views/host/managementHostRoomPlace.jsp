@@ -170,7 +170,7 @@
                 data-bs-parent="#sidenavAccordion"
               >
                 <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="tablesHost.html">예약 현황</a>
+                  <a class="nav-link" href="/placeReserveListforHost.hdo">예약 현황</a>
                 </nav>
               </div>
               <a

@@ -123,11 +123,7 @@
 					class="fas fa-user fa-fw"></i></a>
 				<ul class="dropdown-menu dropdown-menu-end"
 					aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
 					<li><a class="dropdown-item" href="/logout.hdo">로그아웃</a></li>
-=======
-					<li><a class="dropdown-item" href="#!">로그아웃</a></li>
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
 				</ul></li>
 		</ul>
 	</nav>
@@ -211,14 +207,9 @@
 				</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
-<<<<<<< HEAD
 					${userId }
 				</div>
 				<input type="hidden" value="${userId }" name="userId" value="userId"/>
-=======
-					ID 넣을 곳(호스트 아이디)
-				</div>
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
 			</nav>
 			<!--사이드바 nav태그((사이드메뉴)) 끝-->
 		</div>

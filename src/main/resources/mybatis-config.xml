@@ -16,15 +16,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="reserveVO" />
 			<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO" alias="HostReservVO"/>
 			<typeAlias type="com.yourplace.host.review.vo.HostReviewVO" alias="HostReviewVO"/>
-<<<<<<< HEAD
 			
 			<typeAlias type="com.yourplace.host.management.vo.HostManagementVO" alias="HostManagementVO"/>
 		<typeAlias type="com.yourplace.host.management.vo.HostManagementRoomVO" alias="HostManagementRoomVO"/>
 	
-=======
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
+	
+	<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO" alias="cardPlace"/>
 	</typeAliases>
 	<mappers>
+	<mapper resource="mappings/custom/home-cards-mapping.xml"/>
 		<mapper resource="mappings/test-mapper.xml" />
 		<mapper resource="mappings/host/host-login-mapping.xml" />
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
@@ -35,11 +35,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		
 		<mapper resource="mappings/host/HostReservMapper.xml"/>
 		<mapper resource="mappings/host/HostReviewMapper.xml"/>
-<<<<<<< HEAD
 		<mapper resource="mappings/host/HostManagementMapper.xml"/>
 		<mapper resource="mappings/host/HostManagementRoomMapper.xml"/>
-=======
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
 
 	</mappers>
 </configuration>

@@ -281,11 +281,7 @@
             </div>
             <div class="sb-sidenav-footer">
               <div class="small">Logged in as:</div>
-<<<<<<< HEAD
              ${userId }
-=======
-              ID 넣을 곳(호스트 아이디)
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
             </div>
           </nav>
           <!--사이드바 nav태그((사이드메뉴)) 끝-->

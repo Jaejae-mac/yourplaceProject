@@ -261,11 +261,7 @@
             </div>
             <div class="sb-sidenav-footer">
               <div class="small">Logged in as:</div>
-<<<<<<< HEAD
              ${userId }
-=======
-              ID 넣을 곳(호스트 아이디)
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
             </div>
           </nav>
           <!--사이드바 nav태그((사이드메뉴)) 끝-->
@@ -332,17 +328,9 @@
         <div
           class="d-flex align-items-center justify-content-between small"
         >
-<<<<<<< HEAD
           <div class="text-muted">Copyright &copy; YourPlace</div>
           <div>
           
-=======
-          <div class="text-muted">Copyright &copy; Your Website 2021</div>
-          <div>
-            <a href="#">Privacy Policy</a>
-            &middot;
-            <a href="#">Terms &amp; Conditions</a>
->>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
           </div>
         </div>
       </div>
