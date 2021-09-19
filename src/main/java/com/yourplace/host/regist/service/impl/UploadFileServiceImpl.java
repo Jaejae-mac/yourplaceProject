@@ -52,7 +52,6 @@ public class UploadFileServiceImpl implements UploadFileService {
 				contentLength = mf.getSize();
 				awsS3.upload(is, key, contentType, contentLength);
 				PlaceImgVO imgVO = new PlaceImgVO();
-				imgVO.setPlaceNum(seq);
 				imgVO.setOriginalFileName(originalFileName);
 				imgVO.setS3FileName(key);
 				registPlaceDAO.setPlaceImg(imgVO);
