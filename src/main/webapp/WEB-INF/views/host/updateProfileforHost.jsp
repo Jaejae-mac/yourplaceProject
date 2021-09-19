@@ -139,7 +139,11 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
+<<<<<<< HEAD
                     ${userId }
+=======
+                    ID 넣을 곳(호스트 아이디)
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
                 </div>
             </nav>
             <!--사이드바 nav태그((사이드메뉴)) 끝-->
@@ -204,7 +208,11 @@
                                     style="margin-left: 4px; width: 6px; height: 6px; position: relative; left: 150px;">
                             </div>
                             <div class="input_container" style="margin-top: 8px; position: relative; left: 150px;"><input type="text"
+<<<<<<< HEAD
                                      value="${hostNick }" id="name" name="name" required="required">
+=======
+                                     value="" id="name" name="name" required="required">
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
                                 <div class="delete" style=""><img
                                         src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
                                         style="width: 16px; height: 16px; position: relative; left: 170px;"></div>
@@ -215,14 +223,48 @@
 
                                 </p>
                             </div>
+<<<<<<< HEAD
                    
+=======
+                            <div style="margin-top: 40px; display: flex; flex-direction: row;">
+                                <p
+                                    style="font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; position: relative; left: 150px; line-height: 1.17; letter-spacing: normal; color: var(--grey-040);">
+                                    회사 또는 단체명
+                                </p> <img src="https://s3.hourplace.co.kr/web/images/icon/invalid.svg"
+                                    style="margin-left: 4px; width: 6px; height: 6px; position: relative; left: 150px;">
+                            </div>
+                            <div class="input_container" style="margin-top: 8px; position: relative; left: 150px;"><input type="text"
+                                    value="" id="company" name="company"
+                                    required="required">
+                                <div class="delete" style=""><img
+                                        src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
+                                        style="width: 16px; height: 16px; position: relative; left: 170px;"></div>
+                            </div>
+                            <div style="margin-top: 40px; display: flex; flex-direction: row;">
+                                <p
+                                    style="font-size: 12px; font-weight: bold; font-stretch: normal; position: relative; left: 150px; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(--grey-040);">
+                                    직책
+                                </p> <img src="https://s3.hourplace.co.kr/web/images/icon/invalid.svg"
+                                    style="margin-left: 4px; width: 6px; height: 6px; position: relative; left: 150px;">
+                            </div>
+                            <div class="input_container" style="margin-top: 8px; position: relative; left: 150px;"><input type="text"
+                                  value="" id="position" name="position" required="required">
+                                <div class="delete" style=""><img
+                                        src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
+                                        style="width: 16px; height: 16px; position: relative; left: 170px;"></div>
+                            </div>
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
                             <p
                                 style="margin-top: 40px; font-size: 12px; font-weight: bold; position: relative; left: 150px; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(--grey-040);">
                                 소개
                             </p>
+<<<<<<< HEAD
                             <textarea rows="2px" cols="20px" style= "position: relative; left: 150px;" >
                             ${hostIntro }
                             </textarea>
+=======
+                            <textarea rows="2px" cols="20px" style= "position: relative; left: 150px;"></textarea>
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
                             <button type="button" class="btn btn-primary"
                                 style="font-size: 10px;margin-left: 10px; position:relative; left: 10px; top: 80px;">프로필
                                 편집</button>

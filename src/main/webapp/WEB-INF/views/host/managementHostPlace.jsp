@@ -23,9 +23,13 @@
       crossorigin="anonymous"
     ></script>
   </head>
+<<<<<<< HEAD
   
   <body class="sb-nav-fixed">
   <form method="get" action="/deletePlace.hdo">
+=======
+  <body class="sb-nav-fixed">
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="/indexOurPlace.hdo">Yourplace Host</a>
@@ -99,7 +103,10 @@
                 aria-expanded="false"
                 aria-controls="collapseHost"
               >
+<<<<<<< HEAD
               <input type="hidden" value="${userId }" name="userId" value="userId"/>
+=======
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
                 <div class="sb-nav-link-icon">
                   <i class="fa fa-user-circle"></i>
                 </div>
@@ -202,10 +209,16 @@
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <input type="hidden" id="userId" name="userId" value="${userId }"/>
           <div class="sb-sidenav-footer">
             <div class="small">Logged in as:</div>
          ${userId }
+=======
+          <div class="sb-sidenav-footer">
+            <div class="small">Logged in as:</div>
+            ID 넣을 곳(호스트 아이디)
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
           </div>
         </nav>
         <!--사이드바 nav태그((사이드메뉴)) 끝-->
@@ -214,6 +227,7 @@
         <main>
           <div class="container-fluid px-4">
             <h1 class="mt-4">내 장소 관리</h1>
+<<<<<<< HEAD
 
 					<div class="card mb-4">
 						<div class="card-body">등록한 장소를 관리할 수 있습니다.</div>
@@ -273,6 +287,50 @@
 						</div>
 					</div>
 				</div>
+=======
+    
+            <div class="card mb-4">
+              <div class="card-body">
+                
+           등록한 장소를 관리할 수 있습니다.
+                
+              </div>
+            </div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                내 장소 관리
+              </div>
+              <div class="card-body">
+                <table id="datatablesSimple">
+                  <thead>
+                    <tr>
+                        <th>장소 번호</th>
+                        <th>장소 이름</th>
+                        <th>시간당 대여금액</th>
+                        <th>기본 인원</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                  </tfoot>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td align="left">
+
+                       
+                      </td>
+
+                      <td> <button type="button" class="btn btn-primary" style="font-size: 10px;margin-left: 10px;">수정</button><button type="button" class="btn btn-danger" style="font-size: 10px;margin-left: 10px;">Delete</button> </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
         </main>
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
@@ -298,7 +356,10 @@
       crossorigin="anonymous"
     ></script>
     <script src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
+<<<<<<< HEAD
  </form>
+=======
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
   </body>
 
 </html>

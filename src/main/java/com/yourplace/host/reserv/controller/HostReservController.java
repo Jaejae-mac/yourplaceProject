@@ -19,6 +19,7 @@ public class HostReservController {
 	HostReservService service;
 	
 	@RequestMapping(value= "/indexOurPlace.hdo")
+<<<<<<< HEAD
 	public ModelAndView mainView(HttpServletRequest request) throws Exception {
 		List<HostReservVO> list = service.getAllReserve();
 		
@@ -28,6 +29,12 @@ public class HostReservController {
 //		System.out.println(id);
 		mav.addObject("list", list);
 		mav.addObject("userId", id);
+=======
+	public ModelAndView mainView() throws Exception {
+		List<HostReservVO> list = service.getAllReserve();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+>>>>>>> 048c1b2f8ce36b365d8039112f0f3e58c6ee13f1
 		mav.setViewName("indexOurPlace");
 
 		return mav;
