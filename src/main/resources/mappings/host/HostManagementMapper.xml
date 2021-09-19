@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HostManagementMapper">
+
+
+<resultMap type="HostManagementVO" id="getAllHostPlace">
+		<result property="placeNum" column="place_num" />
+		<result property="userId" column="user_id" />
+		<result property="placeLocation" column="place_area" />
+		<result property="placeAddress" column="place_addr" />
+		<result property="placeTag" column="place_tag" />
+		<result property="placeMainCategory" column="place_maincate" />
+		<result property="placeCategory" column="place_cate"/>
+		<result property="placeName" column="place_name" />
+		<result property="placeIntro" column="place_intro" />
+		<result property="placeArea" column="place_da" />	
+		<result property="placeFloor" column="place_floor" />
+		<result property="placeRule" column="place_rule" />
+		<result property="placeSubInfo" column="place_surinfo" />
+		<result property="placePrice" column="place_price" />
+		<result property="placeMinTime" column="place_min_time" />
+		<result property="placePersonNum" column="place_capa" />
+		<result property="placeCarNum" column="place_capa_car"/>
+		<result property="placeExtraPrice" column="place_extrachrg" />	
+		<result property="placeThumbImg" column="place_thumb" />
+		<result property="placeAllow" column="place_allow" />
+		<result property="placeRegDate" column="place_reg_date" />										
+	</resultMap>
+
+	
+	<select id="getAllHostPlace" resultMap="getAllHostPlace">
+	<trim suffixOverrides=",">
+	SELECT * FROM place
+	</trim>
+	</select>
+
+	<delete id="deletePlace">
+	DELETE FROM place WHERE place_num=#{placeNum}
+	</delete>
+	
+</mapper>

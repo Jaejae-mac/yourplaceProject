@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HostManagementRoomMapper">
+
+
+<resultMap type="HostManagementRoomVO" id="getAllHostRoom">
+		<result property="placeNum" column="place_num" />
+		<result property="detailNum" column="detail_num" />
+		<result property="detailTitle" column="detail_title" />
+		<result property="detailPersonNum" column="detail_capa" />
+		<result property="surcharge" column="surcharge" />
+							
+	</resultMap>
+
+	
+	<select id="getAllHostRoom" resultMap="getAllHostRoom">
+	<trim suffixOverrides=",">
+	SELECT * FROM place_detail
+	</trim>
+	</select>
+	
+	<delete id="deleteRoom">
+	delete from place_detail where place_num=#{placeNum}
+	</delete>
+</mapper>

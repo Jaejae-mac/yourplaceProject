@@ -23,7 +23,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="getHost" resultMap="hostResult">
-		SELECT * FROM member WHERE user_id = #{userId}
+	SELECT * FROM member WHERE user_type=1 and user_id=#{userId}
 	</select>
+	
+	
+		<resultMap type="myHost" id="hostInfo">
+		<id property="userNum" column="user_num" />
+		<result property="userType" column="user_type" />
+		<result property="userName" column="user_name" />
+		<result property="userId" column="user_id" />
+		<result property="userNickName" column="user_nick_name" />
+		<result property="userPw" column="user_pw" />
+		<result property="userTel" column="user_tel" />
+		<result property="userEmail" column="user_email" />
+		<result property="userSex" column="user_sex" />
+		<result property="userProfileImg" column="user_profile_img" />
+		<result property="userIntro" column="user_intro" />
+		<result property="userRegDate" column="user_reg_date" />
+		<result property="userSmsAgree" column="user_sms_agree" />
+		<result property="userEmailAgree" column="user_email_agree" />
+	</resultMap>
+
+	<select id="getHostInfo" resultMap="hostInfo">
+		<trim suffixOverrides=",">
+			SELECT user_nick_name,
+			user_intro
+			FROM member WHERE user_id=#{userId}
+		</trim>
+	</select>
+	
+	
 
 </mapper>

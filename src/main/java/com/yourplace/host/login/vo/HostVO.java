@@ -2,13 +2,12 @@ package com.yourplace.host.login.vo;
 
 import java.sql.Date;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
-@ToString
+import lombok.Data;
+
+@Data
+@Component
 public class HostVO {
 	private int userNum;
 	private int userType;

@@ -3,12 +3,13 @@ package com.yourplace.host.reserv.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.yourplace.host.reserv.service.HostReservService;
 import com.yourplace.host.reserv.vo.HostReservVO;
 
@@ -17,28 +18,40 @@ public class HostReservController {
 	@Inject
 	HostReservService service;
 	
-	@GetMapping(value= "/indexOurPlace.hdo")
-	public ModelAndView getHostReserv() throws Exception {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value= "/indexOurPlace.hdo")
+	public ModelAndView mainView(HttpServletRequest request) throws Exception {
 		List<HostReservVO> list = service.getAllReserve();
-		List<HostReservVO> datelist = service.getReserveDate();
 		
-		Gson gson = new Gson();
-		String tojson = gson.toJson(list);
-		System.out.println(tojson);
-		
-		String tojsonDate = gson.toJson(datelist);
-		System.out.println(tojsonDate);
-
-		
-
-		mav.addObject("jsonList", tojson);
-		mav.addObject("jsonDateList", tojsonDate);
-		
-
-	
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id=(String) session.getAttribute("userId");
+//		System.out.println(id);
+		mav.addObject("list", list);
+		mav.addObject("userId", id);
 		mav.setViewName("indexOurPlace");
+
 		return mav;
 		
 	}
+	
+	@RequestMapping(value="/placeReserveListForHost.hdo")
+	public ModelAndView getHostReservList() throws Exception{
+		List<HostReservVO> list = service.getAllReserve();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("placeReserveListForHost");
+		return mav;
+		
+	}
+	
+	
+	
 }
+
+
+
+
+	
+	
+	
+	

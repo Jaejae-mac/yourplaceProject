@@ -12,7 +12,9 @@
 		<result property="endTime" column="rsv_end_t" />
 		<result property="personNum" column="personNum" />
 		<result property="payPrice" column="rsv_pay"/>
-		
+		<result property="reserveYear" column="rsv_year" />
+		<result property="reserveMonth" column="rsv_month" />
+		<result property="reserveDate" column="rsv_date" />	
 	</resultMap>
 
 	
@@ -27,22 +29,12 @@
 		rsv_start_t,
 		rsv_end_t,
 		personNum,
+		rsv_year,
+		rsv_month,
+		rsv_date,
 		rsv_pay from reserve
 		</trim>
 	</select>
-	
-<resultMap type="HostReservVO" id="getDate">
-	<result property="reserveYear" column="rsv_year" />
-		<result property="reserveMonth" column="rsv_month" />
-		<result property="reserveDate" column="rsv_date" />
-</resultMap>
 
-<select id="getReservDate" resultMap="getDate">
-<trim suffixOverrides=",">
-SELECT rsv_year,
-rsv_month,
-rsv_date from reserve
-</trim>
-</select>
 
 </mapper>
