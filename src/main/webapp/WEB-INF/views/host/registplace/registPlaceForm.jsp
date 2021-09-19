@@ -25,7 +25,7 @@
 		<h1 style="text-align: center;">장소 등록</h1>
 		<!-- 전송 폼태그. -->
 		<form method="POST" enctype="multipart/form-data"
-			action="/regist/place/registPlace.hdo">
+			action="/regist/place/registPlace.hdo" id="regist_form">
 			<!-- 다음 API 시작. -->
 			<h3>지역 선택</h3>
 			<div class="choose-area">
@@ -392,7 +392,7 @@
 				</div>
 			</div>
 			<hr>
-			<input type="submit" class="btn btn-primary" id="submit-btn"
+			<input type="button" class="btn btn-primary" id="submit-btn"
 				value="장소 등록하기" style="width: 100%; height: 50px;"
 				onclick="submitForm()">
 			<div style="min-height: 100px;"></div>
@@ -603,7 +603,7 @@
 				"border" : "0px solid red"
 			});
 		}
-		$("#submit-btn").submit();
+		$("#regist_form").submit();
 	}
 </script>
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HomeDAO">
+	<resultMap type="cardPlace" id="cardResult">
+		<id property="placeNum" column="place_num" />
+		<result property="userId" column="user_id" />
+		<result property="placeArea" column="place_area" />
+		<result property="placeCate" column="place_cate" />
+		<result property="placeName" column="place_name" />
+		<result property="placePrice" column="place_price" />
+		<result property="placeCapa" column="place_capa" />
+		<result property="placeCapaCar" column="place_capa_car" />
+		<result property="placeThumb" column="place_thumb" />
+		<result property="avgRate" column="avg_rate" />
+		<result property="reviewCnt" column="review_cnt" />
+	</resultMap>
+
+	<select id="getLatestPlaceList" resultMap="cardResult">
+		select
+			place_num, user_id, place_area, place_cate, place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest where
+			place_num = a.place_num) as avg_rate
+			from place a
+			order by place_reg_date desc
+			Limit 4;
+	</select>
+</mapper>
