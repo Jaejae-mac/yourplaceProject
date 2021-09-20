@@ -81,5 +81,25 @@ primary key(rsv_num)
 		rsv_end_t FROM reserve
 		</trim>
 		</select>
-
+		
+	<resultMap type="MyPageReserveVO" id="getmyreserveList">
+		<result property="placeNum" column="place_num" />
+		<result property="rsvId" column="rsv_id" />
+		<result property="rsvYear" column="rsv_year" />
+		<result property="rsvMonth" column="rsv_month" />
+		<result property="rsvDate" column="rsv_date" />
+		<result property="rsvStartT" column="rsv_start_t" />
+		<result property="rsvEndTime" column="rsv_end_t" />
+		<result property="rsvPay" column="rsv_pay" />
+		<result property="userId" column="user_id" />
+		<result property="placeArea" column="place_area" />
+		<result property="placeName" column="place_name" />
+	</resultMap>
+	<select id="getMyReserveList" resultMap="getmyreserveList">
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve,place
+		WHERE reserve.place_num = place.place_num AND reserve.rsv_id = #{rsvId}
+			
+	</select>
 </mapper>

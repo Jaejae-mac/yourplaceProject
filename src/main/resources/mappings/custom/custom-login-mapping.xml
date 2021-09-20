@@ -66,7 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="updatePassword" parameterType="myUser">
-		UPDATE member SET user_pw=#{userPw} WHERE user_email=#{userEmail}
+		UPDATE member SET user_pw=#{userPw} WHERE user_email=#{userEmail} or user_id=#{userId}
 	</update>
 	
 	<update id="updateMyPage" parameterType="myUser">

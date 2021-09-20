@@ -71,12 +71,34 @@
                         </div>
                     </div>
                 </div>
-                <div onclick="location.href='/gopagefix.do'" class="h_center h_hover_button"
-                    style="margin-top: 30px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
-                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                    	프로필 편집
-                    </p>
+                <div class="h_row_center">
+	                <div onclick="location.href='/gocoupon.do'" class="h_center h_hover_button"
+	                    style="margin-top: 30px; margin-right: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
+	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+	                    	쿠폰
+	                    </p>
+	                </div>
+	                <div onclick="location.href='/goreserve.do'" class="h_center h_hover_button"
+	                    style="margin-top: 30px; margin-left: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
+	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+	                    	예약 내역
+	                    </p>
+	                </div>
                 </div>
+                <div class="h_row_center">
+	                <div onclick="location.href='/gopagefix.do'" class="h_center h_hover_button"
+	                    style="margin-top: 30px; margin-right: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
+	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+	                    	프로필 편집
+	                    </p>
+	                </div>
+	                <div onclick="location.href='/gocheckPw.do'" class="h_center h_hover_button"
+	                    style="margin-top: 30px; margin-left: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
+	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+	                    	비밀번호 변경
+	                    </p>
+	                </div>
+	            </div>
                 <p onclick="deleteUser()" class="h_hover_text" style="margin-top: 30px; text-decoration: underline; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer;">
                 	회원 탈퇴
                 </p>
@@ -96,14 +118,14 @@
                         	호스트에게 받은 리뷰
                             <label
                                 style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-                                1
+                                1 <!-- 해당 아이디로 된 리뷰의 갯수 -->
                             </label>
                         </p>
                         <div style="display: flex; flex-direction: row; align-items: center; position: absolute; right: 0px;">
                             <img src="https://s3.hourplace.co.kr/web/images/icon/review_star.svg"
                                 style="width: 24px; height: 24px;">
                             <p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                                5.0
+                                5.0 <!-- 해당 아이디의 평점총합 / 평점갯수 -->
                             </p>
                         </div>
                     </div>
@@ -111,11 +133,12 @@
                         <div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">
                         	<img src="https://s3.hourplace.co.kr/web/images/icon/review_star.svg" style="width: 24px; height: 24px;">
                             <p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                                5
+                                5 <!-- 한개의 평점 -->
                             </p>
                         </div>
                         <p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
-                        	좋은 촬영 되셨길 바랍니다 :)</p>
+                        	좋은 촬영 되셨길 바랍니다 :) <!-- content -->
+                        </p>
                     </div>
                 </div>
             </div>
@@ -126,7 +149,7 @@
 	<!-- Footer 끝 -->
 	<script>
 	 $(document).ready(function(){
-		if(document.getElementById('Intro').value == ''){
+		if(document.getElementById('Intro').value == null){
 			document.getElementById('Intro').innerHTML='안녕하세요. ${user.userNickName}입니다.'
 		}else{
 			document.getElementById('Intro').innerHTML = '${user.userIntro}'

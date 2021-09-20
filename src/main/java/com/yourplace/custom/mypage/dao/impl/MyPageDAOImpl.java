@@ -16,7 +16,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 		System.out.println("--> MyBatis로 updateUser() 기능 처리");
 		sqlSessionTemplate.update("UserDAO.updateMyPage", vo);
 	}
-	
+	@Override
+	public void updatePw(UserVO vo) {
+		System.out.println("--> MyBatis로 updateUser() 기능 처리");
+		sqlSessionTemplate.update("UserDAO.updatePassword", vo);
+	}
 	@Override
 	public void deleteUser(UserVO vo) {
 		System.out.println("--> MyBatis로 deleteUser() 기능 처리");
