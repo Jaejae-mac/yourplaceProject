@@ -14,10 +14,23 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myUser" />
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
+<<<<<<< HEAD
 			<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO" 
 			alias="HostReservVO"/>
 			<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO"/>
+=======
+		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
+			alias="HostReservVO" />
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceDetailVO"
+			alias="myPlaceDetail" />
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceImgVO"
+			alias="myPlaceImg" />
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceVO"
+			alias="myPlace" />
+		<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO"
+			alias="cardPlace" />
+>>>>>>> dccc38ccca55b88cdb6eec2f28424354a68f7d21
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/test-mapper.xml" />
@@ -27,7 +40,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
+<<<<<<< HEAD
 		<mapper resource="mappings/host/HostReservMapper.xml"/>
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
+=======
+		<mapper resource="mappings/host/HostReservMapper.xml" />
+		<mapper resource="mappings/host/regist-place-mapping.xml" />
+		<mapper resource="mappings/custom/home-cards-mapping.xml" />
+
+>>>>>>> dccc38ccca55b88cdb6eec2f28424354a68f7d21
 	</mappers>
 </configuration>

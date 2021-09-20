@@ -7,14 +7,14 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/card.css" />" />
- <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/sample.css" />" /> 
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/banner.css" />" /> 
+	href="<c:url value="/resources/custom/css/sample.css" />" />
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/mainHome.css" />" /> 
+	href="<c:url value="/resources/custom/css/banner.css" />" />
 <link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/bodyfont.css" />" /> 
+	href="<c:url value="/resources/custom/css/mainHome.css" />" />
+<link rel="stylesheet"
+	href="<c:url value="/resources/custom/css/bodyfont.css" />" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-<%@ include file="header.jsp"%>
+	<%@ include file="header.jsp"%>
 	<!-- 패스워드 재설정 이메일을 보내면 홈으로 이동된다. -->
 	<!-- 홈으로 이동 후 메일이 전송되었다고 사용자에게 알리는 부분이 되겠다. -->
 	<c:if test="${sendEmail == '1' }">
@@ -37,8 +37,8 @@
 		</script>
 	</c:if>
 	<c:if test="${noAccess == '1' }">
-	<script>
-		swal('', '유효하지 않은 페이지입니다.\n비밀번호 찾기를 다시 진행해주세요.', "success");
+		<script>
+			swal('', '유효하지 않은 페이지입니다.\n비밀번호 찾기를 다시 진행해주세요.', "success");
 		</script>
 	</c:if>
 
@@ -610,248 +610,76 @@
 			</div>
 
 			<div class="total_card_layout">
-				<!-- 1번 카드 레이아웃 -->
-				<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
-					<div class="card">
-						<div class="card_header">
+				<!--신규등록 장소 추천 반복 시작. -->
+				<c:forEach var="latestPlace" items="${latestPlaces }">
+					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
+						<input type="hidden" id="place_num"
+							value="${latestPlace.placeNum}" />
+						 <input type="hidden"
+							id="user_id" value="${latestPlace.userId }" />
+							
+						<div class="card">
+							<div class="card_header">
 
-							<img src="<c:url value="/resources/custom/image/신규1.jfif" />"
-								alt="이미지 넣는 곳" />
-							<!-- 데이터 베이스의 해당 image 가져오기-->
-						</div>
-						<div class="card_body">
-							<div class="card_body_header">
-								<p>
-									빌라 · 서울
-									<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
-								</p>
-								<div class="card_body_header_right">
-									<div>
-										<img src="<c:url value="/resources/custom/icon/person.png" />">
-										<p>
-											4
-											<!-- {{ place.people }} -->
-										</p>
-									</div>
-									<div>
-										<img
-											src="<c:url value="/resources/custom/icon/parking.png" />">
-										<p>
-											1
-											<!-- {{ place.parking }} -->
-										</p>
+								<img src="${latestPlace.placeThumb}" alt="이미지 넣는 곳" />
+								<!-- 데이터 베이스의 해당 image 가져오기-->
+							</div>
+							<div class="card_body">
+								<div class="card_body_header">
+									<p>
+										${latestPlace.placeCate } · ${latestPlace.placeArea }
+										<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
+									</p>
+									<div class="card_body_header_right">
+										<div>
+											<img
+												src="<c:url value="/resources/custom/icon/person.png" />">
+											<p>
+												${latestPlace.placeCapa}
+												<!-- {{ place.people }} -->
+											</p>
+										</div>
+										<div>
+											<img
+												src="<c:url value="/resources/custom/icon/parking.png" />">
+											<p>
+												${latestPlace.placeCapaCar }
+												<!-- {{ place.parking }} -->
+											</p>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="card_body_title">
-								[성수동] 모던 in 고택
-								<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
-							</div>
-						</div>
-						<div id="line"></div>
-						<div class="card_body_footer">
-							<img src="<c:url value="/resources/custom/icon/gold_star.png" />">
-							<p class="card_body_footer_star">
-								5.0
-								<!-- {{ place.feedback_rating }} -->
-							</p>
-							<p class="card_body_footer_review">
-								리뷰 12
-								<!-- 리뷰 {{ place.feedback_count }} -->
-							</p>
-							<p class="card_body_footer_price">
-								61,000원
-								<!-- {{ place.price_guest }}원 -->
-							</p>
-							<img class="card_body_footer_booking"
-								src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
-							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
-						</div>
-					</div>
-				</div>
-
-				<!-- 2번 CARD_LAYOUT-->
-				<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
-					<div class="card">
-						<div class="card_header">
-							<img src="<c:url value="/resources/custom/image/신규2.jfif" />"
-								alt="이미지 넣는 곳" />
-							<!-- 데이터 베이스의 해당 image 가져오기-->
-						</div>
-						<div class="card_body">
-							<div class="card_body_header">
-								<p>
-									아파트 · 경기
-									<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
-								</p>
-								<div class="card_body_header_right">
-									<div>
-										<img src="<c:url value="/resources/custom/icon/person.png" />">
-										<p>
-											5
-											<!-- {{ place.people }} -->
-										</p>
-									</div>
-									<div>
-										<img
-											src="<c:url value="/resources/custom/icon/parking.png" />">
-										<p>
-											5
-											<!-- {{ place.parking }} -->
-										</p>
-									</div>
+								<div class="card_body_title">
+									${latestPlace.placeName }
+									<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
 								</div>
 							</div>
-							<div class="card_body_title">
-								미스센츄리 모던의 취향이 담긴 집
-								<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
-							</div>
-						</div>
-						<div id="line"></div>
-						<div class="card_body_footer">
-							<img src="<c:url value="/resources/custom/icon/gold_star.png" />">
-							<p class="card_body_footer_star">
-								5.0
-								<!-- {{ place.feedback_rating }} -->
-							</p>
-							<p class="card_body_footer_review">
-								리뷰 13
-								<!-- 리뷰 {{ place.feedback_count }} -->
-							</p>
-							<p class="card_body_footer_price">
-								64.000원
-								<!-- {{ place.price_guest }}원 -->
-							</p>
-							<img class="card_body_footer_booking"
-								src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
-							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
-						</div>
-					</div>
-				</div>
-
-				<!-- 3번 카드 레이아웃-->
-				<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
-					<div class="card">
-						<div class="card_header">
-							<img src="<c:url value="/resources/custom/image/신규3.jfif" />"
-								alt="이미지 넣는 곳" />
-							<!-- 데이터 베이스의 해당 image 가져오기-->
-						</div>
-						<div class="card_body">
-							<div class="card_body_header">
-								<p>
-									주택 · 인천
-									<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
+							<div id="line"></div>
+							<div class="card_body_footer">
+								<img
+									src="<c:url value="/resources/custom/icon/gold_star.png" />">
+								<p class="card_body_footer_star">
+									${latestPlace.avgRate }
+									<!-- {{ place.feedback_rating }} -->
 								</p>
-								<div class="card_body_header_right">
-									<div>
-										<img src="<c:url value="/resources/custom/icon/person.png" />">
-										<p>
-											4
-											<!-- {{ place.people }} -->
-										</p>
-									</div>
-									<div>
-										<img
-											src="<c:url value="/resources/custom/icon/parking.png" />">
-										<p>
-											2
-											<!-- {{ place.parking }} -->
-										</p>
-									</div>
-								</div>
-							</div>
-							<div class="card_body_title">
-								작은 수영장과 중정이있는 내츄럴 무드의 단독주택 "떼까사"
-								<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
-							</div>
-						</div>
-						<div id="line"></div>
-						<div class="card_body_footer">
-							<img src="<c:url value="/resources/custom/icon/gold_star.png" />">
-							<p class="card_body_footer_star">
-								5.0
-								<!-- {{ place.feedback_rating }} -->
-							</p>
-							<p class="card_body_footer_review">
-								리뷰 80
-								<!-- 리뷰 {{ place.feedback_count }} -->
-							</p>
-							<p class="card_body_footer_price">
-								64,000원
-								<!-- {{ place.price_guest }}원 -->
-							</p>
-							<img class="card_body_footer_booking"
-								src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
-							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
-						</div>
-					</div>
-				</div>
-
-
-				<!-- 4번 카드 레이아웃-->
-				<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
-					<div class="card">
-						<div class="card_header">
-							<img src="<c:url value="/resources/custom/image/신규4.jpg" />"
-								alt="이미지 넣는 곳" />
-							<!-- 데이터 베이스의 해당 image 가져오기-->
-						</div>
-						<div class="card_body">
-							<div class="card_body_header">
-								<p>
-									아파트 · 서울
-									<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
+								<p class="card_body_footer_review">
+									리뷰 ${latestPlace.reviewCnt }
+									<!-- 리뷰 {{ place.feedback_count }} -->
 								</p>
-								<div class="card_body_header_right">
-									<div>
-										<img src="<c:url value="/resources/custom/icon/person.png" />">
-										<p>
-											5
-											<!-- {{ place.people }} -->
-										</p>
-									</div>
-									<div>
-										<img
-											src="<c:url value="/resources/custom/icon/parking.png" />">
-										<p>
-											1
-											<!-- {{ place.parking }} -->
-										</p>
-									</div>
-								</div>
+								<p class="card_body_footer_price">
+									${latestPlace.placePrice }원
+									<!-- {{ place.price_guest }}원 -->
+								</p>
+								<img class="card_body_footer_booking"
+									src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
+								<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
 							</div>
-							<div class="card_body_title">
-								망원동 32평형 아파트
-								<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
-							</div>
-						</div>
-						<div id="line"></div>
-						<div class="card_body_footer">
-							<img src="<c:url value="/resources/custom/icon/gold_star.png" />">
-							<p class="card_body_footer_star">
-								4.7
-								<!-- {{ place.feedback_rating }} -->
-							</p>
-							<p class="card_body_footer_review">
-								리뷰 13
-								<!-- 리뷰 {{ place.feedback_count }} -->
-							</p>
-							<p class="card_body_footer_price">
-								32,000원
-								<!-- {{ place.price_guest }}원 -->
-							</p>
-							<img class="card_body_footer_booking"
-								src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
-							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
 						</div>
 					</div>
-				</div>
 
-
+				</c:forEach>
 			</div>
 			<!--total_card_layout END-->
-
 		</div>
 	</div>
 	<!--신규 등록 장소 추천 끝 -->

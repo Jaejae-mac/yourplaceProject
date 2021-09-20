@@ -1,9 +1,14 @@
 package com.yourplace.commons.awss3;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.json.simple.parser.ParseException;
 
@@ -15,6 +20,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -65,6 +71,17 @@ public class AwsS3 {
 	// 업로드 메서드.
 	public void upload(File file, String key) {
 		uploadToS3(new PutObjectRequest(this.bucket, key, file));
+	}
+	
+	public void uploadBufferedImageToServer(BufferedImage image, String fileName, String imageType) throws IOException, NullPointerException {
+		ByteArrayOutputStream outstream = new ByteArrayOutputStream();
+		ImageIO.write(image, "png", outstream);
+		byte[] buffer = outstream.toByteArray();
+		InputStream is = new ByteArrayInputStream(buffer);
+		ObjectMetadata meta = new ObjectMetadata();
+		meta.setContentType("image/" + imageType);
+		meta.setContentLength(buffer.length);
+		uploadToS3(new PutObjectRequest(this.bucket, fileName, is, meta).withCannedAcl(CannedAccessControlList.PublicRead));
 	}
 
 	// For MultipartFile
