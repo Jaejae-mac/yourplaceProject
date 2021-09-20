@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="reserveVO" />
 			<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO"/>
+			<typeAlias type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
+			alias="MyPageReserveVO"/>
 		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
 			alias="HostReservVO" />
 		<typeAlias type="com.yourplace.host.review.vo.HostReviewVO"
