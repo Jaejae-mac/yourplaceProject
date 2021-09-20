@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CouponDAO">
+	
+	<resultMap type="MyPageCouponVO" id="mypagecoupResult">
+		<result property="userCoupNum" column="user_coup_num" />
+		<result property="userCoupId" column="user_coup_id" />
+		<result property="userCoupUseYn" column="user_coup_use_yn" />
+		<result property="userCoupStartD" column="user_coup_start_d" />
+		<result property="userCoupEndD" column="user_coup_end_d" />
+		<result property="coupName" column="coup_name" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+	</resultMap>
+	
+	<select id="getCouponList" resultMap="mypagecoupResult">
+		select 	coupon_user.coup_num,
+				coupon_user.user_coup_id,
+				coupon_user.user_coup_use_yn,
+				coupon_user.coup_start_d,
+				coupon_user.coup_end_d,
+				coupon_all.coup_name,
+				coupon_all.coup_dis_rate 
+				from coupon_user, coupon_all 
+				where coupon_user.user_coup_id = #{userCoupId} 
+				and coupon_user.coup_num = coupon_all.coup_num 
+				and coupon_user.user_coup_use_yn='n'
+				and coupon_user.coup_end_d > DATE_FORMAT(CURDATE(), '%Y-%m-%d');
+	</select>
+	
+</mapper>
