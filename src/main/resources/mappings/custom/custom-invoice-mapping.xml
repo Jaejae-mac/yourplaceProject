@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="InvoiceDAO">
+	<resultMap type="MyInvoice" id="invoiceResult">
+		<result property="rsvNum" column="rsv_num" />
+		<result property="payYear" column="pay_year" />
+		<result property="payMonth" column="pay_month" />
+		<result property="payDate" column="pay_date" />
+		<result property="rsvName" column="rsv_name" />
+		<result property="placeNum" column="place_num" />
+		<result property="rsvYear" column="rsv_year" />
+		<result property="rsvMonth" column="rsv_month" />
+		<result property="rsvDate" column="rsv_date" />
+		<result property="rsvPay" column="rsv_pay" />
+	</resultMap>
+	
+	<select id="invoiceView" resultMap="invoiceResult">
+		SELECT * FROM reserve WHERE rsv_num =  #{rsvNum};
+	</select>
+</mapper>

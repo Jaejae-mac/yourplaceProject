@@ -4,18 +4,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="GuestQuesDAO">
-	<resultMap type="myQues" id="quesResult">
+	<resultMap type="MyQues" id="quesResult">
 		<id property="reprtSeq" column="reprt_seq" />
 		<result property="userId" column="user_id" />
 		<result property="reprtContent" column="reprt_content" />
 		<result property="reprtDoneYn" column="reprt_done_yn" />
 	</resultMap>
 
-	<insert id="insertQues" parameterType="myQues">
+	<insert id="insertQues" parameterType="MyQues">
 		INSERT INTO question(
+		user_id,
+		rsv_num,
+		reprt_content
+		)VALUES(
+		'dlrlxor6100',
+		#{reprtContent}
+		)
+	</insert>
+
+	<insert id="insertReport" parameterType="MyQues">
+		INSERT INTO question(
+		rsv_num,
 		user_id,
 		reprt_content
 		)VALUES(
+		#{rsvNum}, 
 		'dlrlxor6100',
 		#{reprtContent}
 		)

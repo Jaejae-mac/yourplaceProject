@@ -18,9 +18,16 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostReservVO" />
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
-		<typeAlias type="com.yourplace.custom.question.vo.QuestionVO"
-			alias="MyQues" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.GuestInfoVO"
+			alias="MyGuestInfo" />
+		<typeAlias type="com.yourplace.custom.invoice.vo.InvoiceVO"
+			alias="MyInvoice" />
 	</typeAliases>
+
+
 	<mappers>
 		<mapper resource="mappings/test-mapper.xml" />
 		<mapper resource="mappings/host/host-login-mapping.xml" />
@@ -31,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/host/HostReservMapper.xml" />
 		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
-
+		<mapper resource="mappings/custom/custom-info-mapping.xml" />
+		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
 	</mappers>
 </configuration>

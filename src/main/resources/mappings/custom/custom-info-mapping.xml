@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="GuestInfoDAO">
+	<resultMap type="MyGuestInfo" id="guestResult">
+		<result property="infoGueCate" column="info_gue_cate" />
+		<result property="infoGueTitle" column="info_gue_title" />
+		<result property="infoGueContent" column="info_gue_content" />
+	</resultMap>
+	
+	<select id="guestInfo" resultMap="guestResult">
+		SELECT * FROM info_guest WHERE info_gue_cate = #{infoGueCate};
+	</select>
+</mapper>

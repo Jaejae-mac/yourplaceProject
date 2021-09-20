@@ -13,4 +13,5 @@ public class QuestionVO {
 	private String userId;
 	private String reprtContent;
 	private String reprtDoneYn; 
+	private int rsvNum;
 }
