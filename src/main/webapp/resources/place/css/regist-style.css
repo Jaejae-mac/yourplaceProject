@@ -1,11 +1,25 @@
-body {
-  display: flex;
+ body {
+ /*  display: flex; */
   justify-content: center;
   align-items: center;
+} 
+h3 {
+  background-color: oldlace;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}
+input {
+  outline: none;
+}
+
+p {
+  vertical-align: middle;
+  padding: 10px;
 }
 .regist-div {
   /* outline: 1px solid black; */
-  width: 50%;
+  width: 44%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,12 +27,11 @@ body {
 }
 #tag {
   border-radius: 10px;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 #tag-list > .tag-item {
   list-style-type: none;
   float: left;
-
   background-color: rgb(160, 169, 212);
   margin-right: 5px;
   border-radius: 20px;
@@ -37,7 +50,6 @@ body {
 .btn-primary {
   padding: 0 0;
   margin: 0 0;
-  border-radius: 10px;
 }
 .regist-div > .find-address {
   position: absolute;
@@ -50,7 +62,7 @@ body {
   height: 35px;
   width: 77%;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   float: left;
 }
 .btn-find-address {
@@ -58,22 +70,26 @@ body {
   width: 23%;
 }
 /* ------- */
-.regist-div > .file {
+/* .regist-div > .file {
   position: absolute;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
-}
-.file > div {
+} */
+/* .file > div {
   display: inline-block;
+  width: 100%;
   min-height: 30px;
-}
+} */
 .file-name-div {
   border: 1px solid black;
-  line-height: 10px;
-  border-radius: 50px;
-  width: 60%;
-  height: 30px;
+  /* line-height: 10px; */
+  /* border-radius: 50px; */
+  margin-bottom: 10px;
+  min-height: 200px;
+}
+.file-item {
+  margin-top: 5px;
 }
 .form-group2 {
   justify-content: center;
@@ -88,6 +104,11 @@ body {
   color: white;
   cursor: pointer;
   text-align: center;
+}
+.del-btn-file {
+  float: right;
+  margin-right: 5px;
+  padding: 10 10;
 }
 #file-name {
   display: inline;
@@ -120,6 +141,10 @@ body {
   padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
+}
+.form-check > .form-check-input{
+	margin-left:0px;
+	margin-right:5px;
 }
 .extra-fee-sub-title {
   font-size: large;
@@ -163,7 +188,7 @@ body {
 } */
 .btn-add {
   margin: 0 auto;
-  border-radius: 10px;
+width:70%;
 }
 .del-btn,
 .del-btn-file,

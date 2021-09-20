@@ -17,7 +17,6 @@ public class RegistPlaceDAOImpl implements RegistPlaceDAO {
 		
 	@Override
 	public int getCurSeq() {
-		
 		return sqlSessionTemplate.selectOne("RegistPlaceDAO.getCurSeq");
 	}
 

@@ -96,7 +96,8 @@
 
 </head>
 <body class="sb-nav-fixed">
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+<%@include file="hostnav.jsp" %>
+<%-- 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
 		<a class="navbar-brand ps-3" href="/indexOurPlace.hdo">Yourplace Host</a>
 		<!-- Sidebar Toggle-->
@@ -165,7 +166,7 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/managementHostPlace.hdo">내 장소 관리</a> <a
-									class="nav-link" href="/insertPlaceforHost.hdo">내 장소 등록</a> <a
+									class="nav-link" href="/regist/place/form.hdo">내 장소 등록</a> <a
 									class="nav-link" href="/hostReviews.hdo">리뷰 관리</a>
 							</nav>
 						</div>
@@ -212,7 +213,7 @@
 				<input type="hidden" value="${userId }" name="userId" value="userId"/>
 			</nav>
 			<!--사이드바 nav태그((사이드메뉴)) 끝-->
-		</div>
+		</div> --%>
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">

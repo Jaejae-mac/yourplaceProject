@@ -46,9 +46,8 @@ public class RegistPlaceController {
 			@RequestParam(value = "roomTitle", required = false) List<String> roomTitle,
 			@RequestParam(value = "defaultCapa", required = false) List<String> defaultCapa,
 			@RequestParam(value = "surcharge", required = false) List<String> surcharge, HttpServletRequest request) throws IOException {
-//		HttpSession session = request.getSession();
-//		vo.setUserId(String.valueOf(session.getAttribute("userId")));
-		vo.setUserId("testhost1");
+		HttpSession session = request.getSession();
+		vo.setUserId(String.valueOf(session.getAttribute("userId")));
 		vo.setPlaceThumb("NOT YET");
 		if (roomTitle != null) {
 			// 상세 방번호는 장소번호 + "a" 이런식으로 이어간다.
