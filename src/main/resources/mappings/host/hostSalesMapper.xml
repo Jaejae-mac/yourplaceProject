@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hostSalesMapper">
+
+
+<resultMap type="HostSalesVO" id="AllSales">
+	<result property="rsvNum" column="rsv_num" />
+	<result property="payNum" column="pay_num" />
+	<result property="placeMainCa" column="place_maincate" />
+	<result property="placeCate" column="place_cate" />
+	<result property="payYear" column="pay_year" />
+	<result property="payMonth" column="pay_month" />
+	<result property="payDate" column="pay_date" />
+	<result property="invCost" column="inv_cost" />
+	<result property="coupDisPercent" column="coup_dis_rate" />
+	<result property="invBeforeCost" column="inv_bf_tax" />
+	<result property="invTax" column="inv_tax" />
+	<result property="invAfterCost" column="inv_aft_tax" />
+</resultMap>
+
+	
+	<select id="getAllSales" resultMap="AllSales">
+		select * from invoice
+	</select>
+
+
+
+</mapper>

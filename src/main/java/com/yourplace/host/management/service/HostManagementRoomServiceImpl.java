@@ -25,4 +25,10 @@ public class HostManagementRoomServiceImpl implements HostManagementRoomService 
 		dao.deleteRoom(placeNum);
 		
 	}
+
+	@Override
+	public void insertRoom(HostManagementRoomVO vo) throws Exception {
+		dao.insertRoom(vo);
+		
+	}
 }

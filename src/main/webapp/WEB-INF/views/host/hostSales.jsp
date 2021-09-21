@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Reserve</title>
+    <title>매출 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -51,16 +51,7 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
     <script>
-      $(document).on("click", ".trigger", function () {
-        Swal.fire("리뷰보기 입니다.");
-      });
-      $(function () {
-        $("#toggle-one").bootstrapToggle({
-          on: "게스트리뷰",
-          off: "호스트리뷰",
-          offstyle: "success",
-        });
-      });
+     
       $(document).ready(function () {
         var lang_kor = {
           decimal: "",
@@ -253,7 +244,7 @@
                   data-bs-parent="#sidenavAccordion"
                 >
                   <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">결제 정보</a>
+                    <a class="nav-link" href="/hostSales.hdo">결제 정보</a>
                     <a class="nav-link" href="chartsAdmin.html">매출 현황</a>
                   </nav>
                 </div>
@@ -269,10 +260,10 @@
         <div id="layoutSidenav_content">
           <main>
             <div class="container-fluid px-4">
-              <h1 class="mt-4">예약 목록</h1>
+              <h1 class="mt-4">매출 내역</h1>
               <div class="card mb-4">
                 <div class="card-body">
-                최근 예약 목록을 볼 수있습니다.
+             매출 내역을 관리할 수 있습니다.
                 </div>
               </div>
               <table
@@ -282,32 +273,31 @@
             >
              <thead>
 									<tr>
-										<th>장소명</th>
 										<th>예약번호</th>
-										<th>예약자</th>
-										<th>예약일</th>
+										<th>결제승인번호</th>
+										<th>메인 카테고리/세부카테고리</th>
+										<th>결제일</th>
 									
-										<th>입실</th>
-										<th>퇴실</th>
-										<th>인원</th>
-										<th>금액</th>
+										<th>원가</th>
+										<th>할인률</th>
+										<th>세전 금액</th>
+										<th>세금</th>
+										<th>세후 금액</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="test" items="${list}">
+									<c:forEach var="sales" items="${list}">
 										<tr>
-											<td>${test.placeName}</td>
-											<td>${test.reserveNum }</td>
-											<td>${test.reserveName }</td>
-											<td>${test.reserveYear }년-${test.reserveMonth }-월${test.reserveDate }일</td>
-											
-											
+											<td>${sales.rsvNum}</td>
+												<td>${sales.payNum}</td>
+											<td>${sales.placeMainCa} / ${sales.placeCate} </td>
+											<td>${sales.payYear}년-${sales.payMonth }-월${sales.payDate }일</td>
+												<td>${sales.invCost} 원</td>
+												<td>${sales.coupDisPercent}%</td>
+											<td>${sales.invBeforeCost} 원</td>
+												<td>${sales.invTax} 원</td>
+												<td>${sales.invAfterCost} 원</td>
 										
-											<td>${test.startTime }</td>
-											<td>${test.endTime }</td>
-											<td>${test.personNum }</td>
-											<td>${test.payPrice }</td>
-
 
 										</tr>
 

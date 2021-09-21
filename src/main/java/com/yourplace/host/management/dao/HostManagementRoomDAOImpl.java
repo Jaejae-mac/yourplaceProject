@@ -24,6 +24,14 @@ public class HostManagementRoomDAOImpl implements HostManagementRoomDAO {
 		session.delete("HostManagementRoomMapper.deleteRoom", placeNum);
 		
 	}
+
+	@Override
+	public void insertRoom(HostManagementRoomVO vo) throws Exception {
+		session.insert("HostManagementRoomMapper.insertRoom",vo);
+		
+	}
+
+	
 	
 
 }

@@ -17,7 +17,9 @@
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
-
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
    <link href="<c:url value="/resources/host/css/styles.css" />" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
@@ -25,7 +27,8 @@
     ></script>
   </head>
   <body class="sb-nav-fixed">
-  <form method="get" action="/deleteRoom.hdo">
+
+
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="/indexOurPlace.hdo">Yourplace Host</a>
@@ -224,8 +227,53 @@
 							<i class="fas fa-table me-1"></i> <a href="/managementHostPlace.hdo" style="text-decoration: none; color:black;">내 장소 관리</a>
 							<i class="fas fa-table me-1"></i> <a href="/managementHostRoomPlace.hdo" style="text-decoration: none; color:black;">세부 방 정보 관리</a>
 						</div>
+						
 						<div class="card-body">
-							                
+					<form action="/getRoomValue.hdo" method="post">
+								<input type="button" onclick="add_row()"
+									class="btn btn-primary"
+									style="font-size: 10px; margin-left: 10px;" value="추가" />
+
+
+								<script>
+						
+								function add_row(){
+							var roomListTbody =document.getElementById('roomListTbody');
+							var row = roomListTbody.insertRow(roomListTbody.rows.length);
+							var cell1 = row.insertCell(0);
+							var cell2 = row.insertCell(1);
+							var cell3 = row.insertCell(2);
+							var cell4 = row.insertCell(3);
+							var cell5 = row.insertCell(4);
+							var cell6 = row.insertCell(5);	
+							
+						
+							cell1.innerHTML = "<td><input type='text' name='inputplaceNum' id='inputplaceNum' readonly/></td>"
+							cell2.innerHTML = "<td><input type='text  name='inputplaceName' id='inputplaceName' placeholder='장소 이름을 적어주세요'/></td>"
+							cell3.innerHTML = "<td><input type='text'  name='inputroomName' id='inputroomName' placeholder='방 이름을 적어주세요'/></td>"
+							cell4.innerHTML = "<td><input type='text'  name='inputpersonNum' id='inputpersonNum' placeholder='인원수를 적어주세요'/></td>"
+							cell5.innerHTML = "<td><input type='text' name='inputextraCharge' id='inputextraCharge' placeholder='추가 금액을 적어주세요'/></td>"								
+							cell6.innerHTML ="<td><button type='button' class='btn btn-danger' onclick='delete_row()' style='font-size: 10px; margin-left: 10px;'>삭제</button><input type='button' onclick='getValue()' id='getV' value='등록' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;'></td>"
+					
+					
+						
+						}
+						
+						function delete_row(){
+							var roomListTbody = document.getElementById('roomListTbody');
+							if(roomListTbody.rows.length <1)
+								return;
+							roomListTbody.deleteRow(roomListTbody.rows.length-1);
+						}
+						
+
+						</script>
+
+
+
+
+						
+							      
 							<table id="datatablesSimple">
 							             
 								<thead>
@@ -238,7 +286,7 @@
                        
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="roomListTbody">
 
                   <c:forEach var="room" items="${list2}">
 										<tr>
@@ -248,7 +296,7 @@
 											<td>${room.detailPersonNum }</td>
 											<td>${room.surcharge }</td>
 									<td>
-							<button type="submit" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?placeNum=${room.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
+							<button type="button" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?placeNum=${room.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
 									
 									</td>
 
@@ -266,13 +314,14 @@
 
 								</tfoot>
 							</table>
-	
+	 </form>
 
 
 
 						</div>
 					</div>
 				</div>
+				
         </main>
 
         <footer class="py-4 bg-light mt-auto">
@@ -300,7 +349,7 @@
     ></script>
  
     <script src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
- </form>
+
   </body>
 
 </html>

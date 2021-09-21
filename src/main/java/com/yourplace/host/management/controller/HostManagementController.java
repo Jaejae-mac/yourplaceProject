@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.text.Document;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
@@ -67,8 +68,8 @@ public class HostManagementController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/managementHostRoomPlace.hdo")
-	public ModelAndView getRoom() throws Exception{
+	@RequestMapping(value="/managementHostRoomPlace.hdo", method=RequestMethod.GET)
+	public ModelAndView getRoom(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		List<HostManagementRoomVO> roomlist = service2.getRoomList();
 		mav.addObject("list2", roomlist);
@@ -76,6 +77,16 @@ public class HostManagementController {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="/getRoomValue.hdo", method=RequestMethod.POST)
+	public String insertRoom(HttpServletRequest request)  throws Exception{
+		
+		return  "redirect:/managementHostRoomPlace.hdo";
+		
+	}
 
+
+	
+	
 
 }

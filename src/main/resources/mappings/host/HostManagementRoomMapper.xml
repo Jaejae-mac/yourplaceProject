@@ -23,4 +23,9 @@
 	<delete id="deleteRoom">
 	delete from place_detail where place_num=#{placeNum}
 	</delete>
+	
+	<insert id="insertRoom">
+		insert into place_detail(detail_num, detail_title, default_capa, surcharge)
+		values(detail_num=#{detailNum}, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
+	</insert>
 </mapper>
