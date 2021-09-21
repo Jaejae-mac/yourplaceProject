@@ -613,10 +613,10 @@
 				<!--신규등록 장소 추천 반복 시작. -->
 				<c:forEach var="latestPlace" items="${latestPlaces }">
 					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
-						<input type="hidden" id="place_num"
+						<input type="hidden" id="place_num" name="place_num"
 							value="${latestPlace.placeNum}" />
 						 <input type="hidden"
-							id="user_id" value="${latestPlace.userId }" />
+							id="user_id" name="user_id" value="${latestPlace.userId }" />
 							
 						<div class="card">
 							<div class="card_header">
@@ -1262,4 +1262,11 @@
 	<!-- script 끝 -->
 	<%@ include file="footer.jsp"%>
 </body>
+<script>
+    $(".card_layout").click(function(event){
+        console.log($(this).children("input[name='place_num']").val());
+        console.log($(this).children("input[name='user_id']").val());
+    });
+
+</script>
 </html>

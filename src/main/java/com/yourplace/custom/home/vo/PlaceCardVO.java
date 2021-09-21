@@ -14,6 +14,8 @@ public class PlaceCardVO {
 	private String userId;
 	//지역
 	private String placeArea;
+	//카테고리 - 대
+	private String placeMaincate;
 	//카테고리 - 소
 	private String placeCate;
 	//장소명
