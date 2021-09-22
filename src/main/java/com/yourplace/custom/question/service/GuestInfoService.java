@@ -8,4 +8,5 @@ public interface GuestInfoService {
 
 	
 	List<GuestInfoVO> guestInfoView(GuestInfoVO vo);
+
 }

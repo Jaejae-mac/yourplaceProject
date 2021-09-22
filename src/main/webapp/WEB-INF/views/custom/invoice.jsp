@@ -118,7 +118,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										예약 장소명</p>
+										${invoice.placeName}</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -155,13 +155,26 @@
 								<div style="width: 100px; padding: 10px 0;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #72787f;">
-										총 금액</p>
+										원가</p>
 								</div>
 								<div
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.rsvPay }원</p>
+										${invoice.invCost }원</p>
+								</div>
+							</div>
+							<div class="h_row">
+								<div style="width: 100px; padding: 10px 0;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #72787f;">
+										세전 금액</p>
+								</div>
+								<div
+									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
+										${invoice.invBfTax }원</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -191,7 +204,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: -0.09px; text-align: right; color: #1b1d1f;">
-										${invoice.rsvPay}원(부가세 포함)</p>
+										${invoice.invAftTax}원(부가세${invoice.invTax}원 포함)</p>
 								</div>
 							</div>
 							</c:forEach>
@@ -205,7 +218,7 @@
 								<p
 									style="font-size: 12px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.67; letter-spacing: normal; color: #9ea4aa;">
 									KG ITBANK | 서울특별시 강남구 압구정로2길 62 대성빌딩 202호<br> 사업자 등록번호
-									494-81-00558 | team@hourplace.co.kr<br> © Kgitbank Inc.
+									494-81-00558 | team@yourplace.co.kr<br> © Kgitbank Inc.
 								</p>
 							</div>
 						</div>

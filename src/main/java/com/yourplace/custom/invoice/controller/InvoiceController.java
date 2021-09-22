@@ -18,7 +18,7 @@ public class InvoiceController {
 	
 	@GetMapping("/invoice.do")
 	public String invoiceForm(Model model, InvoiceVO vo) {
-		vo.setRsvNum(13);
+		vo.setRsvNum(24);
 		System.out.println("invoice.jsp 호출 ");
 		List<InvoiceVO> list = invoiceService.invoiceView(vo);
 		model.addAttribute("invoiceList", list);

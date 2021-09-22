@@ -17,14 +17,16 @@
 <body style="width: 1160px; height: 100%">
 
 	<!--header-->
-	<div>
-		<div class="h_column_center" style="background-color: #fafbfb">
-			<div style="margin-top: 20px;">
-				<p
-					style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
-					이용방법</p>
-			</div>
+	<div style="width: 1160px;">
+		<div style="margin-top: 20px;">
 
+			<div style="padding: 0px 0px 5px 0px;">
+
+				<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
+			</div>
+			<p
+				style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: rgb(27, 29, 31);">
+				이용방법</p>
 		</div>
 	</div>
 	<div class="h_row_center"
@@ -108,8 +110,9 @@
 				등을 변경할 수 있습니다.</div>
 		</div>
 	</c:forEach>
-	<!---->
-
+	<div style="padding: 0px 0px 400px 0px">
+		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
+	</div>
 	<!--내용 열기 script-->
 
 	<script type="text/javascript">

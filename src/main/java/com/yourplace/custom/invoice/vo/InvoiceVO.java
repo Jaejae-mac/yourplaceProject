@@ -10,16 +10,25 @@ import lombok.ToString;
 public class InvoiceVO {
 
 	private int rsvNum; //예약 번호
-	private int payYear; //결제 연도
-	private int payMonth; //결제 월
-	private int payDate; // 결제 일
-	private String rsvName; // 예약자 이름
-	private int placeNum; // 장소 번호 
-//	private String placeName; // 예약 장소 명
-	private int rsvYear; // 예약 연도
-	private int rsvMonth; // 예약 월
-	private int rsvDate; // 예약일
-//	private Time rsvStartT; // 예약기간의 시작시각
-	private int rsvPay; // 결제 금액
-//	private int 총 금액 
+	private String payNum; //결제 승인 번호
+	private String placeMainCate; // 카테고리(대)
+	private String placeCate; // 카테고리(소)
+	private int payYear; // 거래일자 연
+	private int payMonth; // 거래일자 월
+	private int payDate; // 거래일자 일
+	private int invCost; // 원가
+	private int coupDisRate; // 할인율
+	private int invBfTax; // 세전 금액
+	private int invTax; // 부가세(수수료)
+	private int invAftTax; // 세후 금액
+	private int userNum; // 회원 고유 번호 
+	
+	
+	private String rsvName; // 예약자 명
+	private int rsvYear; // 예약 년도
+	private int rsvMonth; // 예약  월
+	private int rsvDate; // 예약 일
+	private String placeName; // 예약 장소명
+	private int placeNum; // 예약 장소 번호 
+	
 }
