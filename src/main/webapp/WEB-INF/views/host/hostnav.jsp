@@ -114,8 +114,8 @@
 						<div class="collapse" id="collapsePayManagement"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="layout-static.html">결제 정보</a> <a
-									class="nav-link" href="chartsAdmin.html">매출 현황</a>
+								<a class="nav-link" href="/hostSales.hdo">결제 정보</a> <a
+									class="nav-link" href="#">매출 현황</a>
 							</nav>
 						</div>
 					</div>

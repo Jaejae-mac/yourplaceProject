@@ -23,7 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<select id="getHost" resultMap="hostResult">
+	
 	SELECT * FROM member WHERE user_type=1 and user_id=#{userId}
+	
 	</select>
 	
 	
@@ -47,10 +49,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getHostInfo" resultMap="hostInfo">
 		<trim suffixOverrides=",">
 			SELECT user_nick_name,
+			user_sex,
 			user_intro
 			FROM member WHERE user_id=#{userId}
 		</trim>
 	</select>
+
+	<update id="updateHostInfo">
+		<trim suffixOverrides=",">
+			UPDATE member SET user_nick_name=#{userNickName},
+			user_intro=#{userIntro}
+			WHERE user_id=#{userId};
+
+		</trim>
+	</update>
 	
 	
 

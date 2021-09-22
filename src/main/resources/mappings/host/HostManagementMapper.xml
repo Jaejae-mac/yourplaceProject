@@ -30,9 +30,7 @@
 
 	
 	<select id="getAllHostPlace" resultMap="getAllHostPlace">
-	<trim suffixOverrides=",">
 	SELECT * FROM place
-	</trim>
 	</select>
 
 	<delete id="deletePlace">

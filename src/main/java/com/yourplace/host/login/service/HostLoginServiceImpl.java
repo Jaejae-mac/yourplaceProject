@@ -21,8 +21,10 @@ public class HostLoginServiceImpl implements HostLoginService{
 	private BCryptPasswordEncoder passEncoder;
 
 	@Override
-	public List<HostVO> getHostInfo() throws Exception {
-		return dao.getHostInfo();
+	public List<HostVO> getHostInfo(HostVO vo) throws Exception {
+		List<HostVO> list = dao.getHostInfo(vo);
+//		System.out.println(list.toString());
+		return dao.getHostInfo(vo);
 	}
 	
 	@Override
@@ -40,6 +42,12 @@ public class HostLoginServiceImpl implements HostLoginService{
 		} else {
 			return 0;
 		}
+	}
+
+	@Override
+	public void updateProfile(HostVO vo) throws Exception {
+		dao.updateProfile(vo);
+		
 	}
 
 

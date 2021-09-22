@@ -25,7 +25,7 @@
 	</delete>
 	
 	<insert id="insertRoom">
-		insert into place_detail(detail_num, detail_title, default_capa, surcharge)
-		values(detail_num=#{detailNum}, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
+		insert into place_detail(detail_num, place_num, detail_title, default_capa, surcharge)
+		values(1111,4444, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
 	</insert>
 </mapper>

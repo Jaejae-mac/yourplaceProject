@@ -27,192 +27,7 @@
     ></script>
   </head>
   <body class="sb-nav-fixed">
-
-
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/indexOurPlace.hdo">Yourplace Host</a>
-        <!-- Sidebar Toggle-->
-        <button
-          class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-          id="sidebarToggle"
-          href="#!"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-        <!-- Navbar Search-->
-        <form
-          class="
-            d-none d-md-inline-block
-            form-inline
-            ms-auto
-            me-0 me-md-3
-            my-2 my-md-0
-          "
-        >
-          <div class="input-group">
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Search for..."
-              aria-label="Search for..."
-              aria-describedby="btnNavbarSearch"
-            />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              ><i class="fas fa-user fa-fw"></i
-            ></a>
-            <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdown"
-            >
-              <li><a class="dropdown-item" href="#!">Settings</a></li>
-              <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#!">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-           <!--사이드바 nav태그(사이드메뉴) 시작-->
-           <div class="sb-sidenav-menu">
-            <div class="nav">
-              <div class="sb-sidenav-menu-heading">Menu</div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseHost"
-                aria-expanded="false"
-                aria-controls="collapseHost"
-              >
-              <input type="hidden" value="${userId }" name="userId" value="userId"/>
-                <div class="sb-nav-link-icon">
-                  <i class="fa fa-user-circle"></i>
-                </div>
-                호스트 관리
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapseHost"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="/updateProfileforHost.hdo">내 프로필 관리</a>
-                </nav>
-              </div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapsePlace"
-                aria-expanded="false"
-                aria-controls="collapsePlace"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fa fa-cloud"></i>
-                </div>
-                장소 관리
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapsePlace"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="/managementHostPlace.hdo">내 장소 관리</a>
-                  <a class="nav-link" href="/insertPlaceforHost.hdo">내 장소 등록</a>
-                  <a class="nav-link" href="/hostReviews.hdo">리뷰 관리</a>
-                </nav>
-              </div>
-
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseMember"
-                aria-expanded="false"
-                aria-controls="collapseMember"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fa fa-calendar-check"></i>
-                </div>
-                예약 관리
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapseMember"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="/placeReserveListforHost.hdo">예약 현황</a>
-                </nav>
-              </div>
-              <a
-                class="nav-link collapsed"
-                href="#"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapsePayManagement"
-                aria-expanded="false"
-                aria-controls="collapsePayManagement"
-              >
-                <div class="sb-nav-link-icon">
-                  <i class="fas fa-money-bill-alt"></i>
-                </div>
-                결제/매출 관리
-                <div class="sb-sidenav-collapse-arrow">
-                  <i class="fas fa-angle-down"></i>
-                </div>
-              </a>
-              <div
-                class="collapse"
-                id="collapsePayManagement"
-                aria-labelledby="headingOne"
-                data-bs-parent="#sidenavAccordion"
-              >
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="layout-static.html">결제 정보</a>
-                  <a class="nav-link" href="chartsAdmin.html">매출 현황</a>
-                </nav>
-              </div>
-            </div>
-          </div>
-          <input type="hidden" id="userId" name="userId" value="${userId }"/>
-          <div class="sb-sidenav-footer">
-            <div class="small">Logged in as:</div>
-         ${userId }
-          </div>
-        </nav>
-        <!--사이드바 nav태그((사이드메뉴)) 끝-->
-      </div>
+<%@include file="hostnav.jsp" %>
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
@@ -229,11 +44,13 @@
 						</div>
 						
 						<div class="card-body">
-					<form action="/getRoomValue.hdo" method="post">
+					<form action="/getRoomVlaue.hdo" method="get">
 								<input type="button" onclick="add_row()"
 									class="btn btn-primary"
 									style="font-size: 10px; margin-left: 10px;" value="추가" />
 
+
+	
 
 								<script>
 						
@@ -246,16 +63,15 @@
 							var cell4 = row.insertCell(3);
 							var cell5 = row.insertCell(4);
 							var cell6 = row.insertCell(5);	
-							
+							var cell7 = row.insertCell(6);
 						
-							cell1.innerHTML = "<td><input type='text' name='inputplaceNum' id='inputplaceNum' readonly/></td>"
-							cell2.innerHTML = "<td><input type='text  name='inputplaceName' id='inputplaceName' placeholder='장소 이름을 적어주세요'/></td>"
-							cell3.innerHTML = "<td><input type='text'  name='inputroomName' id='inputroomName' placeholder='방 이름을 적어주세요'/></td>"
-							cell4.innerHTML = "<td><input type='text'  name='inputpersonNum' id='inputpersonNum' placeholder='인원수를 적어주세요'/></td>"
-							cell5.innerHTML = "<td><input type='text' name='inputextraCharge' id='inputextraCharge' placeholder='추가 금액을 적어주세요'/></td>"								
-							cell6.innerHTML ="<td><button type='button' class='btn btn-danger' onclick='delete_row()' style='font-size: 10px; margin-left: 10px;'>삭제</button><input type='button' onclick='getValue()' id='getV' value='등록' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;'></td>"
-					
-					
+							cell1.innerHTML = "<tr><td><input type='text' name='inputplaceNum' id='inputplaceNum' readonly/></td>"
+							cell2.innerHTML = "<td><input type='text  name='inputroomNum' id='inputroomNum' placeholder='방 번호 SAMPLE' readonly/></td>"
+							cell3.innerHTML = "<td><input type='text'  name='detailTitle' id='detailTitle' placeholder='방 이름을 적어주세요'/></td>"
+							cell4.innerHTML = "<td><input type='text'  name='detailPersonNum' id='detailPersonNum' placeholder='인원수를 적어주세요'/></td>"
+							cell5.innerHTML = "<td><input type='text' name='surcharge' id='surcharge' placeholder='추가 금액을 적어주세요'/></td>"								
+							cell6.innerHTML ="<td><button type='button' class='btn btn-danger' onclick='delete_row()' style='font-size: 10px; margin-left: 10px;'>삭제</button></td>"
+							cell7.innerHTML="<td><input type='submit'  id='getValue' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;' value='등록'/></td></tr>"
 						
 						}
 						
@@ -266,20 +82,18 @@
 							roomListTbody.deleteRow(roomListTbody.rows.length-1);
 						}
 						
+					
 
 						</script>
+	
 
-
-
-
-						
 							      
 							<table id="datatablesSimple">
 							             
 								<thead>
 									 <tr>
                         <th>장소 번호</th>
-                        <th>장소 이름</th>
+                 		<th>방 번호</th>
                         <th>세부 방 이름</th>
                         <th>기본 인원</th>
                        <th>추가 금액</th>
@@ -291,14 +105,15 @@
                   <c:forEach var="room" items="${list2}">
 										<tr>
 											<td>${room.placeNum}</td>
+				
 											<td>${room.detailNum}</td>
 											<td>${room.detailTitle }</td>
 											<td>${room.detailPersonNum }</td>
 											<td>${room.surcharge }</td>
 									<td>
 							<button type="button" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?placeNum=${room.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
-									
-									</td>
+		
+											</td>
 
 										</tr>
 
@@ -314,7 +129,7 @@
 
 								</tfoot>
 							</table>
-	 </form>
+</form>
 
 
 

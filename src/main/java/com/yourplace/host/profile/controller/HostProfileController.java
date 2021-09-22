@@ -16,14 +16,15 @@ public class HostProfileController {
 	public ModelAndView hostProfile(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String hostnick = (String)session.getAttribute("userNickName");
-		String hostIntro = (String)session.getAttribute("userIntro");
-		System.out.println(hostnick);
-		System.out.println(hostIntro);
-		mav.setViewName("updateProfileforHost");
-		mav.addObject("hostNick", hostnick); //닉네임
-		mav.addObject("hostIntro", hostIntro); //자기소개
+		String sid = (String) session.getAttribute("userId");
+		String snick = (String) session.getAttribute("userNick");
+		String sinfo=(String)session.getAttribute("userInfo");
 		
+		mav.addObject("userId", sid);
+		mav.addObject("userNick", snick);
+		mav.addObject("userInfo", sinfo);
+		
+		mav.setViewName("updateProfileforHost");
 		return mav;
 	}
 	

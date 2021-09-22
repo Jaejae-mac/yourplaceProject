@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.host.login.service.HostLoginService;
@@ -37,7 +39,7 @@ public class HostLoginController {
 			//세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
 			session.setAttribute("userId", vo.getUserId());
 			//로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
-			getHostInfo(request);
+			getHostInfo(request, vo);
 			return "redirect:indexOurPlace.hdo";
 			
 		}
@@ -48,18 +50,60 @@ public class HostLoginController {
 		
 	}
 	
-	public void getHostInfo(HttpServletRequest request) throws Exception{
-		List<HostVO> list = service.getHostInfo();
+	public void getHostInfo(HttpServletRequest request, HostVO vo) throws Exception{
+		List<HostVO> list = service.getHostInfo(vo);
 		System.out.println(list.toString());
+		
+		
+		try {
+			for(int i=0; i<=list.size(); i++) {
+				String sex = list.get(i).getUserSex();
+				String nick = list.get(i).getUserNickName();
+				String info = list.get(i).getUserIntro();
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("userSex", sex);
+				session.setAttribute("userNick", nick);
+				session.setAttribute("userInfo", info);
+				
+				String sid = (String) session.getAttribute("userId");
+				String ssex =(String) session.getAttribute("userSex");
+				String snick = (String) session.getAttribute("userNick");
+				String sinfo=(String)session.getAttribute("userInfo");
+				
+				System.out.println(sid);
+				System.out.println(snick);
+				System.out.println(sinfo);
+				
+				
+			}
+		}catch(Exception e) {
+			
+		}
+		
+		
+		
+		
+	}
+	
+	@RequestMapping(value="/updateProfile.hdo", method=RequestMethod.POST) //변경되는거 확인
+	public String updateProfile(HostVO vo, HttpServletRequest request) throws Exception{
+		String testId = request.getParameter("userId");
+		String testnick = request.getParameter("name");
+		String testintro = request.getParameter("intro");
+		
+		System.out.println(testId);
+		System.out.println(testnick);
+		System.out.println(testintro);
+		vo.setUserId(testId);
+		vo.setUserNickName(testnick);
+		vo.setUserIntro(testintro);
 		HttpSession session = request.getSession();
-		String id=(String) session.getAttribute("userId");
-		String nick = (String) session.getAttribute("hostNick");
-		String info=(String)session.getAttribute("hostInfo");
-		
-		System.out.println(id);
-		System.out.println(nick);
-		System.out.println(info);
 		
 		
+		service.updateProfile(vo);
+		session.setAttribute("userNick", testnick);
+		session.setAttribute("userInfo", testintro);
+		return "redirect:updateProfileforHost.hdo";
 	}
 }

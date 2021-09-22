@@ -11,6 +11,7 @@ import javax.swing.text.Document;
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,7 @@ public class HostManagementController {
 		List<HostManagementVO> list = service.getAllHostPlace();
 		HttpSession session = request.getSession();
 		String id=(String) session.getAttribute("userId");
+//		System.out.println(list.toString());
 		mav.setViewName("managementHostPlace");
 		mav.addObject("list", list);
 		mav.addObject("userId", id);
@@ -77,16 +79,16 @@ public class HostManagementController {
 		return mav;
 	}
 	
-	
-	@RequestMapping(value="/getRoomValue.hdo", method=RequestMethod.POST)
-	public String insertRoom(HttpServletRequest request)  throws Exception{
+	@GetMapping("/getRoomVlaue.hdo")
+	public void insertRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception {
+		String roomname = request.getParameter("detailTitle"); //방 이름
+		String roomPer = request.getParameter("detailPersonNum"); //인원수
+		String extra = request.getParameter("surcharge"); //할증
+		System.out.println(roomname + roomPer + extra);
+		service2.insertRoom(vo);
+		System.out.println(vo.toString());
 		
-		return  "redirect:/managementHostRoomPlace.hdo";
-		
+
 	}
-
-
-	
-	
 
 }
