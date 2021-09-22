@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SpaceDAO">
+	<resultMap type="mySpaceAllow" id="spaceResult">
+		<id property="placeNum" column="place_num" />
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="placeName" column="place_name" />
+		<result property="placeMaincate" column="place_maincate" />
+		<result property="userTel" column="user_tel" />
+		<result property="userEmail" column="user_email" />
+		<result property="placeAllow" column="place_allow" />
+
+	</resultMap>
+
+	<!-- 전체조회 -->
+	<select id="getSpaceList" resultMap="spaceResult">
+		SELECT 
+			place_allow, place_num, user_id, place_maincate, place_name,
+		    (select user_name from member where user_id=a.user_id) as user_name,
+		    (select user_tel from member where user_id = a.user_id) as user_tel,
+		    (select user_email from member where user_id = a.user_id) as user_email
+		FROM place a;
+	</select>
+	
+	<!-- 장소 삭제 -->
+	<delete id="deleteSpace">
+		DELETE FROM place WHERE place_num = #{placeNum}
+	</delete>
+	
+	<!-- 승인 상태 조회 -->
+	<select id="getSpaceActive" resultMap="spaceResult">
+		SELECT place_allow FROM place WHERE place_num = #{placeNum}
+	</select>
+	
+	<!-- 접근제한 승인(1)에서 미승인(0)으로 -->
+	<update id="disableSpace">
+		UPDATE place SET place_allow = '0' WHERE place_num = #{placeNum}
+	</update>
+	
+	<!-- 접근제한 미승인(0)에서 승인(1)으로 -->
+	<update id="enableSpace">
+		UPDATE place SET place_allow = '1' WHERE place_num = #{placeNum}
+	</update>
+	
+
+</mapper>

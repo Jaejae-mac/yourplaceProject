@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,19 +11,30 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Space Allow and View - Admin</title>
+    <title>공지사항 추가등록</title>
+
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
+
+    <link rel="stylesheet" href="/resources/css/admin/css/style-coupon.css">
     <link href="/resources/css/admin/css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<!--Boot Strap Date picker-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<link rel="stylesheet" href="/resources/css/admin/css/bootstrap-datepicker.css">
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+
+<!--Boot Strap Date picker end-->
   </head>
-  
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -349,72 +359,91 @@
               Start Bootstrap
             </div>
           </nav>
-          
+          <!--사이드바 nav태그((사이드메뉴)) 끝-->
       </div>
-<!--사이드바 nav태그((사이드메뉴)) 끝-->
-
+      
+      
       <div id="layoutSidenav_content">
+      <form action="/infoHostRegist.mdo" method="POST">
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">장소등록 조회 및 승인 페이지</h1>
+           
+           
+           
+            <h1 class="mt-4">공지사항 추가등록 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html"> 메인으로 </a>
+                <a href="index.html">Dashboard</a>
               </li>
-              <li class="breadcrumb-item active">Tables</li>
+              <li class="breadcrumb-item active">공지사항 등록</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                호스트로부터 요청된 장소등록을 확인 후, 승인 처리를 할 수 있는 페이지입니다.
-              </br>
-                호스트의 아이디, 닉네임, 장소에 대한 정보만 확인됩니다.
-              </br>
-                또한 현재 운영 중인 장소를 조회할 수 있으며, 장소명을 누르면 상세보기로 이동합니다.
+                blank
+                
               </div>
             </div>
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                장소 등록 승인
+            <div class="card-header">
+              <b>공지사항 추가등록</b>
+            </div>
+            
+            <div>
+              <table class="table table-bordered">
+                <tbody>
+                
+                <tr>
+                  <th scope="col">카테고리</th>
+                  <td>
+                  	<select name="infoHostCate">
+
+                  		<option value="0">호스트 지원</option>
+                  		<option value="1">장소 등록</option>
+                  		<option value="2">입금 계좌 설정</option>
+                  		<option value="3">예약</option>
+                  		<option value="4">예약 진행</option>
+                  		<option value="5">파손 및 배상</option>
+                  		<option value="6">추가 청구</option>
+                  		<option value="7">대금 지급</option>
+                  		<option value="8">이용 요금</option>
+
+                  	</select>
+                  
+                  </td>
+                </tr>
+                
+                <tr>
+                  <th scope="col">공지사항 제목</th>
+                  <td><input type="text" id="infoTitle" name="infoHostTitle" size="40"></td>
+                </tr>
+                
+                <tr>
+                  <th scope="col">공지사항 내용</th>
+                  <td><textarea id="infoContent" name="infoHostContent" style="width:410px; height:100px;"> </textarea></td>
+                </tr>
+              
+              </tbody>
+              </table>
+              
+              
+              <div class="promotion-coupon-regist">
+                
+                <td>
+	                <button type="button" class="btn btn-danger" style="font-size: 10px;margin-left: 10px;"
+	                onclick="location='infoHost.mdo'">
+	                	취소
+	                </button>
+                </td>
+                
+                
+                <td>
+	                <input type="submit" class="btn btn-primary" style="font-size: 10px;margin-left: 10px;" />
+                </td>
+              
               </div>
-              <div class="card-body">
-                <table id="datatablesSimple">
-
-                  <thead>
-                    <tr>
-                      <th>아이디</th>
-                      <th>이름</th>
-                      <th>장소명</th>
-                      <th>장소분류</th>
-                      <th>연락처</th>
-                      <th>이메일</th>
-                      <th>승인여부</th>
-                      <th>장소삭제</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <tr>
-                      <td>testUser1234</td>
-                      <td>Tiger Nixon</td>
-                      <td><a href="#">나눔 공부방</a></td> <!--클릭시 장소 상세보기 페이지로 이동.-->
-                      <td>스터디 카페</td>
-                      <td>010-1234-5678</td>
-                      <td>iamuser123@gamil.com</td>
-                      <td align="left">
-                        <select name="role" name="role" style="width: 100px;">
-                            <option value="allow">승인</option>
-                            <option value="deny">미승인</option>
-                        </select>
-                        <button type="button" class="btn btn-primary" style="font-size: 10px;margin-left: 10px;">적용</button>
-                      </td>
-                      <td><button type="button" class="btn btn-danger" style="font-size: 10px;margin-left: 10px;">삭제</button></td>
-                    </tr>
-
-                    
-                  </tbody>
-                </table>
-              </div>
+              
+              </form>
+              
+              <div class="clear"></div>
             </div>
           </div>
         </main>
@@ -438,11 +467,14 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="/resources/css/admin/js/scripts.js"></script>
+    <script src="resources/css/admin/js/scripts.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
       crossorigin="anonymous"
     ></script>
-    <script src="/resources/css/admin/js/datatables-simple-demo.js"></script>
+    <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
+
+
   </body>
 </html>
+

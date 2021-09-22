@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CouponUserDAO">
+	<resultMap type="myCouponUser" id="couponUserResult">
+		<result property="coupNum" column="coup_num" />
+		<result property="userCoupId" column="user_coup_id" />
+		<result property="userCoupUseYn" column="user_coup_use_yn" />
+		<result property="coupStartD" column="coup_start_d" />
+		<result property="coupEndD" column="coup_end_d" />
+	</resultMap>
+
+	
+	<!-- 쿠폰 받을 회원 전체 조회 -->
+	<select id="getCouponUserList" resultMap="couponUserResult">
+		SELECT * FROM member
+	</select>
+	
+	<!-- 전송해줄 회원수만큼 0번째 쿠폰으로 데이터 생성 -->
+	<insert id="insertCouponUser"> 
+		INSERT INTO coupon_user (user_coup_id)
+		SELECT user_id FROM member WHERE user_type = 0;
+	</insert>
+	
+	<!-- 0번째 쿠폰이 등록된 회원들의 쿠폰 번호를 먼저 업데이트 -->
+	<update id="updateCouponUser">
+		UPDATE coupon_user
+		SET coup_num = #{coupNum}
+		WHERE coup_num = '0';
+	</update>
+	
+	<!-- 등록된 쿠폰들의 넘버에 맞게 DATE도 수정 -->
+	<update id="updateCouponList">
+		UPDATE coupon_user AS t1, coupon_all AS t2
+		SET t1.coup_start_d = t2.coup_start_d, t1.coup_end_d = t2.coup_end_d
+		WHERE t1.coup_num = t2.coup_num;
+	</update>
+
+</mapper>

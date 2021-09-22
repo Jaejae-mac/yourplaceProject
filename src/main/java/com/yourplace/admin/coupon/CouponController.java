@@ -13,6 +13,8 @@ import com.yourplace.admin.coupon.all.service.CouponListService;
 import com.yourplace.admin.coupon.all.service.DeleteCouponService;
 import com.yourplace.admin.coupon.all.service.InsertCouponService;
 import com.yourplace.admin.coupon.all.vo.CouponAllVO;
+import com.yourplace.admin.coupon.user.service.CouponUserService;
+import com.yourplace.admin.coupon.user.vo.CouponUserVO;
 
 @Controller
 public class CouponController {
@@ -25,6 +27,10 @@ public class CouponController {
 	
 	@Autowired
 	private InsertCouponService coupInsert;
+	
+	@Autowired
+	private CouponUserService coupUserSend;
+	
 	
 	//쿠폰 조회 페이지 호출
 	@GetMapping(value="/couponView.mdo")
@@ -57,6 +63,7 @@ public class CouponController {
 		return "couponRegist";
 	}
 	
+	
 	//쿠폰등록 요청 처리
 	@PostMapping(value="/couponRegist.mdo")
 	public String registCoupon(CouponAllVO coupVO)
@@ -65,6 +72,24 @@ public class CouponController {
 		coupInsert.insertCoupon(coupVO);
 		System.out.println("쿠폰 등록 완료: " + coupVO.toString());
 		
+		return "redirect:couponView.mdo";
+	}
+	
+	
+	//쿠폰전송 페이지 호출
+	@GetMapping(value="/couponSend.mdo")
+	public String sendCoupForm()
+	{
+		return "couponSend";
+	}
+	
+	//쿠폰 전송 처리
+	@PostMapping(value="/couponSend.mdo")
+	public String sendCoupon(@RequestParam("sendCoupName") String sendCoupName, CouponUserVO vo)
+	{
+		System.out.println("---쿠폰 전송---");
+		coupUserSend.sendCoupon(vo, sendCoupName);
+		System.out.println("정상적으로 전송되었습니다.");
 		return "redirect:couponView.mdo";
 	}
 
