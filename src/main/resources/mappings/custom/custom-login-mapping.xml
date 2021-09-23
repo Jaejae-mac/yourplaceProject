@@ -45,6 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertUser" parameterType="myUser">
 		INSERT INTO member(
 		user_id,
+		user_type,
 		user_pw,
 		user_name,
 		user_nick_name,
@@ -55,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		)
 		VALUES(
 		#{userId},
+		#{userType},
 		#{userPw},
 		#{userName},
 		#{userNickName},
@@ -64,6 +66,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{kakaoId}
 		)
 	</insert>
+
+	
+	
+	
 	
 	<update id="updatePassword" parameterType="myUser">
 		UPDATE member SET user_pw=#{userPw} WHERE user_email=#{userEmail} or user_id=#{userId}

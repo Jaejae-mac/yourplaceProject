@@ -74,6 +74,12 @@ public class HostManagementController {
 	public ModelAndView getRoom(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		List<HostManagementRoomVO> roomlist = service2.getRoomList();
+		System.out.println(roomlist.toString());
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		HostManagementVO vo = new HostManagementVO();
+		vo.setUserId(userId);
+		mav.addObject("userId", userId);
 		mav.addObject("list2", roomlist);
 		mav.setViewName("managementHostRoomPlace");
 		return mav;

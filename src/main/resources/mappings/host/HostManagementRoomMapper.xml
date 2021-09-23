@@ -16,7 +16,7 @@
 	
 	<select id="getAllHostRoom" resultMap="getAllHostRoom">
 	<trim suffixOverrides=",">
-	SELECT * FROM place_detail
+	SELECT * FROM place_detail where user_ID=#{userId}
 	</trim>
 	</select>
 	
@@ -26,6 +26,6 @@
 	
 	<insert id="insertRoom">
 		insert into place_detail(detail_num, place_num, detail_title, default_capa, surcharge)
-		values(1111,4444, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
+		values(detail_num=#{detailNum}, place_num=#{placeNum}, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
 	</insert>
 </mapper>
