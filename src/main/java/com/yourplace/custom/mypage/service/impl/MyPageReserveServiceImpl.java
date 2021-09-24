@@ -17,5 +17,19 @@ public class MyPageReserveServiceImpl implements MyPageReserveService {
 	public List<MyPageReserveVO> getMyReserveList(MyPageReserveVO vo) {
 		return dao.getMyReserveList(vo);
 	}
-
+	
+	@Override
+	public List<MyPageReserveVO> getMyReserveListAll(MyPageReserveVO vo) {
+		return dao.getMyReserveListAll(vo);
+	}
+	
+	@Override
+	public List<MyPageReserveVO> getMyReserveListEnd(MyPageReserveVO vo) {
+		return dao.getMyReserveListEnd(vo);
+	}
+	
+	@Override
+	public List<MyPageReserveVO> getMyReserveListCancel(MyPageReserveVO vo) {
+		return dao.getMyReserveListCancel(vo);
+	}
 }
