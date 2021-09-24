@@ -14,7 +14,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myUser" />
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
-
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO" />
@@ -27,9 +26,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO" />
-
-		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
-			alias="HostReservVO" />
 		<typeAlias type="com.yourplace.host.review.vo.HostReviewVO"
 			alias="HostReviewVO" />
 		<typeAlias
@@ -52,18 +48,27 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostSalesVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
 			alias="AskVO" />
-
-
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageReviewVO"
 			alias="MyPageReviewVO" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.GuestInfoVO"
+			alias="MyGuestInfo" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.HostInfoVO"
+			alias="MyHostInfo" />	
+		<typeAlias type="com.yourplace.custom.invoice.vo.InvoiceVO"
+			alias="MyInvoice" />
 	</typeAliases>
+
+
 	<mappers>
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
 		<mapper resource="mappings/test-mapper.xml" />
 		<mapper resource="mappings/host/host-login-mapping.xml" />
 		<mapper resource="mappings/host/regist-place-mapping.xml" />
-
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
 		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
@@ -75,9 +80,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/HostManagementMapper.xml" />
 		<mapper resource="mappings/host/HostManagementRoomMapper.xml" />
 		<mapper resource="mappings/host/hostSalesMapper.xml" />
-
 		<mapper resource="mappings/host/HostAskMapper.xml" />
-
 		<mapper resource="mappings/custom/review-mapping.xml" />
+		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
+		<mapper resource="mappings/custom/custom-info-mapping.xml" />
+		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
 	</mappers>
 </configuration>
