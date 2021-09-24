@@ -49,7 +49,9 @@
 						<div class="h_row_center">
 							<label for="guest_using" class="guest_using"
 								style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; text-align: center; color: #1b1d1f;">
-								게스트 이용방법 </label> <input type="button" id="guest_using"
+								<a href="/guestInfo.do"
+								style="text-decoration: none; color: black;">게스트 이용방법</a>
+							</label> <input type="button" id="guest_using"
 								onclick="window.location.href='login.html'"
 								style="display: none; cursor: pointer;"> <img
 								src="https://s3.hourplace.co.kr/web/images/icon/before.svg"
@@ -77,7 +79,9 @@
 						<div class="h_row_center">
 							<label for="host_using" class="host_using"
 								style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; text-align: center; color: #1b1d1f;">
-								호스트 이용방법 </label> <input type="button" id="host_using"
+								<a href="/hostInfo.do"
+								style="text-decoration: none; color: black;">호스트 이용방법</a>
+							</label> <input type="button" id="host_using"
 								onclick="window.location.href='login.html'"
 								style="display: none; cursor: pointer;"> <img
 								src="https://s3.hourplace.co.kr/web/images/icon/before.svg"
@@ -173,11 +177,11 @@
 
 					<div
 						style="margin-top: 8px; height: 192px; padding: 14px; border-radius: 4px; border: solid 1px #eff3f5;">
-						<textarea class="noresize" 
+						<textarea class="noresize"
 							style="width: 100%; height: 100%; border: solid 1px slategray; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
-							placeholder="문의 내용을 입력해주세요" id="reprt_content" name="reprtContent" 
-							 > </textarea>
-							
+							placeholder="문의 내용을 입력해주세요" id="reprt_content"
+							name="reprtContent"> </textarea>
+
 					</div>
 
 					<div class="request direct_request" id="direct_request"
@@ -241,8 +245,8 @@
 						style="margin-top: 8px; height: 192px; border-radius: 4px; border: solid 1px #dfe2e7; margin: 3px;">
 						<textarea class="noresize"
 							style="width: 100%; height: 100%; border: solid 1px slategray; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
-							placeholder="문의 내용을 입력해주세요" id="reprt_Content" name="reprtContent"
-							v-model="reprtContent"> </textarea>
+							placeholder="문의 내용을 입력해주세요" id="reprt_Content"
+							name="reprtContent" v-model="reprtContent"> </textarea>
 					</div>
 
 					<div class="request direct_request" id="direct_request"
@@ -251,7 +255,7 @@
 						<!-- <p style="margin-top: 30px;font-size: 18px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.44;letter-spacing: -0.1px;color: #1b1d1f; width: 100%; text-align: center">
                         문의하기
                     </p> -->
-                    <input type="button" id="insertReport" value="direct_two"
+						<input type="button" id="insertReport" value="direct_two"
 							style="margin-top: 30px; font-size: 18px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.44; letter-spacing: -0.1px; color: #1b1d1f; width: 100%; text-align: center; cursor: pointer;">
 					</div>
 				</form>
@@ -281,7 +285,7 @@
 				$('body').removeClass('modal-open')
 				$('.direct_two').hide()
 			}
-			
+
 			/*function insertQues(){
 				
 				console.log($('#reprt_content').text());
@@ -289,46 +293,42 @@
 				$("#form_question").attr("action","/guestques.do");
 				$("#form_question").submit();
 			}*/
-			$(document).on('click','#insertQues',function(){
+			$(document).on('click', '#insertQues', function() {
 				console.log("1:1문의 등록버튼 클릭");
 				//문의내용 입력 공백확인 
 				var form = document.form_question;
 				var reprtContent = $("#reprt_content").val();
 				//var flag = true;
-				if(reprtContent === ""){	
+				if (reprtContent === "") {
 					alert("문의 내용을 입력해 주세요")
 					//flag = false;
 					return false;
-				}else{
+				} else {
 					alert("문의 사항이 등록되었습니다.")
-					$("#form_question").attr("action","/guestques.do");
+					$("#form_question").attr("action", "/guestques.do");
 					$("#form_question").submit();
 				}
-			
-			}); 
-			
-			
-			$(document).on('click','#insertReport',function(){
+
+			});
+
+			$(document).on('click', '#insertReport', function() {
 				console.log("신고하기버튼 클릭");
 				//문의내용 입력 공백확인 
 				var form = document.form_question;
 				var reprtContent = $("#reprt_content").val();
 				var rsvNum = $("#rsv_num").val();
 				//var flag = true;
-				if(rsvNum === null){	
+				if (rsvNum === null) {
 					alert("예약번호를 입력해주세요.")
 					//flag = false;
 					return false;
-				}else{
+				} else {
 					alert("신고내용이 등록되었습니다.")
-					$("#form_question2").attr("action","/guestreport.do");
+					$("#form_question2").attr("action", "/guestreport.do");
 					$("#form_question2").submit();
 				}
-			
-			});
-		
 
-			
+			});
 		</script>
 
 

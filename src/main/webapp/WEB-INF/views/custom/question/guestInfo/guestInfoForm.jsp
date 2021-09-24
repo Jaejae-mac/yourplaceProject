@@ -26,21 +26,19 @@
 
 			</div>
 
-
-
 			<p
 				style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: rgb(27, 29, 31);">
 				이용방법</p>
 		</div>
 	</div>
-	
+
 	<div class="h_row_center"
 		style="padding: 0px 8px; margin-top: 50px; width: 588px; height: 56px; border-radius: 4px; background-color: rgb(245, 247, 248); position: relative; left: 270px;">
 		<div onclick="guestInfo()" class="h_center h_booking_select_button">
-			<p>게스트</p>
+			<a href="/guestInfo.do">게스트</a>
 		</div>
-		<div onclick="" class="h_center h_booking_select_button on">
-			<p>공간 호스트</p>
+		<div onclick="hostInfo()" class="h_center h_booking_select_button on">
+			<a href="/hostInfo.do">공간 호스트</a>
 		</div>
 	</div>
 
@@ -48,7 +46,7 @@
 		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
 	</div>
 
-	<div style="position: relative; left: 200px">
+	<div style="position: relative; left: 220px">
 		<div class="h_row_center">
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
 				id="guestInfo-0" onclick="guestInfo-0()">
@@ -92,31 +90,53 @@
 	</div>
 	<p class="h_info_container_title">게스트 가입하기</p>
 	<div class="faq-content">
-		<c:forEach var="guestjoin" items="${guestInfoList}">
+		<c:forEach var="guestjoin" items="${guestInfoList}" begin="0" end="0"
+			step="1" varStatus="status">
 			<button class="question" id="que-1">
 				<span id="que-1-toggle">+</span><span>Q.
-					${guestjoin.infoGueTitle}</span>
+					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
 			</button>
-			<div class="answer" id="ans-1">${guestjoin.infoGueContent}</div>
+			<div class="answer" id="ans-1">
+				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
 		</c:forEach>
 	</div>
 	<div class="faq-content">
-		<button class="question" id="que-2">
-			<span id="que-2-toggle">+</span><span>${guestjoin.infoGueTitle}</span>
-		</button>
-		<div class="answer" id="ans-2">${guestjoin.infoGueContent}</div>
+		<c:forEach var="guestjoin" items="${guestInfoList}" begin="1" end="1"
+			step="1" varStatus="status">
+			<button class="question" id="que-2">
+				<span id="que-2-toggle">+</span><span>Q.
+					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+			</button>
+			<div class="answer" id="ans-2">
+				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+		</c:forEach>
 	</div>
 	<div class="faq-content">
-		<button class="question" id="que-3">
-			<span id="que-3-toggle">+</span><span>Q. 가입시 입력한 내 정보를 변경할 수
-				있나요?</span>
-		</button>
-		<div class="answer" id="ans-3">마이페이지 > 설정 > 개인정보 변경에서 본인인증, 이메일
-			등을 변경할 수 있습니다.</div>
+		<c:forEach var="guestjoin" items="${guestInfoList}" begin="2" end="2"
+			step="1" varStatus="status">
+			<button class="question" id="que-3">
+				<span id="que-3-toggle">+</span><span>Q.
+					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+			</button>
+			<div class="answer" id="ans-3">
+				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+		</c:forEach>
 	</div>
-   <div style="padding: 0px 0px 400px 0px">
-      <!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
-    </div>
+	<div class="faq-content">
+		<c:forEach var="guestjoin" items="${guestInfoList}" begin="3" end="3"
+			step="1" varStatus="status">
+			<button class="question" id="que-4">
+				<span id="que-4-toggle">+</span><span>Q.
+					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+			</button>
+			<div class="answer" id="ans-4">
+				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+		</c:forEach>
+	</div>
+
+	<div style="padding: 0px 0px 400px 0px">
+		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
+	</div>
 	<!---->
 
 	<!--내용 열기 script-->

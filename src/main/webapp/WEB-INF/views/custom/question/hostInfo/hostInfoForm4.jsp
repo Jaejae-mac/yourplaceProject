@@ -23,19 +23,22 @@
 			<div style="padding: 0px 0px 5px 0px;">
 
 				<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
+
 			</div>
+
 			<p
 				style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: rgb(27, 29, 31);">
 				이용방법</p>
 		</div>
 	</div>
+
 	<div class="h_row_center"
 		style="padding: 0px 8px; margin-top: 50px; width: 588px; height: 56px; border-radius: 4px; background-color: rgb(245, 247, 248); position: relative; left: 270px;">
 		<div onclick="guestInfo()" class="h_center h_booking_select_button">
-			<p>게스트</p>
+			<a href="/guestInfo.do">게스트</a>
 		</div>
-		<div onclick="" class="h_center h_booking_select_button on">
-			<p>공간 호스트</p>
+		<div onclick="hostInfo()" class="h_center h_booking_select_button on">
+			<a href="/hostInfo.do">공간 호스트</a>
 		</div>
 	</div>
 
@@ -43,41 +46,50 @@
 		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
 	</div>
 
-	<div style="position: relative; left: 200px">
+	<div style="position: relative; left: 100px">
 		<div class="h_row_center">
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-0" onclick="guestInfo-0()">
-				<a href="/guestInfo.do" style="text-decoration: none; color: black;">게스트
-					가입</a>
+				id="hostInfo-0" onclick="hostInfo-0()">
+				<a href="/hostInfo.do" style="text-decoration: none; color: black;">호스트
+					지원</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-1" onclick="guestInfo-1()">
-				<a href="/guestInfo1.do"
-					style="text-decoration: none; color: black;">예약</a>
+				id="hostInfo-1" onclick="hostInfo-1()">
+				<a href="/hostInfo1.do" style="text-decoration: none; color: black;">장소
+					등록</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-2" onclick="guestInfo-2()">
-				<a href="/guestInfo2.do"
-					style="text-decoration: none; color: black;">예약 확정</a>
+				id="hostInfo-2" onclick="hostInfo-2()">
+				<a href="/hostInfo2.do" style="text-decoration: none; color: black;">입금
+					계좌 설정</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-3" onclick="guestInfo-3()">
-				<a href="/guestInfo3.do"
-					style="text-decoration: none; color: black;">예약 취소</a>
+				id="hostInfo-3" onclick="hostInfo-3()">
+				<a href="/hostInfo3.do" style="text-decoration: none; color: black;">예약</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-4" onclick="guestInfo-4()">
-				<a href="/guestInfo4.do"
-					style="text-decoration: none; color: black;">예약 진행</a>
+				id="hostInfo-4" onclick="hostInfo-4()">
+				<a href="/hostInfo4.do" style="text-decoration: none; color: black;">예약
+					진행</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-5" onclick="guestInfo-5()">
-				<a href="/guestInfo5.do"
-					style="text-decoration: none; color: black;">추가 결제</a>
+				id="hostInfo-5" onclick="hostInfo-5()">
+				<a href="/hostInfo5.do" style="text-decoration: none; color: black;">파손
+					및 배상</a>
 			</div>
 			<div class="h_center h_info_sub_button" style="margin-right: 16px"
-				id="guestInfo-6" onclick="guestInfo-6()">
-				<a href="/guestInfo6.do"
+				id="hostInfo-6" onclick="hostInfo-6()">
+				<a href="/hostInfo6.do"
+					style="text-decoration: none; color: black;">추가 청구</a>
+			</div>
+			<div class="h_center h_info_sub_button" style="margin-right: 16px"
+				id="hostInfo-7" onclick="hostInfo-7()">
+				<a href="/hostInfo7.do"
+					style="text-decoration: none; color: black;">대금 지급</a>
+			</div>
+			<div class="h_center h_info_sub_button" style="margin-right: 16px"
+				id="hostInfo-8" onclick="hostInfo-8()">
+				<a href="/hostInfo8.do"
 					style="text-decoration: none; color: black;">이용 요금</a>
 			</div>
 		</div>
@@ -85,60 +97,40 @@
 			<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
 		</div>
 	</div>
-	<p class="h_info_container_title">이용 요금 안내</p>
+	<p class="h_info_container_title">예약 진행하기</p>
 	<div class="faq-content">
-		<c:forEach var="guestjoin" items="${guestInfoList}" begin="0" end="0"
+		<c:forEach var="hostjoin" items="${hostInfoList}" begin="0" end="0"
 			step="1" varStatus="status">
 			<button class="question" id="que-1">
 				<span id="que-1-toggle">+</span><span>Q.
-					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+					<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostTitle}</span>
 			</button>
 			<div class="answer" id="ans-1">
-				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+				<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
 		</c:forEach>
 	</div>
 	<div class="faq-content">
-		<c:forEach var="guestjoin" items="${guestInfoList}" begin="1" end="1"
+		<c:forEach var="hostjoin" items="${hostInfoList}" begin="1" end="1"
 			step="1" varStatus="status">
 			<button class="question" id="que-2">
 				<span id="que-2-toggle">+</span><span>Q.
-					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+					<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostTitle}</span>
 			</button>
 			<div class="answer" id="ans-2">
-				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+				<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
 		</c:forEach>
 	</div>
 
-	<div style="padding: 0px 0px 80px 0px">
-		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
-	</div>
-
-	<p class="h_info_container_title">대금 지급 안내</p>
 	<div class="faq-content">
-		<c:forEach var="guestjoin" items="${guestInfoList}" begin="2" end="2"
+		<c:forEach var="hostjoin" items="${hostInfoList}" begin="2" end="2"
 			step="1" varStatus="status">
 			<button class="question" id="que-3">
 				<span id="que-3-toggle">+</span><span>Q.
-					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
+					<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostTitle}</span>
 			</button>
 			<div class="answer" id="ans-3">
-				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
+				<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
 		</c:forEach>
-	</div>
-	<div class="faq-content">
-		<c:forEach var="guestjoin" items="${guestInfoList}" begin="3" end="3"
-			step="1" varStatus="status">
-			<button class="question" id="que-4">
-				<span id="que-4-toggle">+</span><span>Q.
-					<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueTitle}</span>
-			</button>
-			<div class="answer" id="ans-4">
-				<td><input type="hidden" name="${status.index}" /></td>${guestjoin.infoGueContent}</div>
-		</c:forEach>
-	</div>
-
-	<div style="padding: 0px 0px 400px 0px">
-		<!-- (각각 위 오른쪽 아래 왼쪽 - 시계방향) -->
 	</div>
 
 	<!--내용 열기 script-->

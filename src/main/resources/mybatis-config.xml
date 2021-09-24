@@ -23,6 +23,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.question.vo.GuestInfoVO"
 			alias="MyGuestInfo" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.HostInfoVO"
+			alias="MyHostInfo" />	
 		<typeAlias type="com.yourplace.custom.invoice.vo.InvoiceVO"
 			alias="MyInvoice" />
 	</typeAliases>
