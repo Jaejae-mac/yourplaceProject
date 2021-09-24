@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		place_num =
 		a.place_num) as avg_rate
 		from place a
+		where a.place_allow = 1
 		order by place_reg_date desc
 		Limit
 		4;
@@ -48,6 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from place a
 			where
 			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
 			order by place_reg_date desc
 		</if>
 		<if test="placeMaincate != placeCate ">
@@ -68,6 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where
 			a.place_maincate =
 			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
 			order by place_reg_date desc
 		</if>
 	</select>
