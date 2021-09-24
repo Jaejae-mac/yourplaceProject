@@ -97,12 +97,19 @@ primary key(rsv_num)
 		<result property="placeName" column="place_name" />
 	</resultMap>
 	<select id="getMyReserveList" resultMap="getmyreserveList">
-		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+		SELECT DISTINCT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
 		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
 		FROM reserve join place using(place_num)
-        WHERE reserve.rsv_refund_yn = 0 OR reserve.rsv_refund_yn = 1 
-        AND reserve.rsv_id = #{rsvId}
-		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;	
+        WHERE reserve.rsv_id = '955wlsgh'
+        AND (reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name)
+		NOT IN( 
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = '955wlsgh'
+		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date)
+        ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;	
 	</select>
 	<select id="getMyReserveListAll" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,

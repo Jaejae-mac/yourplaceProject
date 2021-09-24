@@ -66,7 +66,9 @@
 				<div class="h_row_center">
 					<p id="rsv_state"
 						style="margin-bottom: 0; font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
-						진행중</p>
+						진행중
+					<label id="reservelength" style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);"></label>	
+					</p>
 				</div>
 				<div onclick="show_booking_sort()" class="h_center h_hover_button"
 					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px var(- -grey-025); cursor: pointer;">
@@ -154,11 +156,11 @@
             $(id).hide()
         }
         function close_booking_ing() {
-            document.getElementById('main_booking').innerHTML='최신일 순'
+            document.getElementById('main_booking').innerHTML='신청일 순'
             h_hide_popup('.booking_sort')
         }
         function close_booking_app() {
-            document.getElementById('main_booking').innerHTML='오래된 순'
+            document.getElementById('main_booking').innerHTML='최신일 순'
             h_hide_popup('.booking_sort')
         }
 		$(document).ready(function(){
@@ -232,9 +234,9 @@
         function getRserveListCall(data){
         	var list = data;
             var listLen = data.length;
-                    
+            document.getElementById('reservelength').innerHTML= listLen;        
             var res = "";
-        	if(listLen > 0){
+        	if(listLen > 0){       		
        			for(var i=0;i<listLen; i++){
        				var placeNum = list[i].placeNum;
        				var rsvId = list[i].rsvId
@@ -294,7 +296,7 @@
        			res +='예약 내역이 없어요</p>';
        			res +='</div>';
        			res +='</div>';
-       		}
+       		}        	
        		$("#resList").html(res);
         }
     </script>
