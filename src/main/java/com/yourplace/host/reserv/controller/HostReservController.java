@@ -44,6 +44,12 @@ public class HostReservController {
 		
 	}
 	
+	@RequestMapping(value="/LastPlaceReserveListForHost.hdo")
+	public ModelAndView lastReserveList() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("LastReserveListForHost");
+		return mav;
+	}
 	
 	
 }

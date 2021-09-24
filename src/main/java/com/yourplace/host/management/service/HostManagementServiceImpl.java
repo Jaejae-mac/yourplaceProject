@@ -15,8 +15,8 @@ public class HostManagementServiceImpl implements HostManagementService{
 	private HostManagementDAO dao;
 
 	@Override
-	public List<HostManagementVO> getAllHostPlace() throws Exception {
-		return dao.getAllHostPlace();
+	public List<HostManagementVO> getAllHostPlace(HostManagementVO vo) throws Exception {
+		return dao.getAllHostPlace(vo);
 	}
 
 	@Override

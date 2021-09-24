@@ -16,7 +16,13 @@ public class HostReviewServiceImpl implements HostReviewService{
 	HostReviewDAO dao;
 
 	@Override
-	public List<HostReviewVO> getReviewList() throws Exception {
-		return dao.getReviewList();
+	public List<HostReviewVO> getReviewList(HostReviewVO vo) throws Exception {
+		return dao.getReviewList(vo);
+	}
+
+	@Override
+	public void insertReviewForHost(HostReviewVO vo) throws Exception {
+		dao.insertReviewForHost(vo);
+		
 	}
 }

@@ -65,6 +65,12 @@
 									관리</a>
 							</nav>
 						</div>
+							<div class="collapse" id="collapseHost"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/AskforHost.hdo">고객문의</a>
+							</nav>
+						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapsePlace" aria-expanded="false"
 							aria-controls="collapsePlace">
@@ -99,6 +105,7 @@
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/placeReserveListForHost.hdo">예약
 									현황</a>
+										<a class="nav-link" href="/LastPlaceReserveListForHost.hdo">지난 예약 현황</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"

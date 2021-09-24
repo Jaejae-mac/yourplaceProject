@@ -5,5 +5,6 @@ import java.util.List;
 import com.yourplace.host.review.vo.HostReviewVO;
 
 public interface HostReviewService {
-	List<HostReviewVO> getReviewList() throws Exception;
+	List<HostReviewVO> getReviewList(HostReviewVO vo) throws Exception;
+	void insertReviewForHost(HostReviewVO vo) throws Exception;
 }
