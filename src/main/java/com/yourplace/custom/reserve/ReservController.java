@@ -17,14 +17,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.custom.reserve.service.ReserveService;
 import com.yourplace.custom.reserve.vo.ReserveVO;
+
 @Controller
 public class ReservController {
-	
+
 	@Inject
 	ReserveService service;
-	
-	//ÀüÃ¼ ¿¹¾à¸®½ºÆ® ºÒ·¯¿À±â -- ¿¹¾àÇÒ ¼öÀÖ´Â disable ÇÏ±â À§ÇØ
-	@RequestMapping(value="/placeDetail.do")
+
+	// ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½à¸®ï¿½ï¿½Æ® ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö´ï¿½ disable ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/placeDetail.do")
 	public ModelAndView PlaceDetail(Model model) throws Exception {
 		getReservedTime(model);
 		ModelAndView mav = new ModelAndView();
@@ -36,106 +37,90 @@ public class ReservController {
 		System.out.println(mav.toString());
 		return mav;
 	}
-	
-	//timepicker disable ÇÏ·Á°í
-	public String getReservedTime(Model model) throws Exception{
+
+	// timepicker disable ï¿½Ï·ï¿½ï¿½ï¿½
+	public String getReservedTime(Model model) throws Exception {
 		List<ReserveVO> listtime = service.getReservedTime();
 		List<ReserveVO> listMap = listtime;
-	
-		//Äõ¸®¸¦ ¿À´Ã³¯Â¥ ±âÁØÀ¸·Î Á¶È¸ÇØ¼­ ¸¸¾à¿¡ °ªÀÌ ÀÖÀ¸¸é model¿¡ ´ã¾Æ¼­ view¿¡¼­ ºí¶ôÇÏ·Á°í
-		if(listMap.isEmpty()) {
-			System.out.println("°ª ¾øÀ½ Å×½ºÆ®");
-		}else {
+
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã³ï¿½Â¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ modelï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ viewï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½
+		if (listMap.isEmpty()) {
+			System.out.println("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		} else {
 			int findstart = listMap.get(0).getRsvStartT();
 			int findend = listMap.get(0).getRsvEndTime();
 			model.addAttribute("findstart", findstart);
 			model.addAttribute("findend", findend);
 			System.out.println(model.toString());
-			
+
 			Date current = new Date();
-			
+
 		}
-		
-		
-		
-		
-	return "redirect:/placeDetail";
-		
-	
-		
+
+		return "redirect:/placeDetail";
+
 	}
-	
-	
-	//db¿¡ µé¾î°¥ ½Ã°£ °è»ê
+
+	// dbï¿½ï¿½ ï¿½ï¿½î°¥ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½
 	public void getReserveValue(HttpServletRequest request, Model model) throws Exception {
 		PlaceDetail(model);
-		String start = request.getParameter("startTime"); 
+		String start = request.getParameter("startTime");
 		String end = request.getParameter("endTime");
-		
+
 		String st[] = start.split(":");
 		String et[] = end.split(":");
-		
+
 		int testStart = Integer.parseInt(st[0]);
 		int testEnd = Integer.parseInt(et[0]);
-		
+
 		String testStart2 = st[1];
 		String testEnd2 = et[1];
-		
+
 		System.out.println(testStart);
 		System.out.println(testEnd);
-	
-		if(testStart2.contains("PM")) {
+
+		if (testStart2.contains("PM")) {
 			testStart = testStart + 12;
-		}else {
+		} else {
 			return;
 		}
-		
-		if(testEnd2.contains("PM")) {
+
+		if (testEnd2.contains("PM")) {
 			testEnd = testEnd + 12;
-		}else {
+		} else {
 			return;
 		}
 		System.out.println(testStart);
 		System.out.println(testEnd);
 
-		}
-	
-	
-	
+	}
 
-	
-	
-	
-	@RequestMapping(value="/startingReserv.do", method= RequestMethod.POST)
+	@RequestMapping(value = "/startingReserv.do", method = RequestMethod.POST)
 	public ModelAndView reservRequest(HttpServletRequest request, Model model) throws Exception {
 		getRadioCheckedValue(request);
 		getReserveValue(request, model);
 		getReservedTime(model);
-		
-		String reserve = request.getParameter("date"); //¼±ÅÃ ³¯Â¥
+
+		String reserve = request.getParameter("date"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
 		String[] reserveD = reserve.split("-");
 
 		int year = Integer.parseInt(reserveD[0]);
 		int month = Integer.parseInt(reserveD[1]);
 		int date = Integer.parseInt(reserveD[2]);
-		String person = request.getParameter("person"); //ÀÎ¿ø¼ö
-		
-		
-		String start = request.getParameter("startTime"); 		//½ÃÀÛ ½Ã°£
+		String person = request.getParameter("person"); // ï¿½Î¿ï¿½ï¿½ï¿½
+
+		String start = request.getParameter("startTime"); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 		String[] time1 = start.split(":");
 
-		int sttime = Integer.parseInt(time1[0]); //1
-		String sttime2 = time1[1]; //00Pm ÀÌ·±½Ä
-	
-		
-		
-		String end = request.getParameter("endTime"); //³¡³ª´Â ½Ã°£
+		int sttime = Integer.parseInt(time1[0]); // 1
+		String sttime2 = time1[1]; // 00Pm ï¿½Ì·ï¿½ï¿½ï¿½
+
+		String end = request.getParameter("endTime"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 		String[] time2 = end.split(":");
-		
-		int endtime = Integer.parseInt(time2[0]); //2
-		String endtime2 = time2[1]; //00pm
-	
-		
+
+		int endtime = Integer.parseInt(time2[0]); // 2
+		String endtime2 = time2[1]; // 00pm
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("startingReserv");
 		mav.addObject("personNum", person);
@@ -149,66 +134,59 @@ public class ReservController {
 
 		return mav;
 	}
-	
-	
-	
-	//¹æ¹øÈ£ ¾î´À°Å ¼±ÅÃÇß´ÂÁö Ã¼Å©
+
+	// ï¿½ï¿½ï¿½È£ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ Ã¼Å©
 	public void getRadioCheckedValue(HttpServletRequest request) {
-		String checkedValue = request.getParameter("room"); 
-		System.out.println(checkedValue);	
+		String checkedValue = request.getParameter("room");
+		System.out.println(checkedValue);
 	}
-	
-	
-	@RequestMapping(value="/testReservSuccess.do", method=RequestMethod.POST)
-	public ModelAndView reservTest(HttpServletRequest request, ReserveVO vo,Model model) throws Exception {
+
+	@RequestMapping(value = "/testReservSuccess.do", method = RequestMethod.POST)
+	public ModelAndView reservTest(HttpServletRequest request, ReserveVO vo, Model model) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		
+
 		String reservUName = request.getParameter("reservUserName");
-		//»ç¿ëÀÚ ¾ÆÀÌµð Ãß°¡
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ß°ï¿½
 		String phone1 = request.getParameter("phone1");
 		String phone2 = request.getParameter("phone2");
 		String phone3 = request.getParameter("phone3");
 		String email = request.getParameter("email");
 		String purpose = request.getParameter("reservationPurpose");
 		String uRequest = request.getParameter("request");
-		
+
 		reservRequest(request, model);
-		
-		
+
 		String reserveYear = request.getParameter("reserveY");
 		String reserveMonth = request.getParameter("reserveM");
 		String reserveDate = request.getParameter("reserveD");
-		
+
 		int year = Integer.parseInt(reserveYear);
 		int month = Integer.parseInt(reserveMonth);
 		int date = Integer.parseInt(reserveDate);
-		
-		
+
 		System.out.println(year);
 		System.out.println(month);
 		System.out.println(date);
-		
+
 		String person = request.getParameter("person");
-		
-		String start = request.getParameter("startTime"); 		//½ÃÀÛ ½Ã°£
+
+		String start = request.getParameter("startTime"); // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 		String[] time1 = start.split(":");
-		
+
 		int sttime = Integer.parseInt(time1[0]);
-		String sttime2 = time1[1]; //00Pm ÀÌ·±½Ä
-		
+		String sttime2 = time1[1]; // 00Pm ï¿½Ì·ï¿½ï¿½ï¿½
+
 		System.out.println(sttime);
-	
-		String end = request.getParameter("endTime"); //³¡³ª´Â ½Ã°£
-		
+
+		String end = request.getParameter("endTime"); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
+
 		String[] time2 = end.split(":");
 		int endtime = Integer.parseInt(time2[0]);
-		String endtime2 = time2[1]; //00pm
-	
-		
+		String endtime2 = time2[1]; // 00pm
+
 		System.out.println(endtime);
-		
-		
+
 		System.out.println(reservUName);
 		System.out.println(phone1);
 		System.out.println(phone2);
@@ -216,7 +194,7 @@ public class ReservController {
 		System.out.println(email);
 		System.out.println(uRequest);
 		System.out.println(purpose);
-		
+
 		mav.addObject("reservUserName", reservUName);
 		mav.addObject("phone1", phone1);
 		mav.addObject("phone2", phone2);
@@ -234,10 +212,7 @@ public class ReservController {
 		mav.addObject("endTime", endtime);
 
 		return mav;
-		
+
 	}
-	
-	
-	
-	
+
 }

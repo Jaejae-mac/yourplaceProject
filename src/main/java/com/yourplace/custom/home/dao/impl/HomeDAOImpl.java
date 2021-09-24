@@ -22,4 +22,12 @@ public class HomeDAOImpl implements HomeDAO{
 		return sqlSessionTemplate.selectList("HomeDAO.getLatestPlaceList");
 	}
 
+	@Override
+	public List<PlaceCardVO> getCatePlaceList(String maincate, String subcate) {
+		PlaceCardVO vo = new PlaceCardVO();
+		vo.setPlaceMaincate(maincate);
+		vo.setPlaceCate(subcate);
+		return sqlSessionTemplate.selectList("HomeDAO.getCatePlaceList",vo);
+	}
+
 }

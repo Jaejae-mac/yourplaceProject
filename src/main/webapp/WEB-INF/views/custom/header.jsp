@@ -99,8 +99,7 @@
 					<c:choose>
 						<c:when test="${userType == '0'}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="logout()"
-								class="h_center h_header_button"
+							<div onclick="logout()" class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
 									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
@@ -108,9 +107,9 @@
 							</div>
 
 							<!-- 로그인 기능 show_login() -->
-							<div 
-								class="h_center h_header_button"
-								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;" onclick="location.href='/mypage.do'">
+							<div class="h_center h_header_button"
+								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;"
+								onclick="location.href='/mypage.do'">
 								<p
 									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									마이페이지</p>
@@ -133,7 +132,7 @@
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
 									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
-								로그아웃</p>
+									로그아웃</p>
 							</div>
 							<!-- 로그인 기능 show_login() -->
 							<div onclick="window.location.href='login.html'"
@@ -226,63 +225,65 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">가정집</p>
+										onclick="click_category(0,0)">가정집</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(0,1)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-											전체</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>전체</p>
 									</div>
 									<!-- 상세 카테고리 끝 -->
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,2)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-											아파트</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>아파트</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,3)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-											주택</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>주택</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,4)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-											빌라</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>빌라</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,5)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
-											원룸</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>원룸</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,6)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>
 											한옥</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(0,7)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
+											>
 											홈오피스</p>
 									</div>
 								</div>
@@ -294,11 +295,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">스튜디오</p>
+										onclick="click_category(1,0)">스튜디오</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(1,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -307,7 +308,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											자연광</p>
@@ -315,7 +316,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											호리존</p>
@@ -323,7 +324,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											유튜브</p>
@@ -331,7 +332,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											원룸</p>
@@ -339,7 +340,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											단독주택형</p>
@@ -347,7 +348,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											빈티지</p>
@@ -355,7 +356,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,8)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											키친</p>
@@ -363,7 +364,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,9)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											무대형</p>
@@ -371,7 +372,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,10)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											세트장</p>
@@ -379,7 +380,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(1,11)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											기타공간</p>
@@ -393,11 +394,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">상업공간</p>
+										onclick="click_category(2,0)">상업공간</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(2,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -407,7 +408,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											카페</p>
@@ -415,7 +416,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											식당</p>
@@ -423,7 +424,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											바/술집</p>
@@ -431,7 +432,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											원룸</p>
@@ -439,7 +440,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											헬스장</p>
@@ -447,7 +448,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(2,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											요가/필라테스</p>
@@ -460,11 +461,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">편의시설</p>
+										onclick="click_category(3,0)">편의시설</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(3,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -474,7 +475,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											편의점</p>
@@ -482,7 +483,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											빨래방</p>
@@ -490,7 +491,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											헤어샵</p>
@@ -498,7 +499,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											PC방</p>
@@ -506,7 +507,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											노래방</p>
@@ -514,7 +515,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(3,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											오락실</p>
@@ -529,11 +530,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">문화공간</p>
+										onclick="click_category(4,0)">문화공간</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(4,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -543,7 +544,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											복합문화공간</p>
@@ -551,7 +552,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											갤러리</p>
@@ -559,7 +560,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											공방/작업실</p>
@@ -567,7 +568,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											책방</p>
@@ -575,7 +576,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											공연장</p>
@@ -583,7 +584,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											강당</p>
@@ -591,7 +592,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(4,8)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											강의실</p>
@@ -606,11 +607,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">특수공간</p>
+										onclick="click_category(5,0)">특수공간</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(5,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -620,7 +621,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											사무실</p>
@@ -628,7 +629,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											병원/약국</p>
@@ -636,7 +637,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											학교</p>
@@ -644,7 +645,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											학원</p>
@@ -652,7 +653,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											클럽</p>
@@ -660,7 +661,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											웨딩</p>
@@ -668,7 +669,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,8)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											호텔펜션</p>
@@ -676,7 +677,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(5,9)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											기타 특수 공간</p>
@@ -692,11 +693,11 @@
 								<div v-for="category in categories" style="flex: 1 1 0%;">
 									<p class="h_hover_button"
 										style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.4; letter-spacing: -0.2px; color: #454b50; padding: 7px 12px 5px 8px; margin-bottom: 10px;"
-										v-on:click="click_category_main(category.id)">대형공간/야외</p>
+										onclick="click_category(6,0)">대형공간/야외</p>
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_main(category.id)">
+										onclick="click_category(6,1)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -706,7 +707,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,2)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											공장</p>
@@ -714,7 +715,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,3)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											창고</p>
@@ -722,7 +723,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,4)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											지하실</p>
@@ -730,7 +731,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,5)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											빈 공간</p>
@@ -738,7 +739,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,6)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											옥상</p>
@@ -746,7 +747,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,7)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											정원</p>
@@ -754,7 +755,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,8)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											캠핑장</p>
@@ -762,7 +763,7 @@
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										v-on:click="click_category_sub(category.id, sub.id)">
+										onclick="click_category(6,9)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											기타 야외 공간</p>
@@ -875,10 +876,28 @@
 	</script>
 	<!-- logout -->
 	<script>
-		function logout(){
-			location.href="/logout.do";
+		function logout() {
+			location.href = "/logout.do";
 		}
 	</script>
 	<!-- script 끝 -->
+	<script>
+		let category = [
+				[ "가정집", "전체", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" ],
+				[ "스튜디오", "전체", "자연광", "호리존", "유튜브", "원룸", "단독주택형", "빈티지",
+						"키친", "무대형", "세트장", "기타공간" ],
+				[ "상업공간", "전체", "카페", "식당", "바/술집", "원룸", "헬스장", "요가/필라테스" ],
+				[ "편의시설", "전체", "편의점", "빨래방", "헤어방", "PC방", "노래방", "오락실" ],
+				[ "문화공간", "전체", "복합문화공간", "갤러리", "공방/작업실", "책방", "공연장", "강당",
+						"강의실" ],
+				[ "특수공간", "전체", "사무실", "병원/약국", "학교", "학원","클럽", "웨딩", "호텔펜션",
+						"기타 특수 공간" ],
+				[ "대형공간/야외", "전체", "공장", "창고", "지하실", "빈 공간", "옥상", "정원",
+						"캠핑장", "기타 야외 공간" ], ];
+		function click_category(id1, id2) {
+			console.log(category[id1][0] + " , " + category[id1][id2]);
+			location.href="/category.do?maincate=" + category[id1][0]+"&subcate="+category[id1][id2];
+		}
+	</script>
 </body>
 </html>
