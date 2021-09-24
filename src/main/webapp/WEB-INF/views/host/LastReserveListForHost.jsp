@@ -93,10 +93,24 @@
     
     <script>
     
-    
-   
 
-    </script>
+	
+	function showPop() {
+		 
+	    var width = '430';
+	    var height = '570';
+	 
+	    var left = Math.ceil(( window.screen.width - width )/2);
+	    var top = Math.ceil(( window.screen.height - height )/2); 
+	 
+	    window.open('/reviewPopup.hdo', '리뷰남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
+	    window.close();
+	}
+
+</script>
+
+
+
     
   </head>
   <body class="sb-nav-fixed">
@@ -136,7 +150,6 @@
 											<td>${test.reserveName }</td>
 											<td>${test.reserveYear }년-${test.reserveMonth }-월${test.reserveDate }일</td>
 											
-											
 										
 											<td>${test.startTime }</td>
 											<td>${test.endTime }</td>
@@ -144,7 +157,7 @@
 											<td>${test.payPrice }</td>
 								<td>
 									<button type="button" class="btn btn-primary"
-										style="font-size: 10px; margin-left: 10px;">리뷰 남기기</button>
+										style="font-size: 10px; margin-left: 10px;" onclick="showPop()">리뷰 남기기</button>
 								</td>
 
 
@@ -158,6 +171,8 @@
 								</tbody>
 
             </table>
+            <input type="hidden" name="reserveNum" id="reserveNum" value="${test.reserveNum}"/>
+											
           </div>
         </div>
       </div>

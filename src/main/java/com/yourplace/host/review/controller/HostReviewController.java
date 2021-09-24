@@ -35,15 +35,25 @@ public class HostReviewController {
 	}
 	
 	
-	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST)
-	public ModelAndView insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST) //값 출력까지 ok
+	public void insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
 		HttpSession session = request.getSession();
+		
+		String reserveNu = request.getParameter("reserveNum");
+		session.setAttribute("reserveNum", reserveNu);
+		String reserveNum = (String) session.getAttribute("reserveNum");
+		System.out.println(reserveNum);
+		
 		String memId = (String)session.getAttribute("userId");
 		String review = request.getParameter("content");
 		System.out.println(review);
 		System.out.println(memId);
-		mav.setViewName("insertReviewForm");
+	}
+	
+	@RequestMapping("/reviewPopup.hdo")
+	public ModelAndView popup() throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("reviewPopup");
 		return mav;
 	}
 	
