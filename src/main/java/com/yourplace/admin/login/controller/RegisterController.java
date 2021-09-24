@@ -53,10 +53,10 @@ public class RegisterController {
 	@PostMapping("/register.mdo")
 	public String register(AdminVO adminVO)
 	{
-		System.out.println("Admin 회원추가 method 실행");
-		System.out.println("---------- 추가되는 회원정보 ----------");
+		System.out.println("---------- Admin 회원추가 실행 ---------");
+		System.out.println("----------- 추가되는 회원정보 -----------");
 		System.out.println(adminVO.toString());
-		System.out.println("----------------------------------");
+		System.out.println("------------------------------------");
 		
 		//password encoder
 		String password = adminVO.getAdminPw();

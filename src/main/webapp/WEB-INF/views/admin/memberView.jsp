@@ -126,7 +126,7 @@
                   data-bs-parent="#sidenavAccordion"
                 >
                   <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="#">전체 사용자 관리</a>
+                    <a class="nav-link" href="#">전체 사용자 관리</a> <!-- need to check -->
                     <a class="nav-link" href="tablesMembers.html">신고 회원 관리</a>
                     <a class="nav-link" href="tablesCoupon.html">쿠폰 관리</a>
                   </nav>
@@ -383,6 +383,7 @@
                 <table id="datatablesSimple">
                   <thead>
                     <tr>
+                    	<th>정지 여부</th>
                         <th>회원번호</th>
                         <th>회원타입</th>                
                         <th>아이디</th>
@@ -393,13 +394,23 @@
                         <th>가입일자</th>
                         <th>SMS 수신동의</th>
                         <th>Email 수신동의</th>
-                        <th>삭제</th>
+                        <th>접근제한여부</th>
+                        <th>회원탈퇴</th>
                     </tr>
                   </thead>
 
 				<tbody>
                   <c:forEach var="mem" items="${memberList}">
                     <tr>
+                    	<td>
+	                      	<c:if test="${mem.userActive eq '0'}">
+	                      	제한된 이용자
+	                      	</c:if>
+	                      	<c:if test="${mem.userActive ne '0'}">
+	                      	사용가능
+	                      	</c:if>
+                     	</td>
+                    
                       <td>${mem.userNum }</td>
                       
                       <td>
@@ -422,8 +433,15 @@
                       <td>
 	                      <button type="button"
 	                      class="btn btn-danger"
+	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
+	                      	제한
+	                      </button>
+                      </td>
+                      <td>
+	                      <button type="button"
+	                      class="btn btn-danger"
 	                      style="font-size: 10px; margin-left: 10px;" id="delete_btn">
-	                      	Delete
+	                      	삭제
 	                      </button>
                       </td>
                     </tr>
@@ -439,9 +457,13 @@
         </main>
        </form>
        
-       <!-- test -->
+       <!-- delete -->
        <form id = "submitForm" method="POST" action="/deleteMember.mdo" hidden="hidden">
        	<input type="hidden" id="deleteUserHidden" name="deleteUserId">
+       </form>
+       
+       <form id="submitForm2" method="POST" action="/disableMember.mdo" hidden="hidden">
+       	<input type="hidden" id="disableUserHidden" name="disableUserId">
        </form>
        
         <footer class="py-4 bg-light mt-auto">
@@ -489,9 +511,10 @@
 			var tr = checkBtn.parent().parent();
 			var td = tr.children();
 
-			var no = td.eq(0).text();
-			var name = td.eq(1).text();
-			var id = td.eq(2).text();
+			var active = td.eq(0).text();
+			var no = td.eq(1).text();
+			var name = td.eq(2).text();
+			var id = td.eq(3).text();
 			
 			td.each(function(i)
 			{
@@ -505,7 +528,39 @@
 			
 		});
 			
-			</script>
+	</script>
+	
+		<script>
+
+		$(document).on("click","#disable_btn",function()
+		{
+// 			console.log('유저 접근제한 버튼 클릭');
+			
+			var tdArr = new Array();
+			var checkBtn = $(this);
+			
+			var tr = checkBtn.parent().parent();
+			var td = tr.children();
+
+			var active = td.eq(0).text();
+			var no = td.eq(1).text();
+			var name = td.eq(2).text();
+			var id = td.eq(3).text();
+			
+			td.each(function(i)
+			{
+				tdArr.push(td.eq(i).text());
+			});
+			
+			console.log("아이디 text : " + id);
+			console.log(id + " 회원님의 계정 상태: " + active);
+		
+			$("#disableUserHidden").val(id);
+			$("#submitForm2").submit();
+			
+		});
+			
+	</script>
 		
   </body>
 </html>

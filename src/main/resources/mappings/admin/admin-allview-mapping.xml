@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userRegDate" column="user_reg_date" />
 		<result property="userSmsAgree" column="user_sms_agree" />
 		<result property="userEmailAgree" column="user_email_agree" />
+		<result property="userActive" column="user_active" />
 	</resultMap>
 
 	<!-- 전체조회 -->
@@ -24,7 +25,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 회원 삭제 -->
 	<delete id="deleteMember">
-		DELETE FROM member WHERE user_id = #{userId};
+		DELETE FROM member WHERE user_id = #{userId}
 	</delete>
+	
+	<!-- 회원 상태 조회 -->
+	<select id="getMemberActive" resultMap="memberResult">
+		SELECT user_active FROM member WHERE user_id = #{userId}
+	</select>
+	
+	<!-- 접근제한 처리 가능(1)에서 불가능(0)으로 -->
+	<update id="disableMember">
+		UPDATE member SET user_active = '0' WHERE user_id = #{userId}
+	</update>
+	
+	<!-- 접근제한 처리 불가능(0)에서 가능(1)으로 -->
+	<update id="enableMember">
+		UPDATE member SET user_active = '1' WHERE user_id = #{userId}
+	</update>
 
 </mapper>

@@ -11,6 +11,7 @@ import lombok.ToString;
 @Setter
 public class MemberVO {
 	
+
 	private int userNum;
 	private String userType; //0: 유저 1: 호스트 / default: 0
 	private String userName;
@@ -19,7 +20,9 @@ public class MemberVO {
 	private String userEmail;
 	private String userSex;
 	private Date userRegDate; // sql date 도 상관없음
+	private String userActive;
 	private String userSmsAgree;
 	private String userEmailAgree;
+	
 
 }
