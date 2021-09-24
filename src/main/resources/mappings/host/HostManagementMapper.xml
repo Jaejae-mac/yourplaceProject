@@ -4,7 +4,7 @@
 <mapper namespace="HostManagementMapper">
 
 
-<resultMap type="HostManagementVO" id="getAllHostPlace">
+<resultMap type="HostManagementVO" id="getAllplace">
 		<result property="placeNum" column="place_num" />
 		<result property="userId" column="user_id" />
 		<result property="placeLocation" column="place_area" />
@@ -28,9 +28,10 @@
 		<result property="placeRegDate" column="place_reg_date" />										
 	</resultMap>
 
-	
-	<select id="getAllHostPlace" resultMap="getAllHostPlace">
-	SELECT * FROM place
+
+	<select id="getAllHostPlace" resultMap="getAllplace">
+		SELECT * FROM place
+		WHERE user_id =#{userId}
 	</select>
 
 	<delete id="deletePlace">

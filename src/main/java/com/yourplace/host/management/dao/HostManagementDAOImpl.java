@@ -16,8 +16,9 @@ public class HostManagementDAOImpl implements HostManagementDAO{
 	private SqlSession session;
 	
 	@Override
-	public List<HostManagementVO> getAllHostPlace() throws Exception {
-		return session.selectList("HostManagementMapper.getAllHostPlace");
+	public List<HostManagementVO> getAllHostPlace(HostManagementVO vo) throws Exception {
+		return session.selectList("HostManagementMapper.getAllHostPlace", vo);
+		
 	}
 
 	@Override

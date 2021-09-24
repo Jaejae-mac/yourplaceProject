@@ -32,15 +32,21 @@ public class HostManagementController {
 	HostManagementRoomService service2;
 	
 	@RequestMapping(value="/managementHostPlace.hdo")
-	public ModelAndView allPlace(HttpServletRequest request) throws Exception{
+	public ModelAndView allPlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		List<HostManagementVO> list = service.getAllHostPlace();
+		
 		HttpSession session = request.getSession();
-		String id=(String) session.getAttribute("userId");
-//		System.out.println(list.toString());
+		String userId = (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		
+		
+		List<HostManagementVO> list = service.getAllHostPlace(vo);
+		System.out.println(list.toString());
+		
 		mav.setViewName("managementHostPlace");
 		mav.addObject("list", list);
-		mav.addObject("userId", id);
+		mav.addObject("userId", userId);
+		System.out.println(userId);
 		
 	
 		return mav;
@@ -71,9 +77,14 @@ public class HostManagementController {
 	}
 	
 	@RequestMapping(value="/managementHostRoomPlace.hdo", method=RequestMethod.GET)
-	public ModelAndView getRoom(HttpServletRequest request) throws Exception{
+	public ModelAndView getRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		List<HostManagementRoomVO> roomlist = service2.getRoomList();
+		List<HostManagementRoomVO> roomlist = service2.getRoomList(vo);
+		System.out.println(roomlist.toString());
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+
+		mav.addObject("userId", userId);
 		mav.addObject("list2", roomlist);
 		mav.setViewName("managementHostRoomPlace");
 		return mav;
@@ -85,6 +96,10 @@ public class HostManagementController {
 		String roomPer = request.getParameter("detailPersonNum"); //인원수
 		String extra = request.getParameter("surcharge"); //할증
 		System.out.println(roomname + roomPer + extra);
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		System.out.println(userId);
+		
 		service2.insertRoom(vo);
 		System.out.println(vo.toString());
 		

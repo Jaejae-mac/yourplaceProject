@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mysql.cj.Session;
+import com.yourplace.custom.login.service.RegistService;
+import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.host.login.service.HostLoginService;
 import com.yourplace.host.login.vo.HostVO;
 
@@ -22,12 +25,31 @@ public class HostLoginController {
 	@Autowired
 	private HostLoginService service;
 	// 로그인 폼을 호출해주는 컨트롤러.
-
+	
 	@GetMapping("/loginForm.hdo")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request) {
 		System.out.println("[ 호스트 로그인 폼 호출 ]");
+
+		String url = request.getRequestURI();
+		boolean equ2 = url.contentEquals("/loginForm.hdo");
+		System.out.println(url);
+		System.out.println(equ2 + "HostLoginController 결과값");
+
+		if (equ2 == true) {
+			HttpSession session = request.getSession();
+			session.setAttribute("userType", 1);
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("userType", 0);
+		}
+
 		return "login/loginForm";
 	}
+	
+	
+	
+
+	
 	//지금 스프링 시큐리티때문에 passencoder로 대조 못하면 에러남 
 
 	@PostMapping("/login.hdo")
@@ -40,13 +62,13 @@ public class HostLoginController {
 			session.setAttribute("userId", vo.getUserId());
 			//로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			getHostInfo(request, vo);
-			return "redirect:indexOurPlace.hdo";
+			
 			
 		}
 		model.addAttribute("result", "0");
 		
 
-		return "redirect:loginForm.do";
+		return "redirect:indexOurPlace.hdo";
 		
 	}
 	
@@ -82,8 +104,6 @@ public class HostLoginController {
 		}
 		
 		
-		
-		
 	}
 	
 	@RequestMapping(value="/updateProfile.hdo", method=RequestMethod.POST) //변경되는거 확인
@@ -106,4 +126,6 @@ public class HostLoginController {
 		session.setAttribute("userInfo", testintro);
 		return "redirect:updateProfileforHost.hdo";
 	}
+	
+
 }

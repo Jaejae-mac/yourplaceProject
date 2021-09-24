@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.commons.coolsms.SMSCertification;
@@ -32,7 +33,7 @@ public class RegistController {
 	
 	//회원 가입 모듈로 보내주는 메서드.
 	@GetMapping("/register.do")
-	public String registerForm() {
+	public String registerForm(HttpServletRequest request) {
 		return "login/registerForm";
 	}
 	
@@ -74,13 +75,22 @@ public class RegistController {
 		//제대로된 아이디와 비밀번호 가 전송되었을 경우.
 		if(vo.getUserId().length() > 0 && vo.getUserPw().length() > 0) {
 			//회원가입 완료후 아이디 세션 생성.
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession();		
 			session.setAttribute("userId", vo.getUserId());
-			session.setAttribute("userType", 0);
+			String url = request.getRequestURI();
+			int userType = (int)session.getAttribute("userType");
+			System.out.println(userType);
+			vo.setUserType(userType);
 			registService.insertUser(vo);
 		}
 		
 		//회원가입후 홈으로 보내주고, 쿠폰을 발급해 주어야 한다. - 미구현.
 		return "redirect:home.do";
 	}
-}
+	
+	
+	
+	
+		
+	}
+

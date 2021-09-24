@@ -23,10 +23,24 @@ public class LoginController {
 	//로그인 폼을 호출해주는 컨트롤러.
 
 	@GetMapping("/loginForm.do")
-	public String loginForm() {
+	public String loginForm(HttpServletRequest request) {
 		System.out.println("[ 로그인 폼 호출 ]");
+		String url = request.getRequestURI();
+		boolean equa = url.contentEquals("/loginForm.do");
+		System.out.println(equa + "LoginController 결과값");
+//		System.out.println(equ);
+	
+		if (equa==true) {
+			HttpSession session = request.getSession();
+			session.removeAttribute("userType");
+			session.setAttribute("userType", 0);
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("userType", 1);
+		}
 		return "login/loginForm";
 	}
+	
 	
 	//로그인 처리를 해주는 컨트롤러.
 	@PostMapping("/login.do")

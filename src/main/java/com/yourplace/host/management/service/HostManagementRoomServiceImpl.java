@@ -16,8 +16,8 @@ public class HostManagementRoomServiceImpl implements HostManagementRoomService 
 	private HostManagementRoomDAO dao;
 
 	@Override
-	public List<HostManagementRoomVO> getRoomList() throws Exception {
-		return dao.getRoomList();
+	public List<HostManagementRoomVO> getRoomList(HostManagementRoomVO vo) throws Exception {
+		return dao.getRoomList(vo);
 	}
 
 	@Override

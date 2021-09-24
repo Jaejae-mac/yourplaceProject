@@ -32,7 +32,7 @@
         <main>
           <div class="container-fluid px-4">
             <h1 class="mt-4">내 장소 관리</h1>
-
+<input type="hidden" value="${userId}" id="userId" name="userId"/>
 					<div class="card mb-4">
 						<div class="card-body">등록한 장소를 관리할 수 있습니다.</div>
 					</div>

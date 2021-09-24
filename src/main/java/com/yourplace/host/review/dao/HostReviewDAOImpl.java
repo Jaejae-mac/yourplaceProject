@@ -17,9 +17,16 @@ public class HostReviewDAOImpl implements HostReviewDAO {
 	
 
 	@Override
-	public List<HostReviewVO> getReviewList() throws Exception {
+	public List<HostReviewVO> getReviewList(HostReviewVO vo) throws Exception {
 		
-		return session.selectList("HostReviewMapper.getAllReview");
+		return session.selectList("HostReviewMapper.getAllReview", vo);
+	}
+
+
+	@Override
+	public void insertReviewForHost(HostReviewVO vo) throws Exception {
+		session.insert("HostReviewMapper.insertReview", vo);
+		
 	}
 	
 

@@ -10,13 +10,14 @@
 		<result property="detailTitle" column="detail_title" />
 		<result property="detailPersonNum" column="detail_capa" />
 		<result property="surcharge" column="surcharge" />
-							
 	</resultMap>
 
 	
 	<select id="getAllHostRoom" resultMap="getAllHostRoom">
 	<trim suffixOverrides=",">
-	SELECT * FROM place_detail
+	select place_detail.*,
+	place.user_id from place_detail left join place on place_detail.place_num = place.user_id
+
 	</trim>
 	</select>
 	
@@ -25,7 +26,8 @@
 	</delete>
 	
 	<insert id="insertRoom">
-		insert into place_detail(detail_num, place_num, detail_title, default_capa, surcharge)
-		values(1111,4444, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
+
+		insert place_detail(detail_num, place_num, detail_title, default_capa, surcharge)
+		values(detail_num=#{detailNum}, place_num=#{placeNum}, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
 	</insert>
 </mapper>

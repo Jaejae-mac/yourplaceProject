@@ -107,10 +107,9 @@
               <h1 class="mt-4">예약 목록</h1>
               <div class="card mb-4">
                 <div class="card-body">
-                최근 예약 목록을 볼 수있습니다.
+            	지난 예약 목록을 볼 수있습니다.
                 </div>
               </div>
-             <button type="button" class="btn btn-danger" style="font-size: 10px; margin-left: 10px;">예약 취소</button>
               <table
               id="mainPageTable"
               class="table table-bordered display"
@@ -143,9 +142,13 @@
 											<td>${test.endTime }</td>
 											<td>${test.personNum }</td>
 											<td>${test.payPrice }</td>
-											<td><input type="checkbox" name="refund" id="refund"/></td>
+								<td>
+									<button type="button" class="btn btn-primary"
+										style="font-size: 10px; margin-left: 10px;">리뷰 남기기</button>
+								</td>
 
-										</tr>
+
+							</tr>
 
 
 									</c:forEach>

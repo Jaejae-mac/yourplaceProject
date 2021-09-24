@@ -39,6 +39,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myPlaceDetail" />
 
 	<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO" alias="HostSalesVO"/>
+	<typeAlias type="com.yourplace.host.ask.vo.AskVO" alias="AskVO"/>
 
 
 	</typeAliases>
@@ -59,6 +60,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/HostManagementMapper.xml" />
 		<mapper resource="mappings/host/HostManagementRoomMapper.xml" />
 		<mapper resource="mappings/host/hostSalesMapper.xml" />
-
+		
+	<mapper resource="mappings/host/HostAskMapper.xml" />
+		
 	</mappers>
 </configuration>

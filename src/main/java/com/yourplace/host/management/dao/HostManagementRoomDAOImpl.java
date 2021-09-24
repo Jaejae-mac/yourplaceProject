@@ -15,7 +15,7 @@ public class HostManagementRoomDAOImpl implements HostManagementRoomDAO {
 	private SqlSession session;
 
 	@Override
-	public List<HostManagementRoomVO> getRoomList() throws Exception {
+	public List<HostManagementRoomVO> getRoomList(HostManagementRoomVO vo) throws Exception {
 		return session.selectList("HostManagementRoomMapper.getAllHostRoom");
 	}
 

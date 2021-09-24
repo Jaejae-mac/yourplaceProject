@@ -16,16 +16,16 @@
 
 	
 	<select id="getAllReview" resultMap="getAllReview">
-	<trim suffixOverrides=",">
-		SELECT rsv_num,
-		place_num,
-		user_id,
-		review_guest_rate,
-		review_guest_regd,
-		review_guest_wr
-		from reviewGuest
-		</trim>
+	select * from reviewGuest inner join place on reviewGuest.place_num=#{placeNum} and place.place_num=#{placeNum} inner join member on member.user_id=#{memId} and place.user_id=#{memId}
 	</select>
+	
+	
+	<insert id="insertReview">
+	insert into reviewHost(rsv_num, place_num, user_id, review_guest_rate, review_guest_wr)
+	values(rsv_num=#{reservNum}, place_num=#{placeNum}, user_id=#{memId}, review_guest_rate=#{star}, review_guest_wr=#{review});
+	</insert>
+	
+	
 
 
 
