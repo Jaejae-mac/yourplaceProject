@@ -3,36 +3,43 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="AdminDAO">
-	<resultMap type="myAdmin" id="adminResult">
-		<id property="adminNum" column="admin_num" />
-		<result property="adminId" column="admin_id" />
-		<result property="adminPw" column="admin_pw" />
-		<result property="adminEmail" column="admin_email" />
-		<result property="adminName" column="admin_name" />
-		<result property="adminTel" column="admin_tel" />
-		<result property="adminRegDate" column="admin_reg_date" />
+<mapper namespace="RevenueDAO">
+	<resultMap type="myRevenue" id="revenueResult">
+		<id property="payNum" column="pay_num" />
+		<result property="rsvNum" column="rsv_num" />
+		<result property="placeMainCate" column="place_main_cate" />
+		<result property="placeCate" column="place_cate" />
+		<result property="payYear" column="pay_year" />
+		<result property="payMonth" column="pay_month" />
+		<result property="payDate" column="pay_date" />
+		<result property="invCost" column="inv_cost" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+		<result property="invBfTax" column="inv_bf_tax" />
+		<result property="invTax" column="inv_tax" />
+		<result property="invAftTax" column="inv_aft_tax" />
+		<result property="userNum" column="user_num" />
 	</resultMap>
 
 	
-	<select id="getAdmin" resultMap="adminResult">
-		SELECT * FROM member_admin where admin_id = #{adminId}
+	<select id="getMonthSum" resultMap="revenueResult">
+		select pay_month, sum(inv_aft_tax) from test_invoice GROUP BY pay_month;
 	</select>
 	
-	<select id="getIdPw" resultMap="adminResult">
-		SELECT admin_pw FROM member_admin where
-		admin_id = #{adminId} 
+	<select id="getMonthSumwithYear" resultMap="revenueResult">
+		select pay_year, pay_month, sum(inv_aft_tax) from test_invoice GROUP BY pay_month;
 	</select>
 	
-<!--<select id="idCheck" resultMap="adminResult">
-	SELECT COUNT(*) FROM member_admin where admin_id = #{adminId}
-	</select> -->
-
-	<insert id="insertAdmin" parameterType="myAdmin">
-		INSERT INTO member_admin
-		(admin_id, admin_pw, admin_email, admin_name, admin_tel, admin_reg_date)
-		values
-		(#{adminId}, #{adminPw}, #{adminEmail}, #{adminName}, #{adminTel}, #{adminRegDate})
-	</insert>
+	<select id="getYearSum" resultMap="revenueResult">
+		select pay_year, sum(inv_aft_tax) from test_invoice GROUP BY pay_year;
+	</select>
+	
+	<select id="getRsvCount" resultMap="revenueResult">
+		select pay_month, (count(rsv_num)) from test_invoice GROUP BY pay_month;
+	</select>
+	
+	<select id="getRsvCountwithYear" resultMap="revenueResult">
+		select pay_year, pay_month, (count(rsv_num)) from test_invoice GROUP BY pay_month;
+	</select>
+	
 
 </mapper>

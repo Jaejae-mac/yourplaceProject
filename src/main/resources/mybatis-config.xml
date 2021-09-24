@@ -18,8 +18,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myFAQGuest" />
 		<typeAlias type="com.yourplace.admin.faq.host.vo.FaqHostVO"
 			alias="myFAQHost" />
-		<typeAlias type="com.yourplace.admin.revenue.vo.RevenuVO"
+		<typeAlias type="com.yourplace.admin.revenue.vo.RevenueVO"
 			alias="myRevenue" />
+		<typeAlias type="com.yourplace.admin.reserve.vo.ReserveVO"
+			alias="myReserve" />
+		<typeAlias type="com.yourplace.admin.payment.vo.PaymentVO"
+			alias="myPayment" />
+		<typeAlias type="com.yourplace.admin.question.vo.QuestionVO"
+			alias="myQuestion" />
 		<typeAlias type="com.yourplace.host.login.vo.HostVO"
 			alias="myHost" />
 		<typeAlias type="com.yourplace.custom.login.vo.UserVO"
@@ -45,6 +51,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
+		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/host/HostReservMapper.xml"/>
 

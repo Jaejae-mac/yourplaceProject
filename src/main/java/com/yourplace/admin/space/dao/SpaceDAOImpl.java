@@ -25,7 +25,9 @@ public class SpaceDAOImpl implements SpaceDAO {
 	public void deleteSpace(String deleteSpace) {
 		System.out.println("---> MyBatis 로 deleteSpace 기능 처리");
 		System.out.println("삭제할 space: " + deleteSpace);
-		sqlSessionTemplate.delete("SpaceDAO.deleteSpace", deleteSpace);
+		sqlSessionTemplate.delete("SpaceDAO.deleteSpace", deleteSpace); // 장소 삭제
+		sqlSessionTemplate.delete("SpaceDAO.deleteSpaceImg", deleteSpace); // 이미지 삭제
+		sqlSessionTemplate.delete("SpaceDAO.deleteSpaceDetail", deleteSpace); // 세부정보 삭제
 	}
 
 	

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,19 +13,20 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Space Allow and View</title>
+    <title>문의사항 확인/답변 페이지</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="/resources/css/admin/css/style-coupon.css">
     <link href="/resources/css/admin/css/styles.css" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
       crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
   </head>
-  
   <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
@@ -123,14 +124,14 @@
                   data-bs-parent="#sidenavAccordion"
                 >
                   <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="tablesMembers.html">호스트 관리</a>
+                    <a class="nav-link" href="tablesHost.html">호스트 관리</a>
                     <a class="nav-link" href="tablesMembers.html"
                       >클라이언트 관리</a
                     >
                     <a class="nav-link" href="tablesMembers.html"
                       >신고 회원 관리</a
                     >
-                    <a class="nav-link" href="layout-sidenav-light.html"
+                    <a class="nav-link" href="tablesCoupon.html"
                       >쿠폰 관리</a
                     >
                   </nav>
@@ -350,122 +351,128 @@
               Start Bootstrap
             </div>
           </nav>
-          
+          <!--사이드바 nav태그((사이드메뉴)) 끝-->
       </div>
-<!--사이드바 nav태그((사이드메뉴)) 끝-->
-
       <div id="layoutSidenav_content">
         <main>
-        <form action="/spaceallow.mdo" method="POST">
           <div class="container-fluid px-4">
-            <h1 class="mt-4">장소등록 조회 및 승인 페이지</h1>
+            <h1 class="mt-4">문의사항 확인</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html"> 메인으로 </a>
+                <a href="index.html">메인으로</a>
               </li>
-              <li class="breadcrumb-item active">Tables</li>
+              <li class="breadcrumb-item active">Question</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                호스트로부터 요청된 장소등록을 확인 후, 승인 처리를 할 수 있는 페이지입니다.
-              </br>
-                호스트의 아이디, 닉네임, 장소에 대한 정보만 확인됩니다.
-              </br>
-                또한 현재 운영 중인 장소를 조회할 수 있으며, 장소명을 누르면 상세보기로 이동합니다.
+                
+                문의사항을 확인하고 답변하는 곳입니다.
+                <!-- <a target="_blank" href="https://datatables.net/"
+                  >official DataTables documentation</a
+                > -->
+                
               </div>
             </div>
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                장소 등록 승인
+                문의사항 관리
               </div>
+<!--             <div class="promotion-coupon">
+                <td><button type="button" class="btn btn-primary" style="font-size: 10px;margin-left: 10px;"
+                  onclick="location='infoGuestRegist.mdo'">이메일 답변하기</button></td>
+               </div> -->
+              <div class="clear"></div>
+              
               <div class="card-body">
                 <table id="datatablesSimple">
-
                   <thead>
                     <tr>
-                      <th>승인상태</th>
-                      <th>장소번호</th>
-                      <th>아이디</th>
-                      <th>이름</th>
-                      <th>장소분류</th>
-                      <th>장소명</th>
-                      <th>연락처</th>
-                      <th>이메일</th>
-                      <th>승인여부</th>
-                      <th>장소삭제</th>
+                        <th>상태</th>
+                        <th>문의번호</th>
+                        <th>예약번호</th>
+                        <th>유저유형</th>
+                        <th>아이디</th>
+                        <th>이메일</th>
+                        <th>문의 내용</th>
+                        <th>답변</th>
                     </tr>
                   </thead>
-                  
+
                   <tbody>
-					<c:forEach var="spc" items="${spaceList }">
-					
+                  <c:forEach var="que" items="${queList}">
                     <tr>
                       <td>
-                      		<c:if test="${spc.placeAllow eq '1'}">
-	                      		승인
-	                      	</c:if>
-	                      	<c:if test="${spc.placeAllow ne '1'}">
-	                      		미승인
-	                      	</c:if>
-	                  </td>
-                      <td>${spc.placeNum }</td>
-                      <td>${spc.userId}</td>
-                      <td>${spc.userName}</td>
-                      <td>${spc.placeMaincate }</td> <!--클릭시 장소 상세보기 페이지로 이동.-->
-                      <td><a href="#" style="color: black;">${spc.placeName }</a></td>
-                      <td>${spc.userTel }</td>
-                      <td>${spc.userEmail }</td>
-                      
-                      <td align="left">
-                      
-<!--                         <select name="allowOption" id="allowOption" style="width: 100px;"> -->
-<!-- 	                      		<option value="1">승인</option> -->
-<!-- 	                      		<option value="0">미승인</option> -->
-<!--                         </select> -->
-                   
-                        <button type="button" class="btn btn-primary"
-                        style="font-size: 10px;margin-left: 10px;" id="allow_btn">
-                        	승인
-                        </button>
-                        
-                        <button type="button" class="btn btn-danger"
-                        style="font-size: 10px;margin-left: 10px;" id="deny_btn">
-                        	미승인
-                        </button>
-                        
+                      	<c:if test="${que.reprtDoneYn eq 'Y' }">
+                      		완료
+                      	</c:if>
+                      	<c:if test="${que.reprtDoneYn eq 'N' }">
+                      		대기
+                      	</c:if>
                       </td>
-                      
+                      <td>${que.reprtSeq}</td>
+                      <td>${que.rsvNum}</td>
                       <td>
-                      <button type="button" class="btn btn-danger"
-                      style="font-size: 10px;margin-left: 10px;" id="delete_btn">
-                      	삭제
-                      </button></td>
+                      	<c:if test="${que.userType eq '0' }">
+                      		게스트
+                      	</c:if>
+                      	<c:if test="${que.userType eq '1' }">
+                      		호스트
+                      	</c:if>
+                      </td>
+                      <td>${que.userId }</td>
+                      <td>${que.userEmail }</td>
+                      <td>${que.reprtContent }</td>
+                      <td>
+	                      <button type="button" data-toggle="modal"
+	                      data-target="#staticBackdrop" class="btn btn-primary" id="response_btn"
+	                      style="font-size: 10px;margin-left: 10px;">
+	                      	답변
+	                      </button>
+	                      
+	                      <!-- Modal -->
+	                      <div class="modal fade" id="staticBackdrop" data-backdrop="static"
+	                      tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	                      	<div class="modal-dialog" role="document">
+	                      		<div class="modal-content">
+	                      			
+	                      			<div class="modal-header">
+				                      <h5 class="modal-title" id="staticBackdropLabel"> Modal title </h5>
+				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				                      <span aria-hidden="true">&times;</span>
+				                      </button>
+				                    </div>
+				                      
+				                      <div class="modal-body">
+				                      	...
+				                      </div>
+				                      
+				                      <div class="modal-footer">
+				                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
+				                      	Close
+				                      </button>
+				                      
+				                      <button type="button" class="btn btn-primary">
+				                      	Understood
+				                      </button>
+	                      			</div>
+	                      		</div>
+	                      	</div>
+	                      </div>
+                      
+                      </td>
                     </tr>
-                    
                     </c:forEach>
-
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-          </form>
         </main>
         
         <!-- delete -->
-       <form id = "submitForm" method="POST" action="/deleteSpace.mdo" hidden="hidden">
-       	<input type="hidden" id="deleteSpaceHidden" name="deleteSpace">
-       </form>
-       
-       <!-- allow -->
-       <form id="submitForm2" method="POST" action="/allowSpace.mdo" hidden="hidden">
-       	<input type="hidden" id="allowSpaceHidden" name="allowSpace">
-       </form>
-       
-       <!-- deny -->
-       <form id="submitForm3" method="POST" action="/denySpace.mdo" hidden="hidden">
-       	<input type="hidden" id="denySpaceHidden" name="denySpace">
+       <form id = "submitForm" method="POST" action="/deleteInfoGue.mdo" hidden="hidden">
+       	<input type="hidden" id="deleteInfoHidden" name="deleteInfoTitle">
        </form>
         
         <footer class="py-4 bg-light mt-auto">
@@ -484,26 +491,26 @@
         </footer>
       </div>
     </div>
-    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous">
-    </script>
-    
-    <script src="/resources/css/admin/js/scripts.js"></script>
-    
+      crossorigin="anonymous"
+    ></script>
+    <script src="resources/css/admin/js/scripts.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-      crossorigin="anonymous">
-    </script>
-    
-    <script src="/resources/css/admin/js/datatables-simple-demo.js"></script>
+      crossorigin="anonymous"
+    ></script>
+    <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
     
     <script>
+    	$("#staticBackdrop").modal('show');
+    </script>
 
-		$(document).on("click","#delete_btn",function()
+    <!-- 공지사항 수정 -->
+    <script>
+
+		$(document).on("click","#response_btn",function()
 		{
- 			console.log('삭제버튼 클릭');
 			
 			var tdArr = new Array();
 			var checkBtn = $(this);
@@ -511,81 +518,28 @@
 			var tr = checkBtn.parent().parent();
 			var td = tr.children();
 
-			var active = td.eq(0).text();
+			var yn = td.eq(0).text();
 			var no = td.eq(1).text();
+			var rsvnum = td.eq(2).text();
+			var usertype = td.eq(3).text();
+			var userid = td.eq(4).text();
+			var useremail = td.eq(5).text();
 			
 			td.each(function(i)
 			{
 				tdArr.push(td.eq(i).text());
 			});
 			
-			console.log("장소 번호 text : " + no);
+			console.log("클릭된 문의번호 : " + no);
+			console.log("클릭된 유저 아이디 : " + userid);
+			console.log("클릭된 유저 이메일 : " + useremail);
 		
-			$("#deleteSpaceHidden").val(no);
-			$("#submitForm").submit();
+// 			$("#deleteInfoHidden").val(title);
+// 			$("#submitForm").submit();
 			
 		});
-			
+		
 	</script>
-	
-	<script>
-	
-	$(document).on("click","#allow_btn", function()
-		{
-		
-			var tdArr = new Array();
-			var checkBtn = $(this);
-			
-			var tr = checkBtn.parent().parent();
-			var td = tr.children();
-	
-			var active = td.eq(0).text();
-			var no = td.eq(1).text();
-			
-			td.each(function(i)
-			{
-				tdArr.push(td.eq(i).text());
-			});
-		
-	        console.log("선택된 번호: " + no);
-	        
-	        $("#allowSpaceHidden").val(no);
-	        $("#submitForm2").submit();
-
-		});
-			
-	</script>
-	
-	
-	<script>
-	
-	$(document).on("click","#deny_btn",function()
-		{
-		
-			var tdArr = new Array();
-			var checkBtn = $(this);
-			
-			var tr = checkBtn.parent().parent();
-			var td = tr.children();
-	
-			var active = td.eq(0).text();
-			var no = td.eq(1).text();
-			
-			td.each(function(i)
-			{
-				tdArr.push(td.eq(i).text());
-			});
-		
-	        console.log("선택된 번호: " + no);
-	        
-	        $("#denySpaceHidden").val(no);
-	        $("#submitForm3").submit();
-
-		});
-			
-	</script>
-	
-
     
   </body>
 </html>

@@ -31,6 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM place WHERE place_num = #{placeNum}
 	</delete>
 	
+	<!-- 장소 삭제 하면서 이미지 삭제 -->
+	<delete id="deleteSpaceImg">
+		DELETE FROM place_img where place_num = #{placeNum}
+	</delete>
+	
+	<!-- 장소 삭제 하면서 상세정보 삭제 -->
+	<delete id="deleteSpaceDetail">
+		DELETE FROM place_detail where place_num = #{placeNum}
+	</delete>
+	
 	<!-- 승인 상태 조회 -->
 	<select id="getSpaceActive" resultMap="spaceResult">
 		SELECT place_allow FROM place WHERE place_num = #{placeNum}
