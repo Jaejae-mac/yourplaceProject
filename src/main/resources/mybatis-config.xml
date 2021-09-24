@@ -14,10 +14,20 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myUser" />
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
-			<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
-			alias="MyPageCouponVO"/>
-			<typeAlias type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
-			alias="MyPageReserveVO"/>
+
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+			alias="MyPageCouponVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
+			alias="MyPageReserveVO" />
+
+		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
+			alias="HostReservVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+			alias="MyPageCouponVO" />
+
 		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
 			alias="HostReservVO" />
 		<typeAlias type="com.yourplace.host.review.vo.HostReviewVO"
@@ -38,10 +48,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.yourplace.host.regist.vo.PlaceDetailVO"
 			alias="myPlaceDetail" />
 
-	<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO" alias="HostSalesVO"/>
-	<typeAlias type="com.yourplace.host.ask.vo.AskVO" alias="AskVO"/>
+		<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO"
+			alias="HostSalesVO" />
+		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
+			alias="AskVO" />
 
 
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageReviewVO"
+			alias="MyPageReviewVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
@@ -50,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/regist-place-mapping.xml" />
 
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
-		<mapper resource="mappings/custom/custom-access-mapping.xml" />	
+		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
@@ -60,8 +75,9 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/HostManagementMapper.xml" />
 		<mapper resource="mappings/host/HostManagementRoomMapper.xml" />
 		<mapper resource="mappings/host/hostSalesMapper.xml" />
-		
-	<mapper resource="mappings/host/HostAskMapper.xml" />
-		
+
+		<mapper resource="mappings/host/HostAskMapper.xml" />
+
+		<mapper resource="mappings/custom/review-mapping.xml" />
 	</mappers>
 </configuration>
