@@ -5,9 +5,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.question.service.QuestionService;
 import com.yourplace.custom.question.service.ReportService;
 import com.yourplace.custom.question.vo.QuestionVO;
@@ -26,6 +29,19 @@ public class QuestionController {
 	public String quesForm() {
 		return "question/guestQuesForm";
 	}
+	
+	
+//	로그인처리 메서드
+//	@RequestMapping("/quesSerForm.do")
+//	public String quesSerForm(HttpServletRequest request, Model model) {
+//		HttpSession session = request.getSession();
+//		String userId = (String)session.getAttribute("userId");
+////		System.out.println(userId);
+////		UserVO vo = new UserVO();
+////		vo.setUserId(userId);
+////		model.addAttribute("user", questionService.getUser(vo));
+//		return "guestQuesForm";
+//	}
 	
 	//1:1 문의등록 처리 메서드  INSERT
 	@PostMapping("/guestques.do")

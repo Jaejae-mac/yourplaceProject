@@ -3,6 +3,7 @@ package com.yourplace.custom.question.dao;
 import java.util.List;
 
 import com.yourplace.custom.question.vo.GuestInfoVO;
+import com.yourplace.custom.question.vo.HostInfoVO;
 import com.yourplace.custom.question.vo.QuestionVO;
 
 public interface QuestionDAO {
@@ -16,6 +17,9 @@ public interface QuestionDAO {
 	//guestInfo 를 불러오기 위한 메서드
 	
 	List<GuestInfoVO> guestInfoView(GuestInfoVO vo);
+	
+
+	List<HostInfoVO> hostInfoView(HostInfoVO vo);
 	
 
 }
