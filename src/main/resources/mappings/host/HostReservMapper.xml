@@ -37,4 +37,10 @@
 	</select>
 
 
+<select id="getLastReserve" resultMap="getAllReserve">
+	select * from reserve
+
+</select>
+
+
 </mapper>

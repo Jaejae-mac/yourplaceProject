@@ -29,6 +29,13 @@ public class HostReservDAOImpl implements HostReservDAO{
 	}
 
 
+
+	@Override
+	public List<HostReservVO> lastAllReserve() throws Exception {
+		return session.selectList("HostReservMapper.getLastReserve");
+	}
+
+
 	
 
 }

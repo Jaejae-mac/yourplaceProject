@@ -119,7 +119,7 @@
 						</c:when>
 						<c:when test="${userType == '1'}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="window.location.href='hostLogin.html'"
+							<div onclick="window.location.href='/indexOurPlace.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
@@ -127,7 +127,7 @@
 									장소등록</p>
 							</div>
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="window.location.href='hostLogin.html'"
+							<div onclick="window.location.href='/logout.do'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
@@ -135,7 +135,7 @@
 									로그아웃</p>
 							</div>
 							<!-- 로그인 기능 show_login() -->
-							<div onclick="window.location.href='login.html'"
+							<div onclick="window.location.href='/updateProfileforHost.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
