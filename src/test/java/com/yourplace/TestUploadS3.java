@@ -19,12 +19,16 @@ public class TestUploadS3 {
 		
 		AwsS3 awsS3 = AwsS3.getInstance();
 		File file = new File("/Users/jaejaean/Desktop/test00.png");
-		String key = "img/exampletest01.png";
+		String key = "img/exampletest03.png";
+//		String delKey = "img/exampletest01.png";
 		String copyKey = "img/exampletestfile01_copy.png";
-		awsS3.upload(file, key);
+//		awsS3.upload(file, key);
 //		awsS3.copy(key, copyKey);
 //		awsS3.delete(copyKey);
-//		awsS3.delete(key);
+		System.out.println(awsS3.toString());
+		awsS3.delete(key);
+//		System.out.println(awsS3.getBucketList());
+		
 		
 	}
 }
