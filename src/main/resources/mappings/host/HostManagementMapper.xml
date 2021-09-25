@@ -30,12 +30,23 @@
 
 
 	<select id="getAllHostPlace" resultMap="getAllplace">
-		SELECT * FROM place
-		WHERE user_id =#{userId}
+     SELECT * FROM place INNER JOIN member ON place.user_id = member.user_id WHERE member.user_id=#{userId};
 	</select>
 
 	<delete id="deletePlace">
-	DELETE FROM place WHERE place_num=#{placeNum}
+
+		delete place, place_detail, place_img
+		FROM place
+		JOIN place_detail USING (place_num)
+		JOIN place_img USING (place_num)
+		WHERE place_num = #{placeNum}
 	</delete>
+	
+	<select id="getOneHostPlace" resultMap="getAllplace">
+		SELECT * FROM place INNER JOIN member ON place.user_id = member.user_id WHERE member.user_id=#{userId} AND place.place_num=#{placeNum};
+	</select>
+	
+	
+	
 	
 </mapper>

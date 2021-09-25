@@ -16,13 +16,14 @@ public class AskDAOImpl implements AskDAO {
 	private SqlSession session;
 
 	@Override
-	public List<AskVO> getMyAskList() throws Exception {
-		return session.selectList("HostAskMapper.getMyAsk");
+	public List<AskVO> getMyAskList(AskVO vo) throws Exception {
+		return session.selectList("HostAskMapper.getMyAsk", vo);
 	}
 
 	@Override
 	public void insertAsk(AskVO vo) throws Exception {
-		session.insert("HostAskMapper.insertAsk");
+		session.insert("HostAskMapper.insertAsk", vo);
 	}
-	
+
+
 }

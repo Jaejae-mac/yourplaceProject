@@ -69,13 +69,12 @@
               </div>
               <div class="card mb-4">
                 <div class="card-header">
-                 
-               
+  
+
                    <table id="datatablesSimple">
                       <thead>
                         <tr>
                             <th>번호</th>
-                    
                             <th>문의 내역</th>
                             <th>처리 여부</th>
                         </tr>
@@ -83,7 +82,11 @@
                       <tfoot>
                       </tfoot>
                       <tbody>
+                        
+             
+                      
 									<c:forEach var="ask" items="${list}">
+							
 										<tr>
 											<td>${ask.primaryKey}</td>
 											
@@ -94,9 +97,8 @@
 				
 
 										</tr>
-
-
-									</c:forEach>
+</c:forEach>
+	
 
 
 								</tbody>

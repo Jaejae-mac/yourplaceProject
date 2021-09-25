@@ -1,6 +1,8 @@
 package com.yourplace.host.ask.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,17 +23,22 @@ public class AskController {
 	private AskService service;
 	
 	@RequestMapping(value="/AskforHost.hdo")
-	public ModelAndView getAllAskForHost(HttpServletRequest request) throws Exception{
+	public ModelAndView getAllAskForHost(HttpServletRequest request, AskVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		List<AskVO> list = service.getMyAskList();
-		System.out.println(list.toString());
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userId");
+		vo.setUserId(id);
+		List<AskVO> list = service.getMyAskList(vo);
+//		System.out.println(list.toString());
+
+
 		mav.addObject("list", list);
 		mav.addObject("userId", id);
 		mav.setViewName("AskforHost");
 		return mav;
 	}
+	
+
 	
 	
 	
@@ -42,14 +49,21 @@ public class AskController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/askHost.hdo", method=RequestMethod.POST)
+	@RequestMapping(value="/askHost.hdo", method=RequestMethod.POST) //중복 제거해야함
 	public void insertAsk(HttpServletRequest request, AskVO vo) throws Exception{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userId");
 		String content = request.getParameter("content");
+		vo.setUserId(id);
+
+	
+		vo.setContent(content);
+		
+		
 		System.out.println(id);
 		System.out.println(content);
 		
+		service.insertAsk(vo);
 		
 		
 	}

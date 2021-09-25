@@ -85,8 +85,8 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/managementHostPlace.hdo">내 장소 관리</a>
-								<a class="nav-link" href="/regist/place/form.hdo">내 장소 등록</a> <a
-									class="nav-link" href="/hostReviews.hdo">리뷰 관리</a>
+								<a class="nav-link" href="/regist/place/form.hdo">내 장소 등록</a>
+								<a class="nav-link" href="/hostReviews.hdo">리뷰 관리</a>
 							</nav>
 						</div>
 

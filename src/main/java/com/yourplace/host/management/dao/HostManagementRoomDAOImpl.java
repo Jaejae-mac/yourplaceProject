@@ -16,12 +16,12 @@ public class HostManagementRoomDAOImpl implements HostManagementRoomDAO {
 
 	@Override
 	public List<HostManagementRoomVO> getRoomList(HostManagementRoomVO vo) throws Exception {
-		return session.selectList("HostManagementRoomMapper.getAllHostRoom");
+		return session.selectList("HostManagementRoomMapper.getAllHostRoom", vo);
 	}
 
 	@Override
-	public void deleteRoom(int placeNum) throws Exception {
-		session.delete("HostManagementRoomMapper.deleteRoom", placeNum);
+	public void deleteRoom(String detailNum) throws Exception {
+		session.delete("HostManagementRoomMapper.deleteRoom", detailNum);
 		
 	}
 

@@ -5,23 +5,26 @@
 
 
 <resultMap type="AskVO" id="ask">
-		<result property="primaryKey" column="reprt_seq" />
+<result property="primaryKey" column="reprt_seq"/>
 		<result property="reserveNum" column="rsv_num" />
 		<result property="userId" column="user_id" />
 			<result property="content" column="reprt_content" />
-				<result property="doneYN" column="reprt_done_yn" />
+			<result property="doneYN" column="reprt_done_yn"/>
+			<result property="placeNum" column="place_num"/>
+			<result property="placeName" column="place_name"/>
 							
 	</resultMap>
 
 
 	<select id="getMyAsk" resultMap="ask">
-		select * from question
+	select * from question where user_id=#{userId}
 	</select>
 
 <insert id="insertAsk">
-insert into question(rsv_num, user_id, reprt_content, reprt_done_yn)
-values()
+INSERT INTO question (rsv_num, user_id, reprt_content)
+    SELECT place_num, user_id, #{content}
+    FROM place WHERE user_id=#{userId};
+
 </insert>
-	
-	
+
 </mapper>

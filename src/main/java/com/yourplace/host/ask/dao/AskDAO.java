@@ -5,7 +5,8 @@ import java.util.List;
 import com.yourplace.host.ask.vo.AskVO;
 
 public interface AskDAO {
-	List<AskVO> getMyAskList() throws Exception;
+	List<AskVO> getMyAskList(AskVO vo) throws Exception;
 	void insertAsk(AskVO vo) throws Exception;
+
 	
 }

@@ -27,4 +27,9 @@ public class HostManagementDAOImpl implements HostManagementDAO{
 		
 	}
 
+	@Override
+	public List<HostManagementVO> getOneHostPlace(HostManagementVO vo) throws Exception {
+		return session.selectList("HostManagementMapper.getOneHostPlace",vo);
+	}
+
 }

@@ -16,7 +16,7 @@
 
 	
 	<select id="getAllReview" resultMap="getAllReview">
-	select * from reviewGuest inner join place on reviewGuest.place_num=#{placeNum} and place.place_num=#{placeNum} inner join member on member.user_id=#{memId} and place.user_id=#{memId}
+	SELECT * FROM reviewGuest INNER JOIN place ON reviewGuest.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id =#{memId};
 	</select>
 	
 	

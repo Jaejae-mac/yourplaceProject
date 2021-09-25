@@ -12,5 +12,6 @@ public class HostManagementRoomVO {
 	private String detailTitle;
 	private String detailPersonNum;
 	private String surcharge;
+	private String userId;
 
 }

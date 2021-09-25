@@ -20,8 +20,11 @@
    <link href="<c:url value="/resources/host/css/styles.css" />" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-      crossorigin="anonymous"
     ></script>
+  
+    
+
+        
   </head>
   
   <body class="sb-nav-fixed">
@@ -40,6 +43,7 @@
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i> <a href="/managementHostPlace.hdo" style="text-decoration:none; color:black;">내 장소 관리</a>
 							<i class="fas fa-table me-1"></i> <a href="/managementHostRoomPlace.hdo" style="text-decoration: none; color:black">세부 방 정보 관리</a>
+							
 						</div>
 						<div class="card-body">
 							<table id="datatablesSimple">
@@ -55,17 +59,21 @@
 								</tfoot>
 								<tbody>
 									<c:forEach var="mana" items="${list}">
-										<tr>
+										<tr class="placeList">
 											<td>${mana.placeNum}</td>
+									
 											<td>${mana.placeName}</td>
 											<td>${mana.placePrice }</td>
 
 											<td>${mana.placePersonNum }</td>
 
 											<td>
+										
 											<button type="submit" class="btn btn-danger"  onclick="location.href='/deletePlace.hdo?placeNum=${mana.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
-												<button type="button" class="btn btn-primary"
+												<button type="button" class="btn btn-primary" name="change" id="change"
+												onclick="location.href='/updatePlaceDetail.hdo?placeNum=${mana.placeNum}'"
 													style="font-size: 10px; margin-left: 10px;">수정</button>
+													<input type="hidden" name="placeNum" id="placeNum" value="${mana.placeNum }"/>
 												
 											</td>
 
@@ -92,6 +100,8 @@
 					</div>
 				</div>
         </main>
+    
+        
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
             <div

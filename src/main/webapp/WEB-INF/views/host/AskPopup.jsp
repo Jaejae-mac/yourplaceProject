@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 
 <html>
@@ -32,7 +33,12 @@
 						문의 사항을 남겨주세요 <br> 문의 내역은 고객 문의에서 확인하실 수있습니다.
 					</p>
 				</div>
-
+				<select id='placeNum' name='placeNum'>
+				<option value="${placeNum}">${placeNum}</option>
+				
+				
+				</select>
+				
 				<p
 					style="margin-top: 20px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
 					내용</p>

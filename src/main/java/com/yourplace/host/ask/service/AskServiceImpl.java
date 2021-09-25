@@ -16,14 +16,15 @@ public class AskServiceImpl implements AskService {
 	private AskDAO dao;
 
 	@Override
-	public List<AskVO> getMyAskList() throws Exception {
-		return dao.getMyAskList();
+	public List<AskVO> getMyAskList(AskVO vo) throws Exception {
+		return dao.getMyAskList(vo);
 	}
 
 	@Override
 	public void insertAsk(AskVO vo) throws Exception {
 		dao.insertAsk(vo);
 	}
-	
+
+
 
 }

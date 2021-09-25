@@ -7,6 +7,6 @@ import com.yourplace.host.management.vo.HostManagementVO;
 
 public interface HostManagementRoomService {
 	 List<HostManagementRoomVO> getRoomList(HostManagementRoomVO vo) throws Exception;
-	 void deleteRoom(int placeNum) throws Exception;
+	 void deleteRoom(String detailNum) throws Exception;
 	 void insertRoom(HostManagementRoomVO vo) throws Exception;
 }

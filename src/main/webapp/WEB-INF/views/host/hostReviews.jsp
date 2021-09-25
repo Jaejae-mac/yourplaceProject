@@ -126,8 +126,7 @@
               </div>
               <div class="card mb-4">
                 <div class="card-header">
-                  <i class="fas fa-table me-1"></i>
-                  리뷰 관리
+              <i class="fas fa-table me-1"></i> <a href="/hostReviews.hdo" style="text-decoration:none; color:black;">리뷰관리</a>
                   <div style="display: inline; float: right">
                     <label for="toggle-one" style="margin-right: 5px"
                       >클릭하여 전환</label
