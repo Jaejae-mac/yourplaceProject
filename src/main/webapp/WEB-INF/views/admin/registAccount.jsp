@@ -11,7 +11,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>공지사항 추가등록</title>
+    <title>관리자 계정 추가</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
@@ -32,11 +32,13 @@
 <link rel="stylesheet" href="/resources/css/admin/css/bootstrap-datepicker.css">
 
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="/resources/css/admin/js/bootstrap-datepicker.js"></script>
+<script src="/resources/css/admin/js/bootstrap-datepicker.ko.min.js"></script>
 
 <script>
     $(document).on("click","#regist",function()
 	{
-		alert("호스트 공지사항이 정상적으로 추가되었습니다.");
+		alert("관리자가 추가되었습니다.");
 	});
 </script>
 
@@ -47,18 +49,17 @@
       
       
       <div id="layoutSidenav_content">
-      <form action="/infoHostRegist.mdo" method="POST">
+      <form action="/registAccount.mdo" method="POST">
         <main>
           <div class="container-fluid px-4">
-           
-           
-           
-            <h1 class="mt-4">공지사항 추가등록 페이지</h1>
+ 
+ 
+            <h1 class="mt-4">관리자 추가 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
                 <a href="index.html">Dashboard</a>
               </li>
-              <li class="breadcrumb-item active">공지사항 등록</li>
+              <li class="breadcrumb-item active">관리자 추가</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
@@ -67,7 +68,7 @@
               </div>
             </div>
             <div class="card-header">
-              <b>공지사항 추가등록</b>
+              <b>관리자 추가 (root account)</b>
             </div>
             
             <div>
@@ -75,33 +76,39 @@
                 <tbody>
                 
                 <tr>
-                  <th scope="col">카테고리</th>
+                  <th scope="col">권한</th>
                   <td>
-                  	<select name="infoHostCate">
-
-                  		<option value="0">호스트 지원</option>
-                  		<option value="1">장소 등록</option>
-                  		<option value="2">입금 계좌 설정</option>
-                  		<option value="3">예약</option>
-                  		<option value="4">예약 진행</option>
-                  		<option value="5">파손 및 배상</option>
-                  		<option value="6">추가 청구</option>
-                  		<option value="7">대금 지급</option>
-                  		<option value="8">이용 요금</option>
-
+                  	<select name="adminAuthority">
+                  		<option value="1">root</option>
+                  		<option value="2">admin</option>
                   	</select>
-                  
+                  <!-- <input type="text" id="infoGueCate" name="infoGueCate" size="40"> -->
                   </td>
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 제목</th>
-                  <td><input type="text" id="infoTitle" name="infoHostTitle" size="40"></td>
+                  <th scope="col">아이디</th>
+                  <td><input type="text" id="id" name="adminId" size="40"></td>
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 내용</th>
-                  <td><textarea id="infoContent" name="infoHostContent" style="width:410px; height:100px;"> </textarea></td>
+                  <th scope="col">비밀번호</th>
+                  <td><input type="password" id="pw" name="adminPw" size="40"></td>
+                </tr>
+                
+                <tr>
+                  <th scope="col">이메일</th>
+                  <td><input type="text" id="email" name="adminEmail" size="40"></td>
+                </tr>
+                
+                <tr>
+                  <th scope="col">사용자 이름</th>
+                  <td><input type="text" id="name" name="adminName" size="40"></td>
+                </tr>
+                
+                <tr>
+                  <th scope="col">연락처</th>
+                  <td><input type="text" id="tel" name="adminTel" size="40"></td>
                 </tr>
               
               </tbody>
@@ -112,7 +119,7 @@
                 
                 <td>
 	                <button type="button" class="btn btn-danger" style="font-size: 10px;margin-left: 10px;"
-	                onclick="location='infoHost.mdo'">
+	                onclick="location='registAccount.mdo'">
 	                	취소
 	                </button>
                 </td>

@@ -43,7 +43,7 @@ public class AdminController {
 			session.setAttribute("AdminNum", vo.getAdminNum());
 
 			// 로그인 성공시에는 return의 홈페이지로 이동시켜준다.
-			return "memberView";
+			return "index";
 		}
 		model.addAttribute("result", "0");
 		return "redirect:login.mdo";

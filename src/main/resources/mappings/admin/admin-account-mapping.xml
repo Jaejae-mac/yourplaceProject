@@ -3,9 +3,10 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="AdminDAO">
-	<resultMap type="myAdmin" id="adminResult">
+<mapper namespace="AccountDAO">
+	<resultMap type="myAccount" id="accountResult">
 		<id property="adminNum" column="admin_num" />
+		<result property="adminAuthority" column="admin_authority" />
 		<result property="adminId" column="admin_id" />
 		<result property="adminPw" column="admin_pw" />
 		<result property="adminEmail" column="admin_email" />
@@ -14,12 +15,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="adminRegDate" column="admin_reg_date" />
 	</resultMap>
 
+	<!-- 현재 등록된 admin 계정 전부 조회  -->
+	<select id="getAccountList" resultMap="accountResult">
+		SELECT * FROM member_admin
+	</select>
 	
-	<select id="getAdmin" resultMap="adminResult">
+	<!-- 계정 추가  -->
+	<insert id="insertAccount">
+		INSERT INTO member_admin
+		(admin_authority, admin_id, admin_pw, admin_name, admin_email, admin_tel)
+		VALUES	
+		(#{adminAuthority}, #{adminId}, #{adminPw}, #{adminName}, #{adminEmail}, #{adminTel})
+	</insert>
+	
+	<select id="getAdmin" resultMap="accountResult">
 		SELECT * FROM member_admin where admin_id = #{adminId}
 	</select>
 	
-	<select id="getIdPw" resultMap="adminResult">
+	<select id="getIdPw" resultMap="accountResult">
 		SELECT admin_pw FROM member_admin where
 		admin_id = #{adminId} 
 	</select>

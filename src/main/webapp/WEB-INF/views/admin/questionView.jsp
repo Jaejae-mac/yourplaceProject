@@ -24,335 +24,20 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="http://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script>
+    $(document).on("click","#sendResponse",function()
+	{
+		alert("작성한 답변이 이메일로 전송되었습니다.");
+	});
+	</script>
     
   </head>
   <body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="admin.html">Space Cloud Admin</a>
-        <!-- Sidebar Toggle-->
-        <button
-          class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-          id="sidebarToggle"
-          href="#!"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
-        <!-- Navbar Search-->
-        <form
-          class="
-            d-none d-md-inline-block
-            form-inline
-            ms-auto
-            me-0 me-md-3
-            my-2 my-md-0
-          "
-        >
-          <div class="input-group">
-            <input
-              class="form-control"
-              type="text"
-              placeholder="Search for..."
-              aria-label="Search for..."
-              aria-describedby="btnNavbarSearch"
-            />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              ><i class="fas fa-user fa-fw"></i
-            ></a>
-            <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdown"
-            >
-              <li><a class="dropdown-item" href="#!">Settings</a></li>
-              <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#!">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
-      <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-          <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <!--사이드바 nav태그(사이드메뉴) 시작-->
-            <div class="sb-sidenav-menu">
-              <div class="nav">
-                <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="index.html">
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                  </div>
-                  Dashboard
-                </a>
-  
-                <div class="sb-sidenav-menu-heading">Menu</div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseMember"
-                  aria-expanded="false"
-                  aria-controls="collapseMember"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fa fa-user-circle"></i>
-                  </div>
-                  회원 관리
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapseMember"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="tablesHost.html">호스트 관리</a>
-                    <a class="nav-link" href="tablesMembers.html"
-                      >클라이언트 관리</a
-                    >
-                    <a class="nav-link" href="tablesMembers.html"
-                      >신고 회원 관리</a
-                    >
-                    <a class="nav-link" href="tablesCoupon.html"
-                      >쿠폰 관리</a
-                    >
-                  </nav>
-                </div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapsePayManagement"
-                  aria-expanded="false"
-                  aria-controls="collapsePayManagement"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-money-bill-alt"></i>
-                  </div>
-                  결제/예약/매출 관리
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapsePayManagement"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">결제 관리</a>
-                    <a class="nav-link" href="layout-sidenav-light.html"
-                      >예약 관리</a
-                    >
-                    <a class="nav-link" href="chartsAdmin.html"
-                      >매출 현황</a
-                    >
-                  </nav>
-                </div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseAnnounce"
-                  aria-expanded="false"
-                  aria-controls="collapseAnnounce"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-bullhorn"></i>
-                  </div>
-                  공지사항 관리
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapseAnnounce"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">공지사항관리</a>
-                  </nav>
-                </div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseFAQ"
-                  aria-expanded="false"
-                  aria-controls="collapseFAQ"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-question-circle"></i>
-                  </div>
-                  FAQ
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapseFAQ"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">FAQ</a>
-                </div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapsePages"
-                  aria-expanded="false"
-                  aria-controls="collapsePages"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-book-open"></i>
-                  </div>
-                  Pages
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapsePages"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav
-                    class="sb-sidenav-menu-nested nav accordion"
-                    id="sidenavAccordionPages"
-                  >
-                    <a
-                      class="nav-link collapsed"
-                      href="#"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#pagesCollapseAuth"
-                      aria-expanded="false"
-                      aria-controls="pagesCollapseAuth"
-                    >
-                      Authentication
-                      <div class="sb-sidenav-collapse-arrow">
-                        <i class="fas fa-angle-down"></i>
-                      </div>
-                    </a>
-                    <div
-                      class="collapse"
-                      id="pagesCollapseAuth"
-                      aria-labelledby="headingOne"
-                      data-bs-parent="#sidenavAccordionPages"
-                    >
-                      <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="login.html">Login</a>
-                        <a class="nav-link" href="register.html">Register</a>
-                        <a class="nav-link" href="password.html"
-                          >Forgot Password</a
-                        >
-                      </nav>
-                    </div>
-                    <a
-                      class="nav-link collapsed"
-                      href="#"
-                      data-bs-toggle="collapse"
-                      data-bs-target="#pagesCollapseError"
-                      aria-expanded="false"
-                      aria-controls="pagesCollapseError"
-                    >
-                      Error
-                      <div class="sb-sidenav-collapse-arrow">
-                        <i class="fas fa-angle-down"></i>
-                      </div>
-                    </a>
-                    <div
-                      class="collapse"
-                      id="pagesCollapseError"
-                      aria-labelledby="headingOne"
-                      data-bs-parent="#sidenavAccordionPages"
-                    >
-                      <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="401.html">401 Page</a>
-                        <a class="nav-link" href="404.html">404 Page</a>
-                        <a class="nav-link" href="500.html">500 Page</a>
-                      </nav>
-                    </div>
-                  </nav>
-                </div>
-  
-                <div class="sb-sidenav-menu-heading">Management</div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseSiteManage"
-                  aria-expanded="false"
-                  aria-controls="collapseSiteManage"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-laptop-house"></i>
-                  </div>
-                  사이트 관리
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapseSiteManage"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html"
-                      >Static Navigation</a
-                    >
-                    <a class="nav-link" href="layout-sidenav-light.html"
-                      >Light Sidenav</a
-                    >
-                  </nav>
-                </div>
-  
-                <div class="sb-sidenav-menu-heading">Addons</div>
-                <a class="nav-link" href="charts.html">
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-chart-area"></i>
-                  </div>
-                  Charts
-                </a>
-                <a class="nav-link" href="tables.html">
-                  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                  Tables
-                </a>
-              </div>
-            </div>
-            <div class="sb-sidenav-footer">
-              <div class="small">Logged in as:</div>
-              Start Bootstrap
-            </div>
-          </nav>
-          <!--사이드바 nav태그((사이드메뉴)) 끝-->
-      </div>
+    <%@ include file="adminNavigation.jsp" %>
+    
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
@@ -412,53 +97,77 @@
                       </td>
                       <td>${que.reprtSeq}</td>
                       <td>${que.rsvNum}</td>
-                      <td>
-                      	<c:if test="${que.userType eq '0' }">
-                      		게스트
-                      	</c:if>
-                      	<c:if test="${que.userType eq '1' }">
-                      		호스트
-                      	</c:if>
+                      <td><c:if test="${que.userType eq '0' }">게스트</c:if><c:if test="${que.userType eq '1' }">호스트</c:if>
                       </td>
                       <td>${que.userId }</td>
                       <td>${que.userEmail }</td>
                       <td>${que.reprtContent }</td>
                       <td>
-	                      <button type="button" data-toggle="modal"
-	                      data-target="#staticBackdrop" class="btn btn-primary" id="response_btn"
+	                      <button type="button" class="btn btn-primary" id="response_btn"
+	                      data-toggle="modal" data-target="#responseModal"
 	                      style="font-size: 10px;margin-left: 10px;">
 	                      	답변
 	                      </button>
 	                      
 	                      <!-- Modal -->
-	                      <div class="modal fade" id="staticBackdrop" data-backdrop="static"
+	                      <div class="modal fade" id="responseModal"
 	                      tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	                      	<div class="modal-dialog" role="document">
 	                      		<div class="modal-content">
 	                      			
 	                      			<div class="modal-header">
-				                      <h5 class="modal-title" id="staticBackdropLabel"> Modal title </h5>
+				                      <h5 class="modal-title" id="staticBackdropLabel"> 이메일 답변하기 </h5>
 				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				                      <span aria-hidden="true">&times;</span>
 				                      </button>
 				                    </div>
 				                      
 				                      <div class="modal-body">
-				                      	...
-				                      </div>
+				                      	<form role="form" action="/sendQuestion.mdo" method="POST">
+				                      		<div class="form-group">
+
+				                      			<!-- user 아이디, 이름, 타입 -->
+				                      			<label for="reportUserType"><span class="ut"></span>유저 타입</label>
+				                      			<input type="text" class="form-control" id="reportUserType" />
+
+				                      			<label for="reportUserId"><span class="ui"></span>아이디</label>
+				                      			<input type="text" class="form-control"
+				                      			id="reportUserId" name="userId"/>
+				                      		
+				                      			<!-- 이메일 -->
+				                      			<label for="reportUserEmail"><span class="ue"></span>받을 이메일</label>
+				                      			<input type="text" class="form-control"
+				                      			id="reportUserEmail" name="userEmail" />
+				                      			
+				                      			<!-- 예약 번호 -->
+				                      			<label for="reportRsvNum"><span class="rn"></span>예약번호/장소번호</label>
+				                      			<input type="text" class="form-control"
+				                      			id="reportRsvNum" name="rsvNum"/>
+				                      			
+				                      			<!-- 회신할 이메일 내용 -->
+				                      			<label for="emailContent"><span class="cont"></span>회신할 이메일 내용</label>
+				                      			<textarea class="form-control" id="emailContent" name="repliedContent"></textarea>
+				                      			
+				                      			<!-- 문의내용, 이메일에 같이 포함해서 보내야해서 hidden -->
+				                      			<input type="text" id="reportquestion" name="question" hidden="hidden"/>
+				                      			
+				                      		</div>
+				                      		
+										<div class="modal-footer">
 				                      
-				                      <div class="modal-footer">
+				                      <!-- 전송버튼 -->
+				                      <input type="submit" class="btn btn-primary" id="sendResponse" value="전송"/>
 				                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-				                      	Close
+				                      	닫기
 				                      </button>
-				                      
-				                      <button type="button" class="btn btn-primary">
-				                      	Understood
-				                      </button>
+				
 	                      			</div>
+				                     </form>				                      	
+				                      </div>
 	                      		</div>
 	                      	</div>
 	                      </div>
+	                      <!-- modal 끝 -->
                       
                       </td>
                     </tr>
@@ -501,10 +210,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
-    
-    <script>
-    	$("#staticBackdrop").modal('show');
-    </script>
 
     <!-- 공지사항 수정 -->
     <script>
@@ -524,6 +229,7 @@
 			var usertype = td.eq(3).text();
 			var userid = td.eq(4).text();
 			var useremail = td.eq(5).text();
+			var report = td.eq(6).text();
 			
 			td.each(function(i)
 			{
@@ -533,13 +239,24 @@
 			console.log("클릭된 문의번호 : " + no);
 			console.log("클릭된 유저 아이디 : " + userid);
 			console.log("클릭된 유저 이메일 : " + useremail);
-		
+			
+			//BootModal V5
+          	var myModal = new bootstrap.Modal(document.getElementById('responseModal'));
+          	myModal.show();
+
+          	$("#reportUserType").val(usertype);
+			$("#reportUserId").val(userid);
+          	$("#reportUserEmail").val(useremail);
+          	$("#reportRsvNum").val(no);
+          	$("#reportquestion").val(report);
+          	
 // 			$("#deleteInfoHidden").val(title);
 // 			$("#submitForm").submit();
-			
+          
 		});
 		
 	</script>
+	
     
   </body>
 </html>

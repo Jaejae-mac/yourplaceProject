@@ -17,5 +17,6 @@ public class SpaceVO {
 	private String userTel;
 	private String userEmail;
 	private String placeAllow;
+	private String s3FileName;
 	
 }

@@ -18,13 +18,13 @@ public class TestUploadS3 {
 	public void insertProduct() {
 		
 		AwsS3 awsS3 = AwsS3.getInstance();
-		File file = new File("/Users/jaejaean/Desktop/test00.png");
-		String key = "img/exampletest01.png";
-		String copyKey = "img/exampletestfile01_copy.png";
-		awsS3.upload(file, key);
+		File file = new File("/Users/wldms/Pictures/mizz.jpg");
+		String key = "img/exampletest02.png";
+		String copyKey = "img/exampletestfile02_copy.png";
+//		awsS3.upload(file, key);
 //		awsS3.copy(key, copyKey);
-//		awsS3.delete(copyKey);
-//		awsS3.delete(key);
+		awsS3.delete(copyKey);
+		awsS3.delete(key);
 		
 	}
 }
