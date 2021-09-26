@@ -120,18 +120,39 @@
   
   </script>
   
+  
+  <script>
+	$("#place_da_1").keyup(function() {
+		var temp = $("#place_da_1").val() * 3.305;
+		console.log(temp);
+		$("#place_da_2").val(Math.floor(temp));
+	});
+	$("#place_da_2").keyup(function() {
+		var temp = $("#place_da_2").val() * 0.3025;
+		console.log(temp);
+		$("#place_da_1").val(Math.floor(temp));
+	});
+</script>
+  
   </head>
   <body class="sb-nav-fixed">
    <%@include file="hostnav.jsp" %>
         <div id="layoutSidenav_content">
           <main>
+        
+      
             <div class="container-fluid px-4">
               <h1 class="mt-4">장소 수정</h1>
               <div class="card mb-4">
+       
+        
         
               </div>
+              
+                 <form action="/updatepLace.hdo" method="POST"/>
               <c:forEach var="update" items="${updatePlace}">
            
+<input type="hidden" value="${update.placeNum }" name="placeNum" id="placeNum"/>
 
   			 <p style="font-size: large;">${ update.placeMainCategory} / ${update.placeCategory}<p>
    		
@@ -159,88 +180,34 @@
 					<br><br>
 					
 					<p style="font-size: large;">장소 소개 </p>
-					<textarea rows="10" cols="100">${update.placeIntro}</textarea>
+					<textarea rows="10" cols="100" name="placeIntro" id="placeIntro">${update.placeIntro}</textarea>
 
+				<!--면적 | 전용면적-->
 				<h3>면적</h3>
-				<div style="text-align: center;">
+
 					<div
 						style="border: 1px solid lightgrey; display: inline-block; width: 49%; min-height: 50px; border-radius: 8px;">
 						<input type="text"
-							style="width: 50%; min-height: 50px; border: 0px; font-size: 16px;"
-							placeholder="전용 면적" id="place_da_1"><b
+							style="width: 80%; min-height: 50px; border: 0px; font-size: 16px;"
+							placeholder="전용 면적" id="placeArea" name="placeArea" value="${update.placeArea}"><b
 							style="font-size: 15px;">평</b>
 					</div>
-					<div
-						style="border: 1px solid lightgrey; display: inline-block; width: 49%; min-height: 30px; border-radius: 8px;">
-						<input type="text"
-							style="width: 50%; min-height: 50px; border: 0px; font-size: 16px;"
-							placeholder="전용 면적" id="place_da_2"> <b
-							style="font-size: 15px;">㎡</b>
-					</div>
-				</div>
-				<input type="hidden" value="" name="placeArea" id="placeArea">
+					
+				
+				
+			
 				<br><br>
-				<input type="text" value="${update.placeFloor }"/>
+				<input type="text" value="${update.placeFloor }" name="placeFloor" id="placeFloor"/>
 						
 						<br><br>
 						<p style="font-size: large;">장소 규칙 </p>
-					<textarea rows="10" cols="100">${update.placeRule}</textarea>
+					<textarea rows="10" cols="100" id="placeRule" name="placeRule">${update.placeRule}</textarea>
 						<h3>세부 방 등록하기</h3>
 				<p>
 					세부 방 정보가 있을 시 방 정보를 등록해 주세요.<br>추가금액은 기본정보로 등록하신 금액에 추가되는 1인당
 					금액 입니다.
 				</p>
-				<div class="add-extra-room">
-
-					<table class="table table-added-item">
-						<colgroup>
-							<col width="50" scope="col" />
-							<col width="100" scope="col" />
-							<col width="100" scope="col" />
-							<col width="100" scope="col" />
-							<col width="100" scope="col" />
-						</colgroup>
-						<thead>
-							<tr>
-								<th>번 호</th>
-								<th>세부 이름</th>
-								<th>기본 인원</th>
-								<th>추가 금액</th>
-								<th>삭 제</th>
-							</tr>
-						</thead>
-						<tbody class="detail_tbody"></tbody>
-					</table>
-					<table class="table table-input-item">
-						<colgroup>
-							<col width="80" />
-							<col width="100" />
-							<col width="100" />
-							<col width="100" />
-							<col width="100" />
-							<col width="100" />
-							<col width="100" />
-						</colgroup>
-						<tbody>
-							<tr style="vertical-align: middle;" id="inputRoom">
-								<td style="vertical-align: middle;">방 이름</td>
-								<td style="vertical-align: middle;"><input type="text"
-									class="room_title" size="10" /></td>
-								<td style="vertical-align: middle;">기본 인원</td>
-								<td style="vertical-align: middle;"><input type="text"
-									class="base_num" size="5" /> 명</td>
-								<td style="vertical-align: middle;">추가 금액</td>
-								<td style="vertical-align: middle;"><input type="text"
-									class="extra_chrg" size="5" /> 원</td>
-								<td style="vertical-align: middle; text-align: center;">
-									<!-- 장소 추가 버튼 -->
-									<button type="button" class="btn btn-primary btn-add" id="btn1">
-										추가</button>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+			
 				<hr>
 				<!-- 파일전송 시작. -->
 				<div class="file">
@@ -269,7 +236,7 @@
 						style="border: 1px solid lightgrey; display: inline-block; width: 100%; min-height: 30px; border-radius: 8px; text-align: center;">
 						<input type="text"
 							style="width: 90%; min-height: 40px; border: 0px; font-size: 16px;"
-							placeholder="최소 10,000원 이상 입력하세요." id="place_price" value="${update.placePrice}"
+							placeholder="최소 10,000원 이상 입력하세요." id="placePrice" name="placePrice" value="${update.placePrice}"
 							name="placePrice"> <b
 							style="font-size: 15px; min-height: 40px;">원</b>
 					</div>
@@ -284,7 +251,7 @@
 							style="border: 1px solid lightgrey; display: inline-block; width: 100%; min-height: 30px; border-radius: 8px; text-align: center;">
 							<input type="text"
 								style="width: 90%; min-height: 40px; border: 0px; font-size: 16px;"
-								placeholder="최소 대여 시간을 입력하세요." id="place_min_time" value="${update.placeMinTime }"
+								placeholder="최소 대여 시간을 입력하세요." id="placeMinTime" name="placeMinTime" value="${update.placeMinTime }"
 								name="placeMinTime"> <b
 								style="font-size: 15px; min-height: 40px;">시간</b>
 						</div>
@@ -300,7 +267,7 @@
 							style="border: 1px solid lightgrey; display: inline-block; width: 100%; min-height: 30px; border-radius: 8px; text-align: center;">
 							<input type="text"
 								style="width: 90%; min-height: 40px; border: 0px; font-size: 16px;"
-								placeholder="주차 가능 대수를 입력하세요" id="place_capa_car" value="${update.placeCarNum }"
+								placeholder="주차 가능 대수를 입력하세요" id="placeCarNum" name="placeCarNum" value="${update.placeCarNum }"
 								name="placeCapaCar"> <b
 								style="font-size: 15px; min-height: 40px;">대</b>
 						</div>
@@ -317,7 +284,7 @@
 							style="border: 1px solid lightgrey; display: inline-block; width: 100%; min-height: 30px; border-radius: 8px; text-align: center;">
 							<input type="text"
 								style="width: 90%; min-height: 40px; border: 0px; font-size: 16px;" value="${update.placePersonNum }"
-								placeholder="기본 인원을 입력하세요" id="place_capa" name="placeCapa">
+								placeholder="기본 인원을 입력하세요" id="placePersonNum" name="placePersonNum">
 							<b style="font-size: 15px; min-height: 40px;">명</b>
 						</div>
 					</div>
@@ -331,7 +298,7 @@
 					</div>
 					<div
 						style="border-radius: 15px; border: 1px solid lightgrey; min-height: 200px; padding: 10px">
-						<textarea name="placeSurinfo" id="place_surinfo" cols="10"
+						<textarea name="placeSubInfo" id="placeSubInfo" cols="10"
 							rows="13"
 							style="border: 0px; width: 100%; height: 100%; outline: none; resize: none;"
 							placeholder="주변 정보를 입력하세요">${update.placeSubInfo }</textarea>
@@ -345,9 +312,10 @@
           </div>
         </div>
     
-		<button type="button" class="btn btn-primary" 
-										style="font-size: 20px; margin-left: 10px;" id="insert" name="insert">등록</button>
+		<button type="submit" class="btn btn-primary" 
+										style="font-size: 20px; margin-left: 10px;" id="updatePlace" name="updatePlace">등록</button>
     </main>
+    </form>
     <footer class="py-4 bg-light mt-auto">
       <div class="container-fluid px-4">
         <div
@@ -362,6 +330,7 @@
     </footer>
   </div>
 </div>
+
 <script
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
   crossorigin="anonymous"

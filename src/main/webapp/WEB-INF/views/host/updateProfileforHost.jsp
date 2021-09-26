@@ -108,9 +108,7 @@
                                 style="margin-top: 40px; font-size: 12px; font-weight: bold; position: relative; left: 150px; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(--grey-040);">
                                 소개
                             </p>
-                            <textarea rows="2px" cols="20px" id="intro" name="intro">
-                            ${userInfo }
-                            </textarea>
+                            <textarea rows="2px" cols="20px" id="intro" name="intro">${userInfo }</textarea>
                          
                                <input type="hidden" value="${userId }" id="userId" name="userId"/>
                             <button type="submit" class="btn btn-primary"

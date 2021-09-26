@@ -1,5 +1,6 @@
 package com.yourplace.host.management.controller;
 
+import java.math.BigDecimal;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,6 +31,8 @@ public class HostManagementController {
 	
 	@Inject
 	HostManagementRoomService service2;
+	
+	
 	
 	@RequestMapping(value="/managementHostPlace.hdo")
 	public ModelAndView allPlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
@@ -123,7 +127,6 @@ public class HostManagementController {
 		List<HostManagementVO> getList = service.getOneHostPlace(vo);
 		
 		
-		
 		System.out.println(getList.toString());
 		mav.addObject("updatePlace", getList);
 		mav.setViewName("update");
@@ -131,6 +134,70 @@ public class HostManagementController {
 		
 	}
 
+	
+	@PostMapping("/updatepLace.hdo")
+	public String getUpdatePlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
+		String placeName = (String) request.getParameter("placeName");
+		
+		String hashList = request.getParameter("tag");
+		
+		try {
+			for(int i=0; i<=hashList.length(); i++)
+				System.out.println("해시태그:" + hashList);
+		}catch(Exception e) {
+			
+		}
+		
+		String placeIntro = (String)request.getParameter("placeIntro");  //장소소개
+		String placeArea = (String)request.getParameter("placeArea"); //평수
+		String placeFloor = (String)request.getParameter("placeFloor"); //층
+		String placeRule = (String)request.getParameter("placeRule"); //규칙
+		
+		String placePrice = (String)request.getParameter("placePrice"); //가격
+		String placeMinTime = (String) request.getParameter("placeMinTime"); //최소대여시간
+		String placeCarNum = (String)request.getParameter("placeCarNum"); //주차 가능 수
+		
+		String placePersonNum = (String)request.getParameter("placePersonNum"); //최소인원
+		String placeSubInfo = (String)request.getParameter("placeSubInfo"); //주변정보
+		
+		int placeNum = Integer.parseInt(request.getParameter("placeNum"));
+		
+		System.out.println("장소 이름 :" + placeName);
+		System.out.println("장소 소개 :" + placeIntro);
+		System.out.println("장소 전용면적" + placeArea);
+		System.out.println("장소 층 :" + placeFloor);
+		System.out.println("장소 규칙 : " + placeRule);
+		System.out.println("가격 :" + placePrice );
+		System.out.println("최소 대여 시간 : " + placeMinTime);
+		System.out.println("주차가능 대수:" + placeCarNum);
+		System.out.println("인원" + placePersonNum);
+		System.out.println("장소 주변 :" + placeSubInfo);
+		
+		//평수 계산
+		double m2 = 3.305;
+		BigDecimal a = new BigDecimal(String.valueOf(placeArea));
+		BigDecimal c = new BigDecimal(String.valueOf(m2));
+		
+		BigDecimal m2math= c.multiply(a);
+		System.out.println(m2math);
+	
+		//끝
+		vo.setPlaceName(placeName);
+		vo.setPlaceArea(placeArea +"평" + "/"+ m2math + "m2");
+		vo.setPlaceFloor(placeFloor);
+		vo.setPlaceIntro(placeIntro);
+		vo.setPlaceRule(placeRule);
+		vo.setPlacePrice(placePrice);
+		vo.setPlaceMinTime(placeMinTime);
+		vo.setPlacePersonNum(placePersonNum);
+		vo.setPlaceCarNum(placeCarNum);
+		vo.setPlaceSubInfo(placeSubInfo);
+		vo.setPlaceNum(placeNum);
+
+		service.updatePlace(placeNum, vo);
+		
+		return "redirect:/managementHostPlace.hdo";
+	}
 
 	
 
