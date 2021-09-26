@@ -25,5 +25,10 @@ public class AskDAOImpl implements AskDAO {
 		session.insert("HostAskMapper.insertAsk", vo);
 	}
 
+	@Override
+	public List<AskVO> getMyPlace(AskVO vo) throws Exception {
+		return session.selectList("HostAskMapper.getMyPlace", vo);
+	}
+
 
 }

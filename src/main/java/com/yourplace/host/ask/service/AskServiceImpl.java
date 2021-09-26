@@ -25,6 +25,11 @@ public class AskServiceImpl implements AskService {
 		dao.insertAsk(vo);
 	}
 
+	@Override
+	public List<AskVO> getMyPlace(AskVO vo) throws Exception {
+		return dao.getMyPlace(vo);
+	}
+
 
 
 }

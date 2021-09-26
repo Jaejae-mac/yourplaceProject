@@ -7,7 +7,9 @@
 <resultMap type="HostReservVO" id="getAllReserve">
 		<result property="placeName" column="place_Name" />
 		<result property="reserveNum" column="rsv_num" />
+		<result property="reserveId" column="rsv_id"/>
 		<result property="reserveName" column="rsv_name" />
+		<result property="placeNum" column="place_num"/>
 		<result property="startTime" column="rsv_start_t" />
 		<result property="endTime" column="rsv_end_t" />
 		<result property="personNum" column="personNum" />
@@ -15,31 +17,19 @@
 		<result property="reserveYear" column="rsv_year" />
 		<result property="reserveMonth" column="rsv_month" />
 		<result property="reserveDate" column="rsv_date" />	
+		<result property="userId" column="user_id"/>
 	</resultMap>
 
 	
 	<select id="getAllReserve" resultMap="getAllReserve">
-	<trim suffixOverrides=",">
-		SELECT place_Name,
-		rsv_num,
-		rsv_name,
-		rsv_year,
-		rsv_month,
-		rsv_date,
-		rsv_start_t,
-		rsv_end_t,
-		personNum,
-		rsv_year,
-		rsv_month,
-		rsv_date,
-		rsv_pay from reserve
-		</trim>
+  select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
+  
 	</select>
 
 
 <select id="getLastReserve" resultMap="getAllReserve">
-	select * from reserve
-
+  select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
+  
 </select>
 
 

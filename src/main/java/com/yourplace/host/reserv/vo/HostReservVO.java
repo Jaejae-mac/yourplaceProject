@@ -7,8 +7,11 @@ import lombok.Data;
 @Component
 @Data
 public class HostReservVO {
+	private String userId;
 	private String placeName;
 	private String reserveNum;
+	private String reserveId;
+	private String placeNum;
 	private String reserveName;
 	private int reserveYear;
 	private int reserveMonth;

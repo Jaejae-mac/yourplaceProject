@@ -91,80 +91,15 @@
       
     </script>
     
-    <script>
-    
-    
-	
-	function showPop() {
-		 
-	    var width = '430';
-	    var height = '570';
-	 
-	    var left = Math.ceil(( window.screen.width - width )/2);
-	    var top = Math.ceil(( window.screen.height - height )/2); 
-	 
-	    window.open('/reviewPopup.hdo', '리뷰남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
-	    window.close();
-	}
-
-</script>
+  
 
 
-
-<script> <!--테스트-->
-$("input[name=reviewCheck]:checked").each(function() { 
-    console.log( 'checkbox값 : '+$(this).val() );
-});
-		
-	    
-</script>
-<!--테스트-->
-
-
-<script><!--테스트-->
-
-$("#insert").click(function(){ 
-	
-	var rowData = new Array();
-	var tdArr = new Array();
-	var checkbox = $("input[name=reviewCheck]:checked");
-	
-	// 체크된 체크박스 값을 가져온다
-	checkbox.each(function(i) {
-
-		// checkbox.parent() : checkbox의 부모는 <td>이다.
-		// checkbox.parent().parent() : <td>의 부모이므로 <tr>이다.
-		var tr = checkbox.parent().parent().eq(i);
-		var td = tr.children();
-		
-		// 체크된 row의 모든 값을 배열에 담는다.
-		rowData.push(tr.text());
-		
-		// td.eq(0)은 체크박스 이므로  td.eq(1)의 값부터 가져온다.
-		var no = td.eq(1).text()+", "
-		var userid = td.eq(2).text()+", ";
-		var name = td.eq(3).text()+", ";
-		var email = td.eq(4).text()+", ";
-		
-		// 가져온 값을 배열에 담는다.
-		tdArr.push(no);
-		tdArr.push(userid);
-		tdArr.push(name);
-		tdArr.push(email);
-		
-		console.log("no : " + no);
-		console.log("userid : " + userid);
-		console.log("name : " + name);
-		console.log("email : " + email);
-	});
-	
-
-</script>
 
   </head>
   <body class="sb-nav-fixed">
    <%@include file="hostnav.jsp" %>
         <div id="layoutSidenav_content">
+
           <main>
             <div class="container-fluid px-4">
               <h1 class="mt-4">예약 목록</h1>
@@ -174,8 +109,8 @@ $("#insert").click(function(){
                 </div>
             
               </div>
-               		<button type="button" class="btn btn-primary"
-										style="font-size: 10px; margin-left: 10px;" onclick="showPop()" id="insert" name="insert">리뷰 남기기</button>
+             
+             
               <table
               id="mainPageTable"
               class="table table-bordered display"
@@ -197,9 +132,11 @@ $("#insert").click(function(){
 								<tbody>
 									<c:forEach var="test" items="${list}">
 										<tr>
-											<td>${test.placeName}</td>
+											<td>[${test.placeNum}]${test.placeName}</td>
+										
+							
 											<td>${test.reserveNum }</td>
-											<td>${test.reserveName }</td>
+											<td>${test.reserveName } (${test.reserveId })</td>
 											<td>${test.reserveYear }년-${test.reserveMonth }-월${test.reserveDate }일</td>
 											
 										
@@ -207,7 +144,8 @@ $("#insert").click(function(){
 											<td>${test.endTime }</td>
 											<td>${test.personNum }</td>
 											<td>${test.payPrice }</td>
-											<td><input type="checkbox" id="reviewCheck" name="reviewCheck" /></td>
+											<td><button type="button" class="btn btn-primary"
+										style="font-size: 10px; margin-left: 10px;" onclick="showPop();">리뷰 남기기</button></td>
 							
 
 
@@ -215,14 +153,16 @@ $("#insert").click(function(){
 
 
 									</c:forEach>
-
+  
 
 
 								</tbody>
 
             </table>
-            <input type="hidden" name="reserveNum" id="reserveNum" value="${test.reserveNum}"/>
-											
+ 
+       
+          
+				
           </div>
         </div>
       </div>
@@ -259,6 +199,25 @@ $("#insert").click(function(){
 	<script
 		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
   </body>
+  
+  
+	<script>
+	
+		
+		function showPop() {
+			 
+			window.name="LastReserveListForHost.hdo"
+		    var width = '430';
+		    var height = '560';
+		 
+		    var left = Math.ceil(( window.screen.width - width )/2);
+		    var top = Math.ceil(( window.screen.height - height )/2); 
+		 
+		    window.open('/reviewForGuest.hdo', '리뷰 남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
+		   
+		}
+
+	</script>
 </html>
 <!-- 
 

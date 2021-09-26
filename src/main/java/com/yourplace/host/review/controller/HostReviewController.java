@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -35,23 +37,34 @@ public class HostReviewController {
 		return mav;
 	}
 	
+//	
+//	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST) //값 출력까지 ok
+//	public void insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
+//		HttpSession session = request.getSession();
+//		
+//		String memId = (String)session.getAttribute("userId");
+//		String review = request.getParameter("content");
+//		
+//		System.out.println(review);
+//		System.out.println(memId);
+//	}
+//	
 	
-	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST) //값 출력까지 ok
-	public void insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
-		HttpSession session = request.getSession();
-		
-		String memId = (String)session.getAttribute("userId");
-		String review = request.getParameter("content");
-		System.out.println(review);
-		System.out.println(memId);
-	}
-	
-	
-	@RequestMapping("/reviewPopup.hdo")
-	public ModelAndView popup() throws Exception{
+	@RequestMapping("/reviewForGuest.hdo")
+	public ModelAndView	reviewForm(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
+		String placeNum = request.getParameter("placeNum");
+		System.out.println(placeNum);
+		
 		mav.setViewName("reviewPopup");
 		return mav;
 	}
 	
+	
+	
+	@PostMapping("/reviewInsert.hdo")
+	public void reviewInsert() throws Exception{
+		
+	}
+
 }

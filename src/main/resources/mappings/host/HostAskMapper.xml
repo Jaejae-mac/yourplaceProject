@@ -22,9 +22,13 @@
 
 <insert id="insertAsk">
 INSERT INTO question (rsv_num, user_id, reprt_content)
-    SELECT place_num, user_id, #{content}
-    FROM place WHERE user_id=#{userId};
+values(#{placeNum}, #{userId},#{content})
 
 </insert>
+
+<select id="getMyPlace" resultMap="ask">
+select place.place_name, place.place_num from place where user_id=#{userId}
+</select>
+
 
 </mapper>

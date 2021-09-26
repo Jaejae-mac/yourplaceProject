@@ -22,14 +22,14 @@
 				style="margin-top: 30px; font-size: 18px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.44; letter-spacing: -0.1px; color: rgb(27, 29, 31); width: 100%; text-align: center;">
 				문의 작성</p>
 		
-			<form action="/insertReview.hdo" method="post"
+			<form action="/getReviewValue.hdo" method="get"
 				style="margin-top: 30px; padding: 0px 40px; margin-bottom: 40px;">
 				<input type="hidden" name="type" value="direct">
 				<div
 					style="padding: 12px 14px; border-radius: 8px; background-color: var(- -grey-010);">
 					<p
 						style="font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: var(- -grey-060); text-align: center;">
-						리뷰를 남겨주세요. <br> 남기신 리뷰는 장소를 사용한 이용자가 볼 수있습니다.
+						사용자에게 리뷰를 남겨주세요. <br> 남기신 리뷰는 장소를 사용한 이용자가 볼 수있습니다.
 					</p>
 				</div>
 

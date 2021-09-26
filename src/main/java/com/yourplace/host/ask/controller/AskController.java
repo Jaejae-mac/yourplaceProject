@@ -1,5 +1,6 @@
 package com.yourplace.host.ask.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,9 +30,10 @@ public class AskController {
 		String id = (String)session.getAttribute("userId");
 		vo.setUserId(id);
 		List<AskVO> list = service.getMyAskList(vo);
-//		System.out.println(list.toString());
+		System.out.println(list.toString());
+		List<AskVO> getMyPlace = service.getMyPlace(vo);
 
-
+		mav.addObject("get", getMyPlace);
 		mav.addObject("list", list);
 		mav.addObject("userId", id);
 		mav.setViewName("AskforHost");
@@ -43,27 +45,38 @@ public class AskController {
 	
 	
 	@RequestMapping("/AskPopup.hdo")
-	public ModelAndView popup()throws Exception{
+	public ModelAndView popup(AskVO vo,HttpServletRequest request)throws Exception{
 		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userId");
+		vo.setUserId(id);
+		List<AskVO> getMyPlace = service.getMyPlace(vo);
+		
+		
+		mav.addObject("get", getMyPlace);
 		mav.setViewName("AskPopup");
 		return mav;
 	}
 	
 	@RequestMapping(value="/askHost.hdo", method=RequestMethod.POST) //중복 제거해야함
-	public void insertAsk(HttpServletRequest request, AskVO vo) throws Exception{
+	public String insertAsk(HttpServletRequest request, AskVO vo) throws Exception{
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userId");
 		String content = request.getParameter("content");
-		vo.setUserId(id);
+		int placeNum = Integer.parseInt(request.getParameter("getPlaceNum"));
 
-	
-		vo.setContent(content);
 		
+		vo.setUserId(id);
+		vo.setPlaceNum(placeNum);
+		vo.setContent(content);
 		
 		System.out.println(id);
 		System.out.println(content);
+		System.out.println(placeNum);
 		
 		service.insertAsk(vo);
+		
+		return "redirect:AskforHost.hdo";
 		
 		
 	}
