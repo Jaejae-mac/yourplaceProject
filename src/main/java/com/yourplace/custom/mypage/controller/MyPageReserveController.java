@@ -1,6 +1,6 @@
 package com.yourplace.custom.mypage.controller;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.service.MyPageReserveService;
 import com.yourplace.custom.mypage.service.MyPageService;
+import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageReserveVO;
 
 @Controller
@@ -83,5 +84,16 @@ public class MyPageReserveController {
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveListCancel(vo);
 		System.out.println(tvo);
 		return tvo;
+	}
+	@RequestMapping("/mypagerefund.do")
+	@ResponseBody
+	public String updateUser(String rsvNum){
+		System.out.println("[mypageController] updateReserve 기능");
+		System.out.println(rsvNum);
+		int Num = Integer.parseInt(rsvNum);
+		MyPageReserveVO vo = new MyPageReserveVO();
+		vo.setRsvNum(Num);
+		reserveservice.updateReserve(vo);
+		return "success";
 	}
 }

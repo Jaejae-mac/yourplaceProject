@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class MyPageReviewVO {
 	private int rsvNum;
+	private String rsvId;
 	private String userId;
 	private int placeNum;
 	private int reviewGuestRate;

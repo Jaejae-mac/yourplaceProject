@@ -20,7 +20,6 @@ import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.service.MyPageService;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
-import com.yourplace.custom.mypage.vo.MyPageReserveVO;
 import com.yourplace.custom.mypage.vo.MyPageReviewVO;
 
 @Controller
@@ -131,9 +130,9 @@ public class MypageController {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		MyPageReviewVO vo = new MyPageReviewVO();
-		vo.setUserId(userId);
+		vo.setRsvId(userId);
+		System.out.println(vo.toString());
 		List<MyPageReviewVO> tvo =mypagereviewService.getReviewList(vo);
-		System.out.println(tvo);
 		return tvo;
 	}
 }

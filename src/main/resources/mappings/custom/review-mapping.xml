@@ -6,13 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="ReviewDAO">
 	<resultMap type="MyPageReviewVO" id="getreviewList">
 		<result property="rsvNum" column="rsv_num" />
+		<result property="rsvId" column="rsv_id" />
 		<result property="userId" column="user_id" />
 		<result property="placeNum" column="place_num" />
-		<result property="reviewGuestRate" column="review_guset_rate" />
+		<result property="reviewGuestRate" column="review_guest_rate" />
 		<result property="reviewGuestWr" column="review_guest_wr" />
 		<result property="reviewGuestRegd" column="review_guest_regd" />
 	</resultMap>
 	<select id="getMyReviewList" resultMap="getreviewList">
-		SELECT * FROM reviewGuest WHERE user_id = #{userId}
+		SELECT *
+		FROM reviewHost
+        WHERE rsv_id = #{rsvId}
 	</select>
 </mapper>

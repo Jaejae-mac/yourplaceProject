@@ -95,9 +95,9 @@
     <script>
         $(document).ready(function(){
             if($(document).getElementById('userCoupUseYn').value == "N"){
-                $(document).getElementById('coup').style.background-color = '#72787F';
+                $(document).getElementById('coup').style.backgroundColor = '#72787F';
             }else{
-                $(document).getElementById('coup').style.background-color = '#246FF8';
+                $(document).getElementById('coup').style.backgroundColor = '#246FF8';
             }
         });
     </script>

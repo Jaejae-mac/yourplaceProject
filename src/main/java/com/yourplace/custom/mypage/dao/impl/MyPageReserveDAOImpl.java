@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.MyPageReserveDAO;
 import com.yourplace.custom.mypage.vo.MyPageReserveVO;
 @Repository("MyPageReserveDAO")
@@ -36,5 +37,10 @@ public class MyPageReserveDAOImpl implements MyPageReserveDAO {
 		System.out.println("--> MyBatis로 getMyReserveList() 기능 처리");
 		List<MyPageReserveVO> tvo =sqlSessionTemplate.selectList("ReserveMapper.getMyReserveListCancel",vo);
 		return tvo;
+	}
+	@Override
+	public void updateReserve(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 updateReserve() 기능 처리");
+		sqlSessionTemplate.update("ReserveMapper.updateReserve", vo);
 	}
 }

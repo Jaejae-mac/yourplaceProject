@@ -14,5 +14,7 @@ public interface MyPageReserveDAO {
 	List<MyPageReserveVO> getMyReserveListEnd(MyPageReserveVO vo);
 	
 	List<MyPageReserveVO> getMyReserveListCancel(MyPageReserveVO vo);
+	
+	void updateReserve(MyPageReserveVO vo);
 
 }
