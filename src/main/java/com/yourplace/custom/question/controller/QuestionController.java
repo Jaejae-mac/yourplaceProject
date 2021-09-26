@@ -25,26 +25,19 @@ public class QuestionController {
 	@Autowired
 	private ReportService reportService;
 	
-	@GetMapping("/quesForm.do")
-	public String quesForm() {
+	@RequestMapping("/quesForm.do")
+	public String quesForm(HttpServletRequest request, Model model) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		System.out.println(userId);
+		UserVO vo = new UserVO();
+		vo.setUserId(userId);
+		model.addAttribute("user", questionService.getUser(vo));
 		return "question/guestQuesForm";
 	}
 	
-	
-//	로그인처리 메서드
-//	@RequestMapping("/quesSerForm.do")
-//	public String quesSerForm(HttpServletRequest request, Model model) {
-//		HttpSession session = request.getSession();
-//		String userId = (String)session.getAttribute("userId");
-////		System.out.println(userId);
-////		UserVO vo = new UserVO();
-////		vo.setUserId(userId);
-////		model.addAttribute("user", questionService.getUser(vo));
-//		return "guestQuesForm";
-//	}
-	
 	//1:1 문의등록 처리 메서드  INSERT
-	@PostMapping("/guestques.do")
+	@RequestMapping("/guestques.do")
 	public String guestQues(QuestionVO vo, HttpServletRequest request) {
 		System.out.println("[QuestionController] 1:1문의 등록하기");
 		System.out.println(vo.toString());
@@ -57,7 +50,7 @@ public class QuestionController {
 	}
 	
 	//신고하기 문의 등록 처리 메서드 INSERT
-	@PostMapping("/guestreport.do")
+	@RequestMapping("/guestreport.do")
 	public String guestReport(QuestionVO vo, HttpServletRequest request) {
 		System.out.println("[QuestionController] 신고하기 등록하기");
 		System.out.println(vo.toString());

@@ -13,11 +13,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="insertQues" parameterType="MyQues">
 		INSERT INTO question(
-		user_id,
 		rsv_num,
+		user_id,
 		reprt_content
 		)VALUES(
-		'dlrlxor6100',
+		0,
+		#{userId},
 		#{reprtContent}
 		)
 	</insert>
@@ -29,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		reprt_content
 		)VALUES(
 		#{rsvNum}, 
-		'dlrlxor6100',
+		#{userId},
 		#{reprtContent}
 		)
 	</insert>

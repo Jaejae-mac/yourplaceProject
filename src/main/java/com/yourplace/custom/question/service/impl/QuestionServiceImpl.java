@@ -18,7 +18,7 @@ public class QuestionServiceImpl implements QuestionService {
 	private QuestionDAO questionDAO;
 	
 	@Autowired
-	private LoginDAO logindao;
+	private LoginDAO dao;
 	
 	@Override
 	public void insertQues(QuestionVO vo) {
@@ -28,7 +28,7 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	@Override
 	public UserVO getUser(UserVO vo) {
-		return logindao.getUser(vo);
+		return dao.getUser(vo);
 	}
 
 }
