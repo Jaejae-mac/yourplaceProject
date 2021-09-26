@@ -70,14 +70,15 @@
 			<div class="h_row_center"
 				style="position: relative; width: 100%; margin-top: 40px; height: 40px;">
 				<div class="h_row_center">
-					<p id="rsv_state"
+					<span id="rsv_state"
 						style="margin-bottom: 0; font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
 						진행중
-					<label id="reservelength" style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);"></label>	
-					</p>
+					</span>	
+					<label id="reservelength" style="margin-left: 10px; margin-bottom: 0; font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal;line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);"></label>	
 				</div>
+				
 				<div onclick="show_booking_sort()" class="h_center h_hover_button"
-					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px var(- -grey-025); cursor: pointer;">
+					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px var(#dfe2e7); cursor: pointer;">
 					<div class="h_row_center">
 						<img src="//s3.hourplace.co.kr/web/images/icon/sort.svg"
 							style="width: 20px; height: 20px;">
@@ -99,9 +100,15 @@
 							<p>최신일 순</p>
 						</div>
 					</div>
+				</div>	
+			</div>
+			<div class="h_row_center" style="position: relative; width: 100%; margin-top: 30px;"> 
+				<div class="h_center" style="position: absolute; right: 0px;">
+					<input type="hidden" id="state" value="진행중"/>
+					<input type="text" placeholder="장소 이름을 입력하세요" id="searchKeyword" name="searchKeyword" style="padding-left: 10px; border: solid 1px; border-radius: 10px;"/>
+					<p id ="keyword" class="btn btn-primary btn-sm" style="margin-left: 7px; margin-bottom: 0px;font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; letter-spacing: normal;">검색</p>
 				</div>
 			</div>
-
 			
 
 			<div class="h_row_center"
@@ -186,6 +193,7 @@
 		};
 		$(document).on('click','#all',function(){
         	document.getElementById('rsv_state').innerHTML='전체'
+        		document.getElementById('state').value="전체"
             document.getElementById('end').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('ing').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('all').style.backgroundColor = '#ffffff';
@@ -215,6 +223,7 @@
                	}
            	});
             document.getElementById('rsv_state').innerHTML='지난내역';
+            document.getElementById('state').value="지난내역";
             document.getElementById('end').style.backgroundColor = '#ffffff';
             document.getElementById('ing').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('all').style.backgroundColor = 'rgb(245, 247, 248)';
@@ -233,11 +242,38 @@
            		}
            	});
             document.getElementById('rsv_state').innerHTML='취소'
+            document.getElementById('state').value="취소"
             document.getElementById('end').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('ing').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('all').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('cancel').style.backgroundColor = '#ffffff';
             
+        });
+        $(document).on('click','#keyword',function(){
+        	var keyword = $('#searchKeyword').val();
+        	keyword = keyword.trim();
+        	var title = $('#state').val();
+        	console.log(keyword +"?"+title);
+        	if(keyword.length < 2){
+        		Swal.fire({
+          		  icon: 'error',
+         			  title: '검색 할 수 없습니다.',
+         			  text: '검색창에 최소 2글자 이상 적어주시기 바랍니다.',
+          		})
+        	}else{
+	        	$.ajax({
+	           		url:"/reserveListkeyword.do",
+	           		type:"get",
+	           		data:{"keyword":keyword,"title":title},
+	           		dataType:"json",
+	           		success : function(data){
+	           			getRserveListCall(data);
+	           		},error : function(request, status, error){
+	           			alert("error");
+	           			return false
+	           		}
+	           	});
+	        }
         });
         function getRserveListCall(data){
         	var res = "";
@@ -245,6 +281,7 @@
         	console.log(list);
             var listLen = data.length;
             console.log(listLen);
+            document.getElementById('reservelength').innerHTML= listLen;
             res += '<input type="hidden" id ="reservelen" value="'+ listLen + '">';
         	if(listLen > 0){
         		
@@ -273,6 +310,7 @@
        				var userId = list[i].userId
        				var placeArea = list[i].placeArea;
        				var placeName = list[i].placeName;
+       				var placeThumb = list[i].placeThumb;
        				
        				var now = new Date()
        				var year = now.getFullYear();
@@ -286,7 +324,7 @@
        				res += '<div class="h_row_center" style="position: relative; padding: 0px 8px; width: 1160px; height: 150px;">';
        				res += '<div class="h_row_center" style="width: 100px;">';
        				res += '<input type="hidden" id="rsvNum'+i+'"onclick="Arefundbtn(rsvNum'+i+')" value="'+ rsvNum + '">';
-       				res += '<a href="">';
+       				res += '<a href="/invoice.do?rsvNum=' + rsvNum + '">';
        				res += '<p name="rsvNum" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center;">';
        				res += rsvNum + '</p></a></div>';
        				res += '<div class="h_row_center" style="width: 600px;">';

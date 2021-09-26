@@ -34,6 +34,25 @@ public class MyPageReserveServiceImpl implements MyPageReserveService {
 		return dao.getMyReserveListCancel(vo);
 	}
 	@Override
+	public List<MyPageReserveVO> getkeywordList(MyPageReserveVO vo) {
+		return dao.getkeywordList(vo);
+	}
+	
+	@Override
+	public List<MyPageReserveVO> getkeywordListAll(MyPageReserveVO vo) {
+		return dao.getkeywordListAll(vo);
+	}
+	
+	@Override
+	public List<MyPageReserveVO> getkeywordListEnd(MyPageReserveVO vo) {
+		return dao.getkeywordListEnd(vo);
+	}
+	
+	@Override
+	public List<MyPageReserveVO> getkeywordListCancel(MyPageReserveVO vo) {
+		return dao.getkeywordListCancel(vo);
+	}
+	@Override
 	public void updateReserve(MyPageReserveVO vo) {
 		dao.updateReserve(vo);
 	}

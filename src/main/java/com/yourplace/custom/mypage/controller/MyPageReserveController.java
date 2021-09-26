@@ -85,6 +85,45 @@ public class MyPageReserveController {
 		System.out.println(tvo);
 		return tvo;
 	}
+	@RequestMapping("/reserveListkeyword.do")
+	@ResponseBody
+	public List<MyPageReserveVO> getReserveListkeyWord(String keyword,String title, HttpServletRequest request) {
+		System.out.println("[controller getReserveListCancel 기능 수행]");
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		MyPageReserveVO vo = new MyPageReserveVO();
+		vo.setRsvId(userId);
+		vo.setSearchKeyword(keyword);
+		System.out.println(vo);
+		System.out.println(title);
+		String Ing = "진행중";
+		String All = "전체";
+		String End = "지난내역";
+		String Cancal ="취소";
+		if(title.equals(Ing)) {
+			System.out.println("[controller getReserveListIng 기능 수행]");
+			List<MyPageReserveVO> tvo =reserveservice.getkeywordList(vo);
+			System.out.println(tvo);
+			return tvo;
+		}else if(title.equals(All)) {
+			System.out.println("[controller getReserveListAll 기능 수행]");
+			List<MyPageReserveVO> tvo =reserveservice.getkeywordListAll(vo);
+			System.out.println(tvo);
+			return tvo;
+		}else if(title.equals(End)) {
+			System.out.println("[controller getReserveListEnd 기능 수행]");
+			List<MyPageReserveVO> tvo =reserveservice.getkeywordListEnd(vo);
+			System.out.println(tvo);
+			return tvo;
+		}else if(title.equals(Cancal)) {
+			System.out.println("[controller getReserveListCancel 기능 수행]");
+			List<MyPageReserveVO> tvo =reserveservice.getkeywordListCancel(vo);
+			System.out.println(tvo);
+			return tvo;
+		}else {
+			return null;
+		}
+	}
 	@RequestMapping("/mypagerefund.do")
 	@ResponseBody
 	public String updateUser(String rsvNum){

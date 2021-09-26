@@ -39,6 +39,30 @@ public class MyPageReserveDAOImpl implements MyPageReserveDAO {
 		return tvo;
 	}
 	@Override
+	public List<MyPageReserveVO> getkeywordList(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 getkeywordList() 기능 처리");
+		List<MyPageReserveVO> tvo =sqlSessionTemplate.selectList("ReserveMapper.getkeywordList",vo);
+		return tvo;
+	}
+	@Override
+	public List<MyPageReserveVO> getkeywordListAll(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 getkeywordList() 기능 처리");
+		List<MyPageReserveVO> tvo =sqlSessionTemplate.selectList("ReserveMapper.getkeywordListAll",vo);
+		return tvo;
+	}
+	@Override
+	public List<MyPageReserveVO> getkeywordListEnd(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 getkeywordList() 기능 처리");
+		List<MyPageReserveVO> tvo =sqlSessionTemplate.selectList("ReserveMapper.getkeywordListEnd",vo);
+		return tvo;
+	}
+	@Override
+	public List<MyPageReserveVO> getkeywordListCancel(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 getkeywordList() 기능 처리");
+		List<MyPageReserveVO> tvo =sqlSessionTemplate.selectList("ReserveMapper.getkeywordListCancel",vo);
+		return tvo;
+	}
+	@Override
 	public void updateReserve(MyPageReserveVO vo) {
 		System.out.println("--> MyBatis로 updateReserve() 기능 처리");
 		sqlSessionTemplate.update("ReserveMapper.updateReserve", vo);

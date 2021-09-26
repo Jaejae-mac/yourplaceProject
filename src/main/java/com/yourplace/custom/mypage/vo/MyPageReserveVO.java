@@ -21,4 +21,6 @@ public class MyPageReserveVO {
 	private String userId;
 	private String placeArea;
 	private String placeName;
+	private String placeThumb;
+	private String searchKeyword;
 }
