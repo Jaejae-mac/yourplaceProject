@@ -87,8 +87,25 @@
 								<a class="nav-link" href="/managementHostPlace.hdo">내 장소 관리</a>
 								<a class="nav-link" href="/regist/place/form.hdo">내 장소 등록</a>
 								<a class="nav-link" href="/hostReviews.hdo">리뷰 관리</a>
+								
 							</nav>
 						</div>
+						<div class="collapse" id="collapseHost"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/AskforHost.hdo">차트</a>
+							</nav>
+						</div>
+					
+							
+						<div class="collapse" id="collapsePlace"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/getYearChartForHost.hdo">연간 차트</a>
+								
+							</nav>
+						</div>
+						
 
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapseMember" aria-expanded="false"

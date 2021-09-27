@@ -41,8 +41,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO" alias="HostSalesVO"/>
 	<typeAlias type="com.yourplace.host.ask.vo.AskVO" alias="AskVO"/>
 
-
+	<typeAlias type="com.yourplace.host.chart.vo.HostChartVO" alias="HostChartVO" />
+		
 	</typeAliases>
+	
 	<mappers>
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
 		<mapper resource="mappings/test-mapper.xml" />
@@ -62,6 +64,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/hostSalesMapper.xml" />
 		
 	<mapper resource="mappings/host/HostAskMapper.xml" />
+		
+		<mapper resource="mappings/host/HostChartMapper.xml" />
 		
 	</mappers>
 </configuration>

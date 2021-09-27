@@ -116,49 +116,49 @@
               class="table table-bordered display"
               width="100%"
             >
-             <thead>
-									<tr>
-										<th>장소명</th>
-										<th>예약번호</th>
-										<th>예약자</th>
-										<th>예약일</th>
-									
-										<th>입실</th>
-										<th>퇴실</th>
-										<th>인원</th>
-										<th>금액</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="test" items="${list}">
-										<tr>
-											<td>[${test.placeNum}]${test.placeName}</td>
-										
+					<thead>
+						<tr>
+							<th>장소명</th>
+							<th>예약번호</th>
+							<th>예약자</th>
+
+
+							<th>입실</th>
+							<th>퇴실</th>
+							<th>인원</th>
+							<th>금액</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<c:forEach items="${beforeList.value}" var="list">
 							
-											<td>${test.reserveNum }</td>
-											<td>${test.reserveName } (${test.reserveId })</td>
-											<td>${test.reserveYear }년-${test.reserveMonth }-월${test.reserveDate }일</td>
-											
-										
-											<td>${test.startTime }</td>
-											<td>${test.endTime }</td>
-											<td>${test.personNum }</td>
-											<td>${test.payPrice }</td>
-											<td><button type="button" class="btn btn-primary"
-										style="font-size: 10px; margin-left: 10px;" onclick="showPop();">리뷰 남기기</button></td>
-							
+									<td>${list.placeName}</td>
+		
+							</c:forEach>
 
 
-							</tr>
 
 
-									</c:forEach>
-  
+						</tr>
 
 
-								</tbody>
 
-            </table>
+
+
+
+
+
+
+
+
+
+
+
+
+					</tbody>
+
+				</table>
  
        
           
@@ -216,6 +216,9 @@
 		    window.open('/reviewForGuest.hdo', '리뷰 남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
 		   
 		}
+		
+		
+	
 
 	</script>
 </html>

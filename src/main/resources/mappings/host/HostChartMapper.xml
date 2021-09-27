@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HostChartMapper">
+
+
+	<resultMap type="HostChartVO" id="getAllHostChart">
+		<result property="userId" column="user_id" />
+		<result property="mainCategory" column="place_maincate" />
+		<result property="placeCategory" column="place_cate" />
+		<result property="payYear" column="pay_year" />
+		<result property="payMonth" column="pay_month" />
+		<result property="payDate" column="pay_date" />
+		<result property="AfterTax" column="inv_aft_tax" />
+		<result property="invTax" column="inv_tax" />
+		<result property="reserveYear" column="rsv_year" />
+		<result property="reserveMonth" column="rsv_month" />
+	</resultMap>
+
+	
+	<select id="getAllChart" resultMap="getAllHostChart">
+select test_invoice.*, reserve.* from test_invoice inner join reserve on reserve.pay_num = test_invoice.pay_num inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
+	</select>
+	
+
+</mapper>
