@@ -611,8 +611,8 @@
 
 			<div class="total_card_layout">
 				<!--신규등록 장소 추천 반복 시작. -->
-				<c:forEach var="latestPlace" items="${latestPlaces }">
-					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
+				<c:forEach var="latestPlace" items="${latestPlaces }" >
+					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;" onclick="gotoDetail('#place_num${status.index }')">
 						<input type="hidden" id="place_num" name="place_num"
 							value="${latestPlace.placeNum}" />
 						 <input type="hidden"
@@ -676,7 +676,7 @@
 							</div>
 						</div>
 					</div>
-
+				<input type="hidden" id="place_num${status.index }" value="${latestPlace.placeNum} "/>
 				</c:forEach>
 			</div>
 			<!--total_card_layout END-->
@@ -1268,5 +1268,10 @@
         console.log($(this).children("input[name='user_id']").val());
     });
 
+</script>
+<script>
+function gotoDetail(e){
+	location.href="/detailPlaceForm.do?placeNum="+$(e).val();
+}
 </script>
 </html>

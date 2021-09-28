@@ -39,11 +39,17 @@
             <div class="h_column_center" style="width: 360px;">
                 <div style="width: 360px;border-radius: 10px;border: solid 1px #dfe2e7;background-color: #ffffff;">
                     <div class="h_column_center">
-                        <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;"
-                             onclick="">
+                        <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;">
+                            <c:if test="${user.userProfileImg == null}">
                             <img src="https://s3.hourplace.co.kr/web/images/icon/elements_image_empty_guest.png"
-                                style="width: 100%; height: 100%; position: absolute;"></div>
-                        <p style="padding: 0 20px; margin-top: 20px; font-size: 16px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.38;letter-spacing: -0.1px;text-align: center;color: #1b1d1f;">
+                                style="width: 100%; height: 100%; position: absolute;">
+                            </c:if>
+                            <c:if test="${user.userProfileImg != null}">
+                            <img src="${user.userProfileImg}"
+                                style="width: 100%; height: 100%; position: absolute;">
+                            </c:if>     
+                        </div>
+                        <p style="padding: 0 20px; margin-top: 20px; font-size: 16px; font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.38;letter-spacing: -0.1px;text-align: center;color: #1b1d1f;">
                         	${user.userNickName}
                         </p>
                     </div>
@@ -116,29 +122,18 @@
                         style="position: relative; height: 34px; display: flex; flex-direction: row; align-items: center; margin-bottom: 10px;">
                         <p style="font-size: 24px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
                         	호스트에게 받은 리뷰
-                            <label
-                                style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-                                1 <!-- 해당 아이디로 된 리뷰의 갯수 -->
+                            <label id="reviewlength" style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
                             </label>
                         </p>
                         <div style="display: flex; flex-direction: row; align-items: center; position: absolute; right: 0px;">
-                            <img src="https://s3.hourplace.co.kr/web/images/icon/review_star.svg"
+                            <img src="<c:url value="/resources/img/icon/register/review_star.png" />"
                                 style="width: 24px; height: 24px;">
-                            <p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                                5.0 <!-- 해당 아이디의 평점총합 / 평점갯수 -->
+                            <p id="totalstar" style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+                                0.0 <!-- 해당 아이디의 평점총합 / 평점갯수 -->
                             </p>
                         </div>
                     </div>
-                    <div style="padding-top: 16px; padding-bottom: 28px;">
-                        <div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">
-                        	<img src="https://s3.hourplace.co.kr/web/images/icon/review_star.svg" style="width: 24px; height: 24px;">
-                            <p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                                5 <!-- 한개의 평점 -->
-                            </p>
-                        </div>
-                        <p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
-                        	좋은 촬영 되셨길 바랍니다 :) <!-- content -->
-                        </p>
+                    <div id="reviewList">
                     </div>
                 </div>
             </div>
@@ -153,8 +148,20 @@
 			document.getElementById('Intro').innerHTML='안녕하세요. ${user.userNickName}입니다.'
 		}else{
 			document.getElementById('Intro').innerHTML = '${user.userIntro}'
-		} 
+		}
+		reviewList();
 	 });
+	 function reviewList(){
+		 $.ajax({
+        	url:"/mypagereviewList.do",
+        	type:"post",
+        	dataType : "json",
+        	success : function(data){
+        		getreivewListCall(data);
+        	}
+        });
+	 }
+	 
 	 function deleteUser(){
 	    	Swal.fire({
 	    		  title: '정말로 탈퇴하시겠습니까?',
@@ -177,6 +184,50 @@
 	    		})
 	    			 
 	    }
+	 function getreivewListCall(data){
+		 var list = data;
+         var listLen = data.length;
+         var star = 0;
+         var res = "";
+         if(listLen > 0){
+        	
+    		for(var i=0;i<listLen; i++){
+    			var rsvNum = list[i].rsvNum;
+    			var rsvId = list[i].rsvId;
+    			var userId = list[i].userId;
+   				var placeNum = list[i].placeNum;
+    			var reviewGuestRate = list[i].reviewGuestRate;
+    			star += reviewGuestRate;
+    			var reviewGuestWr = list[i].reviewGuestWr;
+    			var date = list[i].reviewGuestRegd;
+    			var Regd = new Date(date)
+    			var reviewGuestRegd = Regd.getFullYear() + "-" + (Regd.getMonth()+1) +"-"+ Regd.getDate();
+    				
+   				res += '<div style="padding-top: 16px; padding-bottom: 28px;">';
+   				res += '<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">';
+   				res += "<div class='h_row' style='justify-content: space-between;'' >"
+   				res += "<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>"
+   				res += userId + "</p></div>"
+   				res += '<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">';
+                res += reviewGuestRegd + '</p>'
+    			res += '<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">';
+    			res += '<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">';
+    			res += reviewGuestRate + '</p></div>';
+               	res += '<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">';
+                res += reviewGuestWr + '</p></div>';
+    		}
+    		var totalstar = star/listLen
+    		totalstar = totalstar.toFixed(1);
+         	document.getElementById('reviewlength').innerHTML=listLen;
+         	document.getElementById('totalstar').innerHTML=totalstar ;
+         }else{
+        	document.getElementById('reviewlength').innerHTML='0';
+          	document.getElementById('totalstar').innerHTML='0'; 
+         }
+         $("#reviewList").html(res);
+			     	 
+         
+	 }
 	</script>
 </body>
 </html>

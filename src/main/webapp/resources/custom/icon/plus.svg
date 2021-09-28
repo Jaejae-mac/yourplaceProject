@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <path id="gzapeyukea" d="M0 0L24 0 24 24 0 24z"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <mask id="nnmxp524rb" fill="#fff">
+            <use xlink:href="#gzapeyukea"/>
+        </mask>
+        <path fill="#1B1D1F" d="M12 4c.497 0 .9.403.9.9l-.001 6.199 6.201.001c.497 0 .9.403.9.9s-.403.9-.9.9l-6.2-.001V19.1c0 .497-.403.9-.9.9s-.9-.403-.9-.9v-6.201l-6.2.001c-.497 0-.9-.403-.9-.9s.403-.9.9-.9l6.199-.001L11.1 4.9c0-.497.403-.9.9-.9z" mask="url(#nnmxp524rb)"/>
+    </g>
+</svg>

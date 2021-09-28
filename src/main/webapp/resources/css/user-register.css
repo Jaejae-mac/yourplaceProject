@@ -130,7 +130,7 @@ input {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
-.h_center {
+.h_t {
   position: relative;
   display: flex;
   flex-direction: row;

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RevenueDAO">
+	<resultMap type="myRevenue" id="revenueResult">
+		<id property="payNum" column="pay_num" />
+		<result property="rsvNum" column="rsv_num" />
+		<result property="placeMainCate" column="place_main_cate" />
+		<result property="placeCate" column="place_cate" />
+		<result property="payYear" column="pay_year" />
+		<result property="payMonth" column="pay_month" />
+		<result property="payDate" column="pay_date" />
+		<result property="invCost" column="inv_cost" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+		<result property="invBfTax" column="inv_bf_tax" />
+		<result property="invTax" column="inv_tax" />
+		<result property="invAftTax" column="inv_aft_tax" />
+		<result property="userNum" column="user_num" />
+		
+	</resultMap>
+
+
+	<!-- 월매출 -->
+	
+	<select id="getMonthSum" resultMap="revenueResult">
+		select pay_month, sum(inv_aft_tax) AS revenue from test_invoice
+		GROUP BY pay_month ORDER BY pay_month ASC;
+	</select>
+	
+	<select id="getMonthSumMap" resultType="HashMap">
+		select pay_month, sum(inv_aft_tax) AS revenue from test_invoice
+		GROUP BY pay_month ORDER BY pay_month ASC;
+	</select>
+	
+	
+	<!-- 월매출 + 연도 -->
+	
+	<select id="getMonthSumwithYear" resultMap="revenueResult">
+		select pay_year, pay_month, sum(inv_aft_tax) AS revenue
+		from test_invoice GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
+	</select>
+	
+	<select id="getMonthSumwithYearMap" resultType="HashMap">
+		select pay_year, pay_month, sum(inv_aft_tax) AS revenue
+		from test_invoice GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
+	</select>
+	
+	
+	<!-- YoY -->
+	<select id="getYearSum" resultMap="revenueResult">
+		select pay_year, sum(inv_aft_tax) AS revenue from test_invoice GROUP BY pay_year;
+	</select>
+	
+	<select id="getYearSumMap" resultType="HashMap">
+		select pay_year, sum(inv_aft_tax) AS revenue from test_invoice GROUP BY pay_year;
+	</select>
+	
+	
+	<!-- Monthly Count -->
+	
+	<select id="getRsvCount" resultMap="revenueResult">
+		select pay_month, (count(rsv_num)) AS cnt from test_invoice GROUP BY pay_month;
+	</select>
+	
+	<select id="getRsvCountwithYear" resultMap="revenueResult">
+		select pay_year, pay_month, (count(rsv_num)) AS cnt from test_invoice
+		GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
+	</select>
+	
+	
+	<!-- Main Category count -->
+	
+	
+	
+	<!-- Sub Category count -->
+	
+	
+	
+	<!-- Category count with sex -->
+	
+	
+	
+	<!-- Monthly Average Revenue -->
+	
+
+
+</mapper>

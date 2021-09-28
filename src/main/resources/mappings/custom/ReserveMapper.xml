@@ -3,45 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReserveMapper">
 
-<insert id="insert">
-INSERT INTO reserve (place_num, rsv_id,rsv_name, rsv_year, rsv_month, rsv_date, rsv_start_t, rsv_end_t, rsv_purpose,
-rsv_request, rsv_refund_yn, rsv_refund_reason, rsv_pay, rsv_pay_mthd, pay_year, pay_month, pay_date, pay_num, pay_coup_yn, pay_coup_num)
-VALUES(#{placeNum}, ${rsvId},${rsvName},${rsvYear}, ${rsvMonth}, ${rsvDate}, ${rsvStartT}, ${rsvEndT}, ${rsvPurpose}, ${rsvRequest}, ${rsvRefundYN}, ${rsvRefundReason}, ${rsvPay}, ${payYear}, ${payMonth}, ${payDate}, ${payMethod}, ${payNum}, ${payCoupYN}, ${payCoupNum} );
- 
-</insert>
+	<insert id="insert">
+		INSERT INTO reserve (place_num, rsv_id,rsv_name,
+		rsv_year, rsv_month,
+		rsv_date, rsv_start_t, rsv_end_t, rsv_purpose,
+		rsv_request, rsv_refund_yn, rsv_refund_reason, rsv_pay, rsv_pay_mthd,
+		pay_year,
+		pay_month, pay_date, pay_num, pay_coup_yn, pay_coup_num)
+		VALUES(#{placeNum}, ${rsvId},${rsvName},${rsvYear}, ${rsvMonth},
+		${rsvDate}, ${rsvStartT}, ${rsvEndT}, ${rsvPurpose}, ${rsvRequest},
+		${rsvRefundYN}, ${rsvRefundReason}, ${rsvPay}, ${payYear},
+		${payMonth}, ${payDate}, ${payMethod}, ${payNum}, ${payCoupYN},
+		${payCoupNum} );
+
+	</insert>
 
 
-<!-- 
-
-CREATE TABLE reserve(
-place_num int NOT NULL,
-rsv_num int NOT NULL auto_increment,
-rsv_id varchar(50) not null,
-rsv_year int NOT NULL,
-rsv_month int NOT NULL,
-rsv_date int NOT NULL,
-rsv_start_t time NOT NULL,
-rsv_ene_t time NOT NULL,
-rsv_purpose VARCHAR(100) default null,
-rsv_request VARCHAR(200) default null,
-rsv_refund_yn VARCHAR(10) default null,
-rsv_refund_reason VARCHAR(100) not null,
-rsv_pay int NOT NULL,
-rsv_pay_mthd VARCHAR(100) NOT NULL,
-pay_year int NOT NULL,
-pay_month int NOT NULL,
-pay_date int NOT NULL,
-pay_num VARCHAR(20) NOT NULL,
-pay_coup_yn VARCHAR(20) NOT NULL,
-pay_coup_num VARCHAR(30) default null,
-primary key(rsv_num)
-)default character set utf8;
--->
-
-
-
-<resultMap type="reserveVO" id="getReserveList">
+	<resultMap type="reserveVO" id="getReserveList">
 		<result property="placeNum" column="place_num" />
+		<result property="detailNum" column="detail_num" />
 		<result property="rsvName" column="rsv_name" />
 		<result property="rsvId" column="rsv_id" />
 		<result property="rsvYear" column="rsv_year" />
@@ -63,43 +43,211 @@ primary key(rsv_num)
 		<result property="payCoupNum" column="pay_coup_num" />
 	</resultMap>
 
-	
+	<resultMap type="detailPlaceVO" id="getDetailInfo">
+		<result property="placeNum" column="place_num" />
+		<result property="detailNum" column="detail_num" />
+		<result property="detailTitle" column="detail_title" />
+		<result property="defaultCapa" column="default_capa" />
+		<result property="surcharge" column="surcharge" />
+		<result property="placePrice" column="place_price" />
+	</resultMap>
+
+	<resultMap type="placeInfo" id="placeResult">
+		<id property="placeNum" column="place_num" />
+		<result property="userId" column="user_id" />
+		<result property="userNickName" column="user_nick_name" />
+		<result property="placeArea" column="place_area" />
+		<result property="placeAddr" column="place_addr" />
+		<result property="placeTag" column="place_tag" />
+		<result property="placeMaincate" column="place_maincate" />
+		<result property="placeCate" column="place_cate" />
+		<result property="placeName" column="place_name" />
+		<result property="placeIntro" column="place_intro" />
+		<result property="placeDa" column="place_da" />
+		<result property="placeFloor" column="place_floor" />
+		<result property="placeRule" column="place_rule" />
+		<result property="placeSurinfo" column="place_surinfo" />
+		<result property="placePrice" column="place_price" />
+		<result property="placeMinTime" column="place_min_time" />
+		<result property="placeCapa" column="place_capa" />
+		<result property="placeCapaCar" column="place_capa_car" />
+		<result property="placeExtrachrg" column="place_extrachrg" />
+		<result property="placeThumb" column="place_thumb" />
+		<result property="placeAllow" column="place_allow" />
+		<result property="placeRegDate" column="place_reg_date" />
+		<result property="avgRate" column="avg_rate" />
+		<result property="reviewCnt" column="review_cnt" />
+	</resultMap>
+	<resultMap type="placeImgInfo" id="placeImgResult">
+		<id property="imgNum" column="img_num" />
+		<id property="placeNum" column="place_num" />
+		<result property="originalFileName" column="original_file_name" />
+		<result property="s3FileName" column="s3_file_name" />
+		<result property="imgRegDate" column="img_reg_date" />
+	</resultMap>
+
+
 	<select id="getAll" resultMap="getReserveList">
 		SELECT * FROM reserve
 	</select>
-	
-	
+
+
 	<resultMap type="reserveVO" id="getreservedTime">
-	<result property="rsvStartT" column="rsv_start_t" />
-	<result property="rsvEndTime" column="rsv_end_t" />
+		<result property="rsvStartT" column="rsv_start_t" />
+		<result property="rsvEndTime" column="rsv_end_t" />
 	</resultMap>
-	
-	
+
+
 	<select id="getReservedTime" resultMap="getreservedTime">
-	<trim suffixOverrides=",">
-		SELECT rsv_start_t,
-		rsv_end_t FROM reserve
+		<trim suffixOverrides=",">
+			SELECT rsv_start_t,
+			rsv_end_t FROM reserve
 		</trim>
-		</select>
-		
+	</select>
+
 	<resultMap type="MyPageReserveVO" id="getmyreserveList">
 		<result property="placeNum" column="place_num" />
 		<result property="rsvId" column="rsv_id" />
+		<result property="rsvNum" column="rsv_num" />
 		<result property="rsvYear" column="rsv_year" />
 		<result property="rsvMonth" column="rsv_month" />
 		<result property="rsvDate" column="rsv_date" />
 		<result property="rsvStartT" column="rsv_start_t" />
-		<result property="rsvEndTime" column="rsv_end_t" />
+		<result property="rsvEndT" column="rsv_end_t" />
+		<result property="rsvRefundYn" column="rsv_refund_yn" />
 		<result property="rsvPay" column="rsv_pay" />
 		<result property="userId" column="user_id" />
 		<result property="placeArea" column="place_area" />
 		<result property="placeName" column="place_name" />
+		<result property="placeThumb" column="place_thumb" />
+		<result property="rsvReviewYn" column="rsv_review_yn" />
 	</resultMap>
+	<update id="updateReserve" parameterType="MyPageReserveVO">
+		UPDATE reserve SET rsv_refund_yn = 1 WHERE rsv_num=#{rsvNum}
+	</update>
+	<update id="updatereviewYn" parameterType="MyPageReserveVO">
+		UPDATE reserve SET rsv_review_yn = 'Y' WHERE rsv_num=#{rsvNum}
+	</update>
+	
 	<select id="getMyReserveList" resultMap="getmyreserveList">
-		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
-		FROM reserve,place
-		WHERE reserve.place_num = place.place_num AND reserve.rsv_id = #{rsvId}
-			
+		SELECT
+		reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve join place using(place_num)
+		WHERE reserve.rsv_refund_yn =
+		0 OR reserve.rsv_refund_yn = 1
+		AND reserve.rsv_id = #{rsvId}
+		ORDER BY
+		reserve.rsv_month ASC,
+		reserve.rsv_date ASC;
+	</select>
+	<select id="getMyReserveListAll" resultMap="getmyreserveList">
+		SELECT
+		reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve join place using(place_num)
+		WHERE reserve.rsv_id =
+		#{rsvId}
+		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;
+	</select>
+	<select id="getMyReserveListEnd" resultMap="getmyreserveList">
+		SELECT
+		reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve join place using(place_num)
+		WHERE reserve.rsv_id =
+		#{rsvId}
+		AND DATE_FORMAT(CURDATE(), '%m') >=
+		reserve.rsv_month AND
+		DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date
+		ORDER BY
+		reserve.rsv_month ASC, reserve.rsv_date ASC;
+	</select>
+	<select id="getMyReserveListCancel" resultMap="getmyreserveList">
+		SELECT
+		reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_month,reserve.rsv_date,
+		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name
+		FROM reserve join place using(place_num)
+		WHERE reserve.rsv_id =
+		#{rsvId}
+		AND reserve.rsv_refund_yn = 2 OR
+		reserve.rsv_refund_yn = 3
+		ORDER BY reserve.rsv_month ASC,
+		reserve.rsv_date ASC;
+	</select>
+	<!-- JJ 작성부. -->
+	<select id="getRsvList" resultMap="getmyreserveList">
+		SELECT * FROM reserve where
+		rsv_year=#{rsvYear} and rsv_month=#{rsvMonth} and rsv_date=#{rsvDate}
+		and place_num=#{placeNum} and detail_num=#{detailNum} order by
+		rsv_start_t asc;
+	</select>
+	<select id="getDetail" resultMap="getDetailInfo">
+		SELECT a.*, b.place_price FROM
+		place_detail a, place b where a.place_num = #{placeNum} and
+		a.detail_num=#{detailNum} and b.place_num=#{placeNum};
+	</select>
+	<select id="getPlaceInfo" resultMap="placeResult">
+		select
+			a.*,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest where
+			place_num = a.place_num) as avg_rate,
+			(select user_nick_name from member where user_id=a.user_id) as user_nick_name
+				from place a
+					where place_num=#{placeNum}
+					order by place_reg_date desc ;
+	</select>
+	<select id="getImgList" resultMap="placeImgResult">
+		SELECT * FROM place_img WHERE place_num=#{placeNum}
+	</select>
+	<select id="getDetailInfoList" resultMap="getDetailInfo">
+		SELECT * FROM place_detail WHERE place_num = #{placeNum}
+
+	</select>
+	
+	
+<!-- 검색 -->
+	<select id="getkeywordList" resultMap="getmyreserveList">
+		SELECT DISTINCT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb	
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = #{rsvId}
+        AND (reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb)		
+		NOT IN( 
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = #{rsvId}
+		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date)
+		AND place.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+        ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;	
+	</select>
+	<select id="getkeywordListAll" resultMap="getmyreserveList">
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = #{rsvId}
+        AND place.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;
+	</select>
+	<select id="getkeywordListEnd" resultMap="getmyreserveList">
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = #{rsvId}
+		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date
+		AND place.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;
+	</select>
+	<select id="getkeywordListCancel" resultMap="getmyreserveList">
+		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
+		FROM reserve join place using(place_num)
+        WHERE reserve.rsv_id = #{rsvId}
+		AND reserve.rsv_refund_yn  = 2 OR reserve.rsv_refund_yn  = 3
+		AND place.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;
 	</select>
 </mapper>

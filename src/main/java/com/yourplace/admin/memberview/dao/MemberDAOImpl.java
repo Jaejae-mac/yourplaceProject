@@ -32,5 +32,24 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSessionTemplate.delete("MemberDAO.deleteMember", deleteUserId);
 		System.out.println("[MemberDAO] delete 정상 수행");
 	}
+
+	@Override
+	public void disableMember(String disableUserId) {
+		System.out.println("---> MyBatis로 disableMember() 기능 처리: 회원 비활성화");
+		sqlSessionTemplate.update("MemberDAO.disableMember", disableUserId);
+	}
+
+	@Override
+	public void enableMember(String disableUserId) {
+		System.out.println("---> MyBatis로 enableMember() 기능 처리: 회원 활성화");
+		sqlSessionTemplate.update("MemberDAO.enableMember", disableUserId);	
+	}
+	
+	@Override
+	public MemberVO getMemberActive(String disableUserId)
+	{
+		System.out.println("---> MyBatis로 getMemberActive() 기능 처리: 회원 상태 조회");
+		return (MemberVO) sqlSessionTemplate.selectOne("MemberDAO.getMemberActive", disableUserId);
+	}
 	
 }

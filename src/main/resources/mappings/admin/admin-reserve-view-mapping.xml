@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ReserveDAO">
+	<resultMap type="myReserve" id="reserveResult">
+		<id property="rsvNum" column="rsv_num" />
+		<result property="placeNum" column="place_num" />
+		<result property="rsvId" column="rsv_id" />
+		<result property="userId" column="user_id" />
+		<result property="rsvYear" column="rsv_year" />
+		<result property="rsvTel" column="user_tel"/>
+		<result property="rsvMonth" column="rsv_month" />
+		<result property="rsvDate" column="rsv_date" />
+		<result property="rsvRefundYn" column="rsv_refund_yn" />
+		<result property="rsvPurpose" column="rsv_purpose" />
+	</resultMap>
+
+	<!-- 전체조회 -->
+	<select id="getReserve" resultMap="reserveResult">
+		SELECT 
+		rsv_refund_yn, rsv_num, place_num, 
+    	(SELECT user_id FROM place WHERE place_num = a.place_num) AS user_id,
+    	rsv_id,
+    	(SELECT user_tel FROM member where user_id = a.rsv_id) AS rsv_tel,
+    	rsv_year, rsv_month, rsv_date, rsv_purpose
+	FROM reserve a;
+	</select>
+	
+</mapper>

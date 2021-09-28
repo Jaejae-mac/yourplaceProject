@@ -80,8 +80,8 @@
 
 		</div>
 		<div class="total_card_layout">
-			<c:forEach var="place" items="${placeCateList}">
-				<div class="card_layout" style="margin-right:15px;">
+			<c:forEach var="place" items="${placeCateList}" varStatus="status">
+				<div class="card_layout" style="margin-right:15px;" onclick="gotoDetail('#place_num${status.index }')">
 					<div class="card">
 						<div class="card_header">
 							<img src="${place.placeThumb }" alt="이미지 넣는 곳" />
@@ -135,10 +135,16 @@
 						</div>
 					</div>
 				</div>
+				<input type="hidden" id="place_num${status.index }" value="${place.placeNum} "/>
 			</c:forEach>
 		</div>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>
+<script>
+function gotoDetail(e){
+	location.href="/detailPlaceForm.do?placeNum="+$(e).val();
+}
 
+</script>
 </html>

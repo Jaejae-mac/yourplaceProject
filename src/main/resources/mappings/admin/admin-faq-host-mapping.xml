@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="FaqHostDAO">
+	<resultMap type="myFAQHost" id="faqHostResult">
+		<result property="infoHostCate" column="info_host_cate" />
+		<result property="infoHostTitle" column="info_host_title" />
+		<result property="infoHostContent" column="info_host_content" />
+	</resultMap>
+
+	
+	<!-- 전체조회 -->
+	<select id="getFaqList" resultMap="faqHostResult">
+		SELECT * FROM info_host
+	</select>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertInfoHost">
+		INSERT INTO info_host
+		(info_host_cate, info_host_title, info_host_content)
+		values
+		(#{infoHostCate}, #{infoHostTitle}, #{infoHostContent});
+	</insert>
+	
+	<!-- 공지사항 수정 -->
+	<!--  <update id="updateInfoGuest">
+		UPDATE 
+	</update>  -->
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteInfoHost">
+		DELETE FROM info_host WHERE info_host_title = #{infoHostTitle}
+	</delete>
+
+
+
+</mapper>

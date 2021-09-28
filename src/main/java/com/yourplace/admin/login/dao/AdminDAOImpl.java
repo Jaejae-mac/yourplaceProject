@@ -24,7 +24,13 @@ public class AdminDAOImpl implements AdminDAO {
 	public void insertAdmin(AdminVO vo) {
 		System.out.println("---> MyBatis로 insertAdmin() 기능 처리");
 		 sqlSessionTemplate.insert("AdminDAO.insertAdmin", vo);
-		 
+	}
+
+	//ID PW 조회
+	@Override
+	public AdminVO getIdPw(AdminVO vo) {
+		System.out.println("---> MyBatis 로 getIdPw 기능 처리");
+		return (AdminVO) sqlSessionTemplate.selectOne("AdminDAO.getIdPw", vo);
 	}
 
 }
