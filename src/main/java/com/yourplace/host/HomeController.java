@@ -20,8 +20,8 @@ public class HomeController {
 	HostReservService service;
 	
 	@RequestMapping(value= "/indexOurPlace.hdo")
-	public ModelAndView mainView(HttpServletRequest request) throws Exception {
-		List<HostReservVO> list = service.getAllReserve();
+	public ModelAndView mainView(HttpServletRequest request, HostReservVO vo) throws Exception {
+		List<HostReservVO> list = service.getAllReserve(vo);
 		
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();

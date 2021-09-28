@@ -63,7 +63,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myPlaceImg" />
 		<typeAlias type="com.yourplace.host.regist.vo.PlaceDetailVO"
 			alias="myPlaceDetail" />
-
 		<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO"
 			alias="HostSalesVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
@@ -90,6 +89,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="placeImgInfo" />
 	</typeAliases>
 
+
+	<typeAlias type="com.yourplace.host.ask.vo.AskVO" alias="AskVO"/>
+
+	<typeAlias type="com.yourplace.host.chart.vo.HostChartVO" alias="HostChartVO" />
+		
+	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
 		<mapper resource="mappings/test-mapper.xml" />
@@ -122,5 +127,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
 		<mapper resource="mappings/custom/custom-info-mapping.xml" />
 		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
+		<mapper resource="mappings/host/HostChartMapper.xml" />
 	</mappers>
 </configuration>

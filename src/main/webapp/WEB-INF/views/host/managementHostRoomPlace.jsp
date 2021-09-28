@@ -41,8 +41,9 @@
 					<div class="card mb-4">
 					
 						<div class="card-header">
-							<i class="fas fa-table me-1"></i> <a href="/managementHostPlace.hdo" style="text-decoration: none; color:black;">내 장소 관리</a>
 							<i class="fas fa-table me-1"></i> <a href="/managementHostRoomPlace.hdo" style="text-decoration: none; color:black;">세부 방 정보 관리</a>
+							<i class="fas fa-table me-1"></i> <a href="/managementHostPlace.hdo" style="text-decoration: none; color:black;">내 장소 관리</a>
+						         
 						</div>
 						
 						<div class="card-body">
@@ -67,8 +68,8 @@
 							var cell6 = row.insertCell(5);	
 							var cell7 = row.insertCell(6);
 						
-							cell1.innerHTML = "<tr><td><input type='text' name='inputplaceNum' id='inputplaceNum' readonly/></td>"
-							cell2.innerHTML = "<td><input type='text  name='inputroomNum' id='inputroomNum' placeholder='방 번호 SAMPLE' readonly/></td>"
+							cell1.innerHTML = "<tr><td><input type='text' name='inputplaceNum' id='inputplaceNum' value='${placeNum}' readonly/></td>"
+							cell2.innerHTML = "<td><input type='text'  name='roomNum' id='roomNum'/></td>"
 							cell3.innerHTML = "<td><input type='text'  name='detailTitle' id='detailTitle' placeholder='방 이름을 적어주세요'/></td>"
 							cell4.innerHTML = "<td><input type='text'  name='detailPersonNum' id='detailPersonNum' placeholder='인원수를 적어주세요'/></td>"
 							cell5.innerHTML = "<td><input type='text' name='surcharge' id='surcharge' placeholder='추가 금액을 적어주세요'/></td>"								
@@ -113,7 +114,7 @@
 											<td>${room.detailPersonNum }</td>
 											<td>${room.surcharge }</td>
 									<td>
-							<button type="button" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?placeNum=${room.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
+							<button type="button" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?detailNum=${room.detailNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
 		
 											</td>
 

@@ -57,25 +57,26 @@
   </head>
   <body class="sb-nav-fixed">
    <%@include file="hostnav.jsp" %>
-   
+
         <div id="layoutSidenav_content">
           <main>
             <div class="container-fluid px-4">
               <h1 class="mt-4">고객 문의</h1>
               <div class="card mb-4">
                 <div class="card-body">
-                문의사항을 남겨주시면 추후에 답신 드리겠습니다.
+                문의사항을 남겨주시면 추후에 메일로 답신 드리겠습니다.
                 </div>
               </div>
               <div class="card mb-4">
                 <div class="card-header">
-                 
-               
+  
+
                    <table id="datatablesSimple">
                       <thead>
                         <tr>
+                          
                             <th>번호</th>
-                    
+                      
                             <th>문의 내역</th>
                             <th>처리 여부</th>
                         </tr>
@@ -83,29 +84,32 @@
                       <tfoot>
                       </tfoot>
                       <tbody>
-									<c:forEach var="ask" items="${list}">
-										<tr>
-											<td>${ask.primaryKey}</td>
-											
-											<td>${ask.content }</td>
 
-											<td>${ask.doneYN }</td>
-
-				
-
-										</tr>
-
-
-									</c:forEach>
+								<c:forEach var="ask" items="${list}" varStatus="status">
+									<tr>
+					
+										<td>${ask.reserveNum}</td>
+	
+										<td>${ask.content }</td>
+										<td>${ask.doneYN }</td>
+								</tr>
+								</c:forEach>
+							
 
 
-								</tbody>
+
+
+							</tbody>
                     </table>
                   </div>
                 </div>
                     <button type="button" class="btn btn-primary" onclick="showPop()" style="font-size: 10px;margin-left: 10px;">문의하기</button>
               </div>
             </main>
+            
+            
+         
+
           <footer class="py-4 bg-light mt-auto">
             <div class="container-fluid px-4">
               <div
@@ -139,6 +143,7 @@
 		
 		function showPop() {
 			 
+			window.name="AskforHost.hdo"
 		    var width = '430';
 		    var height = '560';
 		 
@@ -146,7 +151,7 @@
 		    var top = Math.ceil(( window.screen.height - height )/2); 
 		 
 		    window.open('/AskPopup.hdo', '문의하기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
-		    window.close();
+		   
 		}
 
 	</script>

@@ -8,26 +8,24 @@
 		<result property="placeNum" column="place_num" />
 		<result property="detailNum" column="detail_num" />
 		<result property="detailTitle" column="detail_title" />
-		<result property="detailPersonNum" column="detail_capa" />
+		<result property="detailPersonNum" column="default_capa" />
 		<result property="surcharge" column="surcharge" />
+				<result property="userId" column="user_id" />
 	</resultMap>
 
 	
 	<select id="getAllHostRoom" resultMap="getAllHostRoom">
-	<trim suffixOverrides=",">
-	select place_detail.*,
-	place.user_id from place_detail left join place on place_detail.place_num = place.user_id
+	SELECT * FROM place_detail INNER JOIN place ON place_detail.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id = #{userId}
 
-	</trim>
 	</select>
 	
 	<delete id="deleteRoom">
-	delete from place_detail where place_num=#{placeNum}
+
 	</delete>
 	
 	<insert id="insertRoom">
 
-		insert place_detail(detail_num, place_num, detail_title, default_capa, surcharge)
-		values(detail_num=#{detailNum}, place_num=#{placeNum}, detail_title=#{detailTitle}, default_capa=#{detailPersonNum}, surcharge=#{surcharge});
+	INSERT INTO place_detail(place_num, detail_num, detail_title, default_capa, surcharge) VALUES(#{placeNum}, #{detailNum}, #{detailTitle},#{detailPersonNum}, #{surcharge})
+
 	</insert>
 </mapper>

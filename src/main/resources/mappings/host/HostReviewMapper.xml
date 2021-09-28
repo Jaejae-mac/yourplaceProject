@@ -11,18 +11,19 @@
 		<result property="star" column="review_guest_rate" />
 		<result property="regDate" column="review_guest_regd" />
 		<result property="review" column="review_guest_wr" />
+		<result property="reserveId" column="rsv_id"/>
 		
 	</resultMap>
 
 	
 	<select id="getAllReview" resultMap="getAllReview">
-	select * from reviewGuest inner join place on reviewGuest.place_num=#{placeNum} and place.place_num=#{placeNum} inner join member on member.user_id=#{memId} and place.user_id=#{memId}
+	SELECT * FROM reviewGuest INNER JOIN place ON reviewGuest.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id =#{memId};
 	</select>
 	
 	
 	<insert id="insertReview">
-	insert into reviewHost(rsv_num, place_num, user_id, review_guest_rate, review_guest_wr)
-	values(rsv_num=#{reservNum}, place_num=#{placeNum}, user_id=#{memId}, review_guest_rate=#{star}, review_guest_wr=#{review});
+	insert into reviewHost(rsv_num, place_num, user_id, review_guest_rate, review_guest_wr, rsv_id)
+	values(rsv_num=#{reservNum}, place_num=#{placeNum}, user_id=#{memId}, review_guest_rate=#{star}, review_guest_wr=#{review}, rsv_id=#{reserveId});
 	</insert>
 	
 	

@@ -21,8 +21,8 @@ public class HostManagementRoomServiceImpl implements HostManagementRoomService 
 	}
 
 	@Override
-	public void deleteRoom(int placeNum) throws Exception {
-		dao.deleteRoom(placeNum);
+	public void deleteRoom(String detailNum) throws Exception {
+		dao.deleteRoom(detailNum);
 		
 	}
 

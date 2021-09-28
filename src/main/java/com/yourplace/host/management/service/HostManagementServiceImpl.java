@@ -25,4 +25,15 @@ public class HostManagementServiceImpl implements HostManagementService{
 		
 	}
 
+	@Override
+	public List<HostManagementVO> getOneHostPlace(HostManagementVO vo) throws Exception {
+		return dao.getOneHostPlace(vo);
+	}
+
+	@Override
+	public void updatePlace(int placeNum, HostManagementVO vo) throws Exception {
+		dao.updatePlace(placeNum, vo);
+		
+	}
+
 }

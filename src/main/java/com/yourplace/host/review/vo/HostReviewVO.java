@@ -9,12 +9,13 @@ import lombok.Data;
 @Component
 @Data
 public class HostReviewVO {
-	private String reservNum;
-	private String placeNum;
-	private String memId;
-	private int star;
-	private Date regDate;
-	private String review;
+	private String reservNum; //예약번호
+	private String placeNum; //장소번호
+	private String memId; //호스트 아이디
+	private int star; //별점
+	private Date regDate; //날짜
+	private String review; //리뷰 내용
+	private String reserveId; //에약자 아이디
 	
 
 	/*

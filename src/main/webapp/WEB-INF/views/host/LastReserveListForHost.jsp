@@ -91,31 +91,15 @@
       
     </script>
     
-    <script>
-    
-
-	
-	function showPop() {
-		 
-	    var width = '430';
-	    var height = '570';
-	 
-	    var left = Math.ceil(( window.screen.width - width )/2);
-	    var top = Math.ceil(( window.screen.height - height )/2); 
-	 
-	    window.open('/reviewPopup.hdo', '리뷰남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
-	    window.close();
-	}
-
-</script>
+  
 
 
 
-    
   </head>
   <body class="sb-nav-fixed">
    <%@include file="hostnav.jsp" %>
         <div id="layoutSidenav_content">
+
           <main>
             <div class="container-fluid px-4">
               <h1 class="mt-4">예약 목록</h1>
@@ -123,56 +107,62 @@
                 <div class="card-body">
             	지난 예약 목록을 볼 수있습니다.
                 </div>
+            
               </div>
+             
+             
               <table
               id="mainPageTable"
               class="table table-bordered display"
               width="100%"
             >
-             <thead>
-									<tr>
-										<th>장소명</th>
-										<th>예약번호</th>
-										<th>예약자</th>
-										<th>예약일</th>
-									
-										<th>입실</th>
-										<th>퇴실</th>
-										<th>인원</th>
-										<th>금액</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="test" items="${list}">
-										<tr>
-											<td>${test.placeName}</td>
-											<td>${test.reserveNum }</td>
-											<td>${test.reserveName }</td>
-											<td>${test.reserveYear }년-${test.reserveMonth }-월${test.reserveDate }일</td>
-											
-										
-											<td>${test.startTime }</td>
-											<td>${test.endTime }</td>
-											<td>${test.personNum }</td>
-											<td>${test.payPrice }</td>
-								<td>
-									<button type="button" class="btn btn-primary"
-										style="font-size: 10px; margin-left: 10px;" onclick="showPop()">리뷰 남기기</button>
-								</td>
+					<thead>
+						<tr>
+							<th>장소명</th>
+							<th>예약번호</th>
+							<th>예약자</th>
 
 
-							</tr>
-
-
-									</c:forEach>
+							<th>입실</th>
+							<th>퇴실</th>
+							<th>인원</th>
+							<th>금액</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<c:forEach items="${beforeList.value}" var="list">
+							
+									<td>${list.placeName}</td>
+		
+							</c:forEach>
 
 
 
-								</tbody>
 
-            </table>
-            <input type="hidden" name="reserveNum" id="reserveNum" value="${test.reserveNum}"/>
-											
+						</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</tbody>
+
+				</table>
+ 
+       
+          
+				
           </div>
         </div>
       </div>
@@ -201,8 +191,7 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
   crossorigin="anonymous"
 ></script>
-<script src="assets/demo/chart-area-demo.js"></script>
-<script src="assets/demo/chart-bar-demo.js"></script>
+
 <script
   src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
   crossorigin="anonymous"
@@ -210,6 +199,28 @@
 	<script
 		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
   </body>
+  
+  
+	<script>
+	
+		
+		function showPop() {
+			 
+			window.name="LastReserveListForHost.hdo"
+		    var width = '430';
+		    var height = '560';
+		 
+		    var left = Math.ceil(( window.screen.width - width )/2);
+		    var top = Math.ceil(( window.screen.height - height )/2); 
+		 
+		    window.open('/reviewForGuest.hdo', '리뷰 남기기', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
+		   
+		}
+		
+		
+	
+
+	</script>
 </html>
 <!-- 
 

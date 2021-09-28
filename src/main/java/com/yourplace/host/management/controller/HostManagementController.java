@@ -1,14 +1,15 @@
 package com.yourplace.host.management.controller;
 
+import java.math.BigDecimal;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.text.Document;
 
-import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,35 +32,32 @@ public class HostManagementController {
 	@Inject
 	HostManagementRoomService service2;
 	
+	
+	
 	@RequestMapping(value="/managementHostPlace.hdo")
 	public ModelAndView allPlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		vo.setUserId(userId);
 		
-		
 		List<HostManagementVO> list = service.getAllHostPlace(vo);
-		System.out.println(list.toString());
-		
 		mav.setViewName("managementHostPlace");
 		mav.addObject("list", list);
 		mav.addObject("userId", userId);
 		System.out.println(userId);
-		
-	
 		return mav;
 	}
+	
 
 	@RequestMapping(value="/deleteRoom.hdo", method=RequestMethod.GET )
-	public String deleteRoom(@RequestParam("placeNum") int placeNum) throws Exception{
-		service2.deleteRoom(placeNum);
+	public String deleteRoom(@RequestParam("detailNum") String detailNum) throws Exception{
+		service2.deleteRoom(detailNum);
 		return "redirect:/managementHostRoomPlace.hdo";
 	}
 	
 	
-	@RequestMapping(value="/deletePlace.hdo", method=RequestMethod.GET)
+	@RequestMapping(value="/deletePlace.hdo", method=RequestMethod.GET) 
 	public String deletePlace(@RequestParam("placeNum") int placeNum) throws Exception{
 		service.deletePlace(placeNum);
 		return "redirect:/managementHostPlace.hdo";
@@ -79,11 +77,12 @@ public class HostManagementController {
 	@RequestMapping(value="/managementHostRoomPlace.hdo", method=RequestMethod.GET)
 	public ModelAndView getRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		List<HostManagementRoomVO> roomlist = service2.getRoomList(vo);
-		System.out.println(roomlist.toString());
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
-
+		vo.setUserId(userId);
+		
+		List<HostManagementRoomVO> roomlist = service2.getRoomList(vo);
+		System.out.println(roomlist.toString());
 		mav.addObject("userId", userId);
 		mav.addObject("list2", roomlist);
 		mav.setViewName("managementHostRoomPlace");
@@ -91,19 +90,115 @@ public class HostManagementController {
 	}
 	
 	@GetMapping("/getRoomVlaue.hdo")
-	public void insertRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception {
+	public String insertRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception {
+		HttpSession session = request.getSession();
+		
+		int placeNum = Integer.parseInt(String.valueOf(session.getAttribute("placeNum")));
+		
+		String detailNum = request.getParameter("roomNum");
 		String roomname = request.getParameter("detailTitle"); //방 이름
 		String roomPer = request.getParameter("detailPersonNum"); //인원수
 		String extra = request.getParameter("surcharge"); //할증
-		System.out.println(roomname + roomPer + extra);
-		HttpSession session = request.getSession();
+		
+//		System.out.println(roomname + roomPer + extra);
+//		System.out.println(detailNum);
+		
+		vo.setDetailNum(detailNum);
 		String userId = (String)session.getAttribute("userId");
 		System.out.println(userId);
 		
 		service2.insertRoom(vo);
-		System.out.println(vo.toString());
 		
+		return "redirect:/managementHostRoomPlace.hdo";
 
 	}
+	
+	
+	@RequestMapping(value="/updatePlaceDetail.hdo", method=RequestMethod.GET)
+	public ModelAndView updatePlaceDetail(HttpServletRequest request, HostManagementVO vo) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userId= (String)session.getAttribute("userId");
+		vo.setUserId(userId);
+		
+		int placeNum = Integer.parseInt(request.getParameter("placeNum"));
+		vo.setPlaceNum(placeNum);
+		System.out.println(placeNum);
+		List<HostManagementVO> getList = service.getOneHostPlace(vo);
+		
+		
+		System.out.println(getList.toString());
+		mav.addObject("updatePlace", getList);
+		mav.setViewName("update");
+		return mav;
+		
+	}
+
+	
+	@PostMapping("/updatepLace.hdo")
+	public String getUpdatePlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
+		String placeName = (String) request.getParameter("placeName");
+		
+		String hashList = request.getParameter("tag");
+		
+		try {
+			for(int i=0; i<=hashList.length(); i++)
+				System.out.println("해시태그:" + hashList);
+		}catch(Exception e) {
+			
+		}
+		
+		String placeIntro = (String)request.getParameter("placeIntro");  //장소소개
+		String placeArea = (String)request.getParameter("placeArea"); //평수
+		String placeFloor = (String)request.getParameter("placeFloor"); //층
+		String placeRule = (String)request.getParameter("placeRule"); //규칙
+		
+		String placePrice = (String)request.getParameter("placePrice"); //가격
+		String placeMinTime = (String) request.getParameter("placeMinTime"); //최소대여시간
+		String placeCarNum = (String)request.getParameter("placeCarNum"); //주차 가능 수
+		
+		String placePersonNum = (String)request.getParameter("placePersonNum"); //최소인원
+		String placeSubInfo = (String)request.getParameter("placeSubInfo"); //주변정보
+		
+		int placeNum = Integer.parseInt(request.getParameter("placeNum"));
+		
+		System.out.println("장소 이름 :" + placeName);
+		System.out.println("장소 소개 :" + placeIntro);
+		System.out.println("장소 전용면적" + placeArea);
+		System.out.println("장소 층 :" + placeFloor);
+		System.out.println("장소 규칙 : " + placeRule);
+		System.out.println("가격 :" + placePrice );
+		System.out.println("최소 대여 시간 : " + placeMinTime);
+		System.out.println("주차가능 대수:" + placeCarNum);
+		System.out.println("인원" + placePersonNum);
+		System.out.println("장소 주변 :" + placeSubInfo);
+		
+		//평수 계산
+		double m2 = 3.305;
+		BigDecimal a = new BigDecimal(String.valueOf(placeArea));
+		BigDecimal c = new BigDecimal(String.valueOf(m2));
+		
+		BigDecimal m2math= c.multiply(a);
+		System.out.println(m2math);
+	
+		//끝
+		vo.setPlaceName(placeName);
+		vo.setPlaceArea(placeArea +"평" + "/"+ m2math + "m2");
+		vo.setPlaceFloor(placeFloor);
+		vo.setPlaceIntro(placeIntro);
+		vo.setPlaceRule(placeRule);
+		vo.setPlacePrice(placePrice);
+		vo.setPlaceMinTime(placeMinTime);
+		vo.setPlacePersonNum(placePersonNum);
+		vo.setPlaceCarNum(placeCarNum);
+		vo.setPlaceSubInfo(placeSubInfo);
+		vo.setPlaceNum(placeNum);
+
+		service.updatePlace(placeNum, vo);
+		
+		return "redirect:/managementHostPlace.hdo";
+	}
+
+	
 
 }
