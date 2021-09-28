@@ -1,6 +1,5 @@
 package com.yourplace.custom.mypage.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.service.MyPageReserveService;
+import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.service.MyPageService;
-import com.yourplace.custom.mypage.service.MyPageUpdateService;
+import com.yourplace.custom.mypage.vo.MyPageGuestReviewVO;
 import com.yourplace.custom.mypage.vo.MyPageReserveVO;
 
 @Controller
@@ -24,6 +24,8 @@ public class MyPageReserveController {
 	private MyPageReserveService reserveservice;
 	@Autowired
 	private MyPageService mypageService;
+	@Autowired
+	private MyPageReviewService mypagereviewService;
 	
 	@RequestMapping("/goreserve.do")
 	public String goreserve(HttpServletRequest request, Model model) {
@@ -134,5 +136,16 @@ public class MyPageReserveController {
 		vo.setRsvNum(Num);
 		reserveservice.updateReserve(vo);
 		return "success";
+	}
+	@RequestMapping("/insertGuestReview.do")
+	public String insertReview(MyPageGuestReviewVO vo) {
+		System.out.println("[mypageController] insertReview 기능");
+		int rsvNum = vo.getRsvNum();
+		MyPageReserveVO tvo = new MyPageReserveVO();
+		tvo.setRsvNum(rsvNum);
+		reserveservice.updatereviewYn(tvo);
+		System.out.println(vo.toString());
+		mypagereviewService.insertGuestReview(vo);		
+		return "redirect:goreserve.do";
 	}
 }

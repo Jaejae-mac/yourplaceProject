@@ -8,44 +8,111 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myAdmin" />
 		<typeAlias type="com.yourplace.admin.memberview.vo.MemberVO"
 			alias="myMember" />
+		<typeAlias type="com.yourplace.admin.coupon.all.vo.CouponAllVO"
+			alias="myCouponAll" />
+ 		<typeAlias type="com.yourplace.admin.coupon.user.vo.CouponUserVO"
+ 			alias="myCouponUser" />
+		<typeAlias type="com.yourplace.admin.space.vo.SpaceVO"
+			alias="mySpaceAllow" />
+		<typeAlias type="com.yourplace.admin.faq.guest.vo.FaqGuestVO"
+			alias="myFAQGuest" />
+		<typeAlias type="com.yourplace.admin.faq.host.vo.FaqHostVO"
+			alias="myFAQHost" />
+		<typeAlias type="com.yourplace.admin.revenue.vo.RevenueVO"
+			alias="myRevenue" />
+		<typeAlias type="com.yourplace.admin.reserve.vo.ReserveVO"
+			alias="myReserve" />
+		<typeAlias type="com.yourplace.admin.payment.vo.PaymentVO"
+			alias="myPayment" />
+		<typeAlias type="com.yourplace.admin.question.vo.QuestionVO"
+			alias="myQuestion" />
 		<typeAlias type="com.yourplace.host.login.vo.HostVO"
 			alias="myHost" />
 		<typeAlias type="com.yourplace.custom.login.vo.UserVO"
 			alias="myUser" />
 		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
 			alias="reserveVO" />
-		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO" 
-			alias="HostReservVO"/>
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
-			alias="MyPageCouponVO"/>
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+			alias="MyPageCouponVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
+			alias="MyPageReserveVO" />
+
 		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
 			alias="HostReservVO" />
-		<typeAlias type="com.yourplace.host.regist.vo.PlaceDetailVO"
-			alias="myPlaceDetail" />
-		<typeAlias type="com.yourplace.host.regist.vo.PlaceImgVO"
-			alias="myPlaceImg" />
-		<typeAlias type="com.yourplace.host.regist.vo.PlaceVO"
-			alias="myPlace" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+			alias="MyPageCouponVO" />
+		<typeAlias type="com.yourplace.host.review.vo.HostReviewVO"
+			alias="HostReviewVO" />
+		<typeAlias
+			type="com.yourplace.host.management.vo.HostManagementVO"
+			alias="HostManagementVO" />
+		<typeAlias
+			type="com.yourplace.host.management.vo.HostManagementRoomVO"
+			alias="HostManagementRoomVO" />
 		<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO"
 			alias="cardPlace" />
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
-			alias="MyPageReserveVO" />
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageReviewVO"
-			alias="MyPageReviewVO" />
+
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceVO"
+			alias="myPlace" />
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceImgVO"
+			alias="myPlaceImg" />
+		<typeAlias type="com.yourplace.host.regist.vo.PlaceDetailVO"
+			alias="myPlaceDetail" />
+
+		<typeAlias type="com.yourplace.host.sales.vo.HostSalesVO"
+			alias="HostSalesVO" />
+		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
+			alias="AskVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
+			alias="MyPageHostReviewVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageGuestReviewVO"
+			alias="MyPageGuestReviewVO" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.GuestInfoVO"
+			alias="MyGuestInfo" />
+		<typeAlias
+			type="com.yourplace.custom.question.vo.HostInfoVO"
+			alias="MyHostInfo" />	
+		<typeAlias type="com.yourplace.custom.invoice.vo.InvoiceVO"
+			alias="MyInvoice" />
 	</typeAliases>
+
 	<mappers>
+		<mapper resource="mappings/custom/home-cards-mapping.xml" />
 		<mapper resource="mappings/test-mapper.xml" />
 		<mapper resource="mappings/host/host-login-mapping.xml" />
+		<mapper resource="mappings/host/regist-place-mapping.xml" />
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
-		<mapper resource="mappings/custom/custom-access-mapping.xml" />	
+		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
+		<mapper resource="mappings/admin/admin-coupon-mapping.xml" />
+		<mapper resource="mappings/admin/admin-coupon-user-mapping.xml" />
+		<mapper resource="mappings/admin/admin-spaceallow-mapping.xml" />
+		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
+		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
+		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
+		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
-		<mapper resource="mappings/host/HostReservMapper.xml"/>
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
 		<mapper resource="mappings/host/HostReservMapper.xml" />
-		<mapper resource="mappings/host/regist-place-mapping.xml" />
-		<mapper resource="mappings/custom/home-cards-mapping.xml" />
+		<mapper resource="mappings/host/HostReviewMapper.xml" />
+		<mapper resource="mappings/host/HostManagementMapper.xml" />
+		<mapper resource="mappings/host/HostManagementRoomMapper.xml" />
+		<mapper resource="mappings/host/hostSalesMapper.xml" />
+		<mapper resource="mappings/host/HostAskMapper.xml" />
 		<mapper resource="mappings/custom/review-mapping.xml" />
+		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
+		<mapper resource="mappings/custom/custom-info-mapping.xml" />
+		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
 	</mappers>
 </configuration>

@@ -97,20 +97,25 @@ primary key(rsv_num)
 		<result property="placeArea" column="place_area" />
 		<result property="placeName" column="place_name" />
 		<result property="placeThumb" column="place_thumb" />
+		<result property="rsvReviewYn" column="rsv_review_yn" />
 	</resultMap>
 	<update id="updateReserve" parameterType="MyPageReserveVO">
 		UPDATE reserve SET rsv_refund_yn = 1 WHERE rsv_num=#{rsvNum}
 	</update>
+	<update id="updatereviewYn" parameterType="MyPageReserveVO">
+		UPDATE reserve SET rsv_review_yn = 'Y' WHERE rsv_num=#{rsvNum}
+	</update>
+	
 	<select id="getMyReserveList" resultMap="getmyreserveList">
 		SELECT DISTINCT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb	
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb	
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
         AND (reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb)
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb)
 		NOT IN( 
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date)
@@ -118,14 +123,14 @@ primary key(rsv_num)
 	</select>
 	<select id="getMyReserveListAll" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		ORDER BY reserve.rsv_month ASC, reserve.rsv_date ASC;
 	</select>
 	<select id="getMyReserveListEnd" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date
@@ -133,7 +138,7 @@ primary key(rsv_num)
 	</select>
 	<select id="getMyReserveListCancel" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND reserve.rsv_refund_yn  = 2 OR reserve.rsv_refund_yn  = 3
@@ -144,14 +149,14 @@ primary key(rsv_num)
 <!-- 검색 -->
 	<select id="getkeywordList" resultMap="getmyreserveList">
 		SELECT DISTINCT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb	
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb	
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
         AND (reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb)		
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb)		
 		NOT IN( 
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date)
@@ -160,7 +165,7 @@ primary key(rsv_num)
 	</select>
 	<select id="getkeywordListAll" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
         AND place.place_name LIKE CONCAT('%',#{searchKeyword},'%')
@@ -168,7 +173,7 @@ primary key(rsv_num)
 	</select>
 	<select id="getkeywordListEnd" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND DATE_FORMAT(CURDATE(), '%m') >= reserve.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > reserve.rsv_date
@@ -177,7 +182,7 @@ primary key(rsv_num)
 	</select>
 	<select id="getkeywordListCancel" resultMap="getmyreserveList">
 		SELECT reserve.place_num,reserve.rsv_id,reserve.rsv_num,reserve.rsv_year,reserve.rsv_month,reserve.rsv_date,
-		reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,place.user_id,place.place_area,place.place_name,place.place_thumb
+			reserve.rsv_start_t,reserve.rsv_end_t,reserve.rsv_refund_yn,reserve.rsv_pay,reserve.rsv_review_yn,place.user_id,place.place_area,place.place_name,place.place_thumb
 		FROM reserve join place using(place_num)
         WHERE reserve.rsv_id = #{rsvId}
 		AND reserve.rsv_refund_yn  = 2 OR reserve.rsv_refund_yn  = 3

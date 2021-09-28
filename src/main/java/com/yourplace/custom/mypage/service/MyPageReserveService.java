@@ -22,4 +22,6 @@ public interface MyPageReserveService {
 	List<MyPageReserveVO> getkeywordListCancel(MyPageReserveVO vo);
 	
 	void updateReserve(MyPageReserveVO vo);
+	
+	void updatereviewYn(MyPageReserveVO vo);
 }

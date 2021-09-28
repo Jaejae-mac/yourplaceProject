@@ -56,4 +56,8 @@ public class MyPageReserveServiceImpl implements MyPageReserveService {
 	public void updateReserve(MyPageReserveVO vo) {
 		dao.updateReserve(vo);
 	}
+	@Override
+	public void updatereviewYn(MyPageReserveVO vo) {
+		dao.updatereviewYn(vo);
+	}
 }

@@ -67,4 +67,8 @@ public class MyPageReserveDAOImpl implements MyPageReserveDAO {
 		System.out.println("--> MyBatis로 updateReserve() 기능 처리");
 		sqlSessionTemplate.update("ReserveMapper.updateReserve", vo);
 	}
+	public void updatereviewYn(MyPageReserveVO vo) {
+		System.out.println("--> MyBatis로 updatereviewYn() 기능 처리");
+		sqlSessionTemplate.update("ReserveMapper.updatereviewYn", vo);
+	}
 }

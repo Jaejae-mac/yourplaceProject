@@ -39,7 +39,7 @@
 					<input type="file" id="input" accept="image/*" style="display: none">
 				</label>
 			</div>
-			
+			<!--  
 	       <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
 	            <div class="modal-dialog" role="document">
 	                <div class="modal-content">
@@ -62,6 +62,7 @@
 	                </div>
 	            </div>
 	        </div>
+	        -->
 				<form action="" id="mypagefix_form" method="post">
 				<div
 					style="margin-top: 60px; margin-left: 50px; margin-right: 50px; margin-bottom: 10px">
