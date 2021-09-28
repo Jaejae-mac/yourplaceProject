@@ -57,10 +57,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			type="com.yourplace.custom.question.vo.GuestInfoVO"
 			alias="MyGuestInfo" />
 		<typeAlias
-			type="com.yourplace.custom.question.vo.HostInfoVO"
-			alias="MyHostInfo" />	
+			type="com.yourplace.custom.question.vo.HostInfoVO" alias="MyHostInfo" />
 		<typeAlias type="com.yourplace.custom.invoice.vo.InvoiceVO"
 			alias="MyInvoice" />
+		<typeAlias
+			type="com.yourplace.custom.interest.vo.InterestVO" alias="MyInterest" />
 	</typeAliases>
 
 
@@ -85,5 +86,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
 		<mapper resource="mappings/custom/custom-info-mapping.xml" />
 		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
+		<mapper resource="mappings/custom/custom-inter-mapping.xml" />
 	</mappers>
 </configuration>
