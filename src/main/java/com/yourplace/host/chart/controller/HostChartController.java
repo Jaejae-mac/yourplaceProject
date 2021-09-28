@@ -134,6 +134,12 @@ public class HostChartController {
 		map.put("Jul", countJul);
 		map.put("Aug", countAug);
 		map.put("Sep", countSep);
+		map.put("Oct", countOct);
+		map.put("Nov", countNov);
+		map.put("Dec", countDec);
+		
+		System.out.println(map.toString());
+		mav.addObject("chartValue",map );
 		
 	
 		return mav;
