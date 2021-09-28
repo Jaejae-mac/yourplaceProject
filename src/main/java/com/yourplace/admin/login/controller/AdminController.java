@@ -46,7 +46,7 @@ public class AdminController {
 			return "index";
 		}
 		model.addAttribute("result", "0");
-		return "redirect:login.mdo";
+		return "index-admin";
 		
 	}
 	

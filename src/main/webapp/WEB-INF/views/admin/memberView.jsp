@@ -66,10 +66,10 @@
                 	전체 회원 관리
               </div>
               <div class="card-body">
-	              <select class="dataTable-selector">
+	              <select class="dataTable-selector" onchange="checkMem">
 	              	<option>전체 회원 보기</option>
-	              	<option>게스트만 보기</option>
-	              	<option>호스트만 보기</option>
+	              	<option value="0">게스트만 보기</option>
+	              	<option value="1">호스트만 보기</option>
 	              </select>
                 <table id="datatablesSimple">
                   <thead>
@@ -100,11 +100,11 @@
                     
                       <td>${mem.userNum }</td>
                       
-                      <td>
+                      <td id="memberType">
                       	<c:if test="${mem.userType eq '0'}">
                       	게스트
                       	</c:if>
-                      	<c:if test="${mem.userType ne '0'}">
+                      	<c:if test="${mem.userType eq '1'}">
                       	호스트
                       	</c:if>
                       </td>
@@ -258,6 +258,19 @@
 		});
 			
 	</script>
+	
+	<script>
+	
+		function checkMem(value)
+		{
+			if("#memberType"=='0') tr1.style.display= '';
+			else tr1.style.display='none';
+			
+			if("#memberType"=='1') tr2.style.display= '';
+			else tr2.style.disply='none';
+		}
 		
+	</script>
+	
   </body>
 </html>

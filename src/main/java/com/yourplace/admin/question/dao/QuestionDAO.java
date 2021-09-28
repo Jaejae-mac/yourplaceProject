@@ -8,4 +8,6 @@ public interface QuestionDAO {
 
 	List<QuestionVO> getQue();
 	
+	void updateStatus(int reprtSeq);
+	
 }

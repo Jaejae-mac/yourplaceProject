@@ -150,6 +150,7 @@
 				                      			
 				                      			<!-- 문의내용, 이메일에 같이 포함해서 보내야해서 hidden -->
 				                      			<input type="text" id="reportquestion" name="question" hidden="hidden"/>
+				                      			<input type="text" id="reportNum" name="reportSeq" hidden="hidden" />
 				                      			
 				                      		</div>
 				                      		
@@ -165,6 +166,7 @@
 				                     </form>				                      	
 				                      </div>
 	                      		</div>
+
 	                      	</div>
 	                      </div>
 	                      <!-- modal 끝 -->
@@ -178,11 +180,7 @@
             </div>
           </div>
         </main>
-        
-        <!-- delete -->
-       <form id = "submitForm" method="POST" action="/deleteInfoGue.mdo" hidden="hidden">
-       	<input type="hidden" id="deleteInfoHidden" name="deleteInfoTitle">
-       </form>
+       
         
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
@@ -211,6 +209,29 @@
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
 
+	<script>
+		$(document).on("click", "#sendResponse", function(){
+			
+			var tdArr = new Array();
+			var checkBtn = $(this);
+			
+			var tr = checkBtn.parent().parent();
+			var td = tr.children();
+
+			var yn = td.eq(0).text();
+			var no = td.eq(1).text();
+			
+			td.each(function(i)
+			{
+				tdArr.push(td.eq(i).text());
+			});
+			
+			$("updateStatus").val(no);
+			$("updateForm").submit();
+			
+		});
+	</script>
+
     <!-- 공지사항 수정 -->
     <script>
 
@@ -224,8 +245,8 @@
 			var td = tr.children();
 
 			var yn = td.eq(0).text();
-			var no = td.eq(1).text();
-			var rsvnum = td.eq(2).text();
+			var no = td.eq(1).text(); //문의번호
+			var rsvnum = td.eq(2).text(); //예약번호
 			var usertype = td.eq(3).text();
 			var userid = td.eq(4).text();
 			var useremail = td.eq(5).text();
@@ -247,8 +268,10 @@
           	$("#reportUserType").val(usertype);
 			$("#reportUserId").val(userid);
           	$("#reportUserEmail").val(useremail);
-          	$("#reportRsvNum").val(no);
+          	$("#reportRsvNum").val(rsvnum);
           	$("#reportquestion").val(report);
+          	$("#reportNum").val(no); //신고번호
+          	
           	
 // 			$("#deleteInfoHidden").val(title);
 // 			$("#submitForm").submit();

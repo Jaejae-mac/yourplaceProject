@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,8 +62,8 @@
               </div>
 
               <!-- flow chart canvers -->
-              <div class="card-body">
-                <canvas id="myAreaChart" width="100%" height="30"></canvas>
+              <div class="card-body" id="flow-chart" >
+                <canvas id="myAreaChart" width="800px" height="700px"></canvas>
               </div>
 
               <!-- 카드 밑에 footer -->
@@ -79,6 +80,7 @@
               <div class="col-lg-6">
 
                 <!-- 차트2 시작 -->
+                <!-- 왼쪽 -->
                 <div class="card mb-4">
 
                   <!-- 차트2 헤더 -->
@@ -88,7 +90,7 @@
                   </div>
 
                   <!-- 차트2 바디, 바차트-->
-                  <div class="card-body">
+                  <div class="card-body" id="chart_div">
                     <canvas id="myBarChart" width="100%" height="50"></canvas>
                   </div>
 
@@ -106,6 +108,7 @@
               <div class="col-lg-6">
 
                 <!-- 차트3 시작 -->
+                <!-- 오른쪽 -->
                 <div class="card mb-4">
 
                   <!-- 차트3 헤더 -->
@@ -115,7 +118,7 @@
                   </div>
 
                   <!-- 차트3 바디 -->
-                  <div class="card-body">
+                  <div class="card-body" id="piechart">
                     <canvas id="myPieChart" width="100%" height="50"></canvas>
                   </div>
 
@@ -157,73 +160,182 @@
     <script src="/resources/css/admin/js/scripts.js"></script>
 
     
-    <!-- Chart.js -->
-    <!--  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-    crossorigin="anonymous">
+    <script>
+//     	google.load('visualization', '1', {'package' : ['corehart']});
+//     	google.setOnLoadCallback(drawChart);
+    	
+    	google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawChart);
+
+    	
+    	function drawChart()
+    	{
+    		var jsonData = $.ajax({
+    		
+    			type : "POST",
+    			url : "/revenueView.mdo",
+    			dataType : "json",
+    			async : false,
+    			success : function()
+    			{
+    				console.log("success!");
+    				alert("success!");
+    			},
+    			
+    			error : function()
+    			{
+    				console.log("error");
+    				alert("error");
+    			}
+    			
+    		})//.responseText;
+    		
+    		console.log(jsonData); //ajax 로 받은 데이터 찍어보기
+    		
+    		
+    		var data = new google.visualization.DataTable(jsonData);
+    	
+    		
+    		data.addColumn('string', 'Month');
+            data.addColumn('number', '2020');
+            data.addColumn('number', '2021');
+            
+            var arr = new Array();
+
+            for(var i=0; i < jsonData.length; i++)
+            {
+	            arr[i] = [jsonData[i].invAftTax, jsonData[i].pay_month];
+            }
+
+            data.addRows(arr);
+            
+            //data.addRows(['jan', 101010], ['feb', 102930]);
+    		
+            
+    		var options = {
+    	               hAxis: {
+    	                  title: 'Month',
+    	                  textStyle: {
+    	                     color: '#01579b',
+    	                     fontSize: 20,
+    	                     fontName: 'Arial',
+    	                     bold: true,
+    	                     italic: false
+    	                  },
+    	                  titleTextStyle: {
+    	                     color: '#01579b',
+    	                     fontSize: 20,
+    	                     fontName: 'Arial',
+    	                     bold: true,
+    	                     italic: false
+    	                  }
+    	               },
+    	               vAxis: {
+    	                  title: 'Revenue',
+    	                  textStyle: {
+    	                     color: '#1a237e',
+    	                     fontSize: 20,
+    	                     bold: true,
+    	                     italic: false
+    	                  },
+    	                  titleTextStyle: {
+    	                     color: '#1a237e',
+    	                     fontSize: 20,
+    	                     bold: true,
+    	                     italic: false
+    	                  }
+    	               },
+    	               colors: ['#a52714', '#097138']
+    	            };
+
+    		
+    		var option = {
+    			      title: 'Monthly Revenue',
+    			      curveType: 'function',
+    			      legend: { position: 'bottom' }
+    			    };
+    		
+    		
+    		 var chart = new google.visualization.BarChart(document.getElementById('flow-chart'));
+             chart.draw(data, option);
+    		
+    		
+    	}
     </script>
     
-    <script src="assets/demo/chart-area-demo.js"></script>
-    <script src="assets/demo/chart-bar-demo.js"></script>
-    <script src="assets/demo/chart-pie-demo.js"></script>  -->
-	<!-- Chart.js 끝 -->
+    
+    <!--  <script>
+   
+      //차트 부를 준비
+      google.charts.load('current', {packages: ['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawAxisTickColors);
 
-    <script>
-      var chartLabels = [];
-      var chartData = [];
-      
-
-      $.getJSON("http://localhost:8080/revenueView.mdo", function(data)
+      //callback할 차트의 데이터, 옵션 세팅
+      function drawAxisTickColors()
       {
-        $.each(data, function(inx, obj)
-        {
-          chartLabels.push(obj.pay_num);
-          chartData.push(obj.inv_aft_tax);
-        });
-
-        createChart();
-        consoler.log("create Chart")
-
-      });
-
-      var lineChartData = {
-
-        labels : chartLabels,
-        datasets : [
-          {
-            label : "pay_num",
-            fillColor : "rbga(151,187,205,0.2)",
-            strokeColor : "rbga(151,187,205,1)",
-            pointColor : "rbga(151,187,205,1)",
-            pointStrokeColor : "#fff",
-            pointHighlightFill : "#fff",
-            pointHighlightStroke : "rbga(151,187,205,1)",
+         //데이터
+         var data = new google.visualization.DataTable();
+         data.addColumn('number', 'X');
+         data.addColumn('number', 'A');
+         data.addColumn('number', 'B');
+         
+         data.addRows(jObj);
+         
+//          data.addRows([
+//             [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
+//             [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
+//             [12, 30, 22]
+//          ]);
+         
+         //JSON data
+         
+         
+         
+         //옵션들
+         var options = {
+               hAxis: {
+                  title: 'Month',
+                  textStyle: {
+                     color: '#01579b',
+                     fontSize: 20,
+                     fontName: 'Arial',
+                     bold: true,
+                     italic: false
+                  },
+                  titleTextStyle: {
+                     color: '#01579b',
+                     fontSize: 20,
+                     fontName: 'Arial',
+                     bold: true,
+                     italic: false
+                  }
+               },
+               vAxis: {
+                  title: 'Revenue',
+                  textStyle: {
+                     color: '#1a237e',
+                     fontSize: 20,
+                     bold: true,
+                     italic: false
+                  },
+                  titleTextStyle: {
+                     color: '#1a237e',
+                     fontSize: 20,
+                     bold: true,
+                     italic: false
+                  }
+               },
+               colors: ['#a52714', '#097138']
+            };
             
-            data : chartData
-          
-          }
-        ]
+            //차트 객체 세팅
+            var chart = new google.visualization.LineChart(document.getElementById('flow-chart'));
+            chart.draw(data, options);
+         
       }
+   </script>  -->
+    
+  
 
-      function createChart()
-      {
-        var ctx = document.getElementById("myAreaChart").getContext("2d");
-        LineChartDemo = Chart.LIne(ctx, {
-
-        data : lineChartData,
-        option : {
-          scales : {
-            yAxes : [{
-              ticks : {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-
-        })
-      }
-
-    </script>
   </body>
 </html>
