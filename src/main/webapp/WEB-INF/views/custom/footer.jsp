@@ -33,7 +33,7 @@
                     고객센터
                 </p>
                 <p style="margin-top: 12px; font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="hourplace_v2.userLog('W', '/place/29464', 'click', 'policy', 'hr');window.open('https://www.notion.so/hourplace/fae9ceaf4a174479bf52a44305283045')">
+                    onclick="location.href='/quesForm.do'">
                     인재채용
                 </p>
 
