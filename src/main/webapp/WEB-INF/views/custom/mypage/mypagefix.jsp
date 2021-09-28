@@ -29,43 +29,40 @@
 				style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 				프로필 편집</p>
 		</div>
-		<div
-			style="margin-top: 50px; margin-bottom: 120px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
-			<div class="h_center"
-				style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center">
-				<label style="position: relative; width: 120px; height: 120px"
-					data-toggle="tooltip"> <img
-					src="https://s3.hourplace.co.kr/web/images/icon/elements_image_empty_guest.png"
-					style="width: 100%; height: 100%; border-radius: 60px; position: absolute;"
-					id="avatar" /> <img
-					src="https://s3.hourplace.co.kr/web/images/icon/my_profile_edit.svg"
-					style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
-					<input type="file" id="input" accept="image/*"
-					style="display: none">
+		<div style="margin-top: 50px; margin-bottom: 120px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
+			<div class="h_center" style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center">
+				<label style="position: relative; width: 120px; height: 120px" data-toggle="tooltip"> 
+					<img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
+						style="width: 100%; height: 100%; border-radius: 60px; position: absolute;"id="avatar" /> 
+					<img src="<c:url value="/resources/img/icon/register/my_profile_edit.png" />"
+						style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
+					<input type="file" id="input" accept="image/*" style="display: none">
 				</label>
-				<!--</div>
-        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">프로필 이미지</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="img-container">
-                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749"
-                                style="max-width: 400px">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" id="crop">확인</button>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+			</div>
+			<!--  
+	       <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	            <div class="modal-dialog" role="document">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <h5 class="modal-title" id="modalLabel">프로필 이미지</h5>
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                            <span aria-hidden="true">&times;</span>
+	                        </button>
+	                    </div>
+	                    <div class="modal-body">
+	                        <div class="img-container">
+	                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749"
+	                                style="max-width: 400px">
+	                        </div>
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	                        <button type="button" class="btn btn-primary" id="crop">확인</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        -->
 				<form action="" id="mypagefix_form" method="post">
 				<div
 					style="margin-top: 60px; margin-left: 50px; margin-right: 50px; margin-bottom: 10px">

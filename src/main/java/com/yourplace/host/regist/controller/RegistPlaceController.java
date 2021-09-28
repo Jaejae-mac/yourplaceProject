@@ -75,8 +75,7 @@ public class RegistPlaceController {
 	public synchronized String registPlaceAck(MultipartHttpServletRequest mtfRequest, PlaceVO vo,
 		List<String> roomTitle, List<String> defaultCapa, List<String> surcharge) {
 		String placeTitle = vo.getPlaceName();
-//		int seq = currentSeqService.getCurSeq();
-		int seq = 0;
+		int seq = currentSeqService.getCurSeq();
 		registPlaceService.registPlace(vo);
 		uploadFileService.upload(mtfRequest, vo.getUserId(),seq,vo.getPlaceCate(), placeTitle);
 		registPlaceDetail(vo, roomTitle, defaultCapa, surcharge,seq);

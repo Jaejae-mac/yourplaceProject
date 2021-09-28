@@ -10,6 +10,7 @@ import lombok.ToString;
 public class MyPageReserveVO {
 	private int placeNum;
 	private String rsvId;
+	private int rsvNum;
 	private int rsvYear;
 	private int rsvMonth;
 	private int rsvDate;
@@ -20,4 +21,7 @@ public class MyPageReserveVO {
 	private String userId;
 	private String placeArea;
 	private String placeName;
+	private String placeThumb;
+	private String rsvReviewYn;
+	private String searchKeyword;
 }

@@ -1,18 +1,22 @@
 package com.yourplace.custom.reserve.vo;
 
 import org.springframework.stereotype.Component;
+import lombok.Getter;
+import lombok.ToString;
+import lombok.Setter;
 
-import lombok.Data;
 
-@Data
-@Component
+@Getter
+@Setter
+@ToString
 public class ReserveVO {
 	private int placeNum;
+	private String detailNum;
 	private String rsvName;
 	private String rsvId;
-	private int rsvYear;
-	private int rsvMonth;
-	private int rsvDate;
+	private String rsvYear;
+	private	String rsvMonth;
+	private String rsvDate;
 	private int rsvStartT;
 	private int rsvEndTime;
 	private String rsvPurpose;
@@ -27,8 +31,6 @@ public class ReserveVO {
 	private String payNum;
 	private String payCoupYN;
 	private String payCoupNum;
-
-	
 }
 
 

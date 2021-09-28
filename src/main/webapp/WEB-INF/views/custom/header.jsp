@@ -96,9 +96,19 @@
 						style="width: 1px; height: 30px; background-color: rgb(201, 205, 210); margin-right: 10px; margin-left: 20px;">
 					</div>
 
+
+
 					<c:choose>
 						<c:when test="${userType == '0'}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
+							<div onclick="window.location.href='/interest.do'"
+								class="h_center h_header_button"
+								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
+								<p
+									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									관심장소</p>
+							</div>
+
 							<div onclick="logout()" class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
@@ -231,8 +241,7 @@
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,1)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>전체</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">전체</p>
 									</div>
 									<!-- 상세 카테고리 끝 -->
 									<!-- 상세 카테고리 시작 -->
@@ -241,40 +250,35 @@
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,2)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>아파트</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">아파트</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,3)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>주택</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">주택</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,4)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>빌라</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">빌라</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,5)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>원룸</p>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">원룸</p>
 									</div>
 									<div class="h_hover_button h_row_center"
 										v-for="sub in category.subs"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,6)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											한옥</p>
 									</div>
 									<div class="h_hover_button h_row_center"
@@ -282,8 +286,7 @@
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
 										onclick="click_category(0,7)">
 										<p
-											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;"
-											>
+											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											홈오피스</p>
 									</div>
 								</div>
@@ -890,13 +893,14 @@
 				[ "편의시설", "전체", "편의점", "빨래방", "헤어방", "PC방", "노래방", "오락실" ],
 				[ "문화공간", "전체", "복합문화공간", "갤러리", "공방/작업실", "책방", "공연장", "강당",
 						"강의실" ],
-				[ "특수공간", "전체", "사무실", "병원/약국", "학교", "학원","클럽", "웨딩", "호텔펜션",
+				[ "특수공간", "전체", "사무실", "병원/약국", "학교", "학원", "클럽", "웨딩", "호텔펜션",
 						"기타 특수 공간" ],
 				[ "대형공간/야외", "전체", "공장", "창고", "지하실", "빈 공간", "옥상", "정원",
 						"캠핑장", "기타 야외 공간" ], ];
 		function click_category(id1, id2) {
 			console.log(category[id1][0] + " , " + category[id1][id2]);
-			location.href="/category.do?maincate=" + category[id1][0]+"&subcate="+category[id1][id2];
+			location.href = "/category.do?maincate=" + category[id1][0]
+					+ "&subcate=" + category[id1][id2];
 		}
 	</script>
 </body>

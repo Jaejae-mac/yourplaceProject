@@ -14,6 +14,7 @@ import lombok.ToString;
 public class AdminVO {
 	
 	private int adminNum;
+	private int adminAuthority;
 	private String adminId;
 	private String adminPw;
 	private String adminEmail;

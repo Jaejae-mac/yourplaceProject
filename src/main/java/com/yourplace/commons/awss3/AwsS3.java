@@ -20,6 +20,7 @@ import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
@@ -39,7 +40,9 @@ public class AwsS3 {
 		try {
 			List<String> keys = readJsonFile.parser();
 			accessKey = keys.get(0);
+			System.out.println(accessKey);
 			secretKey = keys.get(1);
+			System.out.println(secretKey);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,6 +62,10 @@ public class AwsS3 {
 		} else {
 			return instance;
 		}
+	}
+	
+	public List<Bucket> getBucketList(){
+		return this.s3Client.listBuckets();
 	}
 
 	// create S3 Client
@@ -125,16 +132,21 @@ public class AwsS3 {
 	// 삭제 메서드
 	public void delete(String key) {
 		try {
+			System.out.println("0");
 			// Delete 객체 생성.
 			DeleteObjectRequest deleteObjectRequest = new DeleteObjectRequest(this.bucket, key);
+			System.out.println("0-1");
 			// 삭제.
 			this.s3Client.deleteObject(deleteObjectRequest);
+			System.out.println("0-2");
 
 			System.out.println(String.format("[%s3] deletion complete", key));
 
 		} catch (AmazonServiceException e) {
+			System.out.println("1");
 			e.printStackTrace();
 		}catch (SdkClientException e) {
+			System.out.println("2");
 			e.printStackTrace();
 		}
 	}

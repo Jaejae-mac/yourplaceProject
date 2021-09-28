@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+.h_row_center {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.h_center {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.h_row_center {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.h_row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+.h_column_center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.h_column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.noresize {
+  resize: none; /* 사용자 임의 변경 불가 */
+  outline: none;
+  /*resize: both;  사용자 변경이 모두 가능 
+  resize: horizontal;  좌우만 가능 
+  resize: vertical;  상하만 가능 */
+}

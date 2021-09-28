@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
-<!-- applicationContext 위치 설정. -->
+	<!-- applicationContext 위치 설정. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
@@ -15,7 +15,7 @@
 		</listener-class>
 	</listener>
 
-<!-- 유저 주소 요청을 처리할 서블릿 -->
+	<!-- 유저 주소 요청을 처리할 서블릿 -->
 	<servlet>
 		<servlet-name>custom</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -30,9 +30,9 @@
 		<servlet-name>custom</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 관리자 주소 요청을 처리할 서블릿 -->
-	 <servlet>
+	<servlet>
 		<servlet-name>admin</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -46,9 +46,31 @@
 		<servlet-name>admin</servlet-name>
 		<url-pattern>*.mdo</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- error 페이지 -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/views/error/errorpage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/error/errorpage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/WEB-INF/views/error/errorpage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error/errorpage.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/WEB-INF/views/error/errorpage.jsp</location>
+	</error-page>
+
 	<!-- 호스트 주소 요청을 처리할 서블릿 -->
-	 <servlet>
+	<servlet>
 		<servlet-name>host</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet
 		</servlet-class>
@@ -62,11 +84,12 @@
 		<servlet-name>host</servlet-name>
 		<url-pattern>*.hdo</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- 인코딩 필터 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>

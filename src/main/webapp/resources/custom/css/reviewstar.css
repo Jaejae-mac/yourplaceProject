@@ -1,0 +1,46 @@
+@charset "UTF-8";
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  justify-content: center;
+}
+
+.star-rating input {
+  display: none;
+}
+
+.star-rating label {
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 2.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+  -webkit-text-fill-color: gold;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  -webkit-text-fill-color: #fff58c;
+}
+/*이전것*/
+.heading {
+  font-size: 18px;
+  margin-right: 25px;
+  position: relative;
+  left: 5%;
+  font-style: normal;
+}
+
+.fa {
+  font-size: 25px;
+  position: relative;
+  right: -5%;
+}
+
+.checked {
+  color: orange;
+}

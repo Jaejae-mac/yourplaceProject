@@ -1,6 +1,7 @@
 package com.yourplace.custom.mypage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,14 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.service.MyPageCouponService;
 import com.yourplace.custom.mypage.service.MyPageDeleteService;
+import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.service.MyPageService;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
+import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
 
 @Controller
 public class MypageController {
@@ -30,6 +34,8 @@ public class MypageController {
 	private MyPageCouponService couponservice;
 	@Autowired
 	private LoginUserService loginUserService;
+	@Autowired
+	private MyPageReviewService mypagereviewService;
 	
 	// 마이페이지로 이동
 	@RequestMapping("/mypage.do")
@@ -116,5 +122,17 @@ public class MypageController {
 		System.out.println("[Mypagecontroller UpdatePw 기능 수행]");
 		mypageupdateService.updatePw(vo);
 		return "redirect:mypage.do";
+	}
+	//리뷰
+	@RequestMapping("/mypagereviewList.do")
+	@ResponseBody
+	public List<MyPageHostReviewVO> getreviewList(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String userId = (String)session.getAttribute("userId");
+		MyPageHostReviewVO vo = new MyPageHostReviewVO();
+		vo.setRsvId(userId);
+		System.out.println(vo.toString());
+		List<MyPageHostReviewVO> tvo =mypagereviewService.getReviewList(vo);
+		return tvo;
 	}
 }

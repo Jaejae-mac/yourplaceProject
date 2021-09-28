@@ -7,6 +7,5 @@ import com.yourplace.admin.memberview.vo.MemberVO;
 public interface MemberListService {
 
 	List<MemberVO> getMemberList();
-//	List<MemberVO> getMemberListTwo(MemberVO memVO);
 	
 }

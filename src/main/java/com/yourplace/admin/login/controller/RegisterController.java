@@ -34,29 +34,39 @@ public class RegisterController {
 	@GetMapping(value = "/register.mdo")
 	public String registerForm()
 	{
+		System.out.println("[Controller] 회원가입 요청 뷰 호출");
 		return "register";
 	}
 	
-	//아이디 체크
-	@PostMapping("/idcheck.mdo")
-	@ResponseBody
-	public String idCheck(String id)
-	{
-		System.out.println("AJAX id check");
-		AdminVO vo = new AdminVO();
-		vo.setAdminId(id);
-		String result = idckService.idCheck(vo);
-		return result;
-	}
+//	//아이디 체크
+//	@PostMapping("/idcheck.mdo")
+//	@ResponseBody
+//	public String idCheck(String id)
+//	{
+//		System.out.println("AJAX id check");
+//		AdminVO vo = new AdminVO();
+//		vo.setAdminId(id);
+//		String result = idckService.idCheck(vo);
+//		return result;
+//	}
 	
-	//실제 회원가입 페이지 열람
-	@PostMapping("/register.mdo")
+	
+	
+	//0번 ROOT 계정이 추가 해주는 기능.
+	//admin_autority =1, 2 는 접근 불가
+	@PostMapping("/regist.mdo")
 	public String register(AdminVO adminVO)
 	{
-		System.out.println("Admin 회원추가 method 실행");
-		System.out.println("---------- 추가되는 회원정보 ----------");
+		//로그인한 root계정의 authority 얻어오기
+		
+		//확인
+		
+		//admin 계정 추가
+		
+		System.out.println("---------- Admin 회원추가 실행 ---------");
+		System.out.println("----------- 추가되는 회원정보 -----------");
 		System.out.println(adminVO.toString());
-		System.out.println("----------------------------------");
+		System.out.println("------------------------------------");
 		
 		//password encoder
 		String password = adminVO.getAdminPw();
