@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="InterestDAO">
+	<resultMap type="MyInterest" id="interestResult">
+		<result property="userId" column="uesr_id" />
+		<result property="placeNum" column="place_num" />
+		<result property="placeThumb" column="place_thumb" />
+		<result property="placeName" column="place_name" />
+	</resultMap>
+	<insert id="insertInter" parameterType="MyInterest">
+		INSERT INTO interest(
+		user_id,
+		place_num,
+		place_thumb,
+		place_name		
+		)VALUES(
+		#{userId},
+		#{placeNum},
+		#{placeThumb},
+		#{placeName}
+		);
+	</insert>
+	
+	<select id="interestView" parameterType="MyInterest" resultMap="interestResult">
+		select * from interest
+		WHERE user_id = #{userId} and place_num = #{placeNum}
+	</select>
+
+</mapper>
