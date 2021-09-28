@@ -4,15 +4,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="ReviewDAO">
-	<resultMap type="MyPageReviewVO" id="getreviewList">
+	<resultMap type="MyPageHostReviewVO" id="getreviewHostList">
 		<result property="rsvNum" column="rsv_num" />
+		<result property="rsvId" column="rsv_id" />
 		<result property="userId" column="user_id" />
 		<result property="placeNum" column="place_num" />
-		<result property="reviewGuestRate" column="review_guset_rate" />
+		<result property="reviewGuestRate" column="review_guest_rate" />
 		<result property="reviewGuestWr" column="review_guest_wr" />
 		<result property="reviewGuestRegd" column="review_guest_regd" />
 	</resultMap>
-	<select id="getMyReviewList" resultMap="getreviewList">
-		SELECT * FROM reviewGuest WHERE user_id = #{userId}
+	<select id="getMyReviewList" resultMap="getreviewHostList">
+		SELECT *
+		FROM reviewHost
+        WHERE rsv_id = #{rsvId}
 	</select>
+	<resultMap type="MyPageGuestReviewVO" id="reviewGuestList">
+		<result property="rsvNum" column="rsv_num" />
+		<result property="userId" column="user_id" />
+		<result property="placeNum" column="place_num" />
+		<result property="reviewGuestRate" column="review_guest_rate" />
+		<result property="reviewGuestWr" column="review_guest_wr" />
+		<result property="reviewGuestRegd" column="review_guest_regd" />
+	</resultMap>
+	<insert id="insertGuestReview" parameterType="MyPageGuestReviewVO">
+		INSERT INTO reviewGuest(
+		rsv_num,user_id,place_num,review_guest_rate,review_guest_wr)
+		VALUES(
+		#{rsvNum},#{userId},#{placeNum},#{reviewGuestRate},#{reviewGuestWr})
+	</insert>
 </mapper>

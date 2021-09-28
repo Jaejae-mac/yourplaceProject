@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="chrome">
@@ -34,10 +34,10 @@
 
 	</div>
 
-
 	<div id="main_vue" class="h_column_center"
 		style="background-color: #fafbfb; margin-top: 100px">
 		<div style="width: 1160px;">
+
 			<div style="margin-top: 20px;">
 				<p
 					style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
@@ -301,6 +301,7 @@
 					$('body').addClass('modal-open')
 					$('.direct').show()	
 				}
+
 			}
 
 			function close_direct() {
@@ -365,6 +366,7 @@
 			});
 		
 
+
 			$(document).on('click', '#insertReport', function() {
 				console.log("신고하기버튼 클릭");
 				//문의내용 입력 공백확인 
@@ -383,6 +385,7 @@
 					alert("신고내용을 입력해주세요.")
 					return false;
 				}else {
+
 					alert("신고내용이 등록되었습니다.")
 					$("#form_question2").attr("action", "/guestreport.do");
 					$("#form_question2").submit();
@@ -390,10 +393,7 @@
 
 			});
 		</script>
-
-
-
-
 	<!-- script 끝 -->
+
 </body>
 </html>

@@ -20,8 +20,7 @@ import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.service.MyPageService;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
-import com.yourplace.custom.mypage.vo.MyPageReserveVO;
-import com.yourplace.custom.mypage.vo.MyPageReviewVO;
+import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
 
 @Controller
 public class MypageController {
@@ -127,13 +126,13 @@ public class MypageController {
 	//리뷰
 	@RequestMapping("/mypagereviewList.do")
 	@ResponseBody
-	public List<MyPageReviewVO> getreviewList(HttpServletRequest request) {
+	public List<MyPageHostReviewVO> getreviewList(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		MyPageReviewVO vo = new MyPageReviewVO();
-		vo.setUserId(userId);
-		List<MyPageReviewVO> tvo =mypagereviewService.getReviewList(vo);
-		System.out.println(tvo);
+		MyPageHostReviewVO vo = new MyPageHostReviewVO();
+		vo.setRsvId(userId);
+		System.out.println(vo.toString());
+		List<MyPageHostReviewVO> tvo =mypagereviewService.getReviewList(vo);
 		return tvo;
 	}
 }

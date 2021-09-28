@@ -9,8 +9,9 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class MyPageReviewVO {
+public class MyPageHostReviewVO {
 	private int rsvNum;
+	private String rsvId;
 	private String userId;
 	private int placeNum;
 	private int reviewGuestRate;

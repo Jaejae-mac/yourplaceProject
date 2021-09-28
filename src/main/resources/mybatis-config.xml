@@ -58,7 +58,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostManagementRoomVO" />
 		<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO"
 			alias="cardPlace" />
-
 		<typeAlias type="com.yourplace.host.regist.vo.PlaceVO"
 			alias="myPlace" />
 		<typeAlias type="com.yourplace.host.regist.vo.PlaceImgVO"
@@ -72,6 +71,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageReviewVO"
 			alias="MyPageReviewVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
+			alias="MyPageHostReviewVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageGuestReviewVO"
+			alias="MyPageGuestReviewVO" />
 		<typeAlias
 			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" />
 		<typeAlias
@@ -97,8 +102,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 		<typeAlias type="com.yourplace.host.chart.vo.HostChartVO"
 			alias="HostChartVO" />
-
 	</typeAliases>
+
 	<mappers>
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
 		<mapper resource="mappings/test-mapper.xml" />
@@ -115,10 +120,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-reserve-view-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
 		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
@@ -133,7 +136,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-info-mapping.xml" />
 		<mapper resource="mappings/custom/custom-invoice-mapping.xml" />
 		<mapper resource="mappings/host/HostChartMapper.xml" />
-
 		<mapper resource="mappings/custom/custom-inter-mapping.xml" />
 	</mappers>
 </configuration>
