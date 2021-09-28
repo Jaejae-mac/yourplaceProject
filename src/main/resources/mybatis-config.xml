@@ -68,9 +68,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostSalesVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
 			alias="AskVO" />
-		<typeAlias
-			type="com.yourplace.custom.mypage.vo.MyPageReviewVO"
-			alias="MyPageReviewVO" />
+		
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
 			alias="MyPageHostReviewVO" />
@@ -120,8 +118,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
-		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
-		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper
+			resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper
+			resource="mappings/admin/admin-payment-view-mapping.xml" />
 		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
