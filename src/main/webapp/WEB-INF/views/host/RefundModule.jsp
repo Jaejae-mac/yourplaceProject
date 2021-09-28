@@ -14,7 +14,7 @@
 
 function cancelPay() {
       jQuery.ajax({
-        "url": "", // 예: http://www.myservice.com/payments/cancel
+        "url": "https://api.iamport.kr/payments/cancel", // 예: http://www.myservice.com/payments/cancel
         "type": "POST",
         "contentType": "application/json",
         "data": JSON.stringify({
