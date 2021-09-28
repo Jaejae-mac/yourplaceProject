@@ -13,7 +13,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Login - SB Admin</title>
+    <title>Login - Yourplace Admin</title>
     <link rel="stylesheet" href="<c:url value="/resources/css/admin/css/styles.css"/>"/>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
@@ -89,7 +89,7 @@
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <a href="register.mdo">Need an account? Sign up!</a>
+                      <a href="/register.mdo">Need an account? Sign up!</a>
                     </div>
                   </div>
                 </div>

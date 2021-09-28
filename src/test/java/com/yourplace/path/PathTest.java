@@ -42,7 +42,7 @@ public class PathTest {
 			
 			System.out.println(accessKey);
 			System.out.println(secretKey);
-			System.out.println(String.valueOf(getClass().getResource("/config/key.json")));
+			System.out.println("이건 경로야 : "+String.valueOf(getClass().getResource("/config/key.json")));
 			String realPath = String.valueOf(getClass().getResource("/config/key.json"));
 			realPath = realPath.substring(5);
 			System.out.println(realPath);

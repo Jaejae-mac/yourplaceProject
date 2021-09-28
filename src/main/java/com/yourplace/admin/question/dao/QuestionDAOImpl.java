@@ -20,4 +20,11 @@ public class QuestionDAOImpl implements QuestionDAO {
 		return sqlSessionTemplate.selectList("QuestionDAO.getQue");
 	}
 
+	@Override
+	public void updateStatus(int reprtSeq) {
+		System.out.println("---> MyBatis 로 updateStatus() 기능 처리");
+		sqlSessionTemplate.update("QuestionDAO.yQue", reprtSeq);
+		
+	}
+
 }

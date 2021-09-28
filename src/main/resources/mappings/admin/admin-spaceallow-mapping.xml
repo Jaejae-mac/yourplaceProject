@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userTel" column="user_tel" />
 		<result property="userEmail" column="user_email" />
 		<result property="placeAllow" column="place_allow" />
+		<result property="s3FileName" column="s3_file_name" />
 
 	</resultMap>
 
@@ -40,6 +41,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteSpaceDetail">
 		DELETE FROM place_detail where place_num = #{placeNum}
 	</delete>
+	
+	<!-- s3 서버에서 이미지 삭제를 위해 url 조회 -->
+	<select id="selectSpaceImgUrl" resultMap="spaceResult">
+		SELECT s3_file_name FROM place_img WHERE place_num = #{placeNum};
+	</select>
+	
 	
 	<!-- 승인 상태 조회 -->
 	<select id="getSpaceActive" resultMap="spaceResult">

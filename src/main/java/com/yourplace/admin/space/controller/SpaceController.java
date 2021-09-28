@@ -14,6 +14,7 @@ import com.yourplace.admin.space.service.AllowSpaceService;
 import com.yourplace.admin.space.service.DeleteSpaceService;
 import com.yourplace.admin.space.service.SpaceListService;
 import com.yourplace.admin.space.vo.SpaceVO;
+import com.yourplace.commons.awss3.AwsS3;
 
 @Controller
 public class SpaceController {
@@ -33,20 +34,37 @@ public class SpaceController {
 	public void spaceTable(Model model)
 	{
 		List<SpaceVO> list = spaceList.getSpaceList();
-		System.out.println("spaceTable getMapping 호출");
+		System.out.println("[Controller] spaceTable getMapping 호출");
 		model.addAttribute("spaceList", list);	
 	}
 	
 	
 	//장소 삭제
 	@PostMapping(value="/deleteSpace.mdo")
-	public String deleteSpace(@RequestParam("deleteSpace") String deleteSpace)
+	public String deleteSpace(@RequestParam("deleteSpace") int deleteSpace)
 	{
 		System.out.println("-----삭제할 장소번호 조회-----");
-		System.out.println("Parameter Value: " + deleteSpace);
+		System.out.println("Parameter Value: " + deleteSpace + "번 장소");
+	
+		//url 조회 후, s3 서버에서 삭제
+		//현재 aws s3 서버 access denied error : 삭제 불가
+		AwsS3 awsS3 = AwsS3.getInstance();
+		List<SpaceVO> list = deleteSpaceService.selectSpaceImgUrl(deleteSpace);
+		System.out.println("-----삭제할 이미지 url 조회-----");
+		
+		for (int i=0; i < list.size(); i++)
+		{
+			System.out.println("key= " + (list.get(i)).getS3FileName());
+			System.out.println("-----S3 서버에서 삭제 진행-----");
+			awsS3.delete(list.get(i).getS3FileName()); // 등록된 모든 key 확인하며 삭제
+		}
+		
+		//DB삭제
 		deleteSpaceService.deleteSpace(deleteSpace);
+		
 		return "redirect:spaceList.mdo";
 	}
+	
 	
 	@PostMapping(value="/allowSpace.mdo")
 	public String allowSpace(@RequestParam("allowSpace") String allowSpace)
@@ -56,6 +74,7 @@ public class SpaceController {
 		allowSpaceService.allowSpace(allowSpace);
 		return "redirect:spaceList.mdo";
 	}
+	
 	
 	@PostMapping(value="/denySpace.mdo")
 	public String denySpace(@RequestParam("denySpace") String denySpace)
