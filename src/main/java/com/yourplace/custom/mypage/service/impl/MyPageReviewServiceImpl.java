@@ -21,5 +21,12 @@ public class MyPageReviewServiceImpl implements MyPageReviewService {
 	public void insertGuestReview(MyPageGuestReviewVO vo) {
 		dao.insertGuestReview(vo);
 	}
-
+	@Override
+	public void deleteGuestReview(MyPageGuestReviewVO vo) {
+		dao.deleteGuestReview(vo);
+	}
+	@Override
+	public void deleteHostReview(MyPageHostReviewVO vo) {
+		dao.deleteHostReview(vo);
+	}
 }

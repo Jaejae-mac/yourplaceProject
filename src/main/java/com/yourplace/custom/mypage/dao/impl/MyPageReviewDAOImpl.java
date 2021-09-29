@@ -24,5 +24,12 @@ public class MyPageReviewDAOImpl implements MyPageReviewDAO {
 	public void insertGuestReview(MyPageGuestReviewVO vo) {
 		sqlSessionTemplate.insert("ReviewDAO.insertGuestReview",vo);
 	}
-
+	@Override
+	public void deleteGuestReview(MyPageGuestReviewVO vo) {
+		sqlSessionTemplate.delete("ReviewDAO.deleteGuestReview",vo);
+	}
+	@Override
+	public void deleteHostReview(MyPageGuestReviewVO vo) {
+		sqlSessionTemplate.delete("ReviewDAO.deleteHostReview",vo);
+	}
 }

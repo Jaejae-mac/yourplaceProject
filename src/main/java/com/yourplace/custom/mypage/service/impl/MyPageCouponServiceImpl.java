@@ -19,5 +19,10 @@ public class MyPageCouponServiceImpl implements MyPageCouponService {
 	public List<MyPageCouponVO> getCouponList(MyPageCouponVO vo) {
 		return dao.getCouponList(vo);
 	}
+	
+	@Override
+	public void deleteCoupon(MyPageCouponVO cvo) {
+		dao.deleteCoupon(cvo);
+	}
 
 }

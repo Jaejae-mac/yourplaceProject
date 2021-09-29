@@ -45,6 +45,7 @@ public class MyPageReserveController {
 		String userId = (String)session.getAttribute("userId");
 		MyPageReserveVO vo = new MyPageReserveVO();
 		vo.setRsvId(userId);
+		System.out.println(vo.toString());
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveList(vo);
 		System.out.println(tvo);
 		return tvo;
@@ -57,6 +58,7 @@ public class MyPageReserveController {
 		String userId = (String)session.getAttribute("userId");
 		MyPageReserveVO vo = new MyPageReserveVO();
 		vo.setRsvId(userId);
+		System.out.println(vo.toString());
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveListAll(vo);
 		System.out.println(tvo);
 		return tvo;

@@ -12,8 +12,8 @@ public class MyPageCouponVO {
 	private int userCoupNum;
 	private String userCoupId;
 	private String userCoupUseYn;
-	private Date userCoupStartD;
-	private Date userCoupEndD;
+	private Date coupStartD;
+	private Date coupEndD;
 	private String coupName;
 	private int coupDisRate;
 

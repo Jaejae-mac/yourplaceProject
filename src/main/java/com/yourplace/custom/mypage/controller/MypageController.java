@@ -20,6 +20,7 @@ import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.service.MyPageService;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
+import com.yourplace.custom.mypage.vo.MyPageGuestReviewVO;
 import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
 
 @Controller
@@ -78,6 +79,15 @@ public class MypageController {
 		UserVO vo = new UserVO();
 		vo.setUserId(userId);
 		mypagedeleteService.deleteUser(vo);
+		MyPageCouponVO cvo = new MyPageCouponVO();
+		cvo.setUserCoupId(userId);
+		couponservice.deleteCoupon(cvo);
+		MyPageGuestReviewVO grvo = new MyPageGuestReviewVO();
+		grvo.setUserId(userId);
+		mypagereviewService.deleteGuestReview(grvo);
+		MyPageHostReviewVO hrvo = new MyPageHostReviewVO();
+		hrvo.setRsvId(userId);
+		mypagereviewService.deleteHostReview(hrvo);
 		session.invalidate();
 		return "redirect:home.do";
 	}

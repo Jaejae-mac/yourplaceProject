@@ -125,7 +125,7 @@
 					<div
 						style="width: 448px; height: 192px; margin-top: 8px; padding: 14px; border-radius: 4px; border: solid 1px var(- -grey-025);">
 						<textarea class=""
-							style="width: 100%; height: 100%; border-width: 0; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
+							style="resize: none; width: 100%; height: 100%; border-width: 0; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
 							placeholder="소개를 입력하세요" id="userIntro" name="userIntro"></textarea>
 					</div>
 
