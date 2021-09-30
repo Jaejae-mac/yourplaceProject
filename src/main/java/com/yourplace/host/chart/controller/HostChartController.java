@@ -1,14 +1,13 @@
 package com.yourplace.host.chart.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,20 +21,19 @@ public class HostChartController {
 	@Inject
 	private HostChartService service;
 
-//	@RequestMapping(value = "/getYearChartForHost.hdo")
-	public ModelAndView getYearChart(HttpServletRequest request, HostChartVO vo) throws Exception {
+
+	public ModelAndView getYearChartView(HttpServletRequest request, HostChartVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
 		vo.setUserId(userId);
 		List<HostChartVO> list = service.getChartData(vo);
-//		mav.setViewName("HostChartYear");
-//		dataJson(request, vo);
+
 		return mav;
 	}
 
 	@RequestMapping(value = "/getYearChartForHost.hdo")
-	public ModelAndView getChart(HttpServletRequest request, HostChartVO vo) throws Exception {
+	public ModelAndView getYearChart(HttpServletRequest request, HostChartVO vo) throws Exception { //연간 차트
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
@@ -46,7 +44,7 @@ public class HostChartController {
 		
 		mav.setViewName("HostChartYear");
 
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	LinkedHashMap<String, Object> map =new LinkedHashMap<String, Object>();
 		int countJa = 0;
 		int countFe = 0;
 		int countMar = 0;
@@ -63,16 +61,12 @@ public class HostChartController {
 		try {
 			for (int i = 0; i <= list.size(); i++) {
 				String getMonth = list.get(i).getReserveMonth();
-				System.out.println(getMonth);
+		
 				if (getMonth.equals("1")) {
 					countJa++;
-					map.put("Jan", countJa);
-
 				}
 				if (getMonth.equals("2")) {
 					countFe++;
-					map.put("Feb", countFe);
-					System.out.println(map.toString());
 
 				}
 
@@ -122,9 +116,11 @@ public class HostChartController {
 
 				if (getMonth.equals("12")) {
 					countDec++;
-					System.out.println(countDec);
+					
 				}
-
+				
+				map.put("Jan", countJa);
+				map.put("Feb", countFe);
 				map.put("Mar", countMar);
 				map.put("Apr", countApr);
 				map.put("May", countMay);
@@ -145,106 +141,34 @@ public class HostChartController {
 
 	}
 
-//
-//	
-//@GetMapping("/getChart.hdo")
-//	public void dataJson(HttpServletRequest request, HostChartVO vo) throws Exception {
-//		FileWriter wr = null;
-//
-//		List<HostChartVO> list = service.getChartData(vo);
-//		
-//		JsonObject json = new JsonObject();
-//		int countJa = 0;
-//		int countFe = 0;
-//		int countMar = 0;
-//		int countApr = 0;
-//		int countMay = 0;
-//		int countJun = 0;
-//		int countJul = 0;
-//		int countAug = 0;
-//		int countSep = 0;
-//		int countOct = 0;
-//		int countNov = 0;
-//		int countDec = 0;
-//	
-//		
-//		try {	
-//				for(int i=0; i<=list.size(); i++) {
-//					
-//				String month = list.get(i).getReserveMonth();
-////				System.out.println(month);
-//
-//				if (month.equals("1")) {
-//						countJa ++;
-//						json.addProperty("Jan", Integer.toString(countJa));	
-//						
-//				}
-//				if (month.equals("2")) {
-//					countFe++;
-//					json.addProperty("Feb",Integer.toString(countFe));
-//				}
-//
-//				if (month.equals("3")) {
-//					countMar++;
-//					json.addProperty("Mar",Integer.toString(countMar));
-//				}
-//
-//				if (month.equals("4")) {
-//					countApr++;
-//					json.addProperty("Apr", Integer.toString(countApr));
-//				}
-//
-//				if (month.equals("5")) {
-//					countMay++;
-//					json.addProperty("May",Integer.toString(countMay));
-//				}
-//
-//				if (month.equals("6")) {
-//					countJun++;
-//					json.addProperty("June",Integer.toString(countJun));
-//				}
-//
-//				if (month.equals("7")) {
-//					countJul++;
-//					json.addProperty("July",Integer.toString(countJul));
-//				}
-//
-//				if (month.equals("8")) {
-//					countAug++;
-//					json.addProperty("Aug", Integer.toString(countAug));
-//				}
-//
-//				if (month.equals("9")) {
-//					countSep++;
-//					json.addProperty("Sep", Integer.toString(countSep));
-//				}
-//
-//				if (month.equals("10")) {
-//					countOct++;
-//					json.addProperty("Oct",Integer.toString(countOct));
-//				}
-//
-//				if (month.equals("11")) {
-//					countNov++;
-//					json.addProperty("Nov", Integer.toString(countNov));
-//				}
-//
-//				if (month.equals("12")) {
-//					countDec++;
-//					json.addProperty("Dec", Integer.toString(countDec));
-//				}
-//
-//				JsonArray arr = new JsonArray();
-//				arr.add(json);
-//
-//				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//				String j = gson.toJson(json);
-//				}
-//
-//		
-//		}catch(Exception e) {
-//			
-//		}
-//}
+	@RequestMapping(value="/getInvoiceForHost.hdo") //저번달 매출이랑 비교 추가해야함
+	public ModelAndView getCategoryChart(HttpServletRequest request, HostChartVO vo) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		vo.setUserId(userId);
 
+		List<HostChartVO> list = service.getChartData(vo);
+		List<Integer> paylist = new ArrayList<Integer>();
+	
+		try {
+			for(int i=0; i<=list.size(); i++) {
+				int getAfterTax = Integer.parseInt(list.get(i).getAfterTax());
+				paylist.add(getAfterTax);
+				}
+					
+			
+		}catch(Exception e) {
+			
+		}
+
+			int sum = paylist.stream().mapToInt(Integer::intValue).sum();
+
+		System.out.println(sum);
+		System.out.println(paylist);
+
+		mav.addObject("map", sum);
+		mav.setViewName("HostChartInvoice");
+		return mav;
+	}
 }

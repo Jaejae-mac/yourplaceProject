@@ -53,6 +53,7 @@
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<!--사이드바 nav태그(사이드메뉴) 시작-->
+				
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Menu</div>
@@ -99,19 +100,12 @@
 								
 							</nav>
 						</div>
-						<div class="collapse" id="collapseHost"
-							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/AskforHost.hdo">차트</a>
-							</nav>
-						</div>
+						
 					
-							
-						<div class="collapse" id="collapsePlace"
+							<div class="collapse" id="collapseHost"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/getYearChartForHost.hdo">연간 차트</a>
-								
+								<a class="nav-link" href="/AskforHost.hdo">고객문의</a>
 							</nav>
 						</div>
 						
@@ -178,9 +172,15 @@
 								<nav class="sb-sidenav-menu-nested nav">
 									<a class="nav-link" href="/hostSales.hdo">결제 정보</a> <a
 										class="nav-link" href="#">매출 현황</a>
+										<a class="nav-link" href="/getYearChartForHost.hdo">연간 차트</a>
+										<a class="nav-link" href="/getInvoiceForHost.hdo">메출 차트</a>
 								</nav>
 							</div>
 						</div>
+						
+						
+						
+						
 					</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
