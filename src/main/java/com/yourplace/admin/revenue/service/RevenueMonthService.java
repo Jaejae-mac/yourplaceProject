@@ -6,6 +6,8 @@ import com.yourplace.admin.revenue.vo.RevenueVO;
 
 public interface RevenueMonthService {
 
-	List<RevenueVO> getMonthSum();
+	List<RevenueVO> getMonthSumFirst(int year);
+	
+	List<Double> getMoM(int year);
 	
 }

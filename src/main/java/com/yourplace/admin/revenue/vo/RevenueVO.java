@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 public class RevenueVO {
 	
 //	private int rsvNum;
 	private String payNum;
-	private String placeMainCate;
+	private String placeMaincate;
 	private String placeCate;
 	private int payYear;
 	private int payMonth;
@@ -23,16 +24,13 @@ public class RevenueVO {
 	private int userNum;
 
 	private int revenue;
-	
 	private int cnt;
+	private double result;
+	
+	private int payStartMonth;
+	private int payEndMonth;
+	private int payStartDate;
+	private int payEndDate;
 
-	@Override
-	public String toString() {
-		return "RevenueVO [payNum=" + payNum + ", placeMainCate=" + placeMainCate + ", placeCate=" + placeCate
-				+ ", payYear=" + payYear + ", payMonth=" + payMonth + ", payDate=" + payDate + ", invAftTax="
-				+ invAftTax + ", userNum=" + userNum + ", revenue=" + revenue + ", cnt=" + cnt + "] \r\n";
-	}
-	
-	
 	
 }
