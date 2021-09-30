@@ -9,4 +9,5 @@ public interface HostManagementService {
 	void deletePlace(int placeNum) throws Exception;
 	List<HostManagementVO> getOneHostPlace(HostManagementVO vo) throws Exception;
 	void updatePlace(int placeNum, HostManagementVO vo) throws Exception;
+
 }

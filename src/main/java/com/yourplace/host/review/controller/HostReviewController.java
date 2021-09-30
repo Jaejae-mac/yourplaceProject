@@ -1,16 +1,18 @@
 package com.yourplace.host.review.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.host.review.service.HostReviewService;
@@ -36,35 +38,39 @@ public class HostReviewController {
 
 		return mav;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/getReserveValue.hdo", method = { RequestMethod.GET, RequestMethod.POST })
+	public Map<String, Object> test(@RequestParam HashMap params) throws Exception {
+			System.out.println(params);
+			return params;
+		
 	
-//	
-//	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST) //값 출력까지 ok
-//	public void insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
-//		HttpSession session = request.getSession();
-//		
-//		String memId = (String)session.getAttribute("userId");
-//		String review = request.getParameter("content");
-//		
-//		System.out.println(review);
-//		System.out.println(memId);
-//	}
-//	
+
+	}
 	
-	@RequestMapping("/reviewForGuest.hdo")
+	
+	
+	@RequestMapping(value="/reviewValue.hdo", method= {RequestMethod.GET, RequestMethod.POST})
+	public void getReviewValue(HttpServletRequest request) throws Exception{
+		int star = Integer.parseInt(request.getParameter("star"));
+		System.out.println(star);
+		String reviewContent = request.getParameter("contents");
+		System.out.println(reviewContent);
+	
+		
+
+		
+	}
+	
+	@RequestMapping(value="/reviewForGuest.hdo")
 	public ModelAndView	reviewForm(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		String placeNum = request.getParameter("placeNum");
-		System.out.println(placeNum);
-		
 		mav.setViewName("reviewPopup");
 		return mav;
 	}
 	
 	
 	
-	@PostMapping("/reviewInsert.hdo")
-	public void reviewInsert() throws Exception{
-		
-	}
 
 }

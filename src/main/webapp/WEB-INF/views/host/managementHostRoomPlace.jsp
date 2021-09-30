@@ -32,7 +32,6 @@
         <main>
           <div class="container-fluid px-4">
             <h1 class="mt-4">내 장소 관리</h1>
-            
             <input type="hidden" value="${userId}" name="userId" id="userId"/>
 
 					<div class="card mb-4">
@@ -47,7 +46,7 @@
 						</div>
 						
 						<div class="card-body">
-					<form action="/getRoomVlaue.hdo" method="get">
+					
 								<input type="button" onclick="add_row()"
 									class="btn btn-primary"
 									style="font-size: 10px; margin-left: 10px;" value="추가" />
@@ -68,7 +67,7 @@
 							var cell6 = row.insertCell(5);	
 							var cell7 = row.insertCell(6);
 						
-							cell1.innerHTML = "<tr><td><input type='text' name='inputplaceNum' id='inputplaceNum' value='${placeNum}' readonly/></td>"
+							cell1.innerHTML = "<tr><td></td>"
 							cell2.innerHTML = "<td><input type='text'  name='roomNum' id='roomNum'/></td>"
 							cell3.innerHTML = "<td><input type='text'  name='detailTitle' id='detailTitle' placeholder='방 이름을 적어주세요'/></td>"
 							cell4.innerHTML = "<td><input type='text'  name='detailPersonNum' id='detailPersonNum' placeholder='인원수를 적어주세요'/></td>"
@@ -76,7 +75,8 @@
 							cell6.innerHTML ="<td><button type='button' class='btn btn-danger' onclick='delete_row()' style='font-size: 10px; margin-left: 10px;'>삭제</button></td>"
 							cell7.innerHTML="<td><input type='submit'  id='getValue' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;' value='등록'/></td></tr>"
 						
-						}
+						
+								}
 						
 						function delete_row(){
 							var roomListTbody = document.getElementById('roomListTbody');
@@ -88,9 +88,43 @@
 					
 
 						</script>
+	<script>
 	
 
-							      
+	  
+	  $(document).on("click","#delete",function()
+				{
+			var chk = confirm("삭제하시겠습니까?");
+
+			if (chk) {
+				var tdArr = new Array();
+				var c = $(this);
+				
+				var tr = c.parent().parent();
+				var td = tr.children();
+
+				var active = td.eq(0).text();
+				var no = td.eq(1).text();
+				var noo = td.eq(0).text();
+				
+				td.each(function(i)
+				{
+					tdArr.push(td.eq(i).text());
+				});
+				
+				console.log (no);
+				console.log(noo);
+				$("#detailNum").val(no);
+				$("#placeNum").val(noo);
+				$("#sub").submit();
+		
+			
+	
+			}
+				});
+	</script>
+
+							         
 							<table id="datatablesSimple">
 							             
 								<thead>
@@ -105,17 +139,19 @@
                 </thead>
                 <tbody id="roomListTbody">
 
-                  <c:forEach var="room" items="${list2}">
+                  <c:forEach var="room" items="${list2}" varStatus="status">
 										<tr>
 											<td>${room.placeNum}</td>
-				
-											<td>${room.detailNum}</td>
-											<td>${room.detailTitle }</td>
+
+										<td>${room.detailNum}</td>
+									
+										<td>${room.detailTitle }</td>
 											<td>${room.detailPersonNum }</td>
 											<td>${room.surcharge }</td>
 									<td>
-							<button type="button" class="btn btn-danger"  onclick="location.href='/deleteRoom.hdo?detailNum=${room.detailNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
-		
+							
+							<button type="submit" class="btn btn-danger"  name="delete" id="delete" style="font-size: 10px; margin-left: 10px;">삭제</button>
+										
 											</td>
 
 										</tr>
@@ -132,15 +168,22 @@
 
 								</tfoot>
 							</table>
-</form>
 
 
 
+
+			<form id="sub" name="sub" method="get" action="/deleteRoom.hdo" hidden="hidden">
+				<input type="hidden" name="detailNum" id="detailNum" value="" > 
+				<input type="hidden" name="placeNum" id="placeNum" value=""/>
+
+
+					</form>
 						</div>
 					</div>
 				</div>
 				
         </main>
+     
 
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">

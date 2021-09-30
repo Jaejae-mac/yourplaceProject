@@ -46,36 +46,37 @@ public class HostReservController {
 		String id = (String)session.getAttribute("userId");
 		vo.setUserId(id);
 		List<HostReservVO> list = service.lastAllReserve(vo);
-		try {
-			for(int i=0; i<=list.size(); i++) {
-				String reserveDate = Integer.toString(list.get(i).getReserveYear())+"-" + Integer.toString(list.get(i).getReserveMonth())+"-" + Integer.toString(list.get(i).getReserveDate());
-		
-				Date today = new Date();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-				Date reserveDa = sdf.parse(reserveDate);
-//				System.out.println(today);
-//				
-//				System.out.println(reserveDa);
-//				
-				boolean before = reserveDa.before(today);
-//				System.out.println(before);
-				if(before == true) {
-					
-					String placeName = list.get(i).getPlaceName();
-					String reserveNum = list.get(i).getReserveNum();
-					String reserveId = list.get(i).getReserveId();
-					String placeNum = list.get(i).getPlaceNum();
-					String reserveName = list.get(i).getReserveName();
-					String StartTime = Integer.toString(list.get(i).getStartTime()) +"시";
-					String endTime = Integer.toString(list.get(i).getEndTime()) + "시";
-					String personNum = Integer.toString(list.get(i).getPersonNum()) + "명";
-					String payPrice = Integer.toString(list.get(i).getPayPrice());
-					
-					
-					Map<String, Object> map = new HashMap<String, Object>();
-		
-					
-					map.put("placeName", placeName);
+		mav.addObject("list", list);
+//		try {
+//			for(int i=0; i<=list.size(); i++) {
+//				String reserveDate = Integer.toString(list.get(i).getReserveYear())+"-" + Integer.toString(list.get(i).getReserveMonth())+"-" + Integer.toString(list.get(i).getReserveDate());
+//		
+//				Date today = new Date();
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+//				Date reserveDa = sdf.parse(reserveDate);
+////				System.out.println(today);
+////				
+////				System.out.println(reserveDa);
+////				
+//				boolean before = reserveDa.before(today);
+////				System.out.println(before);
+//				if(before == true) {
+//					
+//					String placeName = list.get(i).getPlaceName();
+//					String reserveNum = list.get(i).getReserveNum();
+//					String reserveId = list.get(i).getReserveId();
+//					String placeNum = list.get(i).getPlaceNum();
+//					String reserveName = list.get(i).getReserveName();
+//					String StartTime = Integer.toString(list.get(i).getStartTime()) +"시";
+//					String endTime = Integer.toString(list.get(i).getEndTime()) + "시";
+//					String personNum = Integer.toString(list.get(i).getPersonNum()) + "명";
+//					String payPrice = Integer.toString(list.get(i).getPayPrice());
+//					
+//					
+//					Map<String, Object> map = new HashMap<String, Object>();
+//		
+//					
+//					map.put("placeName", placeName);
 //					 getBeforeReserve.add(reserveNum);
 //					 getBeforeReserve.add(reserveId);
 //					 getBeforeReserve.add(placeNum);
@@ -85,17 +86,17 @@ public class HostReservController {
 //					 getBeforeReserve.add(personNum);
 //					 getBeforeReserve.add(payPrice);
 					
-					mav.addObject("beforeList", map);	
-					System.out.println(map.toString());
-				
-				}else {
-					
-				}
-			}
-	
-		}catch(Exception e) {
-			
-		}
+//					mav.addObject("beforeList", map);	
+//					System.out.println(map.toString());
+//				
+//				}else {
+//					
+//				}
+//			}
+//	
+//		}catch(Exception e) {
+//			
+//		}
 		mav.setViewName("LastReserveListForHost");
 		return mav;
 	}

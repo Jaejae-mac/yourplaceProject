@@ -28,5 +28,11 @@ public class HostProfileController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/myProfile.hdo")
+	public ModelAndView viewProfile(HttpServletRequest request) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myProfile");
+		return mav;
+	}
 
 }

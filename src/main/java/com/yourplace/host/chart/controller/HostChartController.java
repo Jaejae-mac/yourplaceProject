@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,15 +34,19 @@ public class HostChartController {
 		return mav;
 	}
 
-	@GetMapping("/getYearChartForHost.hdo")
+	@RequestMapping(value = "/getYearChartForHost.hdo")
 	public ModelAndView getChart(HttpServletRequest request, HostChartVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
 		vo.setUserId(userId);
+
 		List<HostChartVO> list = service.getChartData(vo);
+		System.out.println(list.toString());
+		
 		mav.setViewName("HostChartYear");
 
+		Map<String, Integer> map = new HashMap<String, Integer>();
 		int countJa = 0;
 		int countFe = 0;
 		int countMar = 0;
@@ -58,14 +63,16 @@ public class HostChartController {
 		try {
 			for (int i = 0; i <= list.size(); i++) {
 				String getMonth = list.get(i).getReserveMonth();
-//				System.out.println(getMonth);
+				System.out.println(getMonth);
 				if (getMonth.equals("1")) {
 					countJa++;
-				
+					map.put("Jan", countJa);
 
 				}
 				if (getMonth.equals("2")) {
 					countFe++;
+					map.put("Feb", countFe);
+					System.out.println(map.toString());
 
 				}
 
@@ -115,32 +122,29 @@ public class HostChartController {
 
 				if (getMonth.equals("12")) {
 					countDec++;
-
+					System.out.println(countDec);
 				}
-		
 
+				map.put("Mar", countMar);
+				map.put("Apr", countApr);
+				map.put("May", countMay);
+				map.put("Jun", countJun);
+				map.put("Jul", countJul);
+				map.put("Aug", countAug);
+				map.put("Sep", countSep);
+
+				mav.addObject("data", map);
+				System.out.println(map.toString());
 			}
 
 		} catch (Exception e) {
 
 		}
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("Jan", countJa);
-		map.put("Feb", countFe);
-		map.put("Mar", countMar);
-		map.put("Apr", countApr);
-		map.put("May", countMay);
-		map.put("Jun", countJun);
-		map.put("Jul", countJul);
-		map.put("Aug", countAug);
-		map.put("Sep", countSep);
-		
-	
+
 		return mav;
-		
+
 	}
-	
-	
+
 //
 //	
 //@GetMapping("/getChart.hdo")
