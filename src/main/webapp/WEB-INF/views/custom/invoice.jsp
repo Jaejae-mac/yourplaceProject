@@ -34,7 +34,7 @@
 							</div>
 							
 							<c:forEach var="invoice" items="${invoiceList}">
-							<fmt:parseNumber value="${invoice.invBfTax/100*invoice.coupDisRate}" integerOnly="true" var="DisRate"/>
+							<fmt:parseNumber value="${invoice.invCost/100*invoice.coupDisRate}" integerOnly="true" var="DisRate"/>
 							<div class="h_column_center"
 								style="margin-top: 54px; margin-bottom: 30px;">
 								<p

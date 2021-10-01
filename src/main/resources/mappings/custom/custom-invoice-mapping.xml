@@ -29,16 +29,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="invoiceView" parameterType="MyInvoice" resultMap="invoiceResult">
 		SELECT 
-		payment.rsvNum,payment.payNum,payment.placeMainCate,
-		payment.payYear,payment.payMonth,payment.payDate,
-		payment.invCost,payment.coupDisRate,payment.invAftTax,payment.userNum,
-		reservation.rsv_name,reservation.rsv_year, reservation.rsv_month, 
-		reservation.rsv_date, reservation.place_name, reservation.place_num,
-		reservation.rsv_start_t,reservation.rsv_end_t 
+		p.rsvNum,p.payNum,p.placeMainCate,p.payYear,
+		p.payMonth,p.payDate,p.invCost,p.coupDisRate,p.invAftTax,p.userNum,
+		r.rsv_name,r.rsv_year, r.rsv_month, r.rsv_date,
+		r.place_name, r.place_num,r.rsv_start_t,r.rsv_end_t 
 		FROM
-		invoice join reservation using(rsv_num)
+		payment p join reservation r using(rsv_num)
 		WHERE
-		invoice.rsv_num = #{rsvNum};
+		p.rsv_num = #{rsvNum};
 	</select>
 
 </mapper>
