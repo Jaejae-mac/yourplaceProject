@@ -29,7 +29,7 @@ public class MyPageReviewDAOImpl implements MyPageReviewDAO {
 		sqlSessionTemplate.delete("ReviewDAO.deleteGuestReview",vo);
 	}
 	@Override
-	public void deleteHostReview(MyPageGuestReviewVO vo) {
+	public void deleteHostReview(MyPageHostReviewVO vo) {
 		sqlSessionTemplate.delete("ReviewDAO.deleteHostReview",vo);
 	}
 }

@@ -37,7 +37,6 @@ public class MypageController {
 	private LoginUserService loginUserService;
 	@Autowired
 	private MyPageReviewService mypagereviewService;
-	
 	// 마이페이지로 이동
 	@RequestMapping("/mypage.do")
 	public String mypageForm(HttpServletRequest request, Model model) {

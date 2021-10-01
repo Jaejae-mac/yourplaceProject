@@ -12,5 +12,5 @@ public interface MyPageReviewDAO {
 	
 	void deleteGuestReview(MyPageGuestReviewVO vo);
 	
-	void deleteHostReview(MyPageGuestReviewVO vo);
+	void deleteHostReview(MyPageHostReviewVO vo);
 }

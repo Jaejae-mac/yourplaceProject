@@ -15,6 +15,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<script>
+	$(document).ready(function(){
+		reviewList();
+	});
+</script>
 <title>Yourplace MyPage</title>
 </head>
 <body>
@@ -41,11 +46,11 @@
                     <div class="h_column_center">
                         <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;">
                             <c:if test="${user.userProfileImg == null}">
-                            <img src="https://s3.hourplace.co.kr/web/images/icon/elements_image_empty_guest.png"
+                            <img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
                                 style="width: 100%; height: 100%; position: absolute;">
                             </c:if>
                             <c:if test="${user.userProfileImg != null}">
-                            <img src="${user.userProfileImg}"
+                            <img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
                                 style="width: 100%; height: 100%; position: absolute;">
                             </c:if>     
                         </div>
@@ -114,7 +119,13 @@
                 	소개
                 </p>
                 <p id="Intro" style ="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                    ${user.userIntro}
+                    <c:if test="${user.userIntro == null or user.userIntro == ''}">
+                    	안녕하세요. ${user.userNickName} 입니다.
+                    </c:if>
+                    <c:if test="${user.userIntro != null }">
+                    	${user.userIntro}
+                    </c:if>
+                    
                 </p>
                 <div style="margin-top: 40px; height: 1px; background-color: rgb(231, 234, 238);"></div>
                 <div style="margin-top: 40px;">
@@ -143,14 +154,6 @@
 	<%@ include file="../footer.jsp" %>
 	<!-- Footer 끝 -->
 	<script>
-	 $(document).ready(function(){
-		if(document.getElementById('Intro').value == null){
-			document.getElementById('Intro').innerHTML='안녕하세요. ${user.userNickName}입니다.'
-		}else{
-			document.getElementById('Intro').innerHTML = '${user.userIntro}'
-		}
-		reviewList();
-	 });
 	 function reviewList(){
 		 $.ajax({
         	url:"/mypagereviewList.do",

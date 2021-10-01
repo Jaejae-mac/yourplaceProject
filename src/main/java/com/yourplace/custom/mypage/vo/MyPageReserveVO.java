@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class MyPageReserveVO {
 	private int placeNum;
-	private String rsvId;
+	private int userNum;
 	private int rsvNum;
 	private int rsvYear;
 	private int rsvMonth;
@@ -17,7 +17,7 @@ public class MyPageReserveVO {
 	private int rsvStartT;
 	private int rsvEndT;
 	private int rsvRefundYn;
-	private int rsvPay;
+	private int invBfTax;
 	private String userId;
 	private String placeArea;
 	private String placeName;

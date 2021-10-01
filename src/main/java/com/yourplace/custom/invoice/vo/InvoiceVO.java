@@ -30,5 +30,6 @@ public class InvoiceVO {
 	private int rsvDate; // 예약 일
 	private String placeName; // 예약 장소명
 	private int placeNum; // 예약 장소 번호 
-	
+	private int rsvStartT;
+	private int rsvEndT;
 }

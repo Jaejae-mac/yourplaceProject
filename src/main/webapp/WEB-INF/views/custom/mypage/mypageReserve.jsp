@@ -29,12 +29,13 @@
 
 <body>
 	<!-- 세션에 아이디 값이 존재 한다면 마이페이지를 불러주어라. -->
-	<c:if test="${userId != null}">
-		MY Page - ${userId }
+	<c:if test="${user.userNum != null}">
+		MY Page - ${user.userNum }
 	</c:if>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
+	<input type="hidden" id="userNum" name="userNum" value="${user.userNum }">
 	<div class="h_column_center" id="main_vue" style="min-height: 1000px;">
 		<div style="width: 1160px; min-height: 1000px; padding-bottom: 200px;">
 			<div style="margin-top: 20px;">
@@ -125,34 +126,39 @@
 						style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						예약번호</p>
 				</div>
-				<div class="h_row_center" style="width: 600px;">
+				<div class="h_row_center" style="width: 540px;">
 					<p
 						style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						촬영정보</p>
 				</div>
-				<div class="h_row_center" style="width: 130px;">
+				<div class="h_row_center" style="width: 100px;">
 					<p
 						style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						호스트</p>
 				</div>
-				<div class="h_row_center" style="width: 100px;">
+				<div class="h_row_center" style="width: 90px;">
 					<p
 						style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						금액</p>
 				</div>
-				<div class="h_row_center" style="width: 120px;">
+				<div class="h_row_center" style="width: 150px;">
 					<p
 						style="margin-bottom: 0px; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						진행상태</p>
 				</div>
-				<div class="h_row_center" style="width: 90px;">
+				<div class="h_center" style="width: 80px;">
 					<p
-						style="margin-bottom: 0px; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
+						style="margin-bottom: 0px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
+						매출전표</p>
+				</div>
+				<div class="h_center" style="width: 85px;">
+					<p
+						style="margin-bottom: 0px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						환불신청</p>
 				</div>
-				<div class="h_row_center" style="width: 90px;">
+				<div class="h_center" style="width: 85px;">
 					<p
-						style="margin-bottom: 0px; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
+						style="margin-bottom: 0px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: #454b50;">
 						리뷰쓰기</p>
 				</div>
 			</div>
@@ -269,9 +275,11 @@
 			reserveListIng();			
 		})
 		function reserveListIng(){
+        	var userNum = $('#userNum').val();
 			$.ajax({
            		url:"/reserveListIng.do",
            		type:"post",
+           		data:{"num":userNum},
            		dataType : "json",
            		success : function(data){
            			getRserveListCall(data);
@@ -279,6 +287,7 @@
            	});
 		};
 		$(document).on('click','#all',function(){
+			var userNum = $('#userNum').val();
         	document.getElementById('rsv_state').innerHTML='전체'
         		document.getElementById('state').value="전체"
             document.getElementById('end').style.backgroundColor = 'rgb(245, 247, 248)';
@@ -288,6 +297,7 @@
         	$.ajax({
            		url:"/reserveListAll.do",
            		type:"post",
+           		data:{"num":userNum},
            		dataType : "json",
            		success : function(data){
            			getRserveListCall(data);
@@ -298,9 +308,11 @@
            	});
         });
         $(document).on('click','#end',function(){
+        	var userNum = $('#userNum').val();
         	$.ajax({
            		url:"/reserveListEnd.do",
            		type:"post",
+           		data:{"num":userNum},
            		dataType : "json",
            		success : function(data){
            			getRserveListCall(data);
@@ -317,9 +329,11 @@
             document.getElementById('cancel').style.backgroundColor = 'rgb(245, 247, 248)';
         });
         $(document).on('click','#cancel',function(){
+        	var userNum = $('#userNum').val();
         	$.ajax({
            		url:"/reserveListCancel.do",
            		type:"get",
+           		data:{"num":userNum},
            		dataType:"json",
            		success : function(data){
            			getRserveListCall(data);
@@ -337,6 +351,7 @@
             
         });
         $(document).on('click','#keyword',function(){
+        	var userNum = $('#userNum').val();
         	var keyword = $('#searchKeyword').val();
         	keyword = keyword.trim();
         	var title = $('#state').val();
@@ -351,7 +366,7 @@
 	        	$.ajax({
 	           		url:"/reserveListkeyword.do",
 	           		type:"get",
-	           		data:{"keyword":keyword,"title":title},
+	           		data:{"keyword":keyword,"title":title,"num":userNum},
 	           		dataType:"json",
 	           		success : function(data){
 	           			getRserveListCall(data);
@@ -374,7 +389,7 @@
         		
        			for(var i=0;i<listLen; i++){
        				var placeNum = list[i].placeNum;
-       				var rsvId = list[i].rsvId
+       				var userNum = list[i].userNum
        				var rsvNum = list[i].rsvNum;
        				var rsvYear = list[i].rsvYear;
        				var rsvMonth = list[i].rsvMonth;
@@ -393,7 +408,7 @@
        				else if(rsvRefundYn == 3){
        					rsvRefundYn = "호스트에 의한 환불";
        				}
-       				var rsvPay = list[i].rsvPay;
+       				var rsvPay = list[i].invBfTax;
        				var userId = list[i].userId
        				var placeArea = list[i].placeArea;
        				var placeName = list[i].placeName;
@@ -412,48 +427,52 @@
        				res += '<div class="h_row_center" style="position: relative; padding: 0px 8px; width: 1160px; height: 150px;">';
        				res += '<div class="h_row_center" style="width: 80px;">';
        				res += '<input type="hidden" id="rsvNum'+i+'"onclick="Arefundbtn(rsvNum'+i+')" value="'+ rsvNum + '">';
+       				res += '<input type="hidden" id="rsvDay'+i+'"onclick="Arefundbtn(rsvDay'+i+')" value="'+ rsvDay.getTime() + '">';
        				res += '<input type="hidden" id="placeNum'+i+'" value="'+ placeNum + '">';
-       				res += '<a href="/invoice.do?rsvNum=' + rsvNum + '">';
+       				res += '<a href="/invoice.do?rsvNum=' + rsvNum + '"target="_blank">';
        				res += '<p name="rsvNum" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center;">';
        				res += rsvNum + '</p></a></div>';
-       				res += '<div class="h_row_center" style="width: 600px;">';
-       				res += '<img src="https://s3.hourplace.co.kr/web/images/icon/elements_image_empty_guest.png" style="width: 150px; position: absolute;">';
-       				res += '<a href="">';
+       				res += '<div class="h_row_center" style="width: 540px;">';
+       				res += '<img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/' + placeThumb + '" style="border-radius: 10px;width: 150px; position: absolute;">';
+       				res += '<a href="/detailPlaceForm.do?placeNum='+ placeNum + '">';
        				res += '<p style="margin-left: 170px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvMonth+'월'+ rsvDate +'일 '+ rsvStartT +':00 ~ ' + rsvEndT + ':00';
        				res += '<br>['+ placeArea +'] '+ placeName +'</p></a></div>';     				
-       				res += '<div class="h_row_center" style="width: 130px;">';
+       				res += '<div class="h_row_center" style="width: 100px;">';
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += userId + '</p></div>';
-       				res += '<div class="h_row_center" style="width: 100px;">'
+       				res += '<div class="h_row_center" style="width: 90px;">'
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvPay +'원</p></div>';
-       				res += '<div class="h_row_center" style="width: 120px;">'
+       				res += '<div class="h_row_center" style="width: 150px;">'
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvRefundYn +'</p></div>';
-       				res += '<div class="h_row_center" style="width: 90px;">';
+       				res += '<div class="h_center" style="width: 80px;">';
+       				res += '<p id="salesSip'+i+'" onclick="" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       				res += '보기</p></div>';
+       				res += '<div class="h_center" style="width: 85px;">';
        				if(rsvRefundYn == "환불 진행중" || rsvRefundYn == "환불완료"){
-	       				res += '<p id="refund'+i+'"onclick="Arefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+	       				res += '<p id="refund'+i+'"onclick="Arefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '환불신청 </p></div>';
        				}else if(btDay > 4){
-       					res += '<p id="refund'+i+'"onclick="refundbtn(rsvNum'+i+')"class="btn btn-primary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       					res += '<p id="refund'+i+'"onclick="refundbtn(rsvNum'+i+',rsvDay'+i+')"class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '환불신청</p></div>';
        				}else{
-       					res += '<p id="refund'+i+'"onclick="Nrefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       					res += '<p id="refund'+i+'"onclick="Nrefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '환불신청</p></div>';
        				}
-       				res += '<div class="h_row_center" style="width: 90px;">';
+       				res += '<div class="h_center" style="width: 85px;">';
        				if(rsvRefundYn == "환불 진행중" || rsvRefundYn == "환불완료"){
-	       				res += '<p id="review'+i+'"onclick="Review1()"class="btn btn-secondary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+	       				res += '<p id="review'+i+'"onclick="Review1()"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '리뷰쓰기 </p></div></div></div>';
        				}else if(btDay > 0){
-       					res += '<p id="review'+i+'"onclick="Review2()"class="btn btn-secondary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       					res += '<p id="review'+i+'"onclick="Review2()"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '리뷰쓰기</p></div></div></div>';
        				}else if(rsvReviewYn == 'Y'){
-       					res += '<p id="review'+i+'"onclick="Review3()"class="btn btn-secondary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       					res += '<p id="review'+i+'"onclick="Review3()"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '리뷰쓰기</p></div></div></div>';
        				}else{
-       					res += '<p id="review'+i+'"onclick="reviewbtn(rsvNum'+i+',placeNum'+i+')"class="btn btn-primary btn-sm" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       					res += '<p id="review'+i+'"onclick="reviewbtn(rsvNum'+i+',placeNum'+i+')"class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '리뷰쓰기</p></div></div></div>';
        				}
        				
@@ -469,40 +488,56 @@
        		}        	
        		$("#resList").html(res);
         };
-        function refundbtn(e){
-        	console.log(e)
-        	Swal.fire({
-  	    		title: '정말로 환불하시겠습니까?',
-  	    		text: '예약일로부터 4일전까지는 환불이 가능합니다.',
-  	    		icon: 'warning',
-  	    		showCancelButton: true,
-  	    		confirmButtonColor: '#3085d6',
-  	    		cancelButtonColor: '#d33',
-  	    		confirmButtonText: '네, 환불하겠습니다!',
-  	    		cancelButtonText: '아니오.'
-  	    	}).then((result) => {
-  	    		if (result.isConfirmed) {
-  	    		    var rsvnum = $(e).val();
-  	    		    console.log(rsvnum);
-  	    		    $.ajax({
-  	    		    	url:"/mypagerefund.do",
-  	    	           	type :"post",
-  	    	           	data : {"rsvNum" : rsvnum },
-  	    	           	success:function(responseData){
-  	    	           		console.log(responseData);
-  	    	           		if(responseData === "success"){
-	  	    	           		Swal.fire({
-	  	    	    		      title : '성공적으로 환불신청이 되었습니다.',
-	  	    	    		      icon :'success'
-	  	    	    		    }).then((result) => {
-	  	    	    		    	location.href='/goreserve.do'
-	  	    	    		    })	
-  	    	           		}
-  	    	           	
-  	    	           	}
-  	    		    });
-  	    		}
-        	})
+        function refundbtn(e,w){
+        	var checkdate = new Date();
+        	var checkyear = checkdate.getFullYear();
+			var checkmonth = checkdate.getMonth()+1;
+			var checkday = checkdate.getDate();
+			var checkDay = new Date(checkyear,checkmonth,checkday);
+			
+			var btms = $(w).val() - checkDay.getTime();
+			var btDay = btms / (1000*60*60*24);
+        	console.log(e, btDay)
+        	if(btDay>4){
+	        	Swal.fire({
+	  	    		title: '정말로 환불하시겠습니까?',
+	  	    		text: '예약일로부터 4일전까지는 환불이 가능합니다.',
+	  	    		icon: 'warning',
+	  	    		showCancelButton: true,
+	  	    		confirmButtonColor: '#3085d6',
+	  	    		cancelButtonColor: '#d33',
+	  	    		confirmButtonText: '네, 환불하겠습니다!',
+	  	    		cancelButtonText: '아니오.'
+	  	    	}).then((result) => {
+	  	    		if (result.isConfirmed) {
+	  	    		    var rsvnum = $(e).val();
+	  	    		    console.log(rsvnum);
+	  	    		    $.ajax({
+	  	    		    	url:"/mypagerefund.do",
+	  	    	           	type :"post",
+	  	    	           	data : {"rsvNum" : rsvnum },
+	  	    	           	success:function(responseData){
+	  	    	           		console.log(responseData);
+	  	    	           		if(responseData === "success"){
+		  	    	           		Swal.fire({
+		  	    	    		      title : '성공적으로 환불신청이 되었습니다.',
+		  	    	    		      icon :'success'
+		  	    	    		    }).then((result) => {
+		  	    	    		    	location.href='/goreserve.do'
+		  	    	    		    })	
+	  	    	           		}
+	  	    	           	
+	  	    	           	}
+	  	    		    });
+	  	    		}
+	        	})
+        	}else{
+        		Swal.fire({
+          		  icon: 'error',
+         			  title: '환불하실수 없습니다.',
+         			  text: '신청시간으로부터 4일이내가 아닙니다.',
+          		})
+        	}
         }
         function Nrefundbtn(e){
         	console.log(e)

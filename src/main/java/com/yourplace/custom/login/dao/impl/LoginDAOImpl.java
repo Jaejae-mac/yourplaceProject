@@ -27,7 +27,7 @@ public class LoginDAOImpl implements LoginDAO {
 		System.out.println("[MyBatis] 아이디, 이메일 동시조회 호출.");
 		return sqlSessionTemplate.selectOne("UserDAO.getIdAndEmail", vo);
 	}
-
+	
 	// 회원가입 유저 정보 삽입하기.
 
 	@Override
