@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.yourplace.custom.reservation.service.GetDetailInfo;
 import com.yourplace.custom.reservation.service.RsvGetReservationService;
 import com.yourplace.custom.reservation.vo.DetailPlaceVO;
+import com.yourplace.custom.reservation.vo.RsvVO;
 import com.yourplace.custom.reserve.vo.ReserveVO;
 
 @RestController
@@ -27,10 +28,10 @@ public class RsvController {
 	//예약 시작, 종료 시간을 각각 분리하여 정렬한 후 보내주어야 한다.
 	@PostMapping(value="/getReservation.do", consumes = "application/json", produces = "application/json")
 	@CrossOrigin(origins="*")
-	public List<ReserveVO> resReservation(@RequestBody ReserveVO vo) {
+	public List<RsvVO> resReservation(@RequestBody RsvVO vo) {
 		System.out.println("장소 번호 : " + vo.getPlaceNum());
 		System.out.println(vo.getRsvYear() + "-" + vo.getRsvMonth()+"-"+vo.getRsvDate() );
-		List<ReserveVO> rsvList = rsvGetReservationService.getReservation(vo);
+		List<RsvVO> rsvList = rsvGetReservationService.getReservation(vo);
 		System.out.println(rsvList);
 		System.out.println("rsvList Len : " + rsvList.size());
 		return rsvList;

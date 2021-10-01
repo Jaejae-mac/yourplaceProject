@@ -23,8 +23,8 @@
 			alert('비밀번호를 다시 확인해주세요.');
 		</script>
 	</c:if>
-	<c:if test="${userId != null}">
-		MY Page - ${userId }
+	<c:if test="${userVO != null}">
+		MY Page - ${userVO.userId }
 	</c:if>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
@@ -44,7 +44,7 @@
 
 			<div style="margin: 40px 50px;">
 				<form action="" id="checkpass_form" method="post">
-					<input type="hidden" name="userId" value="${userId}">	
+					<input type="hidden" name="userId" value="${userVO.userId}">	
 					<div
 						style="font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 						현재 비밀번호</div>

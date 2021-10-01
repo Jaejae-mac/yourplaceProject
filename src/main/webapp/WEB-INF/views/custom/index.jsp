@@ -138,7 +138,7 @@
 				style="display: flex; flex-flow: row wrap; min-width: 1160px; max-width: 1160px;">
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
 
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(0,0)" class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<!--URL Mapping-->
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
@@ -153,41 +153,41 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(0,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_1_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
 
-						<div onclick=" "
+						<div onclick="click_category(0,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>아파트</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(0,3)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>주택</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(0,4)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>빌라</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(0,5)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>원룸</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(0,6)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>한옥</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(0,7)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>홈오피스</p>
 						</div>
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick=" click_category(1,0)" class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -200,69 +200,65 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick=" click_category(1,1)"
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_2_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
 
-						<div onclick=" "
+						<div onclick="click_category(1,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>자연광</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(1,3) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>호리존</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,4)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>유튜브</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(1,5) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>단독주택형</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,6)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>빈티지</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,7)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>키친</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,8)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>무대형</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,9)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>세트장</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,10)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>무인</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,11)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>녹음실</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,12)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>연습실</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(1,13)"
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>파티룸</p>
-						</div>
-						<div onclick=" "
-							class="h_center h_hover_button left_side_button button_font_style">
-							<p>스튜디오 기타</p>
 						</div>
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(2,0) " class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -275,40 +271,36 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(2,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_3_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
-						<div onclick=" "
+						<div onclick=" click_category(2,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>카페</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(2,3)  "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>식당</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(2,4) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>바/술집</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(2,5)  "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>헬스장</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(2,6)  "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>요가/필라테스</p>
-						</div>
-						<div onclick=" "
-							class="h_center h_hover_button right_side_button button_font_style">
-							<p>기타 상업 공간</p>
 						</div>
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(3,0)" class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -321,44 +313,44 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(3,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_4_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
-						<div onclick=" "
+						<div onclick="click_category(3,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>편의점</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,3) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>빨래방</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,4) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>헤어샵</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,5) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>PC방</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,6) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>노래방</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,7) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>오락실</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(3,8) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>스포츠</p>
 						</div>
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(4,0) " class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -371,45 +363,45 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(4,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_5_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
 
-						<div onclick=" "
+						<div onclick="click_category(4,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>복합문화공간</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,3) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>갤러리</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,4) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>공방/작업실</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,5) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>책방</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,6) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>공연장</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,7) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>강당</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(4,8) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>강의실</p>
 						</div>
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(5,0) " class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -424,49 +416,46 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(5,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_6_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
 
-						<div onclick=" "
+						<div onclick=" click_category(5,2)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>사무실</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(5,3) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>병원/약국</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(5,4) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>학교</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(5,5) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>학원</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(5,6)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>클럽</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(5,7) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>웨딩</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(5,8) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>호텔펜션</p>
 						</div>
-						<div onclick=" "
-							class="h_center h_hover_button right_side_button button_font_style">
-							<p>기타 특수 공간</p>
-						</div>
+						
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(6,0) " class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -481,42 +470,36 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=""
+					<div onclick="click_category(6,1)"
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_7_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
-						<div onclick=" "
+						<div onclick="click_category(6,2) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>공장</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(6,3) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>창고</p>
 						</div>
-						<div onclick=" "
+						<div onclick=" click_category(6,4)"
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>지하실</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(6,5) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>빈 공간</p>
 						</div>
-						<div onclick=" "
-							class="h_center h_hover_button left_side_button button_font_style">
-							<p>폐차장</p>
-						</div>
-						<div onclick=" "
-							class="h_center h_hover_button right_side_button button_font_style">
-							<p>기타 대형 공간</p>
-						</div>
+						
+						
 					</div>
 				</div>
 
 
 				<div style="margin-top: 60px; width: 274px;">
-					<div onclick=" " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(6,0) " class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -531,28 +514,25 @@
 							class="h_pc_category_header_chevron"
 							style="width: 20px; height: 20px;">
 					</div>
-					<div onclick=" "
+					<div onclick="click_category(6,1) "
 						style="margin-top: 10px; height: 150px; border-radius: 4px; overflow: hidden; cursor: pointer;">
 						<img src="<c:url value="/resources/custom/image/main_8_v3.jpg" />"
 							style="width: 100%; height: 100%; object-fit: cover;">
 					</div>
 					<div style="display: flex; flex-flow: row wrap;">
-						<div onclick=" "
+						<div onclick="click_category(6,6) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>옥상</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(6,7) "
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>정원</p>
 						</div>
-						<div onclick=" "
+						<div onclick="click_category(6,8) "
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>캠핑장</p>
 						</div>
-						<div onclick=" "
-							class="h_center h_hover_button right_side_button button_font_style">
-							<p>기타 야외 장소</p>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -611,7 +591,7 @@
 
 			<div class="total_card_layout">
 				<!--신규등록 장소 추천 반복 시작. -->
-				<c:forEach var="latestPlace" items="${latestPlaces }" >
+				<c:forEach var="latestPlace" items="${latestPlaces }" varStatus="status">
 					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;" onclick="gotoDetail('#place_num${status.index }')">
 						<input type="hidden" id="place_num" name="place_num"
 							value="${latestPlace.placeNum}" />

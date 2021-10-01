@@ -9,6 +9,12 @@
 		alert('아이디 또는 비밀번호를 확인해주세요.');
 	</script>
 </c:if>
+<c:if test="${accessDenied == 'accessDenied' }">
+	<script>
+		//alert 를 내보낸다.
+		alert('로그인 후 이용해주세요.');
+	</script>
+</c:if>
 
 <!DOCTYPE html>
 <html>
@@ -133,18 +139,19 @@ input:focus{
 							<!-- 로그인 버튼 -->
 							<!-- Login v-on:click="login()" -->
 							<div
-								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;">
+								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
+								onclick="login_guest_do()">
 								<label for="login_guest" class="login_guest_lb">게스트 로그인</label> <input
-									type="button" id="login_guest" onclick="login_guest_do()">
+									type="button" id="login_guest" >
 							</div>
 
 							<div
-								style="margin-top: 20px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+								style="margin-top: 20px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;"onclick="loginGuestKakaoDo()">
 
 								<label for="login_kakao" class="login_kakao"><img
 									src="<c:url value="/resources/img/kakao/kakao_login_btn.png" />"
 									alt="" style="height: 50px;"></label> <input type="button"
-									id="login_kakao" onclick="loginGuestKakaoDo()"
+									id="login_kakao" 
 									style="display: none;">
 									<input type="hidden" name="kakaoid" id="kakaoid" />
 								<input type="hidden" name="kakaoemail" id="kakaoemail" />

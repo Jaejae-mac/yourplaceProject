@@ -12,8 +12,8 @@
 <title>MyPage Change Password</title>
 </head>
 <body>
-	<c:if test="${userId != null}">
-		MY Page - ${userId }
+	<c:if test="${userVO != null}">
+		MY Page - ${userVO.userId }
 	</c:if>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
@@ -32,7 +32,7 @@
             <div style="margin: 40px 50px;">
 
                 <form action="" id="updatepassword" method="POST" >
-                	<input type="hidden" name="userId" id="userId" value="${userId}">
+                	<input type="hidden" name="userId" id="userId" value="${userVO.userId}">
                     <div style="font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #9ea4aa;">
                         	새 비밀번호
                     </div>

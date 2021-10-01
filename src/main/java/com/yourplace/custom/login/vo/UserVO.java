@@ -25,5 +25,6 @@ public class UserVO {
 	private String userSmsAgree;
 	private String userEmailAgree;
 	private String kakaoId;
+	private int loginCheck; // 1이면 로그인, 0이면 아이디또는 비번 틀림.
 	
 }

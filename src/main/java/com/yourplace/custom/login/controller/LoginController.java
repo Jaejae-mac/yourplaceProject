@@ -25,19 +25,19 @@ public class LoginController {
 	@GetMapping("/loginForm.do")
 	public String loginForm(HttpServletRequest request) {
 		System.out.println("[ 로그인 폼 호출 ]");
-		String url = request.getRequestURI();
-		boolean equa = url.contentEquals("/loginForm.do");
-		System.out.println(equa + "LoginController 결과값");
+//		String url = request.getRequestURI();
+//		boolean equa = url.contentEquals("/loginForm.do");
+//		System.out.println(equa + "LoginController 결과값");
 //		System.out.println(equ);
 	
-		if (equa==true) {
-			HttpSession session = request.getSession();
-			session.removeAttribute("userType");
-			session.setAttribute("userType", 0);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("userType", 1);
-		}
+//		if (equa==true) {
+//			HttpSession session = request.getSession();
+//			session.removeAttribute("userType");
+//			session.setAttribute("userType", 0);
+//		} else {
+//			HttpSession session = request.getSession();
+//			session.setAttribute("userType", 1);
+//		}
 		return "login/loginForm";
 	}
 	
@@ -45,17 +45,13 @@ public class LoginController {
 	//로그인 처리를 해주는 컨트롤러.
 	@PostMapping("/login.do")
 	public String login(UserVO vo, HttpServletRequest request, Model model) {
-		int result = loginUserService.getUser(vo);
-		if (result == 1) {
+		UserVO result = loginUserService.getUser(vo);
+		if (result.getLoginCheck() == 1) {
 			// 로그인 성공시에는세션을 생성해준다.
 			HttpSession session = request.getSession();
 			// 세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
-			session.setAttribute("userId", vo.getUserId());
-
-			System.out.println(vo.getUserType());
-			session.setAttribute("userType", String.valueOf(vo.getUserType()));
-			session.setAttribute("userNum", vo.getUserNum());
-
+			session.setAttribute("userVO", result);
+			session.setAttribute("userId", result.getUserId());
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			return "redirect:home.do";
 		}
@@ -80,7 +76,6 @@ public class LoginController {
 
 			//회원가입 폼에 카카오 에서 동의체크된 항목들을 가져와야 하기 때문에, 
 			//객체에 실어서 보내줘야 한다.
-
 			model.addAttribute("kakaoId", request.getParameter("kakaoid"));
 			model.addAttribute("kakaoEmail", request.getParameter("kakaoemail"));
 			model.addAttribute("kakaoName", request.getParameter("kakaoname"));
@@ -89,7 +84,7 @@ public class LoginController {
 				// 로그인 성공시에는세션을 생성해준다.
 			HttpSession session = request.getSession();
 			// 세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
-
+			session.setAttribute("userVO", kakao);
 			session.setAttribute("userId", kakao.getUserId());
 			session.setAttribute("userType", kakao.getUserType());
 			session.setAttribute("userNum", kakao.getUserNum());

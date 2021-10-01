@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -38,11 +39,10 @@ public class AwsS3 {
 	private AwsS3() {
 		ReadJsonFile readJsonFile = new ReadJsonFile();
 		try {
-			List<String> keys = readJsonFile.parser();
-			accessKey = keys.get(0);
-			System.out.println(accessKey);
-			secretKey = keys.get(1);
-			System.out.println(secretKey);
+			List<String> keys = Arrays.asList("awsAccessKey","awsSecretKey");
+			List<String> values = readJsonFile.parser(keys);
+			accessKey = values.get(0);
+			secretKey = values.get(1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

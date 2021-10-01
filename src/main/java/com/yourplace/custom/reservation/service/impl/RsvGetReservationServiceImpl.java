@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yourplace.custom.reservation.dao.RsvDAO;
 import com.yourplace.custom.reservation.service.RsvGetReservationService;
+import com.yourplace.custom.reservation.vo.RsvVO;
 import com.yourplace.custom.reserve.vo.ReserveVO;
 
 @Service("rsvGetReservationService")
@@ -17,7 +18,7 @@ public class RsvGetReservationServiceImpl implements RsvGetReservationService {
 	private RsvDAO rsvDAO;
 	
 	@Override
-	public List<ReserveVO> getReservation(ReserveVO vo) {
+	public List<RsvVO> getReservation(RsvVO vo) {
 		
 		return rsvDAO.getReservation(vo);
 	}

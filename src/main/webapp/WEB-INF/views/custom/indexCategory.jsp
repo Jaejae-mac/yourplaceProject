@@ -23,33 +23,11 @@
 	<div id="warp">
 		<div id="category-detail">
 			<ul>
-				<li>
-					<p onclick="window.location.href='/category'">모든 장소</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/1'">가정집</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/2'">스튜디오</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/3'">상업 공간</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/4'">편의 시설</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/5'">문화 공간</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/6'">특수 공간</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/8'">대형 공간</p>
-				</li>
-				<li>
-					<p onclick="window.location.href='/category/7'">야외</p>
-				</li>
+				<c:forEach var="li" items="${categoryList }">
+					<li>
+						<p onclick="location.href='/category.do?maincate=${mainCategory}&subcate=${li}'">${li }</p>
+					</li>
+				</c:forEach>
 			</ul>
 		</div>
 		<hr>

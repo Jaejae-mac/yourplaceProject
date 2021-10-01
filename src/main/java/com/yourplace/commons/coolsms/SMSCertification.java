@@ -1,6 +1,8 @@
 package com.yourplace.commons.coolsms;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,9 +21,10 @@ public class SMSCertification {
 		String secretKey = null;
 		Message coolsms = null;
 		try {
-			List<String> keys =  file.parserCoolSms();
-			accessKey = keys.get(0);
-			secretKey = keys.get(1);
+			List<String> keys = Arrays.asList("coolAccessKey","coolSecretKey");
+			List<String> values = file.parser(keys);
+			accessKey = values.get(0);
+			secretKey = values.get(1);
 			coolsms = new Message(accessKey,secretKey);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

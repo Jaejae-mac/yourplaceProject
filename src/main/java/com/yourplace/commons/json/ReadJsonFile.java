@@ -14,31 +14,17 @@ import org.json.simple.parser.ParseException;
 
 //JSON 파일을 읽어오기 위한 클래스.
 public class ReadJsonFile {
-	
-
-	// 리턴 타입이 String 리스트 타입이다.
-	public List<String> parser() throws IOException, ParseException {
+	//JSON 파일을 읽어들여 파싱하고, 리스트 객체에 값들을 추가후 키들을 리턴해준다.
+	public List<String> parser(List<String> keys) throws IOException, ParseException{
+		List<String> values = new ArrayList<String>();
 		JSONObject jsonObject = getJsonFile();
-		// 읽어들인 객체에서 키값을 매개로 Value를 받아온다.
-		String accessKey = (String) jsonObject.get("accessKey");
-		String secretKey = (String) jsonObject.get("secretKey");
-
-		List<String> keys = new ArrayList<String>();
-		keys.add(accessKey);
-		keys.add(secretKey);
-		return keys;
-	}
-
-	// CoolSMS Certification key parser
-	public List<String> parserCoolSms() throws IOException, ParseException {
-		JSONObject jsonObject = getJsonFile();
-		String accessKey = (String) jsonObject.get("coolAccessKey");
-		String secretKey = (String) jsonObject.get("coolSecretKey");
-
-		List<String> keys = new ArrayList<String>();
-		keys.add(accessKey);
-		keys.add(secretKey);
-		return keys;
+		if(jsonObject != null) {
+			for(String str : keys) {
+				String key = (String) jsonObject.get(str);
+				values.add(key);
+			}
+		}
+		return values;
 	}
 
 	private JSONObject getJsonFile() {
@@ -71,8 +57,6 @@ public class ReadJsonFile {
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			
 		}
 		return null;
 	}

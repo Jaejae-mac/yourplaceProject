@@ -8,9 +8,12 @@ import org.springframework.stereotype.Repository;
 
 
 import com.yourplace.custom.reservation.dao.RsvDAO;
+import com.yourplace.custom.reservation.vo.CouponVO;
 import com.yourplace.custom.reservation.vo.DetailPlaceVO;
+import com.yourplace.custom.reservation.vo.PaymentVO;
 import com.yourplace.custom.reservation.vo.PlaceImgVO;
 import com.yourplace.custom.reservation.vo.PlaceInfoVO;
+import com.yourplace.custom.reservation.vo.RsvVO;
 import com.yourplace.custom.reserve.vo.ReserveVO;
 
 @Repository("rsvDAO")
@@ -20,7 +23,7 @@ public class RsvDAOImpl implements RsvDAO{
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<ReserveVO> getReservation(ReserveVO vo) {
+	public List<RsvVO> getReservation(RsvVO vo) {
 		return sqlSessionTemplate.selectList("ReserveMapper.getRsvList",vo);
 	}
 	
@@ -46,4 +49,23 @@ public class RsvDAOImpl implements RsvDAO{
 		return sqlSessionTemplate.selectList("ReserveMapper.getImgList",vo);
 	}
 
+	@Override
+	public List<CouponVO> myCouponList(String userCoupId) {
+		return sqlSessionTemplate.selectList("ReserveMapper.getMyCouponList",userCoupId);
+	}
+
+	@Override
+	public void insertReservation(RsvVO vo) {
+		sqlSessionTemplate.insert("ReserveMapper.insertReservation",vo);
+	}
+	
+	@Override
+	public void userCouponStateUpdate(CouponVO vo) {
+		sqlSessionTemplate.update("ReserveMapper.updateCouponStatus",vo);
+	}
+
+	@Override
+	public void insertPayment(PaymentVO vo) {
+		sqlSessionTemplate.update("ReserveMapper.insertPayment",vo);
+	}
 }

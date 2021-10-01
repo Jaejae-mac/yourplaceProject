@@ -34,8 +34,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myHost" />
 		<typeAlias type="com.yourplace.custom.login.vo.UserVO"
 			alias="myUser" />
-		<typeAlias type="com.yourplace.custom.reserve.vo.ReserveVO"
+		<typeAlias type="com.yourplace.custom.reservation.vo.RsvVO"
 			alias="reserveVO" />
+		<typeAlias
+			type="com.yourplace.custom.reservation.vo.PaymentVO"
+			alias="paymentVO" />
+		<typeAlias
+			type="com.yourplace.custom.reservation.vo.CouponVO" alias="couponVO" />
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO" />
@@ -68,7 +73,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostSalesVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
 			alias="AskVO" />
-		
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
 			alias="MyPageHostReviewVO" />

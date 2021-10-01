@@ -18,29 +18,44 @@
 
 	</insert>
 
-
+<!-- 예약 객체 매핑. -->
 	<resultMap type="reserveVO" id="getReserveList">
 		<result property="placeNum" column="place_num" />
-		<result property="detailNum" column="detail_num" />
+		<result property="placeDetailNum" column="place_detail_num" />
 		<result property="rsvName" column="rsv_name" />
 		<result property="rsvId" column="rsv_id" />
 		<result property="rsvYear" column="rsv_year" />
 		<result property="rsvMonth" column="rsv_month" />
 		<result property="rsvDate" column="rsv_date" />
 		<result property="rsvStartT" column="rsv_start_t" />
-		<result property="rsvEndTime" column="rsv_end_t" />
+		<result property="rsvEndT" column="rsv_end_t" />
 		<result property="rsvPurpose" column="rsv_purpose" />
 		<result property="rsvRequest" column="rsv_request" />
 		<result property="rsvRefundYN" column="rsv_refund_yn" />
-		<result property="rsvRefundReason" column="rsv_refund_reason" />
-		<result property="rsvPay" column="rsv_pay" />
-		<result property="rsvPayMthd" column="rsv_pay_mthd" />
+		<result property="invBfTax" column="inv_bf_tax"/>
+		<result property="payNum" column="pay_num" />
+		<result property="payCoupNum" column="pay_coup_num" />
+		<result property="rsvName" column="rsv_name" />
+		<result property="rsvEmail" column="rsv_email" />
+		<result property="rsvTel" column="rsv_tel" />
+		<result property="headCount" column="head_count" />
+	</resultMap>
+	<!-- 결제 객체 매핑. -->
+	<resultMap type="paymentVO" id="getPaymentList">
+		<id property="orderNum" column="order_num" />
+		<result property="placeNum" column="place_num" />
+		<result property="payCoupNum" column="pay_coup_num" />
+		<result property="rsvName" column="rsv_name" />
+		<result property="placeMaincate" column="place_maincate" />
+		<result property="placeCate" column="place_cate" />
 		<result property="payYear" column="pay_year" />
 		<result property="payMonth" column="pay_month" />
 		<result property="payDate" column="pay_date" />
-		<result property="payNum" column="pay_num" />
-		<result property="payCoupYN" column="pay_coup_yn" />
-		<result property="payCoupNum" column="pay_coup_num" />
+		<result property="invCost" column="inv_cost" />
+		<result property="invBfTax" column="inv_bf_tax"/>
+		<result property="invTax" column="int_tax" />
+		<result property="invAftTax" column="inv_aft_tax" />
+		<result property="userNum" column="user_num" />
 	</resultMap>
 
 	<resultMap type="detailPlaceVO" id="getDetailInfo">
@@ -85,7 +100,17 @@
 		<result property="s3FileName" column="s3_file_name" />
 		<result property="imgRegDate" column="img_reg_date" />
 	</resultMap>
-
+	
+	<!-- 쿠폰 객체 변수, 컬럼명 매핑. -->
+	<resultMap type="couponVO" id="mycoupon">
+		<id property="coupNum" column="coup_num" />
+		<id property="userCoupId" column="user_coup_id" />
+		<result property="userCoupUseYn" column="user_coup_user_yn" />
+		<result property="coupStartD" column="coup_start_d" />
+		<result property="coupEndD" column="coup_end_d" />
+		<result property="coupName" column="coup_name" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+	</resultMap>
 
 	<select id="getAll" resultMap="getReserveList">
 		SELECT * FROM reserve
@@ -94,7 +119,7 @@
 
 	<resultMap type="reserveVO" id="getreservedTime">
 		<result property="rsvStartT" column="rsv_start_t" />
-		<result property="rsvEndTime" column="rsv_end_t" />
+		<result property="rsvEndT" column="rsv_end_t" />
 	</resultMap>
 
 
@@ -177,9 +202,9 @@
 	</select>
 	<!-- JJ 작성부. -->
 	<select id="getRsvList" resultMap="getmyreserveList">
-		SELECT * FROM reserve where
+		SELECT * FROM reservation where
 		rsv_year=#{rsvYear} and rsv_month=#{rsvMonth} and rsv_date=#{rsvDate}
-		and place_num=#{placeNum} and detail_num=#{detailNum} order by
+		and place_num=#{placeNum} and place_detail_num=#{detailNum} order by
 		rsv_start_t asc;
 	</select>
 	<select id="getDetail" resultMap="getDetailInfo">
@@ -205,6 +230,47 @@
 		SELECT * FROM place_detail WHERE place_num = #{placeNum}
 
 	</select>
+	
+	<select id="getMyCouponList" resultMap="mycoupon" parameterType="String">
+		select distinct a.*,
+				(select coup_name from coupon_all where coup_num = a.coup_num) as coup_name,
+        		(select coup_dis_rate from coupon_all where coup_num = a.coup_num) as coup_dis_rate
+        	from coupon_user a
+        		where user_coup_id = #{userCoupId}
+					and 
+					<![CDATA[
+						current_timestamp >= a.coup_start_d
+					and
+						current_timestamp <= a.coup_end_d
+            		and 
+            		]]>
+            			a.user_coup_use_yn = 'n';
+	</select>
+	<insert id="insertReservation">
+		INSERT INTO reservation (place_num, rsv_num, user_num, rsv_year, rsv_month, rsv_date, rsv_start_t, rsv_end_t, rsv_purpose, rsv_request,
+						inv_bf_tax, pay_num,rsv_name, rsv_email, rsv_tel,place_detail_num , head_count,pay_coup_num)
+                        VALUES(
+						#{placeNum},#{rsvNum},#{userNum},#{rsvYear},#{rsvMonth},#{rsvDate},#{rsvStartT},#{rsvEndT},#{rsvPurpose},#{rsvRequest},#{invBfTax},#{payNum}, #{rsvName},#{rsvEmail},
+                        #{rsvTel},#{placeDetailNum},#{headCount},#{payCoupNum}
+                        );
+	</insert>
+	<update id="updateCouponStatus">
+		UPDATE coupon_user SET user_coup_use_yn = 'Y' where coup_num=#{coupNum} and user_coup_id=#{userCoupId}
+	</update>
+	<insert id="insertPayment">
+		INSERT INTO payment(
+							rsv_num, pay_num, place_maincate, place_cate,
+							pay_year, pay_month, pay_date, inv_cost,
+							coup_dis_rate, inv_bf_tax, inv_tax, inv_aft_tax,
+							user_num, pay_coup_num, order_num
+						)
+			VALUES(
+					#{rsvNum}, #{payNum} , #{placeMaincate} , #{placeCate} , 
+					#{payYear} , #{payMonth} , #{payDate} , #{invCost} ,
+					#{coupDisRate} , #{invBfTax} , #{invTax} , #{invAftTax} , 
+					#{userNum} , #{payCoupNum} , #{orderNum}
+				);
+	</insert>
 	
 	
 <!-- 검색 -->

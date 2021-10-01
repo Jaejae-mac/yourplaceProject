@@ -98,9 +98,9 @@ public class MypageController {
 	@RequestMapping("/gocheckPw.do")
 	public String gocheckPw(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		System.out.println(userId);
-		session.setAttribute("userId", userId);
+		UserVO user = (UserVO)session.getAttribute("userVO");
+
+		session.setAttribute("userVO", user);
 		return "mypage/mypagecheckPw";
 	}
 	//비밀번호 변경페이지 이동
@@ -108,10 +108,10 @@ public class MypageController {
 	public String MypageChangPw(UserVO vo, HttpServletRequest request, Model model) {
 		System.out.println("[MypageController MypageChangPw 기능 수행]");
 		System.out.println(vo.toString());
-		int result = loginUserService.getUser(vo);
-		if(result == 1) {
+		UserVO result = loginUserService.getUser(vo);
+		if(result.getLoginCheck() == 1) {
 			HttpSession session = request.getSession();
-			session.setAttribute("userId", vo.getUserId());
+			session.setAttribute("userVO", result);
 			return "mypage/MyPageresetPw";
 		}
 		return "mypage/mypagecheckPw";
