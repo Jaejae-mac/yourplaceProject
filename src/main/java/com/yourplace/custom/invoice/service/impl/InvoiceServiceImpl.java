@@ -1,7 +1,5 @@
 package com.yourplace.custom.invoice.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +14,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 	@Autowired
 	private InvoiceDAO invoiceDAO;
 	@Override
-	public List<InvoiceVO> invoiceView(InvoiceVO vo) {
+	public InvoiceVO invoiceView(InvoiceVO vo) {
 		System.out.println("[InvoiceServiceImpl]"+ vo.toString());
 		return invoiceDAO.invoiceView(vo);
 	}

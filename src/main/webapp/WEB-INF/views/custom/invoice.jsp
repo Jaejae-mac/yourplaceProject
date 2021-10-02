@@ -206,11 +206,26 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: -0.09px; text-align: right; color: #1b1d1f;">
-										${payment.invAftTax}원(부가세${payment.invTax}원 포함)</p>
+										${payment.invCost}원(부가세${payment.invTax}원 포함)</p>
 								</div>
 							</div>
 							</c:if>
-							<c:if test="${payment.rsvRefundYn != 0}">
+							<c:if test="${payment.rsvRefundYn == 1}">
+								<div class="h_row">
+								<div style="width: 100px; padding: 10px 0;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #72787f;">
+										환불 예정금액</p>
+								</div>
+								<div
+									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
+										${payment.invCost }원</p>
+								</div>
+							</div>
+							</c:if>
+							<c:if test="${payment.rsvRefundYn == 2 || payment.rsvRefundYn == 3}">
 								<div class="h_row">
 								<div style="width: 100px; padding: 10px 0;">
 									<p
