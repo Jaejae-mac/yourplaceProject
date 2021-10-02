@@ -134,7 +134,7 @@
 					<!--상단 큰 이미지 리스트 영역 끝.-->
 					<!--크게보기 버튼-->
 					<div class="h_center"
-						style="position: absolute; top: 60px; right: 10px; width: 160px; height: 32px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.8); overflow: hidden; cursor: pointer;">
+						style="position: absolute; top: 60px; right: 10px; width: 180px; height: 33px; border-radius: 4px; background-color: rgba(255, 255, 255, 0.8); overflow: hidden; cursor: pointer;">
 						<div class="h_row_center">
 							<img src=" <c:url value="/resources/custom/icon/full.svg"/>"
 								style="width: 20px; height: 20px" />
