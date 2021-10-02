@@ -67,6 +67,7 @@ public class QueController {
 		System.out.println("문의답변 메일 정상 발송 완료");
 		System.out.println("문의사항 View List 페이지로 돌아갑니다.");
 		
+		//보냄과 동시에 문의사항 업데이트
 		System.out.println("[Controller] 문의사항 상태 업데이트");
 		updateService.updateStatus(reprtSeq);
 		

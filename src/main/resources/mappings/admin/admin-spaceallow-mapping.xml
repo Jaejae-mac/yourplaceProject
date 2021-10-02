@@ -13,6 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userTel" column="user_tel" />
 		<result property="userEmail" column="user_email" />
 		<result property="placeAllow" column="place_allow" />
+		<result property="placeThumb" column="place_thumb"/>
 		<result property="s3FileName" column="s3_file_name" />
 
 	</resultMap>
@@ -45,6 +46,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- s3 서버에서 이미지 삭제를 위해 url 조회 -->
 	<select id="selectSpaceImgUrl" resultMap="spaceResult">
 		SELECT s3_file_name FROM place_img WHERE place_num = #{placeNum};
+	</select>
+	
+	<!-- s3 서버에서 썸네일 삭제를 위해 url 조회 -->
+	<select id="selectSpaceThumbImgUrl" resultMap="spaceResult">
+		SELECT FROM place_thumb where place_num = #{placeNum}
 	</select>
 	
 	

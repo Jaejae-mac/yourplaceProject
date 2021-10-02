@@ -9,5 +9,7 @@ public interface DeleteSpaceService {
 	void deleteSpace(int deleteSpace);
 	
 	List<SpaceVO> selectSpaceImgUrl(int deleteSpace);
+	
+	String selectSpaceThumbImgUrl(int deleteSpace);
 
 }

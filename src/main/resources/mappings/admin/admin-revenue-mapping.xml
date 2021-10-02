@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payEndMonth" column="pay_end_month" />
 		<result property="payStartDate" column="pay_start_date" />
 		<result property="payEndDate" column="pay_end_date" />
+		<result property="year" column="year" />
 		
 		<result property="invCost" column="inv_cost" />
 		<result property="coupDisRate" column="coup_dis_rate" />
@@ -55,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 선택 기간별 정보 + 매출 -->
 	
 	<select id="getTermMonth" resultMap="revenueResult">
-		select pay_year, pay_month, pay_date 
+		select pay_year, pay_month, pay_date, inv_aft_tax
 		from test_invoice
     	where pay_year = #{payYear}
     	and
@@ -64,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getTermMonthNDate" resultMap="revenueResult">
-		select pay_year, pay_month, pay_date 
+		select pay_year, pay_month, pay_date, inv_aft_tax
 		from test_invoice
 	    where pay_year = #{payYear}
 	    and

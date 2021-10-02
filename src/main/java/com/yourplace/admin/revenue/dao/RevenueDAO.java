@@ -16,6 +16,8 @@ public interface RevenueDAO {
 	//payYear 값 필요한 Monthly Sum
 	List<RevenueVO> getMonthSumFirst(int year);
 	
+	///////////////////////////////////////////////////////////
+
 	//전체 예약건수
 	List<RevenueVO> getRsvCount();
 	
@@ -27,6 +29,8 @@ public interface RevenueDAO {
 	
 	//서브 카테고리 예약건수
 	List<RevenueVO> getSubCateRank(int year);
+	
+	///////////////////////////////////////////////////////////
 	
 	//연도, 시작-종료 월 입력, 날짜별 금액만 도출
 	List<RevenueVO> getTermMonth(RevenueVO vo);

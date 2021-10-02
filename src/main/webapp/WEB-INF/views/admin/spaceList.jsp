@@ -152,11 +152,13 @@
        <!-- allow -->
        <form id="submitForm2" method="POST" action="/allowSpace.mdo" hidden="hidden">
        	<input type="hidden" id="allowSpaceHidden" name="allowSpace">
+       	<input type="hidden" id="allowSpaceEmail" name="allowEmail">
        </form>
        
        <!-- deny -->
        <form id="submitForm3" method="POST" action="/denySpace.mdo" hidden="hidden">
        	<input type="hidden" id="denySpaceHidden" name="denySpace">
+       	<input type="hidden" id="denySpaceEmail" name="denyEmail">
        </form>
         
         <footer class="py-4 bg-light mt-auto">
@@ -232,6 +234,12 @@
 	
 			var active = td.eq(0).text();
 			var no = td.eq(1).text();
+			var id = td.eq(2).text();
+			var name = td.eq(3).text();
+			var cate = td.eq(4).text();
+			var spaceName = td.eq(5).text();
+			var tel = td.eq(6).text();
+			var email = td.eq(7).text();
 			
 			td.each(function(i)
 			{
@@ -239,9 +247,13 @@
 			});
 		
 	        console.log("선택된 번호: " + no);
+	        console.log("승인 메일 보낼 주소: " + email);
 	        
 	        $("#allowSpaceHidden").val(no);
+	        $("#allowSpaceEmail").val(email);
 	        $("#submitForm2").submit();
+	        
+	        
 
 		});
 			
@@ -261,6 +273,12 @@
 	
 			var active = td.eq(0).text();
 			var no = td.eq(1).text();
+			var id = td.eq(2).text();
+			var name = td.eq(3).text();
+			var cate = td.eq(4).text();
+			var spaceName = td.eq(5).text();
+			var tel = td.eq(6).text();
+			var email = td.eq(7).text();
 			
 			td.each(function(i)
 			{
@@ -268,8 +286,10 @@
 			});
 		
 	        console.log("선택된 번호: " + no);
+	        console.log("거절 메일 보낼 주소: " + email);
 	        
 	        $("#denySpaceHidden").val(no);
+	        $("#denySpaceEmail").val(email);
 	        $("#submitForm3").submit();
 
 		});

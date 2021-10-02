@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.yourplace.admin.revenue.vo.RevenueVO;
 
-public interface TermRevenueService {
+public interface RevenueTermService {
 
 	List<RevenueVO> getTermMonth(RevenueVO vo);
 	

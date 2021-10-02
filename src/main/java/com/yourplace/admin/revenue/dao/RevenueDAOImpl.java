@@ -78,20 +78,23 @@ public class RevenueDAOImpl implements RevenueDAO {
 
 	@Override
 	public List<RevenueVO> getTermMonthNDate(RevenueVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("---> MyBatis 로 getTermMonthNDate 기능 처리");
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.getTermMonthNDate", vo);
+		return list;
 	}
 
 	@Override
 	public List<RevenueVO> getTermAllMonth(RevenueVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("---> MyBatis 로 getTermAllMonth 기능 처리");
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.getTermAllMonth", vo);
+		return list;
 	}
 
 	@Override
 	public List<RevenueVO> getTermAllMonthNDate(RevenueVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("---> MyBatis 로 getTermAllMonthNDate 기능 처리");
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.getTermAllMonthNDate", vo);
+		return list;
 	}
 
 
