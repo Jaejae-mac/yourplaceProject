@@ -101,6 +101,7 @@
 			banner.rollInit(4000); // 배너 롤링
 		});
 	</script>
+	
 	<!-- Banner -->
 	<!--슬라이드 배너 테스트-->
 	<div id="banner" style="position: relative; top: 100px;">
@@ -110,14 +111,18 @@
 				<div class="container h_column_center">
 					<div class="img_wrap">
 						<ul class="rollimgs">
+						
+						<!-- a href="#" : 이미지 클릭시 url mapping-->
+						<!-- for each 문 시작 -->
 							<li>
-								<!--이미지 클릭시 url mapping--> <a href="#"> <img
-									src="<c:url value="/resources/custom/image/banner1.png" />" />
+								<a href="#">
+								<img src="<c:url value="/resources/custom/image/banner1.png" />" />
 							</a>
 							</li>
-
-							<li><a href="#"> <img
-									src="<c:url value="/resources/custom/image/banner2.png" />">
+						<!-- for each 문 완료 -->
+							<li>
+								<a href="#">
+								<img src="<c:url value="/resources/custom/image/banner2.png" />">
 							</a></li>
 
 						</ul>

@@ -104,7 +104,7 @@
                       <td>${que.reprtContent }</td>
                       <td>
 	                      <button type="button" class="btn btn-primary" id="response_btn"
-	                      data-toggle="modal" data-target="#responseModal"
+	                      data-toggle="modal" data-target="responseModal"
 	                      style="font-size: 10px;margin-left: 10px;">
 	                      	답변
 	                      </button>
@@ -117,9 +117,6 @@
 	                      			
 	                      			<div class="modal-header">
 				                      <h5 class="modal-title" id="staticBackdropLabel"> 이메일 답변하기 </h5>
-				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                      <span aria-hidden="true">&times;</span>
-				                      </button>
 				                    </div>
 				                      
 				                      <div class="modal-body">

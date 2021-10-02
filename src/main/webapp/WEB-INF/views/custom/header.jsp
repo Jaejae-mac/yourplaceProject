@@ -177,6 +177,54 @@
 						</c:otherwise>
 					</c:choose>
 
+					<div
+                    style="width: 1px; height: 30px; background-color: rgb(201, 205, 210); margin-right: 10px; margin-left: 20px;">
+                </div>
+
+	            <!-- 검색기능 시작 -->
+	             <div onclick="toggle_search_container()"
+	                class="h_center" style="width: 44px; height: 44px; cursor: pointer;">
+	                <img src="https://s3.hourplace.co.kr/web/images/icon/search_b.svg"
+	                    style="width: 24px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
+	             </div>
+	                <!-- 검색기능 끝-->
+	
+	                <div class="search_container"
+	                id="searhc_vue"
+	                style="position: fixed;top: 100px;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;background-color: rgba(0, 0, 0, 0.2);">
+	                <div style="width: 100%;height: 100%; display: flex; flex-direction: column;">
+	                    <div class="h_column_center" style="width: 100%; background-color: #FFF">
+	                        <div class="h_column_center" style="background-color: #FFF; width: 964px; position:relative; margin-bottom: 40px;">
+	            
+	                            <div style="height: 64px; width: 100%; border-bottom: 1px solid #e7eaee;">
+	                                <div class="h_row_center" style="height: 54px;">
+	                                    <div class="h_center" style="width: 44px;height: 44px;">
+	                                        <img src="https://s3.hourplace.co.kr/web/images/icon/search_v3.svg" style="width: 30px;height: 30px;" />
+	                                    </div>
+	                                    <div style="position:absolute;right: 77px;left: 57px;">
+	                                        <input id="search_input"
+	                                            style="width: 100%;border-width: 0;font-size: 26px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
+	                                            onKeypress="javascript:if(event.keyCode==13) {search_vue.search_select_keyword(search_vue.keyword)}"
+	                                            :value="keyword"
+	                                            on:input="keyword = $event.target.value"
+	                                            v-on:keyup="getKeyword()"
+	                                            autocomplete="off"
+	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
+	                                    </div>
+	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;"
+	                                        v-if="keyword.length > 0" onclick="keyword = ''">
+	                                        <img src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg" style="width: 16px;height: 16px;" />
+	                                    </div>
+	                                    
+	                                </div>
+	                            </div>
+	            
+	                  
+	                    <div style="flex: 1; cursor: pointer;" onclick="toggle_search_container()">
+	            
+	                    </div>
+	                </div>
+	            </div>
 
 					<!-- Toggle test 용 마이 페이지 -->
 					<div class="h_my_menu"
@@ -203,16 +251,6 @@
 								style="width: 1px; height: 30px; background-color: rgb(201, 205, 210); margin-right: 10px; margin-left: 20px;">
 							</div>
 
-							<!-- 검색기능 시작 -->
-							<div
-								onclick="hourplace_v2.userLog('W', '/place/29464', 'click', 'search');toggle_search_container()"
-								class="h_center"
-								style="width: 44px; height: 44px; cursor: pointer;">
-								<img
-									src="https://s3.hourplace.co.kr/web/images/icon/search_b.svg"
-									style="width: 24px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
-							</div>
-							<!-- 검색기능 끝-->
 
 
 						</div>

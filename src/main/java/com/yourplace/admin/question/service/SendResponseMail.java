@@ -1,6 +1,5 @@
 package com.yourplace.admin.question.service;
 
-import java.util.Random;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -16,28 +15,6 @@ public class SendResponseMail {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
-	
-//	private int size;
-//
-//	// 인증키 생성
-//	private String getKey(int size) {
-//		this.size = size;
-//		return getAuthCode();
-//	}
-//
-//	// 인증코드 난수 발생
-//	private String getAuthCode() {
-//		Random random = new Random();
-//		StringBuffer buffer = new StringBuffer();
-//		int num = 0;
-//
-//		while (buffer.length() < size) {
-//			num = random.nextInt(10);
-//			buffer.append(num);
-//		}
-//
-//		return buffer.toString();
-//	}
 	
 	public String sendResponse(String id, String number, String email, String content, String question)
 	{

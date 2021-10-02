@@ -10,16 +10,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myAdmin" />
 		<typeAlias type="com.yourplace.admin.memberview.vo.MemberVO"
 			alias="myMember" />
-		<typeAlias
-			type="com.yourplace.admin.coupon.all.vo.CouponAllVO"
+		<typeAlias type="com.yourplace.admin.coupon.all.vo.CouponAllVO"
 			alias="myCouponAll" />
-		<typeAlias
-			type="com.yourplace.admin.coupon.user.vo.CouponUserVO"
+		<typeAlias type="com.yourplace.admin.coupon.user.vo.CouponUserVO"
 			alias="myCouponUser" />
 		<typeAlias type="com.yourplace.admin.space.vo.SpaceVO"
 			alias="mySpaceAllow" />
-		<typeAlias
-			type="com.yourplace.admin.faq.guest.vo.FaqGuestVO" alias="myFAQGuest" />
+		<typeAlias type="com.yourplace.admin.faq.guest.vo.FaqGuestVO"
+			alias="myFAQGuest" />
 		<typeAlias type="com.yourplace.admin.faq.host.vo.FaqHostVO"
 			alias="myFAQHost" />
 		<typeAlias type="com.yourplace.admin.revenue.vo.RevenueVO"
@@ -30,6 +28,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myPayment" />
 		<typeAlias type="com.yourplace.admin.question.vo.QuestionVO"
 			alias="myQuestion" />
+		<typeAlias type="com.yourplace.admin.banner.vo.BannerVO"
+			alias="myBanner" />
 		<typeAlias type="com.yourplace.host.login.vo.HostVO"
 			alias="myHost" />
 		<typeAlias type="com.yourplace.custom.login.vo.UserVO"
@@ -122,11 +122,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-reserve-view-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
 		<mapper resource="mappings/admin/admin-question-mapping.xml" />
+		<mapper resource="mappings/admin/admin-banner-mapping.xml"/>
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
 		<mapper resource="mappings/host/HostReservMapper.xml" />

@@ -7,11 +7,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="myRevenue" id="revenueResult">
 		<id property="payNum" column="pay_num" />
 		<result property="rsvNum" column="rsv_num" />
-		<result property="placeMainCate" column="place_main_cate" />
+		<result property="placeMaincate" column="place_maincate" />
 		<result property="placeCate" column="place_cate" />
 		<result property="payYear" column="pay_year" />
 		<result property="payMonth" column="pay_month" />
 		<result property="payDate" column="pay_date" />
+		
+		<result property="payStartMonth" column="pay_start_month" />
+		<result property="payEndMonth" column="pay_end_month" />
+		<result property="payStartDate" column="pay_start_date" />
+		<result property="payEndDate" column="pay_end_date" />
+		<result property="year" column="year" />
+		
 		<result property="invCost" column="inv_cost" />
 		<result property="coupDisRate" column="coup_dis_rate" />
 		<result property="invBfTax" column="inv_bf_tax" />
@@ -28,12 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select pay_month, sum(inv_aft_tax) AS revenue from test_invoice
 		GROUP BY pay_month ORDER BY pay_month ASC;
 	</select>
-	
-	<select id="getMonthSumMap" resultType="HashMap">
-		select pay_month, sum(inv_aft_tax) AS revenue from test_invoice
-		GROUP BY pay_month ORDER BY pay_month ASC;
-	</select>
-	
+
 	
 	<!-- 월매출 + 연도 -->
 	
@@ -42,10 +44,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from test_invoice GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
-	<select id="getMonthSumwithYearMap" resultType="HashMap">
-		select pay_year, pay_month, sum(inv_aft_tax) AS revenue
-		from test_invoice GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
+	<select id="getMonthSumFirst" resultMap="revenueResult">
+		select pay_year, pay_month,
+		sum(inv_aft_tax) AS revenue
+		from test_invoice
+		WHERE pay_year = #{payYear}
+		GROUP BY pay_month ORDER BY pay_month ASC;
 	</select>
+	
+	
+	<!-- 선택 기간별 정보 + 매출 -->
+	
+	<select id="getTermMonth" resultMap="revenueResult">
+		select pay_year, pay_month, pay_date, inv_aft_tax
+		from test_invoice
+    	where pay_year = #{payYear}
+    	and
+    	pay_month between #{payStartMonth} and #{payEndMonth}
+    	order by pay_year, pay_month, pay_date asc;
+	</select>
+
+	<select id="getTermMonthNDate" resultMap="revenueResult">
+		select pay_year, pay_month, pay_date, inv_aft_tax
+		from test_invoice
+	    where pay_year = #{payYear}
+	    and
+	    pay_month between #{payStartMonth} and #{payEndMonth}
+	    and
+	    pay_date between #{payStartDate} and #{payEndDate}
+	    order by pay_year, pay_month, pay_date asc;
+	</select>
+	
+	<select id="getTermAllMonth" resultMap="revenueResult">
+		select * 
+		from test_invoice
+    	where pay_year = #{payYear}
+    	and
+    	pay_month between #{payStartMonth} and #{payEndMonth}
+    	order by pay_year, pay_month, pay_date asc;
+	</select>
+
+	<select id="getTermAllMonthNDate" resultMap="revenueResult">
+		select *
+		from test_invoice
+	    where pay_year = #{payYear}
+	    and
+	    pay_month between #{payStartMonth} and #{payEndMonth}
+	    and
+	    pay_date between #{payStartDate} and #{payEndDate}
+	    order by pay_year, pay_month, pay_date asc;
+	</select>
+	
 	
 	
 	<!-- YoY -->
@@ -61,21 +110,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- Monthly Count -->
 	
 	<select id="getRsvCount" resultMap="revenueResult">
-		select pay_month, (count(rsv_num)) AS cnt from test_invoice GROUP BY pay_month;
+		select pay_year, pay_month, (count(rsv_num)) AS cnt from test_invoice
+		GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
-	<select id="getRsvCountwithYear" resultMap="revenueResult">
+	<select id="getRsvCountFirst" resultMap="revenueResult">
 		select pay_year, pay_month, (count(rsv_num)) AS cnt from test_invoice
+		WHERE pay_year = #{payYear}
 		GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
 	
 	<!-- Main Category count -->
 	
+	<select id="getMainCateRank" resultMap="revenueResult">
+		select place_maincate, (count(place_maincate)) as cnt
+		from test_invoice where pay_year = #{payYear} group by place_maincate order by cnt desc;
+	</select>
 	
 	
 	<!-- Sub Category count -->
-	
+	<select id="getSubCateRank" resultMap="revenueResult">
+		select place_maincate, place_cate, (count(place_cate)) as cnt
+		from test_invoice where pay_year = #{payYear} group by place_maincate order by cnt desc;
+	</select>
 	
 	
 	<!-- Category count with sex -->

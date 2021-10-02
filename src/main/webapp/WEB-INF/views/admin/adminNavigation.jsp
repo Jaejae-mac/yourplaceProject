@@ -9,7 +9,7 @@
 <body>
  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="admin.html">Yourplace Admin</a>
+        <a class="navbar-brand ps-3" href="/index-admin.mdo">Yourplace Admin</a>
         <!-- Sidebar Toggle-->
         <button
           class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -29,16 +29,16 @@
           "
         >
           <div class="input-group">
-            <input
+<!--            <input
               class="form-control"
               type="text"
               placeholder="Search for..."
               aria-label="Search for..."
               aria-describedby="btnNavbarSearch"
             />
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button">
-              <i class="fas fa-search"></i>
-            </button>
+             <button class="btn btn-primary" id="btnNavbarSearch" type="button"> 
+               <i class="fas fa-search"></i>
+             </button> -->
           </div>
         </form>
         <!-- Navbar-->
@@ -57,10 +57,10 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdown"
             >
-              <li><a class="dropdown-item" href="#!">Settings</a></li>
-              <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#!">Logout</a></li>
+<!--               <li><a class="dropdown-item" href="#!">Settings</a></li> -->
+<!--               <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
+<!--               <li><hr class="dropdown-divider" /></li> -->
+              <li><a class="dropdown-item" href="/adminLogout.mdo">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -80,6 +80,39 @@
                 </a>
   
                 <div class="sb-sidenav-menu-heading">Menu</div>
+                
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseMember"
+                  aria-expanded="false"
+                  aria-controls="collapseMember"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fa fa-user-circle"></i>
+                  </div>
+                 	 회원 관리
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+                <div
+                  class="collapse"
+                  id="collapseMember"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#sidenavAccordion"
+                >
+                  <nav class="sb-sidenav-menu-nested nav">
+                    <a class="nav-link" href="/rootAccountView.mdo">관리자 조회</a>
+                    <a class="nav-link" href="/memberView.mdo">회원 관리</a>
+                    <!-- <a class="nav-link" href="/reportedMember.mdo"
+                      >신고 회원 관리</a
+                    > -->
+                    
+                  </nav>
+                </div>
+                
                 <a
                   class="nav-link collapsed"
                   href="#"
@@ -91,7 +124,7 @@
                   <div class="sb-nav-link-icon">
                     <i class="fa fa-user-circle"></i>
                   </div>
-                  장소 관리
+                  	장소 관리
                   <div class="sb-sidenav-collapse-arrow">
                     <i class="fas fa-angle-down"></i>
                   </div>
@@ -106,39 +139,9 @@
                     <a class="nav-link" href="/spaceList.mdo">장소 승인</a>
                   </nav>
                 </div>
-                <a
-                  class="nav-link collapsed"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseMember"
-                  aria-expanded="false"
-                  aria-controls="collapseMember"
-                >
-                  <div class="sb-nav-link-icon">
-                    <i class="fa fa-user-circle"></i>
-                  </div>
-                  회원 관리
-                  <div class="sb-sidenav-collapse-arrow">
-                    <i class="fas fa-angle-down"></i>
-                  </div>
-                </a>
-                <div
-                  class="collapse"
-                  id="collapseMember"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#sidenavAccordion"
-                >
-                  <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="/rootAccountView.mdo">관리자 조회</a>
-                    <a class="nav-link" href="/memberView.mdo"
-                      >회원 관리</a
-                    >
-                    <!-- <a class="nav-link" href="/reportedMember.mdo"
-                      >신고 회원 관리</a
-                    > -->
-                    
-                  </nav>
-                </div>
+                
+                
+                
                 <!---->
                 <a
                 class="nav-link collapsed"
@@ -146,12 +149,11 @@
                 data-bs-toggle="collapse"
                 data-bs-target="#collapseCoupon"
                 aria-expanded="false"
-                aria-controls="collapseCoupon"
-              >
+                aria-controls="collapseCoupon">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-percentage"></i>
                 </div>
-                쿠폰 관리
+                	쿠폰 관리
                 <div class="sb-sidenav-collapse-arrow">
                   <i class="fas fa-angle-down"></i>
                 </div>
@@ -164,8 +166,7 @@
               >
                 <nav class="sb-sidenav-menu-nested nav">
                   <a class="nav-link" href="/couponView.mdo">쿠폰 조회</a>
-                  <a class="nav-link" href="/couponRegist.mdo"
-                    >쿠폰 등록</a>
+                  <a class="nav-link" href="/couponRegist.mdo">쿠폰 등록</a>
                 </nav>
               </div>
                 <!---->
@@ -181,7 +182,7 @@
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-money-bill-alt"></i>
                   </div>
-                  결제/예약/매출 관리
+                  	결제/예약 관리
                   <div class="sb-sidenav-collapse-arrow">
                     <i class="fas fa-angle-down"></i>
                   </div>
@@ -194,14 +195,42 @@
                 >
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="/paymentView.mdo">결제 관리</a>
-                    <a class="nav-link" href="/reserveView.mdo"
-                      >예약 관리</a
-                    >
-                    <a class="nav-link" href="/revenueView.mdo"
-                      >매출 현황</a
-                    >
+                    <a class="nav-link" href="/reserveView.mdo">예약 관리</a>
+                    <a class="nav-link" href="/refundView.mdo">환불 관리</a>
                   </nav>
                 </div>
+                
+                <!--매출 조회 매출 관리-->
+                <a
+                  class="nav-link collapsed"
+                  href="#"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseRevenueManagement"
+                  aria-expanded="false"
+                  aria-controls="collapseRevenueManagement"
+                >
+                  <div class="sb-nav-link-icon">
+                    <i class="fas fa-money-bill-alt"></i>
+                  </div>
+                  	매출 조회
+                  <div class="sb-sidenav-collapse-arrow">
+                    <i class="fas fa-angle-down"></i>
+                  </div>
+                </a>
+                <div
+                  class="collapse"
+                  id="collapseRevenueManagement"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#sidenavAccordion"
+                >
+                  <nav class="sb-sidenav-menu-nested nav">
+                    
+                    <a class="nav-link" href="/revenueView.mdo">매출 현황</a>
+                    <a class="nav-link" href="/specificRevenue.mdo">매출 조회</a>
+                    
+                  </nav>
+                </div>
+                
                 <!---->
                 <a
                   class="nav-link collapsed"
@@ -214,7 +243,7 @@
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-bullhorn"></i>
                   </div>
-                  공지사항 관리
+                  	웹사이트 관리
                   <div class="sb-sidenav-collapse-arrow">
                     <i class="fas fa-angle-down"></i>
                   </div>
@@ -228,6 +257,7 @@
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="infoGuest.mdo">게스트 FAQ</a>
                     <a class="nav-link" href="infoHost.mdo">호스트 FAQ</a>
+                    <a class="nav-link" href="controlBanner.mdo">배너 이미지</a>
                   </nav>
                   
                 </div>
@@ -304,9 +334,7 @@
                       <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="login.mdo">Login</a>
                         <a class="nav-link" href="register.mdo">Register</a>
-                        <a class="nav-link" href="password.html"
-                          >Forgot Password</a
-                        >
+                        <a class="nav-link" href="password.html">Forgot Password</a>
                       </nav>
                     </div>
                     <a
@@ -337,6 +365,7 @@
                   </nav>
                 </div>
   
+  <!-- 
                 <div class="sb-sidenav-menu-heading">Management</div>
                 <a
                   class="nav-link collapsed"
@@ -369,7 +398,7 @@
                     >
                   </nav>
                 </div>
-  
+   -->
                 <div class="sb-sidenav-menu-heading">Addons</div>
                 <a class="nav-link" href="charts.html">
                   <div class="sb-nav-link-icon">

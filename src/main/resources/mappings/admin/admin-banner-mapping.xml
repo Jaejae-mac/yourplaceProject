@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="BannerDAO">
+	<resultMap type="myBanner" id="bannerResult">
+		<id property="bannerNum" column="banner_num" />
+		<result property="originalFileName" column="original_file_name" />
+		<result property="s3FileName" column="s3_file_name" />
+		<result property="fileRegDate" column="file_reg_date" />
+	</resultMap>
+
+	
+	<!-- 등록된 이미지 전체 조회 -->
+	<select id="getBannerList" resultMap="bannerResult">
+		SELECT * FROM banner;
+	</select>
+	
+	<!-- 이미지 업로드 -->
+	<insert id="insertUploadImg">
+		INSERT INTO banner
+		(original_file_name, s3_file_name)
+		values
+		(#{originalFileName}, #{s3FileName})
+	</insert>
+	
+	<!-- 이미지 삭제 -->
+	<delete id="deleteBanner">
+		DELETE FROM banner WHERE banner_num = #{bannerNum}
+	</delete>
+
+
+
+</mapper>

@@ -27,4 +27,10 @@ public class DeleteSpaceServiceImpl implements DeleteSpaceService {
 		return spaceDAO.selectSpaceImgUrl(deleteSpace);
 	}
 
+	@Override
+	public String selectSpaceThumbImgUrl(int deleteSpace) {
+		System.out.println("S3 서버에서 썸네일 이미지 삭제를 위해 place_num 을 통한 place_thumb select");
+		return spaceDAO.selectSpaceThumbImgUrl(deleteSpace);
+	}
+
 }

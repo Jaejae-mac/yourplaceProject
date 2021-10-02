@@ -69,6 +69,15 @@ public class SpaceDAOImpl implements SpaceDAO {
 	}
 
 
+	@Override
+	public String selectSpaceThumbImgUrl(int deleteSpace) {
+		System.out.println("---> MyBatis 로 selectSpaceThumbImgUrl 기능 처리: 썸네일 삭제를 위한 썸네일 key 조회");
+		String key = sqlSessionTemplate.selectOne("spaceDAO.selectSpaceThumbImgUrl", deleteSpace);
+		System.out.println("[DAOimpl] 삭제할 space 의 썸네일 이미지 url: " + key);
+		return key;
+	}
+
+
 
 
 }

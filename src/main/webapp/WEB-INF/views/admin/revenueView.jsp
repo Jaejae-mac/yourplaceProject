@@ -22,7 +22,8 @@
     ></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 	
 
   </head>
@@ -58,12 +59,12 @@
               <!-- 차트 감싸는 표의 header -->
               <div class="card-header">
                 <i class="fas fa-chart-area me-1"></i>
-                Area Chart Example
+                	월간 매출 조회
               </div>
 
               <!-- flow chart canvers -->
               <div class="card-body" id="flow-chart" >
-                <canvas id="myAreaChart" width="800px" height="700px"></canvas>
+                <canvas id="myBarChart" width="800px" height="300"></canvas>
               </div>
 
               <!-- 카드 밑에 footer -->
@@ -86,12 +87,12 @@
                   <!-- 차트2 헤더 -->
                   <div class="card-header">
                     <i class="fas fa-chart-bar me-1"></i>
-                    Bar Chart Example
+                    	월대비 성장률 조회 MoM
                   </div>
 
                   <!-- 차트2 바디, 바차트-->
                   <div class="card-body" id="chart_div">
-                    <canvas id="myBarChart" width="100%" height="50"></canvas>
+                    <canvas id="myLineChart" width="100%" height="50"></canvas>
                   </div>
 
                   <!-- 차트2 푸터 -->
@@ -114,7 +115,7 @@
                   <!-- 차트3 헤더 -->
                   <div class="card-header">
                     <i class="fas fa-chart-pie me-1"></i>
-                    Pie Chart Example
+                    	인기 카테고리
                   </div>
 
                   <!-- 차트3 바디 -->
@@ -159,183 +160,194 @@
     ></script>
     <script src="/resources/css/admin/js/scripts.js"></script>
 
-    
-    <script>
-//     	google.load('visualization', '1', {'package' : ['corehart']});
-//     	google.setOnLoadCallback(drawChart);
+
+	<!-- Bar Chart -->
+    <script type="text/javascript">
+
+    		var Year = [2020, 2021];
+            var labelName = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            var firstData = new Array();
+			var secondData = new Array();
+            
+            //foreach 문으로 값 세팅
+                <c:forEach items="${FirstList}" var="first">
+                	firstData.push('${first.revenue}');
+                </c:forEach>
+
+                <c:forEach items="${SecondList}" var="second">
+               		secondData.push('${second.revenue}');
+            	</c:forEach>  	
+            
+            console.log(firstData);
+            console.log(secondData);
+            
+                
+            var context = document
+                .getElementById('myBarChart')
+                .getContext('2d');
+            
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: labelName,
+                    
+                    datasets: [
+                        { //데이터
+                            label: 2020,
+                            fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
+                            
+                            //y축
+                            data: firstData,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        } ,
+                        {
+                            label: 2021,
+                            fill: false,
+                            data: secondData,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+
     	
-    	google.charts.load('current', {packages: ['corechart', 'bar']});
-        google.charts.setOnLoadCallback(drawChart);
+    	<!-- Line Chart -->
+  		<script type="text/javascript">
 
-    	
-    	function drawChart()
-    	{
-    		var jsonData = $.ajax({
-    		
-    			type : "POST",
-    			url : "/revenueView.mdo",
-    			dataType : "json",
-    			async : false,
-    			success : function()
-    			{
-    				console.log("success!");
-    				alert("success!");
-    			},
-    			
-    			error : function()
-    			{
-    				console.log("error");
-    				alert("error");
-    			}
-    			
-    		})//.responseText;
-    		
-    		console.log(jsonData); //ajax 로 받은 데이터 찍어보기
-    		
-    		
-    		var data = new google.visualization.DataTable(jsonData);
-    	
-    		
-    		data.addColumn('string', 'Month');
-            data.addColumn('number', '2020');
-            data.addColumn('number', '2021');
+    		var Year = [2020, 2021];
+            var labelName = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            var momData = new Array();
             
-            var arr = new Array();
-
-            for(var i=0; i < jsonData.length; i++)
-            {
-	            arr[i] = [jsonData[i].invAftTax, jsonData[i].pay_month];
-            }
-
-            data.addRows(arr);
+            //foreach 문으로 값 세팅
+                <c:forEach items="${MoMList}" var="mom">
+                	momData.push('${mom}');
+                </c:forEach>
             
-            //data.addRows(['jan', 101010], ['feb', 102930]);
-    		
+            console.log(momData);
             
-    		var options = {
-    	               hAxis: {
-    	                  title: 'Month',
-    	                  textStyle: {
-    	                     color: '#01579b',
-    	                     fontSize: 20,
-    	                     fontName: 'Arial',
-    	                     bold: true,
-    	                     italic: false
-    	                  },
-    	                  titleTextStyle: {
-    	                     color: '#01579b',
-    	                     fontSize: 20,
-    	                     fontName: 'Arial',
-    	                     bold: true,
-    	                     italic: false
-    	                  }
-    	               },
-    	               vAxis: {
-    	                  title: 'Revenue',
-    	                  textStyle: {
-    	                     color: '#1a237e',
-    	                     fontSize: 20,
-    	                     bold: true,
-    	                     italic: false
-    	                  },
-    	                  titleTextStyle: {
-    	                     color: '#1a237e',
-    	                     fontSize: 20,
-    	                     bold: true,
-    	                     italic: false
-    	                  }
-    	               },
-    	               colors: ['#a52714', '#097138']
-    	            };
-
-    		
-    		var option = {
-    			      title: 'Monthly Revenue',
-    			      curveType: 'function',
-    			      legend: { position: 'bottom' }
-    			    };
-    		
-    		
-    		 var chart = new google.visualization.BarChart(document.getElementById('flow-chart'));
-             chart.draw(data, option);
-    		
-    		
-    	}
-    </script>
-    
-    
-    <!--  <script>
-   
-      //차트 부를 준비
-      google.charts.load('current', {packages: ['corechart', 'line']});
-      google.charts.setOnLoadCallback(drawAxisTickColors);
-
-      //callback할 차트의 데이터, 옵션 세팅
-      function drawAxisTickColors()
-      {
-         //데이터
-         var data = new google.visualization.DataTable();
-         data.addColumn('number', 'X');
-         data.addColumn('number', 'A');
-         data.addColumn('number', 'B');
-         
-         data.addRows(jObj);
-         
-//          data.addRows([
-//             [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
-//             [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
-//             [12, 30, 22]
-//          ]);
-         
-         //JSON data
-         
-         
-         
-         //옵션들
-         var options = {
-               hAxis: {
-                  title: 'Month',
-                  textStyle: {
-                     color: '#01579b',
-                     fontSize: 20,
-                     fontName: 'Arial',
-                     bold: true,
-                     italic: false
-                  },
-                  titleTextStyle: {
-                     color: '#01579b',
-                     fontSize: 20,
-                     fontName: 'Arial',
-                     bold: true,
-                     italic: false
-                  }
-               },
-               vAxis: {
-                  title: 'Revenue',
-                  textStyle: {
-                     color: '#1a237e',
-                     fontSize: 20,
-                     bold: true,
-                     italic: false
-                  },
-                  titleTextStyle: {
-                     color: '#1a237e',
-                     fontSize: 20,
-                     bold: true,
-                     italic: false
-                  }
-               },
-               colors: ['#a52714', '#097138']
-            };
+                
+            var context = document
+                .getElementById('myLineChart')
+                .getContext('2d');
             
-            //차트 객체 세팅
-            var chart = new google.visualization.LineChart(document.getElementById('flow-chart'));
-            chart.draw(data, options);
-         
-      }
-   </script>  -->
-    
-  
+            var myChart = new Chart(context, {
+                type: 'line', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: labelName,
+                    
+                    datasets: [
+                        
+                        {
+                            label: 2021,
+                            fill: false,
+                            data: momData,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+        
+        
+        <!-- Pie Chart -->
+        <script type="text/javascript">
+
+    		//var Year = [2020, 2021];
+            var labelName = new Array();
+            var Data = new Array();
+            
+            var backgroundcolor =
+            	['rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(120, 110, 220, 0.2)',
+                'rgba(110, 90, 90, 0.2)'];
+            
+            var borderColor =
+            	['rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(120, 110, 220, 1)',
+                'rgba(110, 90, 90, 1)'];
+            
+            //foreach 문으로 값 세팅
+                <c:forEach items="${MainCateRank}" var="mainrank">
+                	labelName.push("${mainrank.placeMaincate}");
+                	Data.push('${mainrank.cnt}');
+                </c:forEach>
+            
+            console.log(labelName);
+            console.log(Data);
+            
+                
+            var context = document
+                .getElementById('myPieChart')
+                .getContext('2d');
+            
+            var myChart = new Chart(context, {
+                type: 'doughnut', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: labelName,
+                    
+                    datasets: [
+                        
+                        {
+                            fill: false,
+                            data: Data,
+                            backgroundColor: backgroundcolor,
+                            borderColor: borderColor,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
 
   </body>
 </html>
