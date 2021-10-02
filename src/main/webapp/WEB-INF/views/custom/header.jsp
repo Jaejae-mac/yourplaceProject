@@ -204,15 +204,10 @@
 	                                    <div style="position:absolute;right: 77px;left: 57px;">
 	                                        <input id="search_input"
 	                                            style="width: 100%;border-width: 0;font-size: 26px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
-	                                            onKeypress="javascript:if(event.keyCode==13) {search_vue.search_select_keyword(search_vue.keyword)}"
-	                                            :value="keyword"
-	                                            on:input="keyword = $event.target.value"
-	                                            v-on:keyup="getKeyword()"
-	                                            autocomplete="off"
 	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
 	                                    </div>
 	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;"
-	                                        v-if="keyword.length > 0" onclick="keyword = ''">
+	                                        onclick="keyword = ''">
 	                                        <img src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg" style="width: 16px;height: 16px;" />
 	                                    </div>
 	                                    
