@@ -5,9 +5,14 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Component
-@Data
+@Getter
+@Setter
+@ToString
 public class HostManagementVO {
 	private int placeNum;
 	private String userId;
@@ -30,4 +35,5 @@ public class HostManagementVO {
 	private String placeThumbImg; //썸네일 경로
 	private String placeAllow; //승인여부 0이 승인대기 1 승인
 	private Date placeRegDate;
+	private String s3FileUrl;
 }

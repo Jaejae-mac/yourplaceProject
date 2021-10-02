@@ -15,12 +15,12 @@
 
 	
 	<select id="getAllHostRoom" resultMap="getAllHostRoom">
-	SELECT * FROM place_detail INNER JOIN place ON place_detail.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id = #{userId}
-
+ 	SELECT * FROM place_detail INNER JOIN place ON place_detail.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id = #{userId}
+  
 	</select>
 	
 	<delete id="deleteRoom">
-
+	 delete from place_detail where detail_num=#{detailNum};
 	</delete>
 	
 	<insert id="insertRoom">

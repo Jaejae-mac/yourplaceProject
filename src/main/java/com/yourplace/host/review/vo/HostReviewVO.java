@@ -9,7 +9,7 @@ import lombok.Data;
 @Component
 @Data
 public class HostReviewVO {
-	private String reservNum; //예약번호
+	private int reservNum; //예약번호
 	private String placeNum; //장소번호
 	private String memId; //호스트 아이디
 	private int star; //별점

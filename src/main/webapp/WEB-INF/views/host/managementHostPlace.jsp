@@ -18,24 +18,26 @@
       rel="stylesheet"
     />
    <link href="<c:url value="/resources/host/css/styles.css" />" rel="stylesheet" />
-    <script
+     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+      crossorigin="anonymous"
     ></script>
-  
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     
 
-        
+    
   </head>
   
   <body class="sb-nav-fixed">
-  <form method="get" action="/deletePlace.hdo">
-  
+
   <%@include file="hostnav.jsp" %>
       <div id="layoutSidenav_content">
         <main>
+          
           <div class="container-fluid px-4">
             <h1 class="mt-4">내 장소 관리</h1>
-<input type="hidden" value="${userId}" id="userId" name="userId"/>
+      
+
 					<div class="card mb-4">
 						<div class="card-body">등록한 장소를 관리할 수 있습니다.</div>
 					</div>
@@ -68,12 +70,13 @@
 											<td>${mana.placePersonNum }</td>
 
 											<td>
-										
-											<button type="submit" class="btn btn-danger"  onclick="location.href='/deletePlace.hdo?placeNum=${mana.placeNum}'" style="font-size: 10px; margin-left: 10px;">삭제</button>
+										   <!-- delete -->
+									
+												<button type="submit" class="btn btn-danger" name="delete" id="delete" style="font-size: 10px; margin-left: 10px;">삭제</button>
 												<button type="button" class="btn btn-primary" name="change" id="change"
 												onclick="location.href='/updatePlaceDetail.hdo?placeNum=${mana.placeNum}'"
 													style="font-size: 10px; margin-left: 10px;">수정</button>
-													<input type="hidden" name="placeNum" id="placeNum" value="${mana.placeNum }"/>
+													
 												
 											</td>
 
@@ -88,7 +91,8 @@
 
 
 
-
+								
+				
 
 								</tfoot>
 							</table>
@@ -99,7 +103,15 @@
 						</div>
 					</div>
 				</div>
-        </main>
+				
+
+			
+
+			<form id="sub" name="sub" method="get" action="/reviewForGuest.hdo" hidden="hidden">
+				<input type="hidden" name="placeNum" id="placeNum" value="" >
+					</form>
+
+		</main>
     
         
         <footer class="py-4 bg-light mt-auto">
@@ -126,7 +138,37 @@
       crossorigin="anonymous"
     ></script>
     <script src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
- </form>
-  </body>
 
+  </body>
+  <script>
+  
+  
+  
+  $(document).on("click","#delete",function()
+			{
+		var chk = confirm("삭제하시겠습니까?");
+
+		if (chk) {
+			var tdArr = new Array();
+			var c = $(this);
+			
+			var tr = c.parent().parent();
+			var td = tr.children();
+
+			var active = td.eq(0).text();
+			var no = td.eq(0).text();
+			
+			td.each(function(i)
+			{
+				tdArr.push(td.eq(i).text());
+			});
+			
+			console.log (no);
+			$("#placeNum").val(no);
+	
+
+
+		}
+			});
+</script>
 </html>

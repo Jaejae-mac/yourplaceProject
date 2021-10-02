@@ -1,16 +1,16 @@
 package com.yourplace.host.review.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.host.review.service.HostReviewService;
@@ -37,34 +37,67 @@ public class HostReviewController {
 		return mav;
 	}
 	
-//	
-//	@RequestMapping(value="/insertReview.hdo", method=RequestMethod.POST) //값 출력까지 ok
-//	public void insertReview(HttpServletRequest request, HostReviewVO vo) throws Exception{
-//		HttpSession session = request.getSession();
-//		
-//		String memId = (String)session.getAttribute("userId");
-//		String review = request.getParameter("content");
-//		
-//		System.out.println(review);
-//		System.out.println(memId);
-//	}
-//	
+	@RequestMapping(value="/reserveValue.hdo", method= {RequestMethod.GET, RequestMethod.POST})
+	public static void getReserveValue(@RequestParam Map<String,Object> param, HostReviewVO vo, HttpServletRequest request)throws Exception{
+		try {
+		System.out.println(param.toString());
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		System.out.println(userId);
+		String placeNum = (String) param.get("placeNum[]");
+		String reserveNum = (String) param.get("reserveNum[]");
+		String reserveId = (String) param.get("reserveId[]");
+		
+		String star = (String) param.get("star=");
+		String con = (String) param.get("contents=");
+		
+		String[] str = placeNum.split("/");
+
+		String placeNumm = str[1].trim();
+		int reserveNumm = Integer.parseInt(reserveNum);
+		
+
+		
+		System.out.println(star);
+		System.out.println(con);
+		
+		vo.setMemId(userId);
+		vo.setPlaceNum(placeNumm);
+		vo.setReservNum(reserveNumm);
+		vo.setReserveId(reserveId);
+		
+		}catch(NullPointerException e) {
+			
+		}
+//			service.insertReviewForHost(vo);
+	}
 	
-	@RequestMapping("/reviewForGuest.hdo")
+		
+	
+
+
+	
+//	@RequestMapping(value = "/reviewValue.hdo", method = { RequestMethod.GET, RequestMethod.POST })
+//	public static void getReviewValue(HostReviewVO vo, @RequestParam Map<String, Object> param, HttpServletRequest request) throws Exception {
+//		String star = (String) param.get("star");
+//		String con = (String) param.get("contents");
+//		int Fstar = Integer.parseInt(star);
+//		
+//		vo.setStar(Fstar);
+//		vo.setReview(con);
+//		
+//		System.out.println(vo.toString());
+//
+//	}
+	
+	@RequestMapping(value="/reviewForGuest.hdo")
 	public ModelAndView	reviewForm(HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		String placeNum = request.getParameter("placeNum");
-		System.out.println(placeNum);
-		
 		mav.setViewName("reviewPopup");
 		return mav;
 	}
 	
 	
 	
-	@PostMapping("/reviewInsert.hdo")
-	public void reviewInsert() throws Exception{
-		
-	}
 
 }

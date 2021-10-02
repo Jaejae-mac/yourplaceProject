@@ -14,17 +14,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="<c:url value="/resources/host/css/style-coupon.css" />"
-	rel="stylesheet" />
-<link href="<c:url value="/resources/host/css/styles.css" />"
-	rel="stylesheet" />
+<script>
 
+</script>
 
 </head>
-
+<div style="width:800px">
+    <canvas id="myChart"></canvas>
+</div>
 <script>
 
 var datas=[];
@@ -36,7 +33,7 @@ datas.push(${data});
 
 <script>
 
-$(function() { 
+
 var ctx = document.getElementById("myChart").getContext('2d');
 
 var myChart = new Chart(ctx, {
@@ -82,39 +79,7 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-})});
-
+});
 </script>
-
-<%@include file="hostnav.jsp"%>
-	<div id="layoutSidenav_content">
-
-		<main>
-			<div class="container-fluid px-4">
-				<h1 class="mt-4">연간 예약차트</h1>
-				<div class="card mb-4">
-					<div class="card-body">최근 1년 간의 예약이 완료된 건들을 조회할 수 있습니다.</div>
-
-				</div>
-	
-<div style="width: 900px; position:relative; left:200px;">
-	<canvas id="myChart"></canvas>
-</div>	
-
-</div>
-	</main>
-
-
-	<footer class="py-4 bg-light mt-auto">
-		<div class="container-fluid px-4">
-			<div class="d-flex align-items-center justify-content-between small">
-				<div class="text-muted">Copyright &copy; YourPlace</div>
-				<div></div>
-			</div>
-		</div>
-	</footer>
-	</div>
-	</div>
 </body>
-
 </html>

@@ -29,6 +29,13 @@
 	</resultMap>
 
 
+
+<resultMap type="HostManagementImgVO" id="img">
+<result property="placeNum" column="place_num"/>
+<result property="originFileName" column="original_file_name"/>
+<result property="s3FileName" column="s3_file_name"/>
+</resultMap>
+
 	<select id="getAllHostPlace" resultMap="getAllplace">
      SELECT * FROM place INNER JOIN member ON place.user_id = member.user_id WHERE member.user_id=#{userId};
 	</select>
@@ -55,5 +62,8 @@
 	</update>
 	
 	
+	<select id="imgDelete" resultMap="img">
+		  SELECT place_img.* from place_img where place_num=#{placeNum};
+	</select>
 	
 </mapper>

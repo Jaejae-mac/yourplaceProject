@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="HostReservMapper">
 
 
-<resultMap type="HostReservVO" id="getAllReserve">
+<mapper namespace="HostRefundMapper">
+
+<resultMap type="RefundVO" id="refund">
 		<result property="placeName" column="place_Name" />
 		<result property="reserveNum" column="rsv_num" />
 		<result property="reserveId" column="rsv_id"/>
@@ -20,22 +22,11 @@
 		<result property="userId" column="user_id"/>
 	</resultMap>
 
-	
-	<select id="getAllReserve" resultMap="getAllReserve">
-  select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
-  
+	<select id="getAllReserveDate" resultMap="refund">
+	select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
 	</select>
 
-
-	<select id="getLastReserve" resultMap="getAllReserve">
-		select reserve.*, place.place_num, place.user_id from reserve inner join
-		place on place.place_num = reserve.place_num where
-		place.user_id=#{userId}
-  
-</select>
-
-
-
-
+	
+	
 
 </mapper>

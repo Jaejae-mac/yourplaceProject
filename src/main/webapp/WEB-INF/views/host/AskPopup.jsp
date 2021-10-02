@@ -31,7 +31,7 @@ function popupClose(form){
 
 </head>
 
-<body>
+<body style="overflow-x:hidden; overflow-y:hidden;">
 	<div id="riview">
 		<div
 			style="position: relative; width: 420px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);"

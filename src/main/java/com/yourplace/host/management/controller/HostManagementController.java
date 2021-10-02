@@ -1,10 +1,7 @@
 package com.yourplace.host.management.controller;
 
 import java.math.BigDecimal;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -18,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.yourplace.commons.awss3.AwsS3;
+import com.yourplace.host.management.service.HostManagementDeleteService;
 import com.yourplace.host.management.service.HostManagementRoomService;
 import com.yourplace.host.management.service.HostManagementService;
+import com.yourplace.host.management.vo.HostManagementImgVO;
 import com.yourplace.host.management.vo.HostManagementRoomVO;
 import com.yourplace.host.management.vo.HostManagementVO;
 
@@ -32,7 +32,9 @@ public class HostManagementController {
 	@Inject
 	HostManagementRoomService service2;
 	
-	
+	@Inject
+	HostManagementDeleteService service3;
+
 	
 	@RequestMapping(value="/managementHostPlace.hdo")
 	public ModelAndView allPlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
@@ -50,19 +52,41 @@ public class HostManagementController {
 	}
 	
 
-	@RequestMapping(value="/deleteRoom.hdo", method=RequestMethod.GET )
-	public String deleteRoom(@RequestParam("detailNum") String detailNum) throws Exception{
+	@RequestMapping(value="/deleteRoom.hdo", method=RequestMethod.GET)
+	public String deleteRoom(HttpServletRequest request, HostManagementRoomVO vo, @RequestParam("detailNum")String detailNum) throws Exception{
+	
+		System.out.println(detailNum + "방 이름");
 		service2.deleteRoom(detailNum);
+		
 		return "redirect:/managementHostRoomPlace.hdo";
 	}
-	
-	
-	@RequestMapping(value="/deletePlace.hdo", method=RequestMethod.GET) 
-	public String deletePlace(@RequestParam("placeNum") int placeNum) throws Exception{
-		service.deletePlace(placeNum);
+
+
+	@RequestMapping(value = "/deletePlace.hdo", method = RequestMethod.GET)
+	public String deletePlace(HttpServletRequest request, @RequestParam("placeNum")int placeNum) throws Exception {
+		
+		System.out.println(placeNum + "번 장소");
+		
+		AwsS3 awsS3 = AwsS3.getInstance();
+
+		
+		List<HostManagementImgVO> getS3 = service3.getDeleteList(placeNum);
+		System.out.println(getS3.size());
+		System.out.println(getS3.toString());
+		try {
+			
+		
+		for(int i=0; i<=getS3.size(); i++) {
+			System.out.println(getS3.get(i).getOriginFileName());
+			System.out.println("s3 ->");
+			awsS3.delete(getS3.get(i).getS3FileName()); // 등록된 모든 key 확인하며 삭제
+			service.deletePlace(placeNum);
+		}
+		}catch(Exception e) {
+			
+		}
 		return "redirect:/managementHostPlace.hdo";
 	}
-	
 	
 	@RequestMapping(value="/insertPlaceforHost.hdo")
 	public ModelAndView insertPlaceView(HttpServletRequest request) throws Exception{
@@ -74,13 +98,15 @@ public class HostManagementController {
 		return mav;
 	}
 	
+	//방 등록 수정해야함
+	
 	@RequestMapping(value="/managementHostRoomPlace.hdo", method=RequestMethod.GET)
 	public ModelAndView getRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
 		vo.setUserId(userId);
-		
+
 		List<HostManagementRoomVO> roomlist = service2.getRoomList(vo);
 		System.out.println(roomlist.toString());
 		mav.addObject("userId", userId);
@@ -100,8 +126,7 @@ public class HostManagementController {
 		String roomPer = request.getParameter("detailPersonNum"); //인원수
 		String extra = request.getParameter("surcharge"); //할증
 		
-//		System.out.println(roomname + roomPer + extra);
-//		System.out.println(detailNum);
+
 		
 		vo.setDetailNum(detailNum);
 		String userId = (String)session.getAttribute("userId");

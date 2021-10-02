@@ -29,20 +29,6 @@ public class HostLoginController {
 	@GetMapping("/loginForm.hdo")
 	public String loginForm(HttpServletRequest request) {
 		System.out.println("[ 호스트 로그인 폼 호출 ]");
-
-		String url = request.getRequestURI();
-		boolean equ2 = url.contentEquals("/loginForm.hdo");
-		System.out.println(url);
-		System.out.println(equ2 + "HostLoginController 결과값");
-
-		if (equ2 == true) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userType", 1);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("userType", 0);
-		}
-
 		return "login/loginForm";
 	}
 	
@@ -62,13 +48,15 @@ public class HostLoginController {
 			session.setAttribute("userId", vo.getUserId());
 			//로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			getHostInfo(request, vo);
-			
+			session.setAttribute("userType", String.valueOf(vo.getUserType()));
+			session.setAttribute("userNum", vo.getUserNum());
+
+			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
+			return "redirect:/indexOurPlace.hdo";
 			
 		}
-		model.addAttribute("result", "0");
-		
-
-		return "redirect:indexOurPlace.hdo";
+		model.addAttribute("result", "1");
+		return "redirect:loginForm.hdo";
 		
 	}
 	
@@ -82,20 +70,19 @@ public class HostLoginController {
 				String sex = list.get(i).getUserSex();
 				String nick = list.get(i).getUserNickName();
 				String info = list.get(i).getUserIntro();
+				String mail = list.get(i).getUserEmail();
+				String tel = list.get(i).getUserTel();
+				
+				
+				
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userSex", sex);
 				session.setAttribute("userNick", nick);
 				session.setAttribute("userInfo", info);
-				
-				String sid = (String) session.getAttribute("userId");
-				String ssex =(String) session.getAttribute("userSex");
-				String snick = (String) session.getAttribute("userNick");
-				String sinfo=(String)session.getAttribute("userInfo");
-				
-				System.out.println(sid);
-				System.out.println(snick);
-				System.out.println(sinfo);
+				session.setAttribute("userMail", mail);
+				session.setAttribute("userTel", tel);
+
 				
 				
 			}
