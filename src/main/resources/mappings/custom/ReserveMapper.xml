@@ -153,7 +153,7 @@
 		<result property="placeThumb" column="place_thumb" />
 		<result property="rsvReviewYn" column="rsv_review_yn" />
 	</resultMap>
-	<update id="updatereserve" parameterType="MyPagereserveVO">
+	<update id="updateReserve" parameterType="MyPageReserveVO">
 		UPDATE payment SET rsv_refund_yn = 1 WHERE rsv_num=#{rsvNum}
 	</update>
 	<update id="updatereviewYn" parameterType="MyPagereserveVO">

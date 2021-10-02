@@ -12,7 +12,6 @@ public class InvoiceVO {
 	private String rsvNum; //예약 번호
 	private String payNum; //결제 승인 번호
 	private String placeMainCate; // 카테고리(대)
-	private String placeCate; // 카테고리(소)
 	private int payYear; // 거래일자 연
 	private int payMonth; // 거래일자 월
 	private int payDate; // 거래일자 일
