@@ -47,12 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="getHostInfo" resultMap="hostInfo">
-		<trim suffixOverrides=",">
-			SELECT user_nick_name,
-			user_sex,
-			user_intro
-			FROM member WHERE user_id=#{userId}
-		</trim>
+
+			SELECT * FROM member WHERE user_id=#{userId}
+
 	</select>
 
 	<update id="updateHostInfo">
@@ -64,6 +61,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</trim>
 	</update>
 	
-	
+
 
 </mapper>

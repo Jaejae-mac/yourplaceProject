@@ -3,6 +3,7 @@ package com.yourplace.host.profile.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.impl.bootstrap.HttpServer;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,10 +20,14 @@ public class HostProfileController {
 		String sid = (String) session.getAttribute("userId");
 		String snick = (String) session.getAttribute("userNick");
 		String sinfo=(String)session.getAttribute("userInfo");
+		String smail = (String)session.getAttribute("userMail");
+		String stel = (String)session.getAttribute("userTel");
 		
 		mav.addObject("userId", sid);
 		mav.addObject("userNick", snick);
 		mav.addObject("userInfo", sinfo);
+		mav.addObject("userMail", smail);
+		mav.addObject("userTel", stel);
 		
 		mav.setViewName("updateProfileforHost");
 		return mav;
@@ -34,5 +39,7 @@ public class HostProfileController {
 		mav.setViewName("myProfile");
 		return mav;
 	}
+	
+
 
 }

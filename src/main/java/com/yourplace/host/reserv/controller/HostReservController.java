@@ -1,13 +1,11 @@
 package com.yourplace.host.reserv.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -39,69 +37,82 @@ public class HostReservController {
 		
 	}
 	
-	@RequestMapping(value="/LastPlaceReserveListForHost.hdo") //오늘날짜 기준인거 못함
+	@RequestMapping(value="/LastPlaceReserveListForHost.hdo") //일 기준 추가해야함
 	public ModelAndView lastReserveList(HostReservVO vo, HttpServletRequest request) throws Exception{
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userId");
 		vo.setUserId(id);
 		List<HostReservVO> list = service.lastAllReserve(vo);
-		mav.addObject("list", list);
-//		try {
-//			for(int i=0; i<=list.size(); i++) {
-//				String reserveDate = Integer.toString(list.get(i).getReserveYear())+"-" + Integer.toString(list.get(i).getReserveMonth())+"-" + Integer.toString(list.get(i).getReserveDate());
-//		
-//				Date today = new Date();
-//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-//				Date reserveDa = sdf.parse(reserveDate);
-////				System.out.println(today);
-////				
-////				System.out.println(reserveDa);
-////				
-//				boolean before = reserveDa.before(today);
-////				System.out.println(before);
-//				if(before == true) {
-//					
-//					String placeName = list.get(i).getPlaceName();
-//					String reserveNum = list.get(i).getReserveNum();
-//					String reserveId = list.get(i).getReserveId();
-//					String placeNum = list.get(i).getPlaceNum();
-//					String reserveName = list.get(i).getReserveName();
-//					String StartTime = Integer.toString(list.get(i).getStartTime()) +"시";
-//					String endTime = Integer.toString(list.get(i).getEndTime()) + "시";
-//					String personNum = Integer.toString(list.get(i).getPersonNum()) + "명";
-//					String payPrice = Integer.toString(list.get(i).getPayPrice());
-//					
-//					
-//					Map<String, Object> map = new HashMap<String, Object>();
-//		
-//					
-//					map.put("placeName", placeName);
-//					 getBeforeReserve.add(reserveNum);
-//					 getBeforeReserve.add(reserveId);
-//					 getBeforeReserve.add(placeNum);
-//					 getBeforeReserve.add(reserveName);
-//					 getBeforeReserve.add(StartTime);
-//					 getBeforeReserve.add(endTime);
-//					 getBeforeReserve.add(personNum);
-//					 getBeforeReserve.add(payPrice);
-					
-//					mav.addObject("beforeList", map);	
-//					System.out.println(map.toString());
-//				
-//				}else {
-//					
-//				}
-//			}
-//	
-//		}catch(Exception e) {
-//			
-//		}
+		
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm",Locale.KOREA);
+		
+		Calendar cal = Calendar.getInstance(); 
+		String now = sdf.format(cal.getTime());
+		String[] str = now.split("-");
+		System.out.println(now);
+		
+		int year = Integer.parseInt(str[0]);
+		int month = Integer.parseInt(str[1]);
+		int date = Integer.parseInt(str[2]);
+		
+		int hour = Integer.parseInt(str[3]);
+	
+		
+		LinkedHashMap<String, Object> LastReserveList = new LinkedHashMap<String, Object>(); 
+	
+		
+		try {
+			for(int i=0; i<=list.size(); i++) {
+				String reserveDate = Integer.toString(list.get(i).getReserveYear())+"-" + Integer.toString(list.get(i).getReserveMonth())+"-" + Integer.toString(list.get(i).getReserveDate()) + "-" + Integer.toString(list.get(i).getStartTime());
+				String[] rstr = reserveDate.split("-");
+				
+				int rYear = Integer.parseInt(rstr[0]);
+				int rMonth = Integer.parseInt(rstr[1]);
+				int rDate = Integer.parseInt(rstr[2]);
+				
+				int rHour = Integer.parseInt(rstr[3]);
+			
+				System.out.println(rYear +"," + rMonth + "," + rDate );
+				
+				String rId = list.get(i).getReserveId();
+				String placeName = list.get(i).getPlaceName();
+				String placeNum = list.get(i).getPlaceNum();
+				String reserveNum = list.get(i).getReserveNum();
+				int stTime = list.get(i).getStartTime();
+				int endTime = list.get(i).getEndTime();
+				int pNum = list.get(i).getPersonNum();
+				int price = list.get(i).getPayPrice();
+				
+				if(year>=rYear && month>=rMonth) {
+					LastReserveList.put("reserveYear", rYear);
+					LastReserveList.put("reserveMonth", rMonth);
+					LastReserveList.put("reserveDate", rDate);
+					LastReserveList.put("placeName", placeName);
+					LastReserveList.put("placeNum", placeNum);
+					LastReserveList.put("reserveNum", reserveNum);
+					LastReserveList.put("start", stTime);
+					LastReserveList.put("endTime", endTime);
+					LastReserveList.put("personNum", pNum);
+					LastReserveList.put("price", price);
+					System.out.println(LastReserveList.toString());
+				}
+				
+		
+			}
+		
+			
+		}catch(Exception e) {
+			
+		}
+		
 		mav.setViewName("LastReserveListForHost");
 		return mav;
 	}
-
 }
+
+
 
 
 

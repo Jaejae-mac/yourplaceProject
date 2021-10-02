@@ -1,6 +1,5 @@
 package com.yourplace.host.review.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.host.review.service.HostReviewService;
@@ -38,30 +36,59 @@ public class HostReviewController {
 
 		return mav;
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/getReserveValue.hdo", method = { RequestMethod.GET, RequestMethod.POST })
-	public Map<String, Object> test(@RequestParam HashMap params) throws Exception {
-			System.out.println(params);
-			return params;
+	
+	@RequestMapping(value="/reserveValue.hdo", method= {RequestMethod.GET, RequestMethod.POST})
+	public static void getReserveValue(@RequestParam Map<String,Object> param, HostReviewVO vo, HttpServletRequest request)throws Exception{
+		try {
+		System.out.println(param.toString());
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
+		System.out.println(userId);
+		String placeNum = (String) param.get("placeNum[]");
+		String reserveNum = (String) param.get("reserveNum[]");
+		String reserveId = (String) param.get("reserveId[]");
 		
-	
+		String star = (String) param.get("star=");
+		String con = (String) param.get("contents=");
+		
+		String[] str = placeNum.split("/");
 
-	}
-	
-	
-	
-	@RequestMapping(value="/reviewValue.hdo", method= {RequestMethod.GET, RequestMethod.POST})
-	public void getReviewValue(HttpServletRequest request) throws Exception{
-		int star = Integer.parseInt(request.getParameter("star"));
+		String placeNumm = str[1].trim();
+		int reserveNumm = Integer.parseInt(reserveNum);
+		
+
+		
 		System.out.println(star);
-		String reviewContent = request.getParameter("contents");
-		System.out.println(reviewContent);
+		System.out.println(con);
+		
+		vo.setMemId(userId);
+		vo.setPlaceNum(placeNumm);
+		vo.setReservNum(reserveNumm);
+		vo.setReserveId(reserveId);
+		
+		}catch(NullPointerException e) {
+			
+		}
+//			service.insertReviewForHost(vo);
+	}
 	
 		
+	
 
-		
-	}
+
+	
+//	@RequestMapping(value = "/reviewValue.hdo", method = { RequestMethod.GET, RequestMethod.POST })
+//	public static void getReviewValue(HostReviewVO vo, @RequestParam Map<String, Object> param, HttpServletRequest request) throws Exception {
+//		String star = (String) param.get("star");
+//		String con = (String) param.get("contents");
+//		int Fstar = Integer.parseInt(star);
+//		
+//		vo.setStar(Fstar);
+//		vo.setReview(con);
+//		
+//		System.out.println(vo.toString());
+//
+//	}
 	
 	@RequestMapping(value="/reviewForGuest.hdo")
 	public ModelAndView	reviewForm(HttpServletRequest request) throws Exception{

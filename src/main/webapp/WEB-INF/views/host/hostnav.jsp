@@ -70,8 +70,7 @@
 						<div class="collapse" id="collapseHost"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/myProfile.hdo">내 프로필
-									관리</a>
+							
 							
 							</nav>
 						</div>

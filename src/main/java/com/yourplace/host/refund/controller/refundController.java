@@ -48,8 +48,6 @@ public class refundController {
 				String reserveDate = Integer.toString(list.get(i).getReserveDate());
 				
 				String test1 = reserveYear.concat(reserveMonth).concat(reserveDate);
-				System.out.println("콘캣:" + test1);
-
 				java.util.Date date = df.parse(test1);
 				System.out.println(date);
 				

@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  
 <!DOCTYPE html>
 
 <html>
-
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +64,6 @@
 				리뷰 작성</p>
 
 		
-		
 
 
 				<div
@@ -94,13 +93,14 @@
 					style="margin-top: 8px; height: 192px; padding: 14px; position:relative; right:60px; border-radius: 4px; border: solid 1px var(- -grey-025);">
 					
 					<textarea placeholder="리뷰를 남겨주세요" id="content" name="content"
-						style="width: 300px; height: 160px; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: var(- -grey-080);"></textarea>
+						style="width: 300px; height: 160px; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: var(- -grey-080);" required>소중한 이용 감사합니다.</textarea>
 				</div>
 				<div class="riview" style="margin-top: 30px; text-align: center;">
 					
 					<div style="position:relative; right:110px; bottom:40px;">
-						<button type="submit" class="btn btn-primary" onclick="test()"
-							style="font-size: 10px; margin-left: 10px;">등록</button>
+						<input type="button" class="btn btn-primary"
+							style="font-size: 10px; margin-left: 10px;" value="등록" name="subb" id="subb" onclick="test(); a();" />
+							
 					</div>
 
 				</div>
@@ -108,25 +108,54 @@
 			</div>
 		</div>
 	</div>
-	<form id="sub" name="sub" method="POST" action="/reviewValue.hdo" hidden="hidden" >
+	<form id="sub" name="sub" method="post"  hidden="hidden" action="/reviewValue.hdo">
 				<input type="hidden" name="star" id="star" value="" > 
 				<input type="hidden" name="contents" id="contents" value="">
 
 					</form>
 </div>
 </body>
+ 
 <script>
 
 function test() {
     var obj_value = $("input:radio[name='rating']:checked").val();
 	var contentV = $('#content').val();
-   console.log(obj_value);
-   console.log(contentV);
-   
     $("#star").val(obj_value);
   	$("#contents").val(contentV);
-    $("#sub").submit();
+  	window.close();
+
 }
 
+
+
+
+
+
+function a()
+{
+	var params = $("#sub").serialize();
+	
+	$.ajax(
+
+	{
+			url : '/reserveValue.hdo',
+			data : params,
+			dataType : 'text',
+			async    : false,
+			type : 'POST',
+			success : function(xh) {
+				window.close();
+			}
+		});
+	}
 </script>
+ 
+	
+	
+	
+
+
+
+
 </html>

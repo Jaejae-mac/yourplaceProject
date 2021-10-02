@@ -70,20 +70,19 @@ public class HostLoginController {
 				String sex = list.get(i).getUserSex();
 				String nick = list.get(i).getUserNickName();
 				String info = list.get(i).getUserIntro();
+				String mail = list.get(i).getUserEmail();
+				String tel = list.get(i).getUserTel();
+				
+				
+				
 				
 				HttpSession session = request.getSession();
 				session.setAttribute("userSex", sex);
 				session.setAttribute("userNick", nick);
 				session.setAttribute("userInfo", info);
-				
-				String sid = (String) session.getAttribute("userId");
-				String ssex =(String) session.getAttribute("userSex");
-				String snick = (String) session.getAttribute("userNick");
-				String sinfo=(String)session.getAttribute("userInfo");
-				
-				System.out.println(sid);
-				System.out.println(snick);
-				System.out.println(sinfo);
+				session.setAttribute("userMail", mail);
+				session.setAttribute("userTel", tel);
+
 				
 				
 			}

@@ -122,7 +122,7 @@
 						class="table table-bordered display" width="100%">
 						<thead>
 							<tr>
-								<th>장소명</th>
+								<th>장소명 / 장소번호</th>
 								<th>예약번호</th>
 								<th>예약자</th>
 								<th>예약자 ID</th>
@@ -141,14 +141,7 @@
 
 							<c:forEach items="${list}" var="list">
 								<tr>
-									<td>${list.placeName}</td>
-									<td>${list.reserveNum}</td>
-									<td>${list.reserveName }</td>
-									<td>${list.reserveId }</td>
-									<td>${list.startTime }시</td>
-									<td>${list.endTime }시</td>
-									<td>${list.personNum }</td>
-									<td>${list.payPrice }</td>
+									<td>${list }</td>
 									<td><input type="checkbox" name="allReview" id="allReview" /></td>
 
 								</tr>
@@ -161,7 +154,7 @@
 
 				</div>
 
-				<form id="sub" name="sub" method="Post" hidden="hidden" action="/getReserveValue.hdo" >
+				<form id="subb" name="subb" method="Post" hidden="hidden" action="/reviewValue.hdo" >
 					<input type="hidden" name="pName" id="pName" value=""> <input
 						type="hidden" name="rNum" id="rNum" value="" /> <input
 						type="hidden" name="rName" id="rName" value="" /> <input
@@ -229,27 +222,47 @@
 					var tr = checkbox.parent().parent().eq(i);
 					var td = tr.children();
 					
-					var arr = new Array();
+					var arr1 = new Array();
+					var arr2 = new Array();
+					var arr3 = new Array();
+					var arr4 = new Array();
 					
-					var placeName = td.eq(0).text();
+					
+					var placeNum = td.eq(0).text();
 					var reserveNum = td.eq(1).text();
 					var reserveName = td.eq(2).text();
 					var reserveId = td.eq(3).text();
-			
-					console.log(placeName);
+
+				
+					arr1.push(placeNum);
+					arr2.push(reserveNum);
+					arr3.push(reserveName);
+					arr4.push(reserveId);
 					
-					for(var i=0; i<arr.length; i++){
+					  $(document).on("click", "button[name='review']", function () {
+						  $.ajax({
+						      url: "/reserveValue.hdo",
+						      type:'POST',
+						      async    : false,
+						      dataType:"text",
+						      data: {placeNum : arr1,
+						      		reserveNum : arr2,
+						      		reserveName : arr3,
+						      		reserveId : arr4
+						      
+						      	
+						      },
+						      
+						      success: function(data){
+						      	  	alert("성공");
+						              return false;
+						      }
+						  })});
+
+
+
 					
-						$("#pName").val(placeName);
-						
-						$("#rNum").val(arr[i].reserveNum);
-						$("#rName").val(arr[i].reserveName);
-						$("#rId").val(arr[i].reserveId);
 					
-					}
-					
-					var test = document.getElementById("pName");			
-					console.log(test);
 					
 					window.name="review";
 					var url = "/reviewForGuest.hdo";
@@ -272,24 +285,8 @@
 
 	  
 
-	</script>
-
-<script>
-$(document).ready(function () {
-	  $(document).on("click", "button[name='review']", function () {
-$.ajax({
-    url: "/getReserveValue.hdo",
-    type:'POST',
-    data:$("#sub").serialize(),
-    success: function(data){
-    	  	alert("성공");
-            return false;
-    }
-})})});
-
-
-
 </script>
+
 
 
 </html>
