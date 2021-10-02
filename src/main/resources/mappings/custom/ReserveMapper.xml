@@ -186,7 +186,7 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE reservation.user_num = #{userNum}
+        WHERE r.user_num = #{userNum}
 		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
 	</select>
 	<select id="getMyReserveListEnd" resultMap="getmyreserveList">
@@ -300,7 +300,7 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE reservation.user_num = #{userNum}
+        WHERE r.user_num = #{userNum}
 		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)
 		AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
         ORDER BY r.rsv_month ASC, r.rsv_date ASC;	

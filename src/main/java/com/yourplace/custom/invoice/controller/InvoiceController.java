@@ -1,7 +1,5 @@
 package com.yourplace.custom.invoice.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,8 +23,8 @@ public class InvoiceController {
 	public String invoiceForm(Model model, InvoiceVO vo) {
 		System.out.println("invoice.jsp 호출 ");
 		System.out.println(vo.toString());
-		List<InvoiceVO> list = invoiceService.invoiceView(vo);
-		model.addAttribute("payment", list);
+		model.addAttribute("payment", invoiceService.invoiceView(vo));
+		System.out.println(model);
 		return "invoice";
 	}
 	
