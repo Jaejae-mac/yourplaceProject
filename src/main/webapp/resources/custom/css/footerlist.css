@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+/*footerList에 해당하는 css */
+.h_policy_title {
+  margin-top: 40px;
+  font-size: 18px;
+  font-weight: 700;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.44;
+  letter-spacing: -0.1px;
+  color: #1b1d1f;
+}
+
+.h_policy_desc {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: -0.1px;
+  color: #1b1d1f;
+}

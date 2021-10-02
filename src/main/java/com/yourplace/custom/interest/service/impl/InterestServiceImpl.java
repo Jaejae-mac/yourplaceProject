@@ -20,5 +20,16 @@ public class InterestServiceImpl implements InterestService {
 		System.out.println("[InterestServiceImpl]"+ vo.toString());
 		return interestDAO.interestView(vo);
 	}
+	@Override
+	public void insertInter(InterestVO vo) {
+		
+		interestDAO.insertInter(vo);		
+	}
+	
 
+	
+	@Override
+	public void deleteInter(int placeNum) {
+		interestDAO.deleteInter(placeNum);
+	}
 }

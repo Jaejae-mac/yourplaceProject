@@ -20,10 +20,12 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/js/datepicker.min.js"></script>
+
 <script src="<c:url value="/resources/js/datepicker.ko.js" />"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <link rel="stylesheet"
+<<<<<<< HEAD
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -64,8 +66,6 @@
 	<%@ include file="header.jsp"%>
 
 
-
-
 	<div id="main_vue" class="h_column_center" style="min-height: 1000px">
 		<div style="width: 1160px">
 			<div class="h_row_center" style="margin-top: 50px">
@@ -75,6 +75,7 @@
 			</div>
 			<p
 				style="margin-top: 50px; font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
+
 				${placeInfo.placeName }</p>
 			<div class="h_row_center" style="margin-top: 19px; height: 24px">
 				<div onclick="go_feedback()" class="h_row_center"
@@ -509,7 +510,6 @@
 										</form>
 											<div class="date_picker"
 												style="margin: 10px 10px; position: relative; display: inline-block;">
-												
 											</div>
 											<div
 												style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
@@ -529,7 +529,6 @@
 														 readonly>
 												</div>
 											</div>
-										
 										<div class="h_row_center"
 											style="position: relative; width: 100%; height: 70px; border-top: 1px solid rgb(231, 234, 238); z-index: 0;"
 											onclick="resetDateTime()">
@@ -660,10 +659,10 @@
 						</div>
 
 					</div>
+
 				</div>
 			</div>
 		</div>
-
 		<div class="direct_phone h_center"
 			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: var(- -opacity-black-60);">
 			<div
@@ -757,6 +756,7 @@
 			<div onclick="$(document).scrollTop(0);" class="h_center"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/scroll_top_v2.svg"/>"
+
 					style="width: 24px; height: 24px" />
 			</div>
 			<div onclick="$(document).scrollTop($(document).height());"

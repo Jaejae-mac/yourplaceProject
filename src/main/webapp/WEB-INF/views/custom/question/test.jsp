@@ -12,16 +12,14 @@
 <body>
 	<div>
 		<form id="form_interest" method="get" name="form_interest">
-			<a href="/interest.do?${placeNum }"
+			<a href="/interest.do?${userId}=dlrlxor6100&${placeNum}=3"
 				style="text-decoration: none; color: black;"> <input
 				type="hidden" id="insertInterest" name="placeNum"/>인보이스 테스트
 			</a>
 		</form>
 	</div>
 </body>
-
-<script>
-	$(document).on('click', '#insertInterest', function() {
+<!-- $(document).on('click', '#insertInterest', function() {
 		console.log("북마크 등록 클릭 ");
 		//문의내용 입력 공백확인 
 		var insertInterest = "";
@@ -38,6 +36,8 @@
 			$("#form_interest").attr("action", "/interest.do");
 			$("#form_interest").submit();
 		}
-	});
+	}); -->
+<script>
+	
 </script>
 </html>
