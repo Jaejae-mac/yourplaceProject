@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="chrome">
@@ -89,8 +89,7 @@
 						공간 호스트</p>
 				</div>
 				<div class="h_center"
-					style="margin-top: 30px; width: 280px; height: 56px; border-radius: 8px; background-color: #fafbfb; cursor: pointer;"
-					onclick="window.location.href='/info/host'">
+					style="margin-top: 30px; width: 280px; height: 56px; border-radius: 8px; background-color: #fafbfb; cursor: pointer;">
 					<div class="h_row_center">
 						<label for="host_using" class="host_using"
 							style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; text-align: center; color: #1b1d1f;">

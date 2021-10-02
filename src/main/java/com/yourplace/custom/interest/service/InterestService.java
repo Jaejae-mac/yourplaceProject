@@ -7,4 +7,10 @@ import com.yourplace.custom.interest.vo.InterestVO;
 public interface InterestService {
 
 	List<InterestVO> interestView(InterestVO vo);
+	
+	void insertInter(InterestVO vo);
+	
+
+	
+	void deleteInter(int placeNum);
 }

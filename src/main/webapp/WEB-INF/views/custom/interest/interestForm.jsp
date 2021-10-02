@@ -26,7 +26,6 @@
 
 <body>
 	<c:choose>
-		<c:when test="${placeNum != null}">MY Interest - ${placeNum }</c:when>
 		<c:when test="${userId != null }">My Interest = ${userId }</c:when>
 		<c:otherwise></c:otherwise>
 	</c:choose>
@@ -49,18 +48,25 @@
 			</div>
 		</div>
 		<!-- 값이 잘 오는지 확인하기위한 란 <p>값-->
-		<p
-			style="margin-left: 6px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 14px; letter-spacing: -0.5px; color: #246FF8;">
-			${fn:length(interestList)}</p>
-			
+
 		<!-- 메인 -->
-		<c:forEach var="interest" items="${interestList}">
+		<div class="h_row_center"
+			style="margin-top: 100px; width: 1180px; margin-bottom: 230px; flex-wrap: wrap;">
 			<div class="h_row_center"
-				style="margin-top: 100px; width: 1180px; margin-bottom: 230px; flex-wrap: wrap;">
-				<div
+				style="margin-top: 20px; width: 1180px; margin-bottom: 30px; flex-wrap: wrap;">
+				<p
+					style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center;">
+					내가 등록한 관심 장소: </p>
+				<label style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal;line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
+					${fn:length(interestList)}
+				</label>
+			</div>
+			<c:forEach var="interest" items="${interestList}">
+
+				<div onclick="gotoDetail(${interest.placeNum})"
 					style="width: 373px; height: 352px; border-radius: 10px; border: 1px solid rgb(223, 226, 231); margin-right: 10px; margin-left: 10px; margin-bottom: 20px; overflow: hidden; cursor: pointer;">
 					<img
-						src="//img.hourplace.co.kr/temp/images/2019/11/07/3e2cb44c-5cba-39c3-b2c6-da56ae36a4f1.jpg?s=550x364&amp;t=cover&amp;q=80"
+						src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${interest.placeThumb }"
 						style="height: 248px; object-fit: cover" />
 					<div style="width: 100%; padding: 20px 30px">
 						<p class="h_ellipsis_1"
@@ -71,9 +77,8 @@
 							${interest.placeNum}</p>
 					</div>
 				</div>
-			</div>
-		</c:forEach>
-		
+			</c:forEach>
+		</div>
 		<c:if test="${fn:length(interestList) == 0 }">
 			<div class="h_center" style="width: 1160px; height: 1000px;">
 				<div class="h_column_center">
@@ -108,12 +113,10 @@
 	<!-- script -->
 
 	<script>
-		
+		function gotoDetail(e) {
+			location.href = "/detailPlaceForm.do?placeNum=" + e;
+		}
 	</script>
-
-
-
-
 	<!-- script 끝 -->
 </body>
 </html>

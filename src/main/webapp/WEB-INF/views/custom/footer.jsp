@@ -17,23 +17,23 @@
 
             <div style="position:relative;min-width: 300px;padding-top: 40px;height: 100%;">
                 <p style="font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="hourplace_v2.userLog('W', '/place/29464', 'click', 'policy', 'business');window.open('http://www.ftc.go.kr/www/bizCommView.do?key=232&amp;apv_perm_no=2018322016230204057&amp;pageUnit=10&amp;searchCnd=wrkr_no&amp;searchKrwd=4948100558&amp;pageIndex=1')">
+                    onclick="location.href='/footerbs.do'">
                     사업자정보확인
                 </p>
                 <p style="margin-top: 12px; font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="hourplace_v2.userLog('W', '/place/29464', 'click', 'policy', 'personal');window.location.href='/policy/personal'">
+                    onclick="location.href='/footerpv.do'">
                     개인정보처리방침
                 </p>
                 <p style="margin-top: 12px; font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="hourplace_v2.userLog('W', '/place/29464', 'click', 'policy', 'service');window.location.href='/policy/service'">
+                    onclick="location.href='/footertos.do'">
                     이용약관
                 </p>
                 <p style="margin-top: 12px; font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="window.location.href='/service.html'"> <!-- hourplace_v2.userLog('W', '/place/29464', 'click', 'service');window.location.href='/service' -->
+                    onclick="location.href='/quesForm.do'"> <!-- hourplace_v2.userLog('W', '/place/29464', 'click', 'service');window.location.href='/service' -->
                     고객센터
                 </p>
                 <p style="margin-top: 12px; font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #454b50;cursor: pointer;"
-                    onclick="location.href='/quesForm.do'">
+                    onclick="location.href='/footertr.do'">
                     인재채용
                 </p>
 
