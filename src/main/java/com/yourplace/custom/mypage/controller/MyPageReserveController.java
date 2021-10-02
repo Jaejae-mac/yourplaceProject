@@ -129,16 +129,15 @@ public class MyPageReserveController {
 	public String updateUser(String rsvNum){
 		System.out.println("[mypageController] updateReserve 기능");
 		System.out.println(rsvNum);
-		int Num = Integer.parseInt(rsvNum);
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvNum(Num);
+		vo.setRsvNum(rsvNum);
 		reserveservice.updateReserve(vo);
 		return "success";
 	}
 	@RequestMapping("/insertGuestReview.do")
 	public String insertReview(MyPageGuestReviewVO vo) {
 		System.out.println("[mypageController] insertReview 기능");
-		int rsvNum = vo.getRsvNum();
+		String rsvNum = vo.getRsvNum();
 		MyPageReserveVO tvo = new MyPageReserveVO();
 		tvo.setRsvNum(rsvNum);
 		reserveservice.updatereviewYn(tvo);

@@ -21,7 +21,8 @@ public class InvoiceVO {
 	private int invTax; // 부가세(수수료)
 	private int invAftTax; // 세후 금액
 	private int userNum; // 회원 고유 번호 
-	
+	private int rsvRefundYn;
+	private int refundCost;
 	
 	private String rsvName; // 예약자 명
 	private int rsvYear; // 예약 년도

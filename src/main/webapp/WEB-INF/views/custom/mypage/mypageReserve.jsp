@@ -419,8 +419,9 @@
        				var year = now.getFullYear();
        				var month = now.getMonth()+1;
        				var day = now.getDate();
-       				var rsvDay = new Date(rsvYear,rsvMonth,rsvDate);
-       				var nowDay = new Date(year,month,day);
+       				var Time = now.getHours();
+       				var rsvDay = new Date(rsvYear,rsvMonth,rsvDate,rsvEndT);
+       				var nowDay = new Date(year,month,day,Time);
        				
        				var btms = rsvDay.getTime() - nowDay.getTime();
        				var btDay = btms / (1000*60*60*24);
@@ -430,12 +431,12 @@
        				res += '<input type="hidden" id="rsvDay'+i+'"onclick="Arefundbtn(rsvDay'+i+')" value="'+ rsvDay.getTime() + '">';
        				res += '<input type="hidden" id="placeNum'+i+'" value="'+ placeNum + '">';
        				res += '<a href="/invoice.do?rsvNum=' + rsvNum + '"target="_blank">';
-       				res += '<p name="rsvNum" style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center;">';
+       				res += '<p name="rsvNum" style="margin-left: 8px; margin-right: 8px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center;">';
        				res += rsvNum + '</p></a></div>';
-       				res += '<div class="h_row_center" style="width: 540px;">';
+       				res += '<div class="h_row_center" style="margin-left: 7px; width: 540px;">';
        				res += '<img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/' + placeThumb + '" style="border-radius: 10px;width: 150px; position: absolute;">';
        				res += '<a href="/detailPlaceForm.do?placeNum='+ placeNum + '">';
-       				res += '<p style="margin-left: 170px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       				res += '<p style="margin-left: 160px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvMonth+'월'+ rsvDate +'일 '+ rsvStartT +':00 ~ ' + rsvEndT + ':00';
        				res += '<br>['+ placeArea +'] '+ placeName +'</p></a></div>';     				
        				res += '<div class="h_row_center" style="width: 100px;">';

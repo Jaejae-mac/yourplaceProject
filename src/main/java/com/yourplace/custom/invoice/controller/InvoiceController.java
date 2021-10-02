@@ -26,7 +26,7 @@ public class InvoiceController {
 		System.out.println("invoice.jsp 호출 ");
 		System.out.println(vo.toString());
 		List<InvoiceVO> list = invoiceService.invoiceView(vo);
-		model.addAttribute("invoiceList", list);
+		model.addAttribute("payment", list);
 		return "invoice";
 	}
 	

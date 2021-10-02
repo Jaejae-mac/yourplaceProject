@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="invTax" column="inv_tax" />
 		<result property="invAftTax" column="inv_aft_tax" />
 		<result property="userNum" column="user_num" />
+		<result property="rsvRefundYn" column="rsv_refund_yn" />
+		<result property="refundCost" column="refund_cost" />
 		
 		<result property="rsvName" column="rsv_name" />
 		<result property="rsvYear" column="rsv_year" />
@@ -29,12 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="invoiceView" parameterType="MyInvoice" resultMap="invoiceResult">
 		SELECT 
-		p.rsvNum,p.payNum,p.placeMainCate,p.payYear,
-		p.payMonth,p.payDate,p.invCost,p.coupDisRate,p.invAftTax,p.userNum,
-		r.rsv_name,r.rsv_year, r.rsv_month, r.rsv_date,
-		r.place_name, r.place_num,r.rsv_start_t,r.rsv_end_t 
+		p.rsv_num,p.pay_num,p.place_maincate,p.pay_year,p.pay_month,p.pay_date,p.inv_cost,
+		p.coup_dis_rate,p.inv_tax,p.inv_aft_tax,p.user_num,p.rsv_refund_yn,
+		r.rsv_name,r.rsv_year,r.rsv_month,r.rsv_date,
+		place.place_name,r.place_num,r.rsv_start_t,r.rsv_end_t 
 		FROM
-		payment p join reservation r using(rsv_num)
+		payment p join reservation r using(rsv_num) join place using(place_num)
 		WHERE
 		p.rsv_num = #{rsvNum};
 	</select>
