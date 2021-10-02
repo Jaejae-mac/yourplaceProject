@@ -59,14 +59,14 @@
 		</div>
 		<div class="total_card_layout">
 			<c:forEach var="place" items="${placeCateList}" varStatus="status">
-				<div class="card_layout" style="margin-right:15px;" onclick="gotoDetail('#place_num${status.index }')">
+				<div class="card_layout" style="margin-right:15px;">
 					<div class="card">
-						<div class="card_header">
+						<div class="card_header" onclick="gotoDetail('#place_num${status.index }')">
 							<img src="${place.placeThumb }" alt="이미지 넣는 곳" />
 							<!-- 데이터 베이스의 해당 image 가져오기-->
 						</div>
-						<div class="card_body">
-							<div class="card_body_header">
+						<div class="card_body" onclick="gotoDetail('#place_num${status.index }')">
+							<div class="card_body_header" >
 								<p>
 									${place.placeCate } · ${place.placeArea }
 									<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
@@ -108,7 +108,7 @@
 								${place.placePrice }원
 								<!-- {{ place.price_guest }}원 -->
 							</p>
-							<img class="card_body_footer_booking" src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
+							<img class="card_body_footer_booking" src="<c:url value="/resources/custom/icon/bookmark_g.png" />" onclick="interest()">
 							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
 						</div>
 					</div>
@@ -123,6 +123,8 @@
 function gotoDetail(e){
 	location.href="/detailPlaceForm.do?placeNum="+$(e).val();
 }
-
+function interest(){
+	console.log("img click");
+}
 </script>
 </html>

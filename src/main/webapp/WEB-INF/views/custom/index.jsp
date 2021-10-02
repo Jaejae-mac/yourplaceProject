@@ -597,19 +597,19 @@
 			<div class="total_card_layout">
 				<!--신규등록 장소 추천 반복 시작. -->
 				<c:forEach var="latestPlace" items="${latestPlaces }" varStatus="status">
-					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;" onclick="gotoDetail('#place_num${status.index }')">
+					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;" >
 						<input type="hidden" id="place_num" name="place_num"
 							value="${latestPlace.placeNum}" />
 						 <input type="hidden"
 							id="user_id" name="user_id" value="${latestPlace.userId }" />
 							
-						<div class="card">
-							<div class="card_header">
+						<div class="card" >
+							<div class="card_header" onclick="gotoDetail('#place_num${status.index }')">
 
 								<img src="${latestPlace.placeThumb}" alt="이미지 넣는 곳" />
 								<!-- 데이터 베이스의 해당 image 가져오기-->
 							</div>
-							<div class="card_body">
+							<div class="card_body" onclick="gotoDetail('#place_num${status.index }')">
 								<div class="card_body_header">
 									<p>
 										${latestPlace.placeCate } · ${latestPlace.placeArea }
@@ -656,7 +656,7 @@
 									<!-- {{ place.price_guest }}원 -->
 								</p>
 								<img class="card_body_footer_booking"
-									src="<c:url value="/resources/custom/icon/bookmark_g.png" />">
+									src="<c:url value="/resources/custom/icon/bookmark_g.png" />" id="interest_btn"  onclick="interest()">
 								<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
 							</div>
 						</div>
@@ -1252,7 +1252,9 @@
         console.log($(this).children("input[name='place_num']").val());
         console.log($(this).children("input[name='user_id']").val());
     });
-
+	function interest(){
+		console.log("img click");
+	}
 </script>
 <script>
 function gotoDetail(e){
