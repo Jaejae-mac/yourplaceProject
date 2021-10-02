@@ -13,6 +13,12 @@
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<!-- SweetAlert Lib -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 
 <body>
@@ -20,6 +26,8 @@
 	<c:if test="${userId != null}">
 		MyPageFix - ${userId}
 	</c:if>
+	<c:set var="userEmailAgree" value="${user.userEmailAgree }"/>
+	<c:set var="userSmsAgree" value="${user.userSmsAgree }"/>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
@@ -32,37 +40,20 @@
 		<div style="margin-top: 50px; margin-bottom: 120px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
 			<div class="h_center" style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center">
 				<label style="position: relative; width: 120px; height: 120px" data-toggle="tooltip"> 
-					<img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
-						style="width: 100%; height: 100%; border-radius: 60px; position: absolute;"id="avatar" /> 
+					<c:if test="${user.userProfileImg == null }">
+						<img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
+							style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" name="userProfileImg"/> 
+					</c:if>
+					<c:if test="${user.userProfileImg != null }">
+						<img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
+							style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" name="userProfileImg"/> 
+					</c:if>
 					<img src="<c:url value="/resources/img/icon/register/my_profile_edit.png" />"
 						style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
-					<input type="file" id="input" accept="image/*" style="display: none">
+					<input type="file" id="input" accept="image/*" style="display: none" ">
 				</label>
 			</div>
-			<!--  
-	       <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-	            <div class="modal-dialog" role="document">
-	                <div class="modal-content">
-	                    <div class="modal-header">
-	                        <h5 class="modal-title" id="modalLabel">프로필 이미지</h5>
-	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	                            <span aria-hidden="true">&times;</span>
-	                        </button>
-	                    </div>
-	                    <div class="modal-body">
-	                        <div class="img-container">
-	                            <img id="image" src="https://avatars0.githubusercontent.com/u/3456749"
-	                                style="max-width: 400px">
-	                        </div>
-	                    </div>
-	                    <div class="modal-footer">
-	                        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	                        <button type="button" class="btn btn-primary" id="crop">확인</button>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        -->
+			
 				<form action="" id="mypagefix_form" method="post">
 				<div
 					style="margin-top: 60px; margin-left: 50px; margin-right: 50px; margin-bottom: 10px">
@@ -86,13 +77,13 @@
 					<div class="input_container" style="margin-top: 8px; width: 448px;">
 						<input type="text" placeholder="닉네임을 입력하세요"
 							value="${user.userNickName}" id="userNickName"
-							name="userNickName" required>
+							name="userNickName" onchange="check_Nick()" required>
 						<div class="delete" onclick="delete_nickname()">
 							<img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
 								style="width: 16px; height: 16px;" />
 						</div>
 					</div>
-
+					
 					<div
 						style="width: 448px; margin-top: 40px; display: flex; flex-direction: row">
 						<p
@@ -111,6 +102,7 @@
 								style="width: 16px; height: 16px;" />
 						</div>
 					</div>
+					<input type="hidden" name="Email" id="Email" value="Y">
 					<!-- 이메일 검증 결과 내역 -->
 					<div
 						style="height: 36px; display: flex; flex-direction: row; align-items: center;">
@@ -119,14 +111,15 @@
 						</p>
 					</div>
 					<!-- 이메일 검증 문구 끝-->
+					
 					<p
 						style="width: 448px; height: 13.6px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 						소개</p>
 					<div
-						style="width: 448px; height: 192px; margin-top: 8px; padding: 14px; border-radius: 4px; border: solid 1px var(- -grey-025);">
+						style="width: 448px; height: 192px; margin-top: 8px; padding: 14px; border-radius: 4px; border: solid 1px #dfe2e7;">
 						<textarea class=""
-							style="width: 100%; height: 100%; border-width: 0; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
-							placeholder="소개를 입력하세요" id="userIntro" name="userIntro"></textarea>
+							style="resize: none; width: 100%; height: 100%; border-width: 0; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"
+							placeholder="소개를 입력하세요" id="userIntro" name="userIntro">${user.userIntro}</textarea>
 					</div>
 
 					<div class="h_row_center h_check"
@@ -137,7 +130,12 @@
 						<p id="cMail"
 							style="margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 							[선택] 아워플레이스 소식 메일 수신 동의</p>
-						<input type="hidden" name="userEmailAgree" id="emailagree" value="N">
+						<c:if test="${userEmailAgree == 'N' }">
+							<input type="hidden" name="userEmailAgree" id="emailagree" value="N">
+						</c:if>
+						<c:if test="${userEmailAgree == 'Y' }">
+							<input type="hidden" name="userEmailAgree" id="emailagree" value="Y">
+						</c:if>
 					</div>
 					<div class="h_row_center h_check"
 						style="height: 32px; background-color: #ffffff; cursor: pointer;">
@@ -147,7 +145,12 @@
 						<p id="cSMS"
 							style="margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 							[선택] 아워플레이스 SMS 수신 동의</p>
-						<input type="hidden" name="userSmsAgree" id="smsagree" value="N">
+						<c:if test="${userSmsAgree eq 'N' }">
+							<input type="hidden" name="userSmsAgree" id="smsagree" value="N">
+						</c:if>
+						<c:if test="${userSmsAgree eq 'Y' }">
+							<input type="hidden" name="userSmsAgree" id="smsagree" value="Y">
+						</c:if>
 					</div>
 				</div>
 				<div class="h_column_center" style="margin-bottom: 60px;">
@@ -157,31 +160,73 @@
 				</div>
 				</form>
 				<script>
-					var userEmailAgree = 'N'
-                    var userSmsAgree = 'N'
+					function readImage(input) {
+					    if(input.files && input.files[0]) {
+					        const reader = new FileReader()
+					        reader.onload = e => {
+					            const previewImage = document.getElementById("avatar")
+					            previewImage.src = e.target.result
+					        }
+					        reader.readAsDataURL(input.files[0])
+					    }
+					}
+					const inputImage = document.getElementById("input")
+					inputImage.addEventListener("change", e => {
+					    readImage(e.target)
+					})
+					
+					
+					var userEmailAgree = $(emailagree).val()
+                    var userSmsAgree = $(smsagree).val()
+                    $(document).ready(function(){
+                    	if(userEmailAgree == "Y"){
+                    		document.getElementById('agree-mail').setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                            document.getElementById('cMail').style.color = 'blue';
+                    	}
+                    	if(userSmsAgree == "Y"){
+                    		document.getElementById('agree-sms').setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                            document.getElementById('cSMS').style.color = 'blue';
+                    	}
+                    })
                     // 내용 삭제 기능
                     function delete_nickname() {
                         $('#userNickName').val('');
                     }
                     function delete_email() {
                         $('#userEmail').val('');
+                        document.getElementById('Email').value = 'N'
                     }
+                    
                     // 이메일 유효성검사 및 오류메세지 출력기능
                     function check_Email() {
                         var email = $("#userEmail").val();
                         var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
                         if (document.getElementById('userEmail').value != '') {
                             if (regEmail.test(email)) {
-                                document.getElementById('cEmail').innerHTML = ''
+                                document.getElementById('cEmail').innerHTML = '정상적인 이메일 주소입니다.'
+                                document.getElementById('cEmail').style.color = 'blue'
+                                document.getElementById('Email').value = 'Y'
                             } else {
                                 document.getElementById('cEmail').innerHTML = '이메일을 다시 작성해주세요.'
+                                document.getElementById('Email').value = 'N'
                             }
+                        }else{
+                        	document.getElementById('cEmail').innerHTML = '이메일을 작성해주세요.'
+                            document.getElementById('Email').value = 'N'
                         }
                     }
                     // 회원 정보 수정
                     function userupdate(){
                         console.log("update pressed");
+                        if($(Email).val() == "N"){
+                        	Swal.fire({
+                        		  icon: 'error',
+                       			  title: '이메일을 입력해주세요',
+                       			  text: '현재 이메일칸이 비어있거나 잘못작성하셨습니다.'
+                        		}) 	
+                        }else{
         	            $("#mypagefix_form").attr("action","/updateUser.do").submit();
+        	            }
                     }
                     // 동의 내역
                     $(document).on('click', '.agree-mail', function () {

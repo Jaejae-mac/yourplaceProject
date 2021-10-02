@@ -39,36 +39,36 @@ public class MyPageReserveController {
 	}
 	@RequestMapping("/reserveListIng.do")
 	@ResponseBody
-	public List<MyPageReserveVO> getReserveList(HttpServletRequest request) {
+	public List<MyPageReserveVO> getReserveList(int num) {
 		System.out.println("[controller getReserveList 기능 수행]");
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		int userNum = num;
+		System.out.println(userNum);
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvId(userId);
+		vo.setUserNum(userNum);
+		System.out.println(vo.toString());
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveList(vo);
 		System.out.println(tvo);
 		return tvo;
 	}
 	@RequestMapping("/reserveListAll.do")
 	@ResponseBody
-	public List<MyPageReserveVO> getReserveListAll(HttpServletRequest request) {
+	public List<MyPageReserveVO> getReserveListAll(int num) {
 		System.out.println("[controller getReserveListAll 기능 수행]");
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		int userNum = num;
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvId(userId);
+		vo.setUserNum(userNum);
+		System.out.println(vo.toString());
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveListAll(vo);
 		System.out.println(tvo);
 		return tvo;
 	}
 	@RequestMapping("/reserveListEnd.do")
 	@ResponseBody
-	public List<MyPageReserveVO> getReserveListEnd(HttpServletRequest request) {
+	public List<MyPageReserveVO> getReserveListEnd(int num) {
 		System.out.println("[controller getReserveListEnd 기능 수행]");
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		int userNum = num;
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvId(userId);
+		vo.setUserNum(userNum);
 		System.out.println(vo);
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveListEnd(vo);
 		System.out.println(tvo);
@@ -76,12 +76,11 @@ public class MyPageReserveController {
 	}
 	@RequestMapping("/reserveListCancel.do")
 	@ResponseBody
-	public List<MyPageReserveVO> getReserveListCancel(HttpServletRequest request) {
+	public List<MyPageReserveVO> getReserveListCancel(int num) {
 		System.out.println("[controller getReserveListCancel 기능 수행]");
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		int userNum = num;
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvId(userId);
+		vo.setUserNum(userNum);
 		System.out.println(vo);
 		List<MyPageReserveVO> tvo =reserveservice.getMyReserveListCancel(vo);
 		System.out.println(tvo);
@@ -89,12 +88,11 @@ public class MyPageReserveController {
 	}
 	@RequestMapping("/reserveListkeyword.do")
 	@ResponseBody
-	public List<MyPageReserveVO> getReserveListkeyWord(String keyword,String title, HttpServletRequest request) {
+	public List<MyPageReserveVO> getReserveListkeyWord(String keyword,String title, int num) {
 		System.out.println("[controller getReserveListCancel 기능 수행]");
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
+		int userNum = num;
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvId(userId);
+		vo.setUserNum(userNum);
 		vo.setSearchKeyword(keyword);
 		System.out.println(vo);
 		System.out.println(title);
@@ -131,16 +129,15 @@ public class MyPageReserveController {
 	public String updateUser(String rsvNum){
 		System.out.println("[mypageController] updateReserve 기능");
 		System.out.println(rsvNum);
-		int Num = Integer.parseInt(rsvNum);
 		MyPageReserveVO vo = new MyPageReserveVO();
-		vo.setRsvNum(Num);
+		vo.setRsvNum(rsvNum);
 		reserveservice.updateReserve(vo);
 		return "success";
 	}
 	@RequestMapping("/insertGuestReview.do")
 	public String insertReview(MyPageGuestReviewVO vo) {
 		System.out.println("[mypageController] insertReview 기능");
-		int rsvNum = vo.getRsvNum();
+		String rsvNum = vo.getRsvNum();
 		MyPageReserveVO tvo = new MyPageReserveVO();
 		tvo.setRsvNum(rsvNum);
 		reserveservice.updatereviewYn(tvo);

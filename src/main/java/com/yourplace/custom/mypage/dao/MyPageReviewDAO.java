@@ -9,4 +9,8 @@ public interface MyPageReviewDAO {
 	List<MyPageHostReviewVO> getReviewList(MyPageHostReviewVO vo);
 	
 	void insertGuestReview(MyPageGuestReviewVO vo);
+	
+	void deleteGuestReview(MyPageGuestReviewVO vo);
+	
+	void deleteHostReview(MyPageHostReviewVO vo);
 }

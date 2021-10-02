@@ -19,7 +19,7 @@
 		MY Page - ${userId }
 	</c:if>
 	<!-- Header -->
-	<%@ include file="../header.jsp" %>
+	<!--  <%@ include file="../header.jsp" %>
 	<!-- Header End -->
 	<div class="h_column_center" id="main_vue" style="min-height: 1000px; margin-top: 100px">
         <div style="width: 1160px;">
@@ -59,7 +59,7 @@
 
                     <div class="h_row" style="flex-wrap: wrap; margin-bottom: 40px;">
                         <c:forEach var="couponList" items="${couponList}">
-                        <fmt:parseNumber value="${couponList.userCoupEndD.time / (1000*60*60*24)}" integerOnly="true" var="endday"/>
+                        <fmt:parseNumber value="${couponList.coupEndD.time / (1000*60*60*24)}" integerOnly="true" var="endday"/>
                         <div style="padding: 5px;">
                             <div style="width: 274px; border: 1px solid #DFE2E7;border-radius: 10px; overflow: hidden;">
                                 <div class="h_center" id="coup" style="background-color: #246FF8; width: 100%; height: 100px;">
@@ -74,10 +74,10 @@
                                     </p>
                                     <div class="h_row" style="margin-top: 6px;">
                                         <p style="font-style: normal;font-weight: bold;font-size: 15px;line-height: 24px;color: #246FF8;">
-                                            D-${endday - today}
+                                            D - ${endday - today} 
                                         </p>
                                         <p style="margin-left: 15px; font-style: normal;font-weight: 400;font-size: 15px;line-height: 24px;color: #72787F;">
-                                            (<fmt:formatDate value="${couponList.userCoupStartD}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${couponList.userCoupEndD}" pattern="yyyy-MM-dd"/>)
+                                            (<fmt:formatDate value="${couponList.coupStartD}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${couponList.coupEndD}" pattern="yyyy-MM-dd"/>)
                                         </p>
                                     </div>
                                 </div>

@@ -13,10 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payDate" column="pay_date" />
 		<result property="invCost" column="inv_cost" />
 		<result property="coupDisRate" column="coup_dis_rate" />
-		<result property="invBfTax" column="inv_bf_tax" />
 		<result property="invTax" column="inv_tax" />
 		<result property="invAftTax" column="inv_aft_tax" />
 		<result property="userNum" column="user_num" />
+		<result property="rsvRefundYn" column="rsv_refund_yn" />
+		<result property="refundCost" column="refund_cost" />
 		
 		<result property="rsvName" column="rsv_name" />
 		<result property="rsvYear" column="rsv_year" />
@@ -24,24 +25,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="rsvDate" column="rsv_date" />
 		<result property="placeName" column="place_name" />
 		<result property="placeNum" column="place_num" />
+		<result property="rsvStartT" column="rsv_start_t" />
+		<result property="rsvEndT" column="rsv_end_t" />
 	</resultMap>
 	
 	<select id="invoiceView" parameterType="MyInvoice" resultMap="invoiceResult">
-		select 
-		invoice.*, 
-		reserve.rsv_name,
-		reserve.rsv_year, 
-		reserve.rsv_month, 
-		reserve.rsv_date, 
-		reserve.place_name, 
-		reserve.place_num 
-		from 
-		invoice left join 
-		reserve 
-		on 
-		invoice.rsv_num = reserve.rsv_num
+		SELECT 
+		p.rsv_num,p.pay_num,p.place_maincate,p.pay_year,p.pay_month,p.pay_date,p.inv_cost,
+		p.coup_dis_rate,p.inv_tax,p.inv_aft_tax,p.user_num,p.rsv_refund_yn,
+		r.rsv_name,r.rsv_year,r.rsv_month,r.rsv_date,
+		place.place_name,r.place_num,r.rsv_start_t,r.rsv_end_t 
+		FROM
+		payment p join reservation r using(rsv_num) join place using(place_num)
 		WHERE
-		invoice.rsv_num = #{rsvNum};
+		p.rsv_num = #{rsvNum};
 	</select>
 
 </mapper>

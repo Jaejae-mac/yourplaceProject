@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
@@ -16,7 +17,6 @@
 </head>
 
 <body>
-
 	<div style="max-width: 100%; overflow: hidden;">
 		<main id="main" class="">
 
@@ -33,7 +33,7 @@
 								</div>
 							</div>
 							
-							<c:forEach var="invoice" items="${invoiceList}">
+							<fmt:parseNumber value="${payment.invCost/100*payment.coupDisRate}" integerOnly="true" var="DisRate"/>
 							<div class="h_column_center"
 								style="margin-top: 54px; margin-bottom: 30px;">
 								<p
@@ -53,7 +53,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.rsvNum}</p>
+										${payment.rsvNum}</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -66,7 +66,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.payYear}년 ${invoice.payMonth}월 ${invoice.payDate}일 </p>
+										${payment.payYear}년 ${payment.payMonth}월 ${payment.payDate}일 </p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -79,7 +79,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.rsvName}</p>
+										${payment.rsvName}</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -90,9 +90,20 @@
 								</div>
 								<div
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
-									<p
-										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										결제 완료</p>
+									<p style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
+										<c:if test="${payment.rsvRefundYn == 0}">
+											결재 완료
+										</c:if>
+										<c:if test="${payment.rsvRefundYn == 1}">
+											환불 진행중
+										</c:if>
+										<c:if test="${payment.rsvRefundYn == 2}">
+											환불 완료
+										</c:if>
+										<c:if test="${payment.rsvRefundYn == 3}">
+											호스트에 의한 환불
+										</c:if>
+									</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -105,7 +116,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.placeNum}</p>
+										${payment.placeNum}</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -118,7 +129,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.placeName}</p>
+										${payment.placeName}</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -131,7 +142,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.rsvYear}년 ${invoice.rsvMonth}월 ${invoice.rsvDate}일</p>
+										${payment.rsvYear}년 ${payment.rsvMonth}월 ${payment.rsvDate}일</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -144,13 +155,16 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										n시간</p>
+										${payment.rsvEndT - payment.rsvStartT } 시간</p>
 								</div>
 							</div>
 							<div
 								style="margin: 10px 0; height: 1px; width: 100%; border-bottom: solid 1px #e7eaee;">
 
 							</div>
+							
+							<!-- 환불상태시 환불금액만 나오게 변경 -->
+							<c:if test="${payment.rsvRefundYn == 0}">										
 							<div class="h_row">
 								<div style="width: 100px; padding: 10px 0;">
 									<p
@@ -161,20 +175,7 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.invCost }원</p>
-								</div>
-							</div>
-							<div class="h_row">
-								<div style="width: 100px; padding: 10px 0;">
-									<p
-										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #72787f;">
-										세전 금액</p>
-								</div>
-								<div
-									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
-									<p
-										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										${invoice.invBfTax }원</p>
+										${payment.invCost }원</p>
 								</div>
 							</div>
 							<div class="h_row">
@@ -187,7 +188,8 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
-										(-) 6,980</p>
+										(-) ${DisRate } 원
+									</p>
 								</div>
 							</div>
 							<div
@@ -204,11 +206,27 @@
 									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
 									<p
 										style="font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.63; letter-spacing: -0.09px; text-align: right; color: #1b1d1f;">
-										${invoice.invAftTax}원(부가세${invoice.invTax}원 포함)</p>
+										${payment.invAftTax}원(부가세${payment.invTax}원 포함)</p>
 								</div>
 							</div>
-							</c:forEach>
+							</c:if>
+							<c:if test="${payment.rsvRefundYn != 0}">
+								<div class="h_row">
+								<div style="width: 100px; padding: 10px 0;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #72787f;">
+										환불금액</p>
+								</div>
+								<div
+									style="width: calc(100% - 100px); padding: 10px 0; justify-content: flex-end;">
+									<p
+										style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: right; color: #1b1d1f;">
+										${payment.refundCost }원</p>
+								</div>
+							</div>
+							</c:if>
 						</div>
+						
 						
 						
 						
@@ -230,17 +248,14 @@
 				<div class="h_column_center" id="buttons"
 					style="width: 100%; max-width: 500px; margin-top: 40px; margin-bottom: 40px;">
 					<div class="h_row_center">
-						<div class="request on"
+						<div class="request on" onclick="print()"
 							style="margin-top: 0px; padding: 0 34px; background-color: #FFF; border: solid 1px #dfe2e7; pointer-events: auto;">
-							<label for="print" class="print"> 프린트 </label> <input
-								type="button" id="print" onclick="print()"
-								style="display: none;">
+							<label for="print" class="print" style="cursor:pointer;"> 프린트 </label>
 						</div>
-						<div class="request"
+						<div class="request" onclick="window.close()"
 							style="margin-top: 0px; margin-left: 12px; padding: 0 34px; background-color: #FFF; border: solid 1px #dfe2e7; pointer-events: auto;">
-							<label for="confirm" class="confirm" style="color: #1b1d1f;">
-								확인 </label> <input type="button" id="confirm" onclick="window.close()"
-								style="display: none;">
+							<label for="confirm" class="confirm" style="cursor:pointer; color: #1b1d1f;">
+								확인 </label>
 						</div>
 					</div>
 				</div>

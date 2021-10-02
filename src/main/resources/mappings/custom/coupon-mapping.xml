@@ -9,8 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userCoupNum" column="user_coup_num" />
 		<result property="userCoupId" column="user_coup_id" />
 		<result property="userCoupUseYn" column="user_coup_use_yn" />
-		<result property="userCoupStartD" column="user_coup_start_d" />
-		<result property="userCoupEndD" column="user_coup_end_d" />
+		<result property="coupStartD" column="coup_start_d" />
+		<result property="coupEndD" column="coup_end_d" />
 		<result property="coupName" column="coup_name" />
 		<result property="coupDisRate" column="coup_dis_rate" />
 	</resultMap>
@@ -29,5 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				and coupon_user.user_coup_use_yn='n'
 				and coupon_user.coup_end_d > DATE_FORMAT(CURDATE(), '%Y-%m-%d');
 	</select>
-	
+	<delete id="deleteCoupon" parameterType="MyPageCouponVO">
+		DELETE FROM coupon_user WHERE user_coup_id = #{userCoupId}
+	</delete>
 </mapper>

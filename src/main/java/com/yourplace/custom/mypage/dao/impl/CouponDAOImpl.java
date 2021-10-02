@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.CouponDAO;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
 
@@ -21,5 +22,9 @@ public class CouponDAOImpl implements CouponDAO {
 		System.out.println(tvo.toString());
 		return tvo;
 	}
-
+	@Override
+	public void deleteCoupon(MyPageCouponVO vo) {
+		System.out.println("--> MyBatis로 deleteCoupon() 기능 처리");
+		sqlSessionTemplate.delete("CouponDAO.deleteCoupon", vo);
+	}
 }

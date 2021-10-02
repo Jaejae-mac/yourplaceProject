@@ -18,6 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM reviewHost
         WHERE rsv_id = #{rsvId}
 	</select>
+	<delete id="deleteHostReview" parameterType="MyPageHostReviewVO">
+		DELETE FROM reviewHost WHERE rsv_id = #{rsvId}
+	</delete>
 	<resultMap type="MyPageGuestReviewVO" id="reviewGuestList">
 		<result property="rsvNum" column="rsv_num" />
 		<result property="userId" column="user_id" />
@@ -32,4 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(
 		#{rsvNum},#{userId},#{placeNum},#{reviewGuestRate},#{reviewGuestWr})
 	</insert>
+	<delete id="deleteGuestReview" parameterType="MyPageGuestReviewVO">
+		DELETE FROM reviewGuest WHERE user_id = #{userId}
+	</delete>
 </mapper>

@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class MyPageHostReviewVO {
-	private int rsvNum;
+	private String rsvNum;
 	private String rsvId;
 	private String userId;
 	private int placeNum;

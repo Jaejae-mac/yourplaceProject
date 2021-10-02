@@ -9,4 +9,8 @@ public interface MyPageReviewService {
 	List<MyPageHostReviewVO> getReviewList(MyPageHostReviewVO vo);
 	
 	void insertGuestReview(MyPageGuestReviewVO vo);
+	
+	void deleteGuestReview(MyPageGuestReviewVO grvo);
+	
+	void deleteHostReview(MyPageHostReviewVO hrvo);
 }
