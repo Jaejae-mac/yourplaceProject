@@ -1200,38 +1200,6 @@
 	<script>
 		var message_id = ''
 
-		function toggle_category_all() {
-			if ($('.category_all').css('display') === 'none') {
-				close_search_container()
-
-				$('.category_all').show()
-				$('body').addClass('modal-open')
-			} else {
-				close_category_all()
-			}
-		}
-
-		function close_category_all() {
-			$('.category_all').hide()
-			$('body').removeClass('modal-open')
-		}
-
-		function toggle_search_container() {
-			if ($('.search_container').css('display') === 'none') {
-				close_category_all()
-				$('.search_container').show()
-				$('body').addClass('modal-open')
-				search_vue.get_recommend()
-			} else {
-				close_search_container()
-			}
-		}
-
-		function close_search_container() {
-			$('.search_container').hide()
-			$('body').removeClass('modal-open')
-		}
-
 		function toggle_h_noti() {
 			if ($('.h_noti').css('display') === 'none') {
 				h_show_popup('.h_noti')
