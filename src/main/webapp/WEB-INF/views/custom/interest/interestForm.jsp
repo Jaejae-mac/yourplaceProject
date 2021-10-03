@@ -106,7 +106,7 @@
 
 	</div>
 
-	<!-- 신고하기 팝업 내용 끝 -->
+	
 	<!-- Footer -->
 	<%@ include file="../footer.jsp"%>
 	<!-- Footer 끝 -->
@@ -116,6 +116,7 @@
 		function gotoDetail(e) {
 			location.href = "/detailPlaceForm.do?placeNum=" + e;
 		}
+		
 	</script>
 	<!-- script 끝 -->
 </body>
