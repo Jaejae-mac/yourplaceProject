@@ -7,6 +7,7 @@ import com.yourplace.custom.reservation.vo.DetailPlaceVO;
 import com.yourplace.custom.reservation.vo.PaymentVO;
 import com.yourplace.custom.reservation.vo.PlaceImgVO;
 import com.yourplace.custom.reservation.vo.PlaceInfoVO;
+import com.yourplace.custom.reservation.vo.ReviewVO;
 import com.yourplace.custom.reservation.vo.RsvVO;
 
 
@@ -21,4 +22,6 @@ public interface RsvDAO {
 	void insertReservation(RsvVO vo);
 	void userCouponStateUpdate(CouponVO vo);
 	void insertPayment(PaymentVO vo);
+	List<ReviewVO> reviewList(ReviewVO vo);
+	void updateHelpCnt(ReviewVO vo);
 }

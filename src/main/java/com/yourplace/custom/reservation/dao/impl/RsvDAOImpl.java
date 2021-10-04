@@ -13,6 +13,7 @@ import com.yourplace.custom.reservation.vo.DetailPlaceVO;
 import com.yourplace.custom.reservation.vo.PaymentVO;
 import com.yourplace.custom.reservation.vo.PlaceImgVO;
 import com.yourplace.custom.reservation.vo.PlaceInfoVO;
+import com.yourplace.custom.reservation.vo.ReviewVO;
 import com.yourplace.custom.reservation.vo.RsvVO;
 import com.yourplace.custom.reserve.vo.ReserveVO;
 
@@ -67,5 +68,16 @@ public class RsvDAOImpl implements RsvDAO{
 	@Override
 	public void insertPayment(PaymentVO vo) {
 		sqlSessionTemplate.update("ReserveMapper.insertPayment",vo);
+	}
+
+	@Override
+	public List<ReviewVO> reviewList(ReviewVO vo) {	
+		return sqlSessionTemplate.selectList("ReviewMapper.getReviewList",vo);
+	}
+
+	@Override
+	public void updateHelpCnt(ReviewVO vo) {
+		sqlSessionTemplate.update("ReviewMapper.updateHelpCnt",vo);
+		
 	}
 }

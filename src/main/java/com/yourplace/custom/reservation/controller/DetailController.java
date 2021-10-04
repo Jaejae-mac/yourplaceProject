@@ -20,10 +20,12 @@ import com.yourplace.custom.reservation.service.GetDetailInfoList;
 import com.yourplace.custom.reservation.service.GetImgInfoService;
 import com.yourplace.custom.reservation.service.GetMyCouponListService;
 import com.yourplace.custom.reservation.service.GetPlaceService;
+import com.yourplace.custom.reservation.service.ReviewService;
 import com.yourplace.custom.reservation.vo.CouponVO;
 import com.yourplace.custom.reservation.vo.DetailPlaceVO;
 import com.yourplace.custom.reservation.vo.PlaceImgVO;
 import com.yourplace.custom.reservation.vo.PlaceInfoVO;
+import com.yourplace.custom.reservation.vo.ReviewVO;
 import com.yourplace.custom.reservation.vo.RsvVO;
 
 @Controller
@@ -36,17 +38,23 @@ public class DetailController {
 	private GetImgInfoService getImgInfoService;
 	@Autowired
 	private GetMyCouponListService getMyCouponListService;
+	@Autowired
+	private ReviewService reviewService;
 	
 	@GetMapping("/detailPlaceForm.do")
 	public String detailPlaceForm(@RequestParam("placeNum") String placeNum, Model model) {
 		PlaceInfoVO vo = new PlaceInfoVO();
 		DetailPlaceVO dvo = new DetailPlaceVO();
+		ReviewVO rvo = new ReviewVO();
+		int lastRowNum = 5;
 		dvo.setPlaceNum(Integer.parseInt(placeNum));
 		vo.setPlaceNum(Integer.parseInt(placeNum));
+		rvo.setPlaceNum(Integer.parseInt(placeNum));
+		rvo.setRowNum(0);
 		PlaceInfoVO placeInfo = getPlaceService.getPlaceInfo(vo);
 		List<PlaceImgVO> imgList = getImgInfoService.getImgInfo(Integer.parseInt(placeNum));
 		List<DetailPlaceVO> detailInfoList = getDetailInfoList.getDetailInfo(dvo);
-		
+		List<ReviewVO> reviewList = reviewService.reviewList(rvo);
 		String[] htArr = placeInfo.getPlaceTag().split("#");
 		System.out.println(htArr.toString());
 		List<String> hashTags = new ArrayList<String>();
@@ -54,7 +62,6 @@ public class DetailController {
 			if(htArr[i].length() > 0) {
 				hashTags.add(htArr[i]);
 			}
-			
 		}
 		placeInfo.setHashTags(hashTags);
 		placeInfo.setPlaceRule(placeInfo.getPlaceRule().replace("\r\n", "<br>"));
@@ -69,6 +76,9 @@ public class DetailController {
 		model.addAttribute("placeInfo", placeInfo);
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("detailInfoList", detailInfoList);
+		model.addAttribute("reviewList", reviewList);
+		//리뷰 더보기 클릭 시 마지막 로우넘을 서버로 보내 마지막 로우넘 이후 5개를 더 불러와 붙여야 하므로 모델에 값을 적용.
+		model.addAttribute("lastRowNum",lastRowNum);
 		return "detailPlaceForm";
 	}
 	
@@ -103,5 +113,11 @@ public class DetailController {
 		//만약 세션이 존재하지 않는다면 접근거부로 판단 로그인 창으로 보내주어야한다.
 		model.addAttribute("accessDenied","accessDenied");
 		return "redirect:loginForm.do";
+	}
+	
+	@GetMapping("/rsvResult.do")
+	public String rsvResultForm() {
+		System.out.println("hi");
+		return "reservation/rsvResult";
 	}
 }

@@ -25,7 +25,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <link rel="stylesheet"
-<<<<<<< HEAD
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -54,6 +53,17 @@
 	font-size: 2em;
 	color: gray;
 	cursor: pointer;
+}
+
+.clicked {
+	color: rgb(36, 111, 248);
+}
+
+/* .align_btn {
+	backgroung-color: rgb(174, 179, 184);
+} */
+#help_btn:hover{
+	color: rgb(174, 179, 184);
 }
 </style>
 <link rel="stylesheet"
@@ -184,8 +194,7 @@
 									<!--호스트 닉네임 시작.-->
 									<p
 										style="margin-top: 2px; font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);"
-										id="nickName">
-										${placeInfo.userNickName }</p>
+										id="nickName">${placeInfo.userNickName }</p>
 									<!--호스트 닉네임 끝.-->
 								</div>
 							</div>
@@ -330,6 +339,7 @@
 						style="width: 100%; height: 1px; background-color: rgb(231, 234, 238);"></div>
 
 					<div style="margin-top: 40px; width: 100%; height: 1px"></div>
+					<!-- 리뷰 시작. -->
 					<div id="feedback">
 						<div class="h_row_center"
 							style="margin-top: 40px; position: relative">
@@ -345,58 +355,64 @@
 								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43);">
 								5.0</p>
 							<div class="h_row_center" style="position: absolute; right: 0px">
-								<p
-									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; color: rgb(36, 111, 248);">
+								<p class="align_btn"
+									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer;">
 									추천순</p>
-								<p
-									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; margin-left: 10px; color: rgb(174, 179, 184);">
+								<p class="align_btn"
+									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; margin-left: 10px;">
 									최신순</p>
+								<!-- color: rgb(174, 179, 184); -->
 							</div>
 						</div>
-						<!---->
-						<div style="margin-top: 5px">
-							<div
-								style="margin-top: 30px; width: 100%; padding-bottom: 32px; border-bottom: 1px solid rgb(231, 234, 238);">
-								<div class="h_row" style="justify-content: space-between">
-									<p
-										style="font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-										치즈거니</p>
-									<p
-										style="font-style: normal; font-weight: normal; font-size: 14px; line-height: 22px; color: rgb(158, 164, 170);">
-										2021. 08. 20</p>
-								</div>
-								<div style="margin-top: 6px">
-									<div class="review_star">
-										<span style="width: 100%">5</span>
+						<c:forEach var="review" items="${reviewList }">
+
+							<!---->
+							<div style="margin-top: 5px">
+								<div
+									style="margin-top: 30px; width: 100%; padding-bottom: 32px; border-bottom: 1px solid rgb(231, 234, 238);">
+									<div class="h_row" style="justify-content: space-between">
+										<p
+											style="font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+											${review.userNickName }</p>
+										<p
+											style="font-style: normal; font-weight: normal; font-size: 14px; line-height: 22px; color: rgb(158, 164, 170);">
+											${review.reviewGuestRegd}</p>
 									</div>
-								</div>
-								<div class="h_row" style="justify-content: space-between">
-									<p
-										style="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
-										일정이 바빠서 너무 늦게 후기를 쓰네요 ㅜㅜ 사장님이 너무 친절하시고 잘해주십니다. <br />사전에 가서
-										미리 볼 수도 있고 , 배려를 많이 해주십니다!! 다음에 또 방문하겠습니다<br />
-										<br />p.s - 음료와 음식도 맛있어용 ㅎㅎ
-									</p>
-									<div
-										style="min-width: 56px; width: 56px; height: 56px; margin-left: 20px; border-radius: 4px; overflow: hidden; cursor: pointer;">
-										<!---->
+									<div style="margin-top: 6px">
+										<div class="review_star">
+											<c:forEach var="i" begin="1" end="${review.reviewGuestRate}">
+												<img
+													src=" <c:url value="/resources/custom/icon/gold_star.png"/>"
+													style="width: 18px; height: 18px;" />
+											</c:forEach>
+										</div>
 									</div>
-								</div>
-								<div class="h_row_center"
-									style="margin-top: 16px; padding: 12px; position: static; min-width: 77px; width: fit-content; height: 29px; left: 0px; top: 76px; box-sizing: border-box; border-radius: 4px; cursor: pointer; border: 1px solid rgb(223, 226, 231);">
+									<div class="h_row" style="justify-content: space-between">
+										<p
+											style="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
+											${review.reviewGuestWr }</p>
+										<div
+											style="min-width: 56px; width: 100px; height: 56px; margin-left: 0px; border-radius: 4px; overflow: hidden; cursor: pointer;">
+										</div>
+									</div>
 									<div class="h_row_center"
-										style="font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127);">
-										<p>도움돼요 2</p>
+										style="margin-top: 16px; padding: 12px; position: static; min-width: 77px; width: fit-content; height: 29px; left: 0px; top: 76px; box-sizing: border-box; border-radius: 4px; cursor: pointer; border: 1px solid rgb(223, 226, 231);">
+										<div class="h_row_center"
+											style="font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127); ">
+											<p style="margin-bottom:0px" id="help_btn">도움돼요 ${review.helpCnt }</p>
+										</div>
 									</div>
 								</div>
 							</div>
-
-
-						</div>
+						</c:forEach>
+						<!-- 리뷰 끝 -->
+						<input type="hidden" value="${lastRowNum }" id="last_row_num" />
+					
+					</div>
 						<p
+							onclick="moreReviews()"
 							style="width: fit-content; margin-top: 40px; margin-bottom: 40px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer; text-decoration: underline;">
 							리뷰 더보기</p>
-					</div>
 				</div>
 				<div style="width: 400px; margin-left: 40px; position: relative">
 					<div style="width: 100%; margin-top: 50px">
@@ -450,10 +466,10 @@
 											<input class="form-check-input" type="radio" value=""
 												name="flexRadio" id="detail_title${status.index }" checked>
 											<input type="hidden" value="${detailRoom.detailNum }"
-												class="detail_num${status.index }"> 
-											<input type="hidden" value="123"
-												class="detail_detail_capa${status.index }"> 
-												<label class="form-check-label" for="detail_title${status.index }">
+												class="detail_num${status.index }"> <input
+												type="hidden" value="123"
+												class="detail_detail_capa${status.index }"> <label
+												class="form-check-label" for="detail_title${status.index }">
 												${detailRoom.detailTitle } </label>
 										</div>
 									</c:forEach>
@@ -488,47 +504,48 @@
 									<div class="booking_calendar"
 										style="display: none; position: absolute; z-index: 2; top: 74px; right: 0px; width: 540px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 										<!--날짜 선택 달력.-->
-										<form action="/reserveForm.do?placeNum=${placeInfo.placeNum}" id="detail_form" hidden="hidden" method="post">
-											<input type="hidden" name="rsvYear" id="rsv_year"> 
-											<input type="hidden" name="rsvMonth" id="rsv_month">
-											<input type="hidden" name="rsvDate" id="rsv_date">
-											<input type="hidden" name="rsvStartT" id="form_start_time">
+										<form action="/reserveForm.do?placeNum=${placeInfo.placeNum}"
+											id="detail_form" hidden="hidden" method="post">
+											<input type="hidden" name="rsvYear" id="rsv_year"> <input
+												type="hidden" name="rsvMonth" id="rsv_month"> <input
+												type="hidden" name="rsvDate" id="rsv_date"> <input
+												type="hidden" name="rsvStartT" id="form_start_time">
 											<input type="hidden" name="rsvEndT" id="form_end_time">
 											<input type="hidden" name="detailNum" id="detail_num" />
 											<!-- 인원수 -->
 											<input type="hidden" name="headCount" id="head_count" />
 											<!-- 1인당 가격 -->
 											<!-- 넘겨주는 이유는 프론트에서 1인당가격을 방에 따라서 재 계산 하기 때문. -->
-											<input type="hidden" name="rstPrice" id="rst_price" />
-											<input type="hidden" name="detailTitle" id="form_detail_title"/>
-											<input type="hidden" name="hostNickName" id="host_nick_name" />
-											<input type="hidden" name="userId" value="${placeInfo.userId }" />
-											<input type="hidden" name="placeName" value="${placeInfo.placeName}"/>
-											<input type="hidden" name="placePrice" value="${placeInfo.placePrice}"/>
-											<input type="hidden" name="placeMaincate" value="${placeInfo.placeMaincate}"/>
-											<input type="hidden" name="placeCate" value="${placeInfo.placeCate}"/>
+											<input type="hidden" name="rstPrice" id="rst_price" /> <input
+												type="hidden" name="detailTitle" id="form_detail_title" /> <input
+												type="hidden" name="hostNickName" id="host_nick_name" /> <input
+												type="hidden" name="userId" value="${placeInfo.userId }" />
+											<input type="hidden" name="placeName"
+												value="${placeInfo.placeName}" /> <input type="hidden"
+												name="placePrice" value="${placeInfo.placePrice}" /> <input
+												type="hidden" name="placeMaincate"
+												value="${placeInfo.placeMaincate}" /> <input type="hidden"
+												name="placeCate" value="${placeInfo.placeCate}" />
 										</form>
-											<div class="date_picker"
-												style="margin: 10px 10px; position: relative; display: inline-block;">
-											</div>
+										<div class="date_picker"
+											style="margin: 10px 10px; position: relative; display: inline-block;">
+										</div>
+										<div
+											style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
 											<div
-												style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
-												<div
-													style="margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
-													<p style="color: gray">시작 시간</p>
-													<input type="text" style="min-height: 30px; width: 200px"
-														id="start_time" placeholder="시작 시간을 선택해주세요."
-														 readonly>
-												</div>
-												<br>
-												<div
-													style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
-													<p style="color: gray">종료 시간</p>
-													<input type="text" style="min-height: 30px; width: 200px"
-														id="end_time" placeholder="종료 시간을 선택해주세요."
-														 readonly>
-												</div>
+												style="margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
+												<p style="color: gray">시작 시간</p>
+												<input type="text" style="min-height: 30px; width: 200px"
+													id="start_time" placeholder="시작 시간을 선택해주세요." readonly>
 											</div>
+											<br>
+											<div
+												style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
+												<p style="color: gray">종료 시간</p>
+												<input type="text" style="min-height: 30px; width: 200px"
+													id="end_time" placeholder="종료 시간을 선택해주세요." readonly>
+											</div>
+										</div>
 										<div class="h_row_center"
 											style="position: relative; width: 100%; height: 70px; border-top: 1px solid rgb(231, 234, 238); z-index: 0;"
 											onclick="resetDateTime()">
@@ -614,7 +631,9 @@
 									<div class="request on">
 										<div class="btn btn-primary"
 											style="width: 100%; vertical-align: middle;" id="reserve_btn">
-											<p style="width: 100%; margin-bottom: 0px;min-height:33px;line-height:33px">예약 하기</p>
+											<p
+												style="width: 100%; margin-bottom: 0px; min-height: 33px; line-height: 33px">예약
+												하기</p>
 										</div>
 									</div>
 								</div>
@@ -746,8 +765,7 @@
 					src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
 					style="width: 24px; height: 24px" />
 			</div>
-			<div
-				data-clipboard-text="https://hourplace.co.kr/place/29386"
+			<div data-clipboard-text="https://hourplace.co.kr/place/29386"
 				class="h_center btn_share"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/share_v5.svg"/>"
@@ -756,7 +774,6 @@
 			<div onclick="$(document).scrollTop(0);" class="h_center"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/scroll_top_v2.svg"/>"
-
 					style="width: 24px; height: 24px" />
 			</div>
 			<div onclick="$(document).scrollTop($(document).height());"
@@ -782,7 +799,7 @@
           });
          $(".flipsnap_sub_list").slick({
           infinite:true,
-          slidesToShow: ${placeInfo.imgCnt},
+          slidesToShow: "${placeInfo.imgCnt}",
           slidesToScroll: 1,
           nextArrow:$('.next'),
           prevArrow:$('.prev'),
@@ -1139,6 +1156,46 @@
         }
         
       });
+    </script>
+	<!-- 최신순, 추천순. -->
+	<script>
+    
+    var align_btn = document.getElementsByClassName("align_btn");
+
+    function handleClick(event) {
+      console.log(event.target);
+      // console.log(this);
+      console.log($(this).text().trim());//클릭된 거의 값.
+      // 콘솔창을 보면 둘다 동일한 값이 나온다
+
+      console.log(event.target.classList);
+
+      if (event.target.classList[1] === "clicked") {
+        event.target.classList.remove("clicked");
+      } else {
+        for (var i = 0; i < align_btn.length; i++) {
+        	align_btn[i].classList.remove("clicked");
+        }
+        event.target.classList.add("clicked");
+      } 
+      
+      
+    }
+    
+
+    function init() {
+      for (var i = 0; i < align_btn.length; i++) {
+    	  align_btn[i].addEventListener("click", handleClick);
+      }
+    }
+
+    init();
+    </script>
+    <script>
+    function moreReviews(){
+    	var p = "<p>HELLO</p>"
+    	$("#feedback").appendChild(p);
+    }
     </script>
 	<%@ include file="footer.jsp"%>
 </body>

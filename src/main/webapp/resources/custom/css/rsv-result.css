@@ -1635,7 +1635,7 @@ textarea:disabled {
 }
 .txt_price,
 .txt_primary {
-  color: #6d3afb;
+  color: #0ba6ff;
 }
 .txt_price {
   font-size: 13px;
@@ -8300,7 +8300,7 @@ ol.info_list li {
   font-size: 10px;
 }
 .reserv_list .active .txt_price {
-  color: #6d3afb;
+  color: #0ba6ff;
 }
 .reserv_list .space_info_wrap {
   display: none;
@@ -9187,7 +9187,7 @@ ol.info_list li {
   background-color: #4d4d4d;
 }
 .btn_responsive .btn.btn_option2 {
-  background-color: #704de4;
+  background-color: #24A0ED;
 }
 .btn_responsive .btn.btn_option3 {
   background-color: #ff3a48;
@@ -9226,7 +9226,7 @@ ol.info_list li {
   bottom: 5px;
   left: 0;
   width: 1px;
-  background-color: #5940ac;
+  background-color: #24A0ED;
 }
 .btn_responsive .btn_option3 + .btn_option3:after {
   content: "";
@@ -11127,7 +11127,7 @@ article .no_data {
   font-size: 13px;
   margin-top: -8px;
   font-family: NanumBarunGothicBold, sans-serif;
-  color: #000;
+  color: #0ba6ff;
 }
 .layer_popup.reservation .reserve_price .price_box .txt_price em {
   margin-right: -3px;
@@ -11136,13 +11136,13 @@ article .no_data {
   border-top: 0;
 }
 .layer_popup.reservation .reserve_price .price_box:last-child .txt_price {
-  color: #6d3afb;
+  color: #0ba6ff;
 }
 .layer_popup.reservation .reserve_price .select + .input {
   margin-top: 7px;
 }
 .layer_popup.reservation .reserve_price textarea:disabled {
-  background-color: #ebebeb;
+  background-color: #0ba6ff;
   color: #a8a8a9;
 }
 .layer_popup.reservation .reserve_price .p_option {
@@ -11175,11 +11175,11 @@ article .no_data {
   font-size: 12px;
   text-align: center;
   color: #949494;
-  background-color: #ebebeb;
+  background-color: #0ba6ff;
 }
 .layer_popup.reservation .reserve_price .tab_area li.active a {
   color: #fff;
-  background-color: #704de4;
+  background-color: #0ba6ff;
 }
 .layer_popup.reservation .btns {
   margin-top: 30px;
@@ -11277,7 +11277,7 @@ article .no_data {
   }
 }
 .rate_wrap.disabled {
-  background-color: #fff;
+  background-color: #0ba6ff;
 }
 .rate_wrap.disabled dt {
   color: #ccc;
@@ -23331,7 +23331,7 @@ section.join_wrap .btn_wrap > span:last-child {
 .pc .layer_popup.reservation .reserve_price .price_box .txt_price {
   font-size: 16px;
   margin-top: -10px;
-  color: #656565;
+  color: #0ba6ff;
 }
 .pc .layer_popup.reservation .reserve_price .price_box .txt_price em {
   margin-right: -4px;
@@ -30397,7 +30397,7 @@ section.join_wrap .btn_wrap > span:last-child {
   font-size: 16px;
 }
 .txt_price.variation {
-  color: #ff3a48;
+  color: #0ba6ff;
 }
 .layer_popup.workspace {
   text-align: center;

@@ -13,18 +13,18 @@ import com.yourplace.commons.json.ReadJsonFile;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/resources/applicationContext.xml")
 public class JsonTest {
-	@Test
-	public void getData() {
-		ReadJsonFile rjf = new ReadJsonFile();
-		try {
-			System.out.println(rjf.parser().toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void getData() {
+//		ReadJsonFile rjf = new ReadJsonFile();
+//		try {
+//			System.out.println(rjf.parser().toString());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
 
 }

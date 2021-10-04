@@ -185,7 +185,7 @@
 	             <div onclick="toggle_search_container()"
 	                class="h_center" style="width: 44px; height: 44px; cursor: pointer;">
 	                <img src="https://s3.hourplace.co.kr/web/images/icon/search_b.svg"
-	                    style="width: 24px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
+	                    style="width: 50px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
 	             </div>
 	                <!-- 검색기능 끝-->
 	
@@ -846,7 +846,6 @@
 				close_category_all()
 				$('.search_container').show()
 				$('body').addClass('modal-open')
-				search_vue.get_recommend()
 			} else {
 				close_search_container()
 			}

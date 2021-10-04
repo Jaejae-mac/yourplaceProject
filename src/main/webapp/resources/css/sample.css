@@ -736,14 +736,14 @@
   margin-top: 3px;
   font-size: 1px;
   color: transparent;
-  background: url(/images/icon/review_star_grey.svg) repeat-x 0 0;
+  
   background-size: 16px;
   vertical-align: top;
 }
 .review_star span {
   display: block;
   height: 16px;
-  background: url(/images/icon/review_star_yellow.svg) repeat-x 0 0;
+  
   background-size: 16px;
 }
 .area_loading {
