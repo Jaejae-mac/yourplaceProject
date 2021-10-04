@@ -18,6 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM banner;
 	</select>
 	
+	<!-- 가장 최근 이미지 번호 조회 -->
+	<select id="getBannerNum" resultMap="bannerResult">
+		SELECT MAX(banner_num) FROM banner
+	</select>
+	
 	<!-- 이미지 업로드 -->
 	<insert id="insertUploadImg">
 		INSERT INTO banner
@@ -31,6 +36,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM banner WHERE banner_num = #{bannerNum}
 	</delete>
 
+	<!-- 1번만 조회 -->
+	<select id="availableBanner" resultMap="bannerResult">
+		SELECT banner_show FROM banner WHERE banner_num = #{bannerNum}
+	</select>
 
+	<!-- 배너 able -->
+	<update id="ableBanner">
+		UPDATE banner SET banner_show = 1 WHERE banner_num = #{bannerNum}
+	</update>
+	
+	<!-- 배너 disable -->
+	<update id="disableBanner">
+		UPDATE banner SET banner_show = 0 WHERE banner_num = #{bannerNum}
+	</update>
 
 </mapper>
