@@ -1,4 +1,4 @@
-package com.yourplace.admin.banner.vo;
+package com.yourplace.custom.banner.vo;
 
 import java.util.Date;
 

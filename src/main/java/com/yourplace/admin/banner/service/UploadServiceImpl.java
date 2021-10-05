@@ -22,10 +22,10 @@ public class UploadServiceImpl implements UploadService {
 	private BannerDAO bannerDAO;
 	
 	@Override
-	public String uploadFile(MultipartHttpServletRequest Request, int bannerNum) {
+	public String uploadFile(MultipartHttpServletRequest request, int bannerNum, String url) {
 		
-		List<MultipartFile> fileList = Request.getFiles("file");
-		
+		List<MultipartFile> fileList = request.getFiles("bannerImg"); //file 파라미터
+
 		String uploadPath = "https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/";
 		String rst = "";
 		
@@ -55,8 +55,10 @@ public class UploadServiceImpl implements UploadService {
 				awsS3.upload(is, key, contentType, contentLength);
 				
 				BannerVO vo = new BannerVO();
+				vo.setBannerNum(bannerNum);
 				vo.setOriginalFileName(originalFileName);
 				vo.setS3FileName(key);
+				vo.setBannerUrl(url);
 				
 				bannerDAO.insertUploadImg(vo);
 				i++;
@@ -69,5 +71,7 @@ public class UploadServiceImpl implements UploadService {
 		
 		return "upload file done";
 	}
-
+	
+	
+	
 }
