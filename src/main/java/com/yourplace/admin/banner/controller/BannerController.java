@@ -51,18 +51,12 @@ public class BannerController {
 	@PostMapping(value="/uploadBannerImg.mdo")
 	public String uploadBanner(MultipartHttpServletRequest mtfRequest, HttpServletRequest request)
 	{
-		//vo = new BannerVO();
-		//최선번호에서 1개를 더 조회함. 배너번호 set
 		int bannerNum = getBannerNum.getBannerNum();
 		String url = request.getParameter("url");
-		//MultipartFile file = mtfRequest.getFile("bannerImg");
 		
 		System.out.println("setting 할 번호: " + bannerNum);
 		System.out.println("기재한 url: " + url);
 		
-//		System.out.println("MultipartFile file getName: " + file.getName());
-//		System.out.println("MultipartFile file getOriginalFileName: " + file.getOriginalFilename());
-//		System.out.println("MultipartFile file getSize: " + file.getSize());
 		
 		uploadService.uploadFile(mtfRequest, bannerNum, url); //uploadFile 안에서 insertUploadImg 까지 처리
 		
