@@ -6,6 +6,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface UploadService {
 
-	String uploadFile(MultipartHttpServletRequest Request, int seq, String url);
+	String uploadFile(MultipartHttpServletRequest Request, int seq);
 	
 }

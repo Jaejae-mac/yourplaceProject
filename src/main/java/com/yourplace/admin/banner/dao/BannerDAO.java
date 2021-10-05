@@ -19,12 +19,11 @@ public interface BannerDAO {
 	int getBannerNum();
 	
 	//상태 조회
-	int availableBanner(String bannerNum);
+	int availableBanner();
 	
 	//update to "able"
-	void ableBanner(String bannerNum);
+	void ableBanner();
 	
 	//update to "disable"
-	void disableBanner(String bannerNum);
-	
+	void disableBanner();
 }

@@ -36,32 +36,29 @@ public class BannerDAOImpl implements BannerDAO {
 		sqlSessionTemplate.insert("BannerDAO.deleteBanner", bannerNum);
 	}
 
-	//하나 더 큰 숫자 불러옴
 	@Override
 	public int getBannerNum() {
 		System.out.println("---> MyBatis 로 getBannerNum 기능 처리");
 		int num = sqlSessionTemplate.selectOne("BannerDAO.getBannerNum");
-		System.out.println("조회한 번호: " + num);
 		return num;
 	}
 
 	@Override
-	public int availableBanner(String bannerNum) {
-		System.out.println("---> MyBatis 로 availableBanner 기능 처리");
-		int show = sqlSessionTemplate.selectOne("BannerDAO.availableBanner", bannerNum);
-		return show;
+	public int availableBanner() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
-	public void ableBanner(String bannerNum) {
-		System.out.println("---> MyBatis 로 ableBanner 기능 처리");
-		sqlSessionTemplate.update("BannerDAO.ableBanner", bannerNum);
+	public void ableBanner() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void disableBanner(String bannerNum) {
-		System.out.println("---> MyBatis 로 disableBanner 기능 처리");
-		sqlSessionTemplate.update("BannerDAO.disableBanner", bannerNum);
+	public void disableBanner() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -114,18 +114,16 @@
 						
 						<!-- a href="#" : 이미지 클릭시 url mapping-->
 						<!-- for each 문 시작 -->
-						<c:forEach var="ban" items="${banner}">
 							<li>
-								<a href="${ban.bannerUrl }">
-								<c:if test="${ban.bannerShow eq '1'}"><img src="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }" /></c:if>
+								<a href="#">
+								<img src="<c:url value="/resources/custom/image/banner1.png" />" />
 							</a>
 							</li>
-						</c:forEach>
 						<!-- for each 문 완료 -->
-						<!-- <li>
+							<li>
 								<a href="#">
 								<img src="<c:url value="/resources/custom/image/banner2.png" />">
-							</a></li>  -->
+							</a></li>
 
 						</ul>
 					</div>

@@ -20,9 +20,4 @@ public class BannerVO {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date fileRegDate;
 	
-	private int bannerShow;
-	private String bannerUrl;
-	
-	private int lastNum;
-	
 }
