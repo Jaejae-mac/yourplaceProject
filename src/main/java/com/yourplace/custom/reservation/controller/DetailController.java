@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yourplace.custom.interest.service.BookmarkService;
+import com.yourplace.custom.interest.service.ChkMyBookmarkService;
+import com.yourplace.custom.interest.vo.InterestVO;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.reservation.service.GetDetailInfoList;
 import com.yourplace.custom.reservation.service.GetImgInfoService;
@@ -30,23 +33,43 @@ import com.yourplace.custom.reservation.vo.RsvVO;
 
 @Controller
 public class DetailController {
+	//기본 등록된 방정보를 불러오기 위한 서비스.
 	@Autowired
 	private GetPlaceService getPlaceService;
+	//기본, 방1 방2 와같은 상세 방정보를 불러오기 위한 서비스.
 	@Autowired
 	private GetDetailInfoList getDetailInfoList;
+	//이미지 목록을 불러오기 위한 서비스.
 	@Autowired
 	private GetImgInfoService getImgInfoService;
+	//쿠폰목록을 불러오기 위한 서비스.
 	@Autowired
 	private GetMyCouponListService getMyCouponListService;
+	//리뷰리스트를 불러오기 위한 서비스.
 	@Autowired
 	private ReviewService reviewService;
+	//북마크 존재여부 확인용 서비스.
+	@Autowired
+	private ChkMyBookmarkService chkMyBookmarkService;
 	
 	@GetMapping("/detailPlaceForm.do")
-	public String detailPlaceForm(@RequestParam("placeNum") String placeNum, Model model) {
+	public String detailPlaceForm(@RequestParam("placeNum") String placeNum, Model model, HttpServletRequest request) {
 		PlaceInfoVO vo = new PlaceInfoVO();
 		DetailPlaceVO dvo = new DetailPlaceVO();
 		ReviewVO rvo = new ReviewVO();
-		int lastRowNum = 5;
+		InterestVO bookMarkVO = null;
+		HttpSession session = request.getSession();
+		//유저가 로그인한 상태라면 북마크 체크여부를 확인해주어야 한다.
+		if(session.getAttribute("userVO") != null) {
+			bookMarkVO = new InterestVO();
+			bookMarkVO.setPlaceNum(Integer.parseInt(placeNum));
+			bookMarkVO.setUserId(((UserVO)session.getAttribute("userVO")).getUserId());
+			boolean mybookmark = chkMyBookmarkService.chkMyBookmark(bookMarkVO);
+			model.addAttribute("bookmark", mybookmark);
+		}else {
+			model.addAttribute("bookmark", false);
+		}
+		
 		dvo.setPlaceNum(Integer.parseInt(placeNum));
 		vo.setPlaceNum(Integer.parseInt(placeNum));
 		rvo.setPlaceNum(Integer.parseInt(placeNum));
@@ -55,6 +78,7 @@ public class DetailController {
 		List<PlaceImgVO> imgList = getImgInfoService.getImgInfo(Integer.parseInt(placeNum));
 		List<DetailPlaceVO> detailInfoList = getDetailInfoList.getDetailInfo(dvo);
 		List<ReviewVO> reviewList = reviewService.reviewList(rvo);
+		
 		String[] htArr = placeInfo.getPlaceTag().split("#");
 		System.out.println(htArr.toString());
 		List<String> hashTags = new ArrayList<String>();
@@ -78,7 +102,7 @@ public class DetailController {
 		model.addAttribute("detailInfoList", detailInfoList);
 		model.addAttribute("reviewList", reviewList);
 		//리뷰 더보기 클릭 시 마지막 로우넘을 서버로 보내 마지막 로우넘 이후 5개를 더 불러와 붙여야 하므로 모델에 값을 적용.
-		model.addAttribute("lastRowNum",lastRowNum);
+		model.addAttribute("rowNum",0);
 		return "detailPlaceForm";
 	}
 	

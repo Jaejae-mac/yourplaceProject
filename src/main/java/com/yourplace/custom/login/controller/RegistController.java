@@ -77,10 +77,11 @@ public class RegistController {
 			//회원가입 완료후 아이디 세션 생성.
 			HttpSession session = request.getSession();		
 			session.setAttribute("userId", vo.getUserId());
-			String url = request.getRequestURI();
-			int userType = (int)session.getAttribute("userType");
-			System.out.println(userType);
-			vo.setUserType(userType);
+			
+//			String url = request.getRequestURI();
+//			int userType = (int)session.getAttribute("userType");
+//			System.out.println(userType);
+//			vo.setUserType(userType);
 			registService.insertUser(vo);
 		}
 		

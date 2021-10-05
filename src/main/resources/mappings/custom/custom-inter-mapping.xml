@@ -10,27 +10,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="placeThumb" column="place_thumb" />
 		<result property="placeName" column="place_name" />
 	</resultMap>
-	<insert id="insertInter" parameterType="MyInterest">
-		INSERT INTO interest(
-		user_id,
-		place_num,
-		place_thumb,
-		place_name
-		)VALUES(
-		#{userId},
-		#{placeNum},
-		#{placeThumb},
-		#{placeName}
-		);
+	<insert id="insertInter">
+		INSERT INTO interest VALUES(
+			#{userId},
+    		#{placeNum},
+    		(SELECT place_thumb from place where place_num=#{placeNum}),
+    		(SELECT place_name from place where place_num=#{placeNum})
+    		
+		)
 	</insert>
-
-	<delete id="deleteInter" parameterType="MyInterest">
-		DELETE FROM interest WHERE place_num = #{placeNum}
+	
+	<delete id="deleteInter">
+		DELETE FROM interest WHERE user_id=#{userId} and place_num = #{placeNum}
 	</delete>
-	<select id="interestView" parameterType="MyInterest"
+
+	
+	<select id="interestView"
 		resultMap="interestResult">
 		select * from interest
 		WHERE user_id = #{userId}
+	</select>
+	
+	<select id="checkMyBookmark" resultMap="interestResult">
+		SELECT 
+			* 
+			FROM interest
+			WHERE user_id=#{userId}
+				and
+			 	place_num = #{placeNum} 
 	</select>
 
 </mapper>

@@ -10,9 +10,9 @@ import lombok.ToString;
 public class InterestVO {
 
 	private String userId; //유저 아이디
-	
 	private int placeNum; //장소 번호
 	private String placeThumb; // 장소 썸네일
 	private String placeName; // 장소 제목
+	private boolean checkBookmark; //관심장소로 등록했는지 여부.
 	
 }

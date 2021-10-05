@@ -4,18 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yourplace.custom.reservation.dao.RsvDAO;
-import com.yourplace.custom.reservation.service.HelpCntService;
+import com.yourplace.custom.reservation.service.ClickedReviewService;
 import com.yourplace.custom.reservation.vo.ReviewVO;
 
-@Service("helpCntService")
-public class HelpCntServiceImpl implements HelpCntService {
+@Service("clickedReviewService")
+public class ClickedReviewServiceImpl implements ClickedReviewService {
 
 	@Autowired
 	private RsvDAO rsvDAO;
 	
 	@Override
-	public void updateHelpCnt(ReviewVO vo) {
-		rsvDAO.updateHelpCnt(vo);
+	public void clickedReview(ReviewVO vo) {
+		if(vo.isHelpFlag()) {
+			rsvDAO.deleteClickedReview(vo);
+		}else {
+			rsvDAO.insertClickedReview(vo);
+		}
+		
 	}
 
 }

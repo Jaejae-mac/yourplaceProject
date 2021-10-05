@@ -4,18 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yourplace.custom.reservation.dao.RsvDAO;
-import com.yourplace.custom.reservation.service.HelpCntService;
+import com.yourplace.custom.reservation.service.GetHelpCnt;
 import com.yourplace.custom.reservation.vo.ReviewVO;
 
-@Service("helpCntService")
-public class HelpCntServiceImpl implements HelpCntService {
+@Service("getHelpCnt")
+public class GetHelpCntImpl implements GetHelpCnt {
 
 	@Autowired
 	private RsvDAO rsvDAO;
 	
 	@Override
-	public void updateHelpCnt(ReviewVO vo) {
-		rsvDAO.updateHelpCnt(vo);
+	public ReviewVO getHelpCnt(ReviewVO vo) {
+		ReviewVO rtnHelpCnt = rsvDAO.getHelpCount(vo);
+		return rtnHelpCnt;
 	}
 
 }

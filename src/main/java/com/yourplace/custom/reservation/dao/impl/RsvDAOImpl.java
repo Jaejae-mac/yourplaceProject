@@ -5,8 +5,6 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-
 import com.yourplace.custom.reservation.dao.RsvDAO;
 import com.yourplace.custom.reservation.vo.CouponVO;
 import com.yourplace.custom.reservation.vo.DetailPlaceVO;
@@ -78,6 +76,29 @@ public class RsvDAOImpl implements RsvDAO{
 	@Override
 	public void updateHelpCnt(ReviewVO vo) {
 		sqlSessionTemplate.update("ReviewMapper.updateHelpCnt",vo);
+		
+	}
+
+	//도움돼요를 누른 사람들 목록 및 어느 리뷰가 눌렸는지 체크.
+	@Override
+	public void insertClickedReview(ReviewVO vo) {	
+		sqlSessionTemplate.insert("ReviewMapper.insertClickedUser",vo);
+		
+	}
+
+	@Override
+	public ReviewVO getHelpCount(ReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewMapper.getHelpCnt",vo);
+	}
+
+	@Override
+	public ReviewVO checkHelpBtnUser(ReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewMapper.checkHelpBtnUser",vo);
+	}
+
+	@Override
+	public void deleteClickedReview(ReviewVO vo) {
+		sqlSessionTemplate.selectOne("ReviewMapper.deleteClickedUser",vo);
 		
 	}
 }

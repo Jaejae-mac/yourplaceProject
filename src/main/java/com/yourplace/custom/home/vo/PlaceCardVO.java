@@ -33,5 +33,7 @@ public class PlaceCardVO {
 	//총리뷰 개수
 	private String reviewCnt;
 	
+	boolean bookmark;
+	
 }
 

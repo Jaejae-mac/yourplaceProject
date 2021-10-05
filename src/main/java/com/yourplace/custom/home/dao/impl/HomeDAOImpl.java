@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yourplace.custom.home.dao.HomeDAO;
 import com.yourplace.custom.home.vo.PlaceCardVO;
+import com.yourplace.custom.interest.vo.InterestVO;
 
 @Repository("homeDAO")
 public class HomeDAOImpl implements HomeDAO{

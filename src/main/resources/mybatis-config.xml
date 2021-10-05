@@ -81,8 +81,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageGuestReviewVO"
 			alias="MyPageGuestReviewVO" />
-		<!-- <typeAlias
-			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" /> -->
+		<typeAlias
+			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" /> 
 		<typeAlias
 			type="com.yourplace.custom.question.vo.GuestInfoVO"
 			alias="MyGuestInfo" />

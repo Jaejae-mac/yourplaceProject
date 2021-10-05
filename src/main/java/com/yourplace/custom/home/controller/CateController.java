@@ -2,6 +2,7 @@ package com.yourplace.custom.home.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,37 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yourplace.custom.home.service.CategoryService;
 import com.yourplace.custom.home.vo.PlaceCardVO;
+import com.yourplace.custom.interest.service.BookmarkListService;
+import com.yourplace.custom.interest.vo.InterestVO;
+import com.yourplace.custom.login.vo.UserVO;
 
 @Controller
 public class CateController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	@Autowired
+	private BookmarkListService bookmarkListService;
+	
 	@GetMapping("/category.do")
-	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, Model model) {
+	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, Model model,HttpSession session) {
 		List<PlaceCardVO> list = categoryService.getCatePlace(maincate, subcate);
+		List<InterestVO> bookmarks = null;
+		if(session.getAttribute("userVO") != null) {
+			InterestVO vo = new InterestVO();
+			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			vo.setUserId(userId);
+			bookmarks = bookmarkListService.bookmarkList(vo);
+			for(PlaceCardVO card : list) {
+				for(InterestVO bookmark : bookmarks) {
+					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
+						card.setBookmark(true);
+					}else {
+						card.setBookmark(false);
+					}
+				}
+			}
+		}
 		String[][] menuList = {
 								{"가정집", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" },
 								{"스튜디오", "자연광", "호리존", "유튜브", "단독주택형", "빈티지", "키친",

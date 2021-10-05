@@ -62,7 +62,7 @@
 /* .align_btn {
 	backgroung-color: rgb(174, 179, 184);
 } */
-#help_btn:hover{
+#help_btn:hover {
 	color: rgb(174, 179, 184);
 }
 </style>
@@ -398,21 +398,23 @@
 									<div class="h_row_center"
 										style="margin-top: 16px; padding: 12px; position: static; min-width: 77px; width: fit-content; height: 29px; left: 0px; top: 76px; box-sizing: border-box; border-radius: 4px; cursor: pointer; border: 1px solid rgb(223, 226, 231);">
 										<div class="h_row_center"
-											style="font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127); ">
-											<p style="margin-bottom:0px" id="help_btn">도움돼요 ${review.helpCnt }</p>
+											style="font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127);">
+											<p style="margin-bottom: 0px" onclick="helpClick('${review.rsvNum}', '${review.userId }')" id="${review.rsvNum }">도움돼요
+												${review.helpCnt }</p>
 										</div>
 									</div>
 								</div>
 							</div>
 						</c:forEach>
 						<!-- 리뷰 끝 -->
-						<input type="hidden" value="${lastRowNum }" id="last_row_num" />
-					
+						<input type="hidden" value="${rowNum }" id="row_num" />
+
 					</div>
+					<div onclick="moreReviews()">
 						<p
-							onclick="moreReviews()"
 							style="width: fit-content; margin-top: 40px; margin-bottom: 40px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer; text-decoration: underline;">
 							리뷰 더보기</p>
+					</div>
 				</div>
 				<div style="width: 400px; margin-left: 40px; position: relative">
 					<div style="width: 100%; margin-top: 50px">
@@ -517,15 +519,16 @@
 											<!-- 1인당 가격 -->
 											<!-- 넘겨주는 이유는 프론트에서 1인당가격을 방에 따라서 재 계산 하기 때문. -->
 											<input type="hidden" name="rstPrice" id="rst_price" /> <input
-												type="hidden" name="detailTitle" id="form_detail_title" /> <input
-												type="hidden" name="hostNickName" id="host_nick_name" /> <input
-												type="hidden" name="userId" value="${placeInfo.userId }" />
-											<input type="hidden" name="placeName"
-												value="${placeInfo.placeName}" /> <input type="hidden"
-												name="placePrice" value="${placeInfo.placePrice}" /> <input
-												type="hidden" name="placeMaincate"
-												value="${placeInfo.placeMaincate}" /> <input type="hidden"
-												name="placeCate" value="${placeInfo.placeCate}" />
+												type="hidden" name="detailTitle" id="form_detail_title" />
+											<input type="hidden" name="hostNickName" id="host_nick_name" />
+											<input type="hidden" name="userId"
+												value="${placeInfo.userId }" /> <input type="hidden"
+												name="placeName" value="${placeInfo.placeName}" /> <input
+												type="hidden" name="placePrice"
+												value="${placeInfo.placePrice}" /> <input type="hidden"
+												name="placeMaincate" value="${placeInfo.placeMaincate}" />
+											<input type="hidden" name="placeCate"
+												value="${placeInfo.placeCate}" />
 										</form>
 										<div class="date_picker"
 											style="margin: 10px 10px; position: relative; display: inline-block;">
@@ -650,12 +653,23 @@
 						</div>
 						<div class="h_row_center"
 							style="margin-top: 16px; width: 100%; height: 52px">
-							<div id="bookmark_29386" class="h_center bookmark"
+							<div id="bookmark_btn" class="h_center bookmark"
+								onclick="yourplaceBookmark()"
 								style="width: 193px; margin-right: 15px; height: 100%; border-radius: 8px; background-color: rgb(250, 251, 251); cursor: pointer;">
 								<div class="h_row_center">
-									<img
-										src=" <c:url value="/resources/custom/icon/bookmark_g.png"/>"
-										style="width: 24px; height: 24px; margin-right: 10px" />
+									<c:choose>
+										<c:when test="${bookmark eq false}">
+											<img
+											src=" <c:url value="/resources/custom/icon/bookmark_g.png"/>"
+											style="width: 24px; height: 24px; margin-right: 10px" id="bookmark_img"/>	
+										</c:when>
+										<c:otherwise>
+											<img
+												src=" <c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
+												style="width: 24px; height: 24px; margin-right: 10px" id="bookmark_img"/>
+										</c:otherwise>
+									</c:choose>
+									
 									<p
 										style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(69, 75, 80); margin-bottom: 0px;">
 										관심장소</p>
@@ -1191,10 +1205,143 @@
 
     init();
     </script>
-    <script>
+	<script>
     function moreReviews(){
-    	var p = "<p>HELLO</p>"
-    	$("#feedback").appendChild(p);
+    	var nickName='test';
+    	var regDate='2020.01.01';
+    	var content='hello';
+    	var helpCnt=0;
+     	var rsvNum = 'rsvNum';
+    	var userId = 'userId';
+    	
+    	//서버로 전송되야 하는 정보 :
+    	var rowNum = parseInt($("#row_num").val())+5;
+    	
+    	console.log(rowNum);
+    	$.ajax({
+            type:"GET",
+            url: "/moreReviews.do?rn="+rowNum+"&pn=${placeInfo.placeNum}",
+            async:false,
+            contentType: "application/json",
+            success:function(data){
+            	console.log(data.length);
+            	if(data.length != 0){
+            		$("#row_num").val(rowNum);
+            		console.log(data);
+            		for(i = 0; i < data.length ; i++){
+            			nickName = data[i].userNickName;
+            			regDate = data[i].reviewGuestRegd;
+            			content = data[i].reviewGuestWr;
+            			helpCnt = data[i].helpCnt;
+            			rsvNum = data[i].rsvNum;
+            			console.log(rsvNum);
+            			userId = data[i].userId;
+            			var definedId = rsvNum +"/"+userId;
+            			console.log(definedId)
+            			var partOne =
+            	    	    "<div style='margin-top: 5px'><div" +
+            	    	    " style='margin-top: 30px; width: 100%; padding-bottom: 32px; border-bottom: 1px solid rgb(231, 234, 238);'>" +
+            	    	    "<div class='h_row' style='justify-content: space-between'>" +
+            	    	    "<p" +
+            	    	    " style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>" +
+            	    	    nickName+"</p>" +
+            	    	    "<p" +
+            	    	    " style='font-style: normal; font-weight: normal; font-size: 14px; line-height: 22px; color: rgb(158, 164, 170);'>" +
+            	    	    regDate+"</p>" +
+            	    	    "</div>" +
+            	    	    "<div style='margin-top: 6px'>" +
+            	    	    "<div class='review_star'>";
+
+            	    	  var star =
+            	    	    "<img src=' <c:url value='/resources/custom/icon/gold_star.png'/>' style='width: 18px; height: 18px;' />";
+
+            	    	  var partTwo =
+            	    	    "</div>" +
+            	    	    "</div>" +
+            	    	    "<div class='h_row' style='justify-content: space-between'>" +
+            	    	    "<p" +
+            	    	    " style='margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);'>" +
+            	    	   content+"</p>" +
+            	    	    "<div" +
+            	    	    " style='min-width: 56px; width: 100px; height: 56px; margin-left: 0px; border-radius: 4px; overflow: hidden; cursor: pointer;'>" +
+            	    	    "</div>" +
+            	    	    "</div>" +
+            	    	    "<div class='h_row_center' style='margin-top: 16px; padding: 12px; position: static; min-width: 77px; width: fit-content; height: 29px; left: 0px; top: 76px; box-sizing: border-box; border-radius: 4px; cursor: pointer; border: 1px solid rgb(223, 226, 231);'>" +
+            	    	    "<div class='h_row_center'" +
+            	    	    " style='font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127); '>" +
+            	    	    "<p style='margin-bottom:0px'"+
+            	    	    "id='"+rsvNum+"'"+
+            	    	    " onclick="+"'helpClick(\""+ rsvNum + "\",\""+userId+"\")'"+
+            	    	    ">도움돼요 "+
+            	    	    helpCnt+
+            	    	    "</p>" +
+            	    	    "</div>" +
+            	    	    "</div>" +
+            	    	    "</div>" +
+            	    	    "</div>";
+            			var starResult = '';
+            			for(j = 0; j < data[i].reviewGuestRate; j++){
+            				starResult += star;
+            			}
+            			
+            			var rst = partOne + starResult+ partTwo;
+            			$("#feedback").append(rst);
+            		}
+            		
+            	}else{
+            		swal("","더이상 리뷰가 존재하지 않습니다.","warning");
+            	}
+            	
+            }
+          });
+    }
+    
+    function helpClick(rsvNum, userId){
+    	//예약번호, 작정자 아이디, 그리고 클릭한 유저 아이디가 필요하다 따라서 세션에 존재하는지확인해야한다.
+    	var sessionUser ="${userVO.userId}"; 
+    	if(!sessionUser){
+    		swal("","로그인 후 클릭 가능합니다.","warning");
+    	}else{
+    		console.log(rsvNum + " " + userId );
+    		$.ajax({
+                type:"GET",
+                url: "/clickHelp.do?rsvNum="+rsvNum+"&userId="+userId+"&clickedUserId="+sessionUser,
+                async:false,
+                contentType: "application/json",
+                success:function(data){
+                	var helpCnt = data.helpCnt;
+                	console.log(helpCnt);
+                	$("#"+rsvNum).text("도움돼요 "+ helpCnt);
+                }
+    		});
+    	}
+	    
+    }
+    </script>
+    <!-- 북마크 처리. -->
+    <script>
+    function yourplaceBookmark(){
+    	console.log("bookmark Clicked");
+    	var sessionUser ="${userVO.userId}"; 
+    	if(!sessionUser){
+    		swal("","로그인 후 관심장소 등록이 가능합니다.","warning");
+    	}else{
+    		$.ajax({
+                type:"GET",
+                url: "/bookmark.do?userId="+sessionUser+"&placeNum=${placeInfo.placeNum}",
+                async:false,
+                contentType: "application/json",
+                success:function(data){
+                	if(data === 'addBookmark'){
+                		console.log("bookmark!!!");
+                		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
+                	}else{
+                		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                	}
+                }
+    		});	
+    	}
+    	
     }
     </script>
 	<%@ include file="footer.jsp"%>

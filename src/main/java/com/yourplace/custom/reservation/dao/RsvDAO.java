@@ -24,4 +24,9 @@ public interface RsvDAO {
 	void insertPayment(PaymentVO vo);
 	List<ReviewVO> reviewList(ReviewVO vo);
 	void updateHelpCnt(ReviewVO vo);
+	void insertClickedReview(ReviewVO vo);
+	void deleteClickedReview(ReviewVO vo);
+	ReviewVO getHelpCount(ReviewVO vo); 
+	ReviewVO checkHelpBtnUser(ReviewVO vo);
+	
 }

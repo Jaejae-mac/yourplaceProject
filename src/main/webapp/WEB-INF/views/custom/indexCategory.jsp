@@ -10,12 +10,16 @@
 	href="<c:url value="/resources/custom/css/page.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/category.css" />">
+	<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/card.css" />">
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 
 <body>
@@ -108,8 +112,25 @@
 								${place.placePrice }원
 								<!-- {{ place.price_guest }}원 -->
 							</p>
-							<img class="card_body_footer_booking" src="<c:url value="/resources/custom/icon/bookmark_g.png" />" onclick="interest()">
-							<!-- 관심 장소로 선택시 이미지 변경 구현필요-->
+							<c:choose>
+								<c:when test="${place.bookmark eq false}">
+									<img
+										class=“card_body_footer_booking”
+										 src="<c:url value="/resources/custom/icon/bookmark_g.png"/>"
+										style="width: 24px; height: 24px; margin-left:auto; text-align:center; "
+										id="bookmark_img${place.placeNum }" 
+										onclick="yourplaceBookmark(${place.placeNum},'bookmark_img${place.placeNum }')" />
+								</c:when>
+								<c:otherwise>
+									<img
+										class=“card_body_footer_booking”
+										 src="<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
+										style="width: 24px; height: 24px; margin-left:auto; text-align:center; "
+										id="bookmark_img${place.placeNum }" 
+										onclick="yourplaceBookmark(${place.placeNum},'bookmark_img${place.placeNum }')"/>
+								</c:otherwise>
+							</c:choose>
+
 						</div>
 					</div>
 				</div>
@@ -127,4 +148,31 @@ function interest(){
 	console.log("img click");
 }
 </script>
+<!-- Bookmark -->
+<script>
+    function yourplaceBookmark(placeNum,imgId){
+    	console.log("bookmark Clicked");
+    	console.log(imgId);
+    	var sessionUser ="${userVO.userId}"; 
+    	if(!sessionUser){
+    		swal("","로그인 후 관심장소 등록이 가능합니다.","warning");
+    	}else{
+    		$.ajax({
+                type:"GET",
+                url: "/bookmark.do?userId="+sessionUser+"&placeNum="+placeNum,
+                async:false,
+                contentType: "application/json",
+                success:function(data){
+                	if(data === 'addBookmark'){
+                		console.log("bookmark!!!");
+                		$("#"+imgId).attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
+                	}else{
+                		$("#"+imgId).attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                	}
+                }
+    		});	
+    	}
+    	
+    }
+    </script>
 </html>

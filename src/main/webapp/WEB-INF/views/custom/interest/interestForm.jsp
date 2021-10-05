@@ -70,11 +70,9 @@
 						style="height: 248px; object-fit: cover" />
 					<div style="width: 100%; padding: 20px 30px">
 						<p class="h_ellipsis_1"
-							style="font-size: 26px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
+							style="font-size: 18px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
 							${interest.placeName}</p>
-						<p
-							style="margin-top: 4px; font-size: 18px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.44; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
-							${interest.placeNum}</p>
+						
 					</div>
 				</div>
 			</c:forEach>

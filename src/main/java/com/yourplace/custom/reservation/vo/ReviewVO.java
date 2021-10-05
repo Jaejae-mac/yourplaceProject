@@ -26,6 +26,9 @@ public class ReviewVO {
 	private String reviewGuestRegd;
 	//도움되요 버튼 클릭 수.
 	private int helpCnt;
+	
+	private boolean helpFlag;
+	
 	private String userNickName;
 	//0이면 오래된 리뷰 순을 정렬. 최신순 클릭시 0일경우 1로변경해야한다.
 	//1이면 최신 리뷰순으로 정렬해서 최신순 클릭시 1일 경우 0으로 변경해야 한다.
@@ -36,5 +39,7 @@ public class ReviewVO {
 	int lastRowNum = 5;
 	//리뷰 더보기 버튼 활성화여부.
 	boolean reviewMoreBtn;
+	
+	private String clickedUserId;
 
 }
