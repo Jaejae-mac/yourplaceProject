@@ -10,8 +10,10 @@ import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yourplace.commons.awss3.AwsS3;
+import com.yourplace.custom.login.dao.LoginDAO;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.MyPageDAO;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
@@ -19,33 +21,70 @@ import com.yourplace.custom.mypage.service.MyPageUpdateService;
 @Service("MyPageUpdateService")
 public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 	@Autowired
-	private MyPageDAO dao;
+	private MyPageDAO mypageDAO;
+	@Autowired
+	private LoginDAO loginDAO;
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	@Override
 	public void updateUser(UserVO vo) {
-		int userNum = vo.getUserNum();
-		AwsS3 awsS3 = AwsS3.getInstance();
-		File file = new File(vo.getUserProfileImg());
-		if(file == null) {
-			String key ="";
-			vo.setUserProfileImg(key);
-			awsS3.upload(file, key);
+		System.out.println("업데이트 테스트");
+		MultipartFile mf = vo.getProfile();
+		String Profile = mf.getOriginalFilename();
+		if(Profile != "") {
+			
+			String fileType = Profile.substring(Profile.lastIndexOf(".") + 1);
+			int userNum = vo.getUserNum();	
+			File file = new File(Profile);
+			try {
+				mf.transferTo(file);
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println(file);
+			AwsS3 awsS3 = AwsS3.getInstance();
+			int dw = 450;
+			int dh = 450;
+			BufferedImage srcImg;
+			try {
+				srcImg = ImageIO.read(file);
+				int ow = srcImg.getWidth();
+				int oh = srcImg.getHeight();
+				int nw = ow;
+				int nh = (ow * dh) / dw;
+				if (nh > oh) {
+					nw = (oh * dw) / dh;
+					nh = oh;
+				}
+				BufferedImage cropImg = Scalr.crop(srcImg, (ow - nw) / 2, (oh - nh) / 2, nw, nh);
+				BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
+				System.out.println("업로드할 이미지 = "+srcImg);
+				String key = "profile/guest/"+userNum +"/ThumbImg."+ fileType;
+				System.out.println("key값 = " + key);
+				awsS3.uploadBufferedImageToServer(destImg, key, fileType);
+				vo.setUserProfileImg(key);
+				mypageDAO.updateUser(vo);
+			}catch (NullPointerException ne) {
+				// TODO Auto-generated catch block
+				ne.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else {
-			String key = "place/custom/profile/"+userNum +"/"+userNum+".png";
-			vo.setUserProfileImg(key);
-			awsS3.upload(file, key);
+			loginDAO.getUser(vo);
+			String userProfileImg = vo.getUserProfileImg();
+			vo.setUserProfileImg(userProfileImg);
+			mypageDAO.updateUser(vo);
 		}
 		
-		
-
-		dao.updateUser(vo);
 	}
 	@Override
 	public void updatePw(UserVO vo) {
 		String password = vo.getUserPw();
 		String encodePw = passEncoder.encode(password);
 		vo.setUserPw(encodePw);
-		dao.updatePw(vo);
+		mypageDAO.updatePw(vo);
 	}
 }

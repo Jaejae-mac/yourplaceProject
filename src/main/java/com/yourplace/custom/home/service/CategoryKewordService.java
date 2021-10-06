@@ -4,6 +4,6 @@ import java.util.List;
 
 import com.yourplace.custom.home.vo.PlaceCardVO;
 
-public interface CategoryService {
-	List<PlaceCardVO> getCatePlace(String maincate, String subcate, String sort);
+public interface CategoryKewordService {
+	List<PlaceCardVO> getKeywordList(PlaceCardVO vo);
 }

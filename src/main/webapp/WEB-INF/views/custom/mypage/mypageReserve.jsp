@@ -37,8 +37,8 @@
 	<!-- Header End -->
 	<input type="hidden" id="userNum" name="userNum" value="${user.userNum }">
 	<div class="h_column_center" id="main_vue" style="min-height: 1000px;">
-		<div style="width: 1160px; min-height: 1000px; padding-bottom: 200px;">
-			<div style="margin-top: 20px;">
+		<div style="width: 1160px; min-height: 1000px; padding-bottom: 200px;margin-top: 100px;">
+			<div>
 				<p
 					style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 					신청 예약</p>
@@ -88,7 +88,7 @@
 				<div onclick="show_booking_sort()" class="h_center h_hover_button"
 					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px var(#dfe2e7); cursor: pointer;">
 					<div class="h_row_center">
-						<img src="//s3.hourplace.co.kr/web/images/icon/sort.svg"
+						<img src="<c:url value="/resources/img/icon/sort.png" />"
 							style="width: 20px; height: 20px;">
 						<p id="main_booking"
 							style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: var(- -grey-060);">

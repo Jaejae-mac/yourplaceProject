@@ -44,15 +44,9 @@
             <div class="h_column_center" style="width: 360px;">
                 <div style="width: 360px;border-radius: 10px;border: solid 1px #dfe2e7;background-color: #ffffff;">
                     <div class="h_column_center">
-                        <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;">
-                            <c:if test="${user.userProfileImg == null}">
-                            <img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
-                                style="width: 100%; height: 100%; position: absolute;">
-                            </c:if>
-                            <c:if test="${user.userProfileImg != null}">
-                            <img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
-                                style="width: 100%; height: 100%; position: absolute;">
-                            </c:if>     
+                        <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;">         
+                            <img src="${user.userProfileImg}"
+                                style="width: 100%; height: 100%; position: absolute;">    
                         </div>
                         <p style="padding: 0 20px; margin-top: 20px; font-size: 16px; font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.38;letter-spacing: -0.1px;text-align: center;color: #1b1d1f;">
                         	${user.userNickName}

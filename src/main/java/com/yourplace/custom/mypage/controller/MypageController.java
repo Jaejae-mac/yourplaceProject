@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
@@ -74,9 +75,11 @@ public class MypageController {
 		System.out.println("[mypageController] deleteUser 기능");
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
+		String userImg = (String)session.getAttribute("user.userProfileImg");
 		System.out.println("유저 아이디" + userId);
 		UserVO vo = new UserVO();
 		vo.setUserId(userId);
+		vo.setUserProfileImg(userImg);
 		mypagedeleteService.deleteUser(vo);
 		MyPageCouponVO cvo = new MyPageCouponVO();
 		cvo.setUserCoupId(userId);

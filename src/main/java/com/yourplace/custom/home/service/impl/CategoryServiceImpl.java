@@ -16,13 +16,13 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private HomeDAO homeDAO;
 	@Override
-	public List<PlaceCardVO> getCatePlace(String maincate, String subcate) {
+	public List<PlaceCardVO> getCatePlace(String maincate, String subcate, String sort) {
 		if(maincate != null && subcate != null) {
 			if(subcate.equals("전체")) {
 				subcate = maincate;
 			}
 			System.out.println("CategoryServiceImpl called");
-			List<PlaceCardVO> list = homeDAO.getCatePlaceList(maincate, subcate);
+			List<PlaceCardVO> list = homeDAO.getCatePlaceList(maincate, subcate, sort);
 			DecimalFormat dc = new DecimalFormat("###,###,###,###");
 			for(PlaceCardVO vo : list) {
 				if(vo.getPlaceName() == null) {
