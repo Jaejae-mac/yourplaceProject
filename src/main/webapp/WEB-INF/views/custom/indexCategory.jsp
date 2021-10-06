@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>place</title>
+
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/page.css" />">
 <link rel="stylesheet"
@@ -140,6 +141,7 @@
 	</div>
 	<%@include file="footer.jsp"%>
 </body>
+
 <script>
 function gotoDetail(e){
 	location.href="/detailPlaceForm.do?placeNum="+$(e).val();

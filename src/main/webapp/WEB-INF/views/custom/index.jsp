@@ -101,7 +101,7 @@
 			banner.rollInit(4000); // 배너 롤링
 		});
 	</script>
-	
+
 	<!-- Banner -->
 	<!--슬라이드 배너 테스트-->
 	<div id="banner" style="position: relative; top: 100px;">
@@ -111,18 +111,15 @@
 				<div class="container h_column_center">
 					<div class="img_wrap">
 						<ul class="rollimgs">
-						
-						<!-- a href="#" : 이미지 클릭시 url mapping-->
-						<!-- for each 문 시작 -->
-							<li>
-								<a href="#">
-								<img src="<c:url value="/resources/custom/image/banner1.png" />" />
-							</a>
-							</li>
-						<!-- for each 문 완료 -->
-							<li>
-								<a href="#">
-								<img src="<c:url value="/resources/custom/image/banner2.png" />">
+
+							<!-- a href="#" : 이미지 클릭시 url mapping-->
+							<!-- for each 문 시작 -->
+							<li><a href="#"> <img
+									src="<c:url value="/resources/custom/image/banner1.png" />" />
+							</a></li>
+							<!-- for each 문 완료 -->
+							<li><a href="#"> <img
+									src="<c:url value="/resources/custom/image/banner2.png" />">
 							</a></li>
 
 						</ul>
@@ -143,7 +140,8 @@
 				style="display: flex; flex-flow: row wrap; min-width: 1160px; max-width: 1160px;">
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
 
-					<div onclick="click_category(0,0)" class="h_row_center h_pc_category_header"
+					<div onclick="click_category(0,0)"
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<!--URL Mapping-->
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
@@ -192,7 +190,8 @@
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick=" click_category(1,0)" class="h_row_center h_pc_category_header"
+					<div onclick=" click_category(1,0)"
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -263,7 +262,8 @@
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick="click_category(2,0) " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(2,0) "
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -305,7 +305,8 @@
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px;">
-					<div onclick="click_category(3,0)" class="h_row_center h_pc_category_header"
+					<div onclick="click_category(3,0)"
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -355,7 +356,8 @@
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick="click_category(4,0) " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(4,0) "
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -406,7 +408,8 @@
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick="click_category(5,0) " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(5,0) "
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -456,11 +459,12 @@
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>호텔펜션</p>
 						</div>
-						
+
 					</div>
 				</div>
 				<div style="margin-top: 60px; width: 274px; margin-right: 21px;">
-					<div onclick="click_category(6,0) " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(6,0) "
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -497,14 +501,15 @@
 							class="h_center h_hover_button right_side_button button_font_style">
 							<p>빈 공간</p>
 						</div>
-						
-						
+
+
 					</div>
 				</div>
 
 
 				<div style="margin-top: 60px; width: 274px;">
-					<div onclick="click_category(6,0) " class="h_row_center h_pc_category_header"
+					<div onclick="click_category(6,0) "
+						class="h_row_center h_pc_category_header"
 						style="height: 40px; width: 100%;">
 						<div style="width: 24px; height: 24px; margin: 0px 8px 0px 0px;">
 						</div>
@@ -537,7 +542,7 @@
 							class="h_center h_hover_button left_side_button button_font_style">
 							<p>캠핑장</p>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
@@ -596,20 +601,22 @@
 
 			<div class="total_card_layout">
 				<!--신규등록 장소 추천 반복 시작. -->
-				<c:forEach var="latestPlace" items="${latestPlaces }" varStatus="status">
-					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;" >
+				<c:forEach var="latestPlace" items="${latestPlaces }"
+					varStatus="status">
+					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
 						<input type="hidden" id="place_num" name="place_num"
-							value="${latestPlace.placeNum}" />
-						 <input type="hidden"
+							value="${latestPlace.placeNum}" /> <input type="hidden"
 							id="user_id" name="user_id" value="${latestPlace.userId }" />
-							
-						<div class="card" >
-							<div class="card_header" onclick="gotoDetail('#place_num${status.index }')">
+
+						<div class="card">
+							<div class="card_header"
+								onclick="gotoDetail('#place_num${status.index }')">
 
 								<img src="${latestPlace.placeThumb}" alt="이미지 넣는 곳" />
 								<!-- 데이터 베이스의 해당 image 가져오기-->
 							</div>
-							<div class="card_body" onclick="gotoDetail('#place_num${status.index }')">
+							<div class="card_body"
+								onclick="gotoDetail('#place_num${status.index }')">
 								<div class="card_body_header">
 									<p>
 										${latestPlace.placeCate } · ${latestPlace.placeArea }
@@ -656,27 +663,26 @@
 									<!-- {{ place.price_guest }}원 -->
 								</p>
 								<c:choose>
-								<c:when test="${latestPlace.bookmark eq false}">
-									<img
-										class=“card_body_footer_booking”
-										 src="<c:url value="/resources/custom/icon/bookmark_g.png"/>"
-										style="width: 24px; height: 24px; margin-left:auto; text-align:center; "
-										id="bookmark_img${latestPlace.placeNum }" 
-										onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')" />
-								</c:when>
-								<c:otherwise>
-									<img
-										class=“card_body_footer_booking”
-										 src="<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
-										style="width: 24px; height: 24px; margin-left:auto; text-align:center; "
-										id="bookmark_img${latestPlace.placeNum }" 
-										onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')"/>
-								</c:otherwise>
-							</c:choose>
+									<c:when test="${latestPlace.bookmark eq false}">
+										<img class=“card_body_footer_booking”
+											src="<c:url value="/resources/custom/icon/bookmark_g.png"/>"
+											style="width: 24px; height: 24px; margin-left: auto; text-align: center;"
+											id="bookmark_img${latestPlace.placeNum }"
+											onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')" />
+									</c:when>
+									<c:otherwise>
+										<img class=“card_body_footer_booking”
+											src="<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
+											style="width: 24px; height: 24px; margin-left: auto; text-align: center;"
+											id="bookmark_img${latestPlace.placeNum }"
+											onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')" />
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
-				<input type="hidden" id="place_num${status.index }" value="${latestPlace.placeNum} "/>
+					<input type="hidden" id="place_num${status.index }"
+						value="${latestPlace.placeNum} " />
 				</c:forEach>
 			</div>
 			<!--total_card_layout END-->

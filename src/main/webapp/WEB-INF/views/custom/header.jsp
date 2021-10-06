@@ -821,7 +821,12 @@
 		</div>
 	</header>
 	<!-- script 시작 -->
-
+	<!-- 새로고침시 상단으로 이동. -->
+	<script>
+		$(function(){
+			$("html, body").animate({ scrollTop: 0 }, "fast"); 
+		});
+	</script>
 	<script>
 		var message_id = ''
 
