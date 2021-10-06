@@ -7,4 +7,7 @@ public interface CouponUserDAO {
 	//쿠폰 전송
 	void sendCoupon(CouponUserVO vo, String sendCoupName);
 	
+	//쿠폰 재발급
+	void reInsertCoupon(String coupNum, String userId);
+	
 }

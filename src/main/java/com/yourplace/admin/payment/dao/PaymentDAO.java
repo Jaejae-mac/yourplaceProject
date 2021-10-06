@@ -8,4 +8,10 @@ public interface PaymentDAO {
 
 	List<PaymentVO> getPayment();
 	
+	List<PaymentVO> getRefund();
+	
+	void refundDone(String orderNum);
+	
+	PaymentVO refundCoupon(String orderNum);
+	
 }

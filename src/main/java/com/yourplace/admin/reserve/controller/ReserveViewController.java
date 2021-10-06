@@ -21,6 +21,7 @@ public class ReserveViewController {
 	{
 		System.out.println("예약조회 뷰 호출");
 		List<ReserveVO> list = reserveViewService.getReserve();
+		System.out.println("to-String: " + list.toString());
 		model.addAttribute("reserveList", list);
 	}
 	

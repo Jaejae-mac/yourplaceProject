@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +15,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>예약 현황 조회</title>
+    <title>환불 처리 및 조회</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -31,9 +33,8 @@
 
       <div id="layoutSidenav_content">
         <main>
-        <form action="/spaceallow.mdo" method="POST">
           <div class="container-fluid px-4">
-            <h1 class="mt-4">예약 조회 페이지</h1>
+            <h1 class="mt-4">환불 내역 확인 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
                 <a href="index.html"> 메인으로 </a>
@@ -42,7 +43,7 @@
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                예약된 내역을 전체 조회할 수 있는 페이지입니다.
+                환불 내역을 조회하고, 쿠폰을 재발급하는 페이지입니다.
               </br>
 
               </br>
@@ -52,52 +53,77 @@
             <div class="card mb-4">
               <div class="card-header">
                 <i class="fas fa-table me-1"></i>
-                예약 페이지 조회
+                환불 내역 확인 페이지
               </div>
               <div class="card-body">
                 <table id="datatablesSimple">
 
                   <thead>
                     <tr>
-                      <th>예약상태</th> <!-- 0 -->
-                      <th>예약번호</th> <!-- 1 -->
-                      <th>장소번호</th> <!-- 2 -->
-                      <th>호스트 아이디</th> <!-- 3 -->
-                      <th>예약자 아이디</th> <!-- 4 -->
-                      <th>예약자 이름</th>
-                      <th>예약자 연락처</th> <!-- 5 -->
-                      <th>장소이용일</th> <!-- 6 -->
-                      <th>사용목적</th> <!-- 7 -->
-                      
+                      <th>환불상태</th> <!-- 0 -->
+                      <th>주문번호</th> <!-- 1 -->
+                      <th>승인번호</th>
+                      <th>회원번호</th>
+                      <th>환불금액</th> <!-- 5 -->
+                      <th>환불사유</th>
+                      <th>환불일자</th>
+                      <th>사용한 쿠폰</th> <!-- 6 -->
+                      <th>처리</th>
                     </tr>
                   </thead>
                   
                   <tbody>
-					<c:forEach var="rsv" items="${reserveList }">
+					<c:forEach var="refund" items="${refundList }">
 					
                     <tr>
                       <td> <!-- 0 -->
-                      		<c:if test="${rsv.rsvRefundYn eq '0'}">
-	                      		정상예약
-	                      	</c:if>
-	                      	<c:if test="${rsv.rsvRefundYn eq '1'}">
+	                      	<c:if test="${refund.rsvRefundYn eq 1}">
 	                      		환불 진행중
 	                      	</c:if>
-	                      	<c:if test="${rsv.rsvRefundYn eq '2'}">
+	                      	<c:if test="${refund.rsvRefundYn eq 2}">
 	                      		환불 완료
 	                      	</c:if>
-	                      	<c:if test="${rsv.rsvRefundYn eq '3'}">
+	                      	<c:if test="${refund.rsvRefundYn eq 3}">
 	                      		호스트에 의한 환불
 	                      	</c:if>
 	                  </td>
-                      <td>${rsv.rsvNum }</td> <!-- 1 -->
-                      <td>${rsv.placeNum }</td> <!-- 2 -->
-                      <td>${rsv.userId }</td> <!-- 3 호스트 아이디 -->
-                      <td>${rsv.userNum }</td> <!-- 4 예약자(께스트)아이디 -->
-                      <td>${rsv.rsvName }</td>
-                      <td>${rsv.rsvTel }</td> <!-- 5 -->
-                      <td>${rsv.rsvYear}년 ${rsv.rsvMonth}월 ${rsv.rsvDate}일</td> <!-- 6 -->
-                      <td>${rsv.rsvPurpose }</td> <!-- 7 -->
+                      
+                      <td>${refund.orderNum }</td>
+                      <td>${refund.payNum }</td>
+                      <td>${refund.userNum }</td>
+                      
+                      <td>
+
+                      <c:if test="${refund.rsvRefundYn < 2}"> <!-- 환불전 -->
+                      	${refund.invBfTax }
+                      </c:if>
+                      
+                      <c:if test="${refund.rsvRefundYn > 1}"> <!-- 환불후 -->
+                      	${refund.refundCost }
+                      </c:if>
+                      
+                      </td>
+                      
+                      <td>${refund.rsvRefundReason }</td>
+                      <td><fmt:formatDate value="${refund.refundDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+                      <td>${refund.payCoupNum }(${refund.coupDisRate }%)</td>
+                   
+                      <td>
+
+                      <c:if test="${refund.rsvRefundYn < 2}">
+                      <!-- 버튼 누르면 쿠폰 다시 입력 + rsvRefundYn 상태 2로 변경 + 메일 발송 -->
+                      	  <button type="button"
+	                      class="btn btn-danger"
+	                      style="font-size: 10px; margin-left: 10px;" id="refund_btn"> 
+	                      	환불 처리
+	                      </button>
+                      </c:if>
+                      
+                      <c:if test="${refund.rsvRefundYn > 1}">
+                      	완료
+                      </c:if>
+                      
+                      </td>
                       
                     </tr>
                     
@@ -108,8 +134,11 @@
               </div>
             </div>
           </div>
-          </form>
         </main>
+        
+        <form id="submitForm" method="POST" action="/refundProcess.mdo" hidden="hidden">
+       	<input type="hidden" id="refundOrderNumHidden" name="refudnNumName">
+       </form>
         
         <footer class="py-4 bg-light mt-auto">
           <div class="container-fluid px-4">
@@ -141,6 +170,37 @@
     </script>
     
     <script src="/resources/css/admin/js/datatables-simple-demo.js"></script>
+    
+    <script>
+
+		$(document).on("click","#refund_btn",function()
+		{
+// 			console.log('삭제버튼 클릭');
+			
+			var tdArr = new Array();
+			var checkBtn = $(this);
+			
+			var tr = checkBtn.parent().parent();
+			var td = tr.children();
+
+			var status = td.eq(0).text();
+			var order = td.eq(1).text();
+			var payno = td.eq(2).text();
+			var userno = td.eq(3).text();
+			
+			td.each(function(i)
+			{
+				tdArr.push(td.eq(i).text());
+			});
+			
+			alert("order Number" + order);
+			
+			$("#refundOrderNumHidden").val(order);
+			$("#submitForm").submit();
+			
+		});
+		
+	</script>
     
   </body>
 </html>

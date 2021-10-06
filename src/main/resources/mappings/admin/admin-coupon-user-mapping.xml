@@ -37,5 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET t1.coup_start_d = t2.coup_start_d, t1.coup_end_d = t2.coup_end_d
 		WHERE t1.coup_num = t2.coup_num;
 	</update>
+	
+	<!-- 환불된 쿠폰 재발급 -->
+	<update id="reInsertCoupon">
+		UPDATE coupon_user SET user_coup_use_yn = 'N'
+		WHERE coup_num = #{coupNum} AND user_coup_id = #{userCoupId};
+	</update>
 
 </mapper>

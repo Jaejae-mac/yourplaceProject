@@ -12,10 +12,10 @@ import lombok.ToString;
 @ToString
 public class CouponUserVO {
 	
-	private int coupNum;
+	private String coupNum;
 	//private int userCoupNum;
 	//private String userCoupName;
-	private String userCoupid;
+	private String userCoupId;
 	//private int userCoupDisRate;
 	private String userCoupUseYn;
 	

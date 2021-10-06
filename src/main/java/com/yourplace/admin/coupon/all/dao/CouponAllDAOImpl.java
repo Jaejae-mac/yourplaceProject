@@ -33,4 +33,6 @@ public class CouponAllDAOImpl implements CouponAllDAO {
 		sqlSessionTemplate.insert("CouponAllDAO.insertCoupon", coupVO);
 	}
 
+
+
 }

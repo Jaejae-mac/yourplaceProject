@@ -13,7 +13,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>예약 현황 조회</title>
+    <title>결제 내역 조회</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -60,11 +60,12 @@
                   <thead>
                     <tr>
                       <th>결제상태</th> <!-- 0 payRefundYn -->
+                      <th>주문번호</th>
                       <th>승인번호</th> <!-- 1 payNum -->
+                      <th>장소번호</th> <!-- 5 placeNum -->
                       <th>결제일시</th> <!-- 2 payYear + payMonth + payDate -->
                       <th>결제금액</th> <!-- 3 invBfTax -->
-                      <th>예약번호</th> <!-- 4 rsvNum -->
-                      <th>장소번호</th> <!-- 5 placeNum -->
+                      <th>결제자 아이디</th>
                       <th>결제자 이름</th> <!-- 7 rsvName -->
                       
                     </tr>
@@ -75,24 +76,25 @@
 					
                     <tr>
                       <td> <!-- 0 -->
-                      		<c:if test="${pay.payRefundYn eq '0'}">
+                      		<c:if test="${pay.rsvRefundYn eq '0'}">
 	                      		결제 완료
 	                      	</c:if>
-	                      	<c:if test="${pay.payRefundYn eq '1'}">
+	                      	<c:if test="${pay.rsvRefundYn eq '1'}">
 	                      		환불 진행중
 	                      	</c:if>
-	                      	<c:if test="${pay.payRefundYn eq '2'}">
+	                      	<c:if test="${pay.rsvRefundYn eq '2'}">
 	                      		환불 완료
 	                      	</c:if>
-	                      	<c:if test="${pay.payRefundYn eq '3'}">
+	                      	<c:if test="${pay.rsvRefundYn eq '3'}">
 	                      		호스트에 의한 환불
 	                      	</c:if>
 	                  </td>
+	                  <td>${pay.orderNum }</td>
                       <td>${pay.payNum }</td> <!-- 1 -->
+                      <td>${pay.placeNum }</td> <!-- 5 -->
                       <td>${pay.payYear }년 ${pay.payMonth }월 ${pay.payDate }일 </td> <!-- 2 -->
                       <td>${pay.invBfTax }</td> <!-- 3 -->
-                      <td>${pay.rsvNum}</td> <!-- 4 -->
-                      <td>${pay.placeNum }</td> <!-- 5 -->
+                      <td>${pay.userId}</td>
                       <td>${pay.rsvName }</td> <!-- 7 -->
                       
                     </tr>

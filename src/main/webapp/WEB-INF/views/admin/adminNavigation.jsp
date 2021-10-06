@@ -194,8 +194,8 @@
                   data-bs-parent="#sidenavAccordion"
                 >
                   <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="/paymentView.mdo">결제 관리</a>
                     <a class="nav-link" href="/reserveView.mdo">예약 관리</a>
+                    <a class="nav-link" href="/paymentView.mdo">결제 관리</a>
                     <a class="nav-link" href="/refundView.mdo">환불 관리</a>
                   </nav>
                 </div>

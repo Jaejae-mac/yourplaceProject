@@ -9,17 +9,14 @@ import lombok.ToString;
 @Setter
 public class RevenueVO {
 	
-	private int rsvNum;
+	private String rsvNum;
 	private String payNum;
 	private String placeMaincate;
 	private String placeCate;
 	private int payYear;
 	private int payMonth;
 	private int payDate;
-	private int invCost;
-	private int coupDisRate;
-	private int invBfTax;
-	private int invTax;
+
 	private int invAftTax;
 	private int userNum;
 
