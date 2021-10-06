@@ -18,7 +18,7 @@ public class BookmarkController {
 			@RequestParam("placeNum") String placeNum
 			) 
 	{
-		System.out.println("bookmark!!");
+		
 		InterestVO vo = new InterestVO();
 		vo.setPlaceNum(Integer.parseInt(placeNum));
 		vo.setUserId(userId);

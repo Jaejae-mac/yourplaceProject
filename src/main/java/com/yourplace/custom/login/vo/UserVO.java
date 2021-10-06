@@ -2,6 +2,8 @@ package com.yourplace.custom.login.vo;
 
 import java.sql.Date;
 
+import com.yourplace.commons.vo.IUserVO;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,7 +11,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UserVO {
+public class UserVO  implements IUserVO {
 	private int userNum;
 	private int userType;
 	private String userName;

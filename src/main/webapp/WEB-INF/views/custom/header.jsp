@@ -99,7 +99,7 @@
 
 
 					<c:choose>
-						<c:when test="${userVO.userType == '0'}">
+						<c:when test="${userVO.userType == 0}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
 							<div onclick="window.location.href='/interest.do'"
 								class="h_center h_header_button"
@@ -127,7 +127,7 @@
 							<!-- 로그인 기능 끝 -->
 
 						</c:when>
-						<c:when test="${userVO.userType == '1'}">
+						<c:when test="${userVO.userType == 1}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
 							<div onclick="window.location.href='/indexOurPlace.hdo'"
 								class="h_center h_header_button"

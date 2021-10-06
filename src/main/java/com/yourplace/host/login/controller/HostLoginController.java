@@ -40,16 +40,17 @@ public class HostLoginController {
 
 	@PostMapping("/login.hdo")
 	public String login(HostVO vo, Model model, HttpServletRequest request) throws Exception {
-		int result = service.getHostLogin(vo);
-		if(result == 1) {
+		HostVO result = service.getHostLogin(vo);
+		if(result != null) {
 			//로그인 성공시에는세션을 생성해준다.
 			HttpSession session = request.getSession();
+			session.setAttribute("userVO", result);
 			//세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
-			session.setAttribute("userId", vo.getUserId());
+			session.setAttribute("userId", result.getUserId());
 			//로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			getHostInfo(request, vo);
-			session.setAttribute("userType", String.valueOf(vo.getUserType()));
-			session.setAttribute("userNum", vo.getUserNum());
+			session.setAttribute("userType", String.valueOf(result.getUserType()));
+			session.setAttribute("userNum", result.getUserNum());
 
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			return "redirect:/indexOurPlace.hdo";
@@ -72,10 +73,6 @@ public class HostLoginController {
 				String info = list.get(i).getUserIntro();
 				String mail = list.get(i).getUserEmail();
 				String tel = list.get(i).getUserTel();
-				
-				
-				
-				
 				HttpSession session = request.getSession();
 				session.setAttribute("userSex", sex);
 				session.setAttribute("userNick", nick);
@@ -106,8 +103,6 @@ public class HostLoginController {
 		vo.setUserNickName(testnick);
 		vo.setUserIntro(testintro);
 		HttpSession session = request.getSession();
-		
-		
 		service.updateProfile(vo);
 		session.setAttribute("userNick", testnick);
 		session.setAttribute("userInfo", testintro);

@@ -694,7 +694,7 @@
 								data-clipboard-text="https://hourplace.co.kr/place/29386"
 								class="h_center btn_share"
 								style="width: 193px; height: 100%; border-radius: 8px; background-color: rgb(250, 251, 251); cursor: pointer;">
-								<div class="h_row_center">
+								<div class="h_row_center" onclick="copyUrl()">
 									<img
 										src=" <c:url value="/resources/custom/icon/share_454B50.svg"/>"
 										style="width: 24px; height: 24px; margin-right: 10px" />
@@ -788,10 +788,10 @@
 		<div class="h_column_center"
 			style="position: fixed; width: 49px; height: 192px; padding-right: 1px; right: -1px; bottom: 60px; background: rgb(255, 255, 255); border: 1px solid rgb(223, 226, 231); border-bottom-left-radius: 8px; border-top-left-radius: 8px; z-index: 1;">
 			<div id="bookmark_29386" class="h_center bookmark"
-				style="width: 48px; height: 48px; cursor: pointer">
+				style="width: 48px; height: 48px; cursor: pointer" onclick="yourplaceBookmark()">
 				<img
 					src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
-					style="width: 24px; height: 24px" />
+					style="width: 24px; height: 24px" id = "bookmark_img2"/>
 			</div>
 			<div data-clipboard-text="https://hourplace.co.kr/place/29386"
 				class="h_center btn_share"
@@ -1357,9 +1357,12 @@
                 success:function(data){
                 	if(data === 'addBookmark'){
                 		console.log("bookmark!!!");
+                		
                 		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
+                		$("#bookmark_img2").attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
                 	}else{
-                		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                		$("#bookmark_img1").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                		$("#bookmark_img2").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
                 	}
                 }
     		});	

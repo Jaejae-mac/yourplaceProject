@@ -30,7 +30,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		a.place_num) as avg_rate
 		from place a
 		where a.place_allow = 1
-		order by place_reg_date desc
+		order by
+		place_reg_date desc
 		Limit
 		4;
 	</select>
@@ -49,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from place a
 			where
 			a.place_maincate = #{placeMaincate}
-			and 
+			and
 			a.place_allow = 1
 			order by place_reg_date desc
 		</if>
@@ -76,6 +77,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			order by place_reg_date desc
 		</if>
 	</select>
-
-
+	<select id="getCatePlaceListAll" resultMap="cardResult">
+		select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest where place_num = a.place_num) as avg_rate
+			from place a
+            where a.place_allow = 1
+			order by place_reg_date desc
+	</select>
 </mapper>

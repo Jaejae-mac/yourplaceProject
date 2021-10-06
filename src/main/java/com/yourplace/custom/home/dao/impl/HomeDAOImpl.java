@@ -31,4 +31,10 @@ public class HomeDAOImpl implements HomeDAO{
 		return sqlSessionTemplate.selectList("HomeDAO.getCatePlaceList",vo);
 	}
 
+	@Override
+	public List<PlaceCardVO> getCatePlaceListAll() {
+		
+		return sqlSessionTemplate.selectList("HomeDAO.getCatePlaceListAll");
+	}
+
 }

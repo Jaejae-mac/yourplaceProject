@@ -4,11 +4,17 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
-import lombok.Data;
+import com.yourplace.commons.vo.IUserVO;
 
-@Data
-@Component
-public class HostVO {
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class HostVO implements IUserVO {
 	private int userNum;
 	private int userType;
 	private String userName;
@@ -23,5 +29,7 @@ public class HostVO {
 	private Date userRegDate;
 	private String userSmsAgree;
 	private String userEmailAgree;
+	private String kakaoId;
+	private int loginCheck;
 	
 }

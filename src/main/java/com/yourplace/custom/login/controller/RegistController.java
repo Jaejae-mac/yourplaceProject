@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.commons.coolsms.SMSCertification;
 import com.yourplace.custom.login.service.IdCheckService;
+import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.service.RegistService;
 import com.yourplace.custom.login.vo.UserVO;
 
@@ -28,7 +29,8 @@ public class RegistController {
 	//회원가입 서비스.
 	@Autowired
 	private RegistService registService;
-
+	@Autowired
+	private LoginUserService loginUserService;
 
 	
 	//회원 가입 모듈로 보내주는 메서드.
@@ -74,15 +76,12 @@ public class RegistController {
 	public String regist(UserVO vo, HttpServletRequest request) {
 		//제대로된 아이디와 비밀번호 가 전송되었을 경우.
 		if(vo.getUserId().length() > 0 && vo.getUserPw().length() > 0) {
+			
+			registService.insertUser(vo);
+			UserVO userVO = loginUserService.getUser(vo);
 			//회원가입 완료후 아이디 세션 생성.
 			HttpSession session = request.getSession();		
-			session.setAttribute("userId", vo.getUserId());
-			
-//			String url = request.getRequestURI();
-//			int userType = (int)session.getAttribute("userType");
-//			System.out.println(userType);
-//			vo.setUserType(userType);
-			registService.insertUser(vo);
+			session.setAttribute("userVO", userVO);
 		}
 		
 		//회원가입후 홈으로 보내주고, 쿠폰을 발급해 주어야 한다. - 미구현.

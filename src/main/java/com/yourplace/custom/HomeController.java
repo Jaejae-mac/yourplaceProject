@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.yourplace.commons.vo.IUserVO;
 import com.yourplace.custom.home.service.HomeGetLatestService;
 import com.yourplace.custom.home.vo.PlaceCardVO;
 import com.yourplace.custom.interest.service.BookmarkListService;
 import com.yourplace.custom.interest.vo.InterestVO;
 import com.yourplace.custom.login.vo.UserVO;
+import com.yourplace.host.login.vo.HostVO;
 
 
 @Controller
@@ -27,9 +29,11 @@ public class HomeController {
 	public String home(Model model,HttpSession session) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
 		List<InterestVO> bookmarks = null;
+		
 		if(session.getAttribute("userVO") != null) {
 			InterestVO vo = new InterestVO();
-			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			IUserVO iuvo = (IUserVO)session.getAttribute("userVO");
+			String userId = iuvo.getUserId();
 			vo.setUserId(userId);
 			bookmarks = bookmarkListService.bookmarkList(vo);
 			for(PlaceCardVO card : latestPlaces) {

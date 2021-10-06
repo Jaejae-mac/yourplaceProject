@@ -6,11 +6,11 @@
 <html>
 <meta charset="UTF-8">
 <title>register</title>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/css/user-register.css" />">
+ 
 <link rel="stylesheet"
-	href="<c:url value="/resources/css/user-register-style.css" />">
-
+	href="<c:url value="/resources/css/user-register-style.css?alter" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/css/user-register.css?alter" />">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -416,13 +416,17 @@
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
 					style="margin-left: 4px; width: 6px; height: 6px">
 			</div>
-			<div class="radio-wrap input_container" style="margin-top: 0;">
-                <input type="radio" name="userSex" id="r2" value="male" checked/>
-                <label for="r2">남성</label>
-                <input type="radio" name="userSex" id="r1" value="female" />
-                <label for="r1">여성</label>
+			<div  style="margin-top: 0; border-radius: 4px; border: 1px solid var(--grey-020);min-height:52px;vertical-align:middle;line-height:52px;text-align:center;">
+				<div style=" float: left; width: 49%;">
+				<input type="radio" name="userSex" id="r2" value="male" checked/>
+				<label for="r2" style="margin-left:10px">남성</label>
+                </div>
+                <div style=" float: left; width: 49%;">
+                <input type="radio" name="userSex" id="r1" value="female"  />
+                <label for="r1" style="margin-left:10px">여성</label>
+                </div>
             </div>
-
+			<div style="clear:both"></div>
 
 
 			<div class="h_row" style="margin-top: 20px;">
@@ -537,9 +541,9 @@
 					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
 					onclick="window.open('policy/personal.html')">보기</p>
 			</div>
-			<div class="" style="margin-top: 30px;">
+			<div class="" style="margin-top: 30px;height:50px;">
 				<label for="request" class="btn btn-primary"
-					style="width: 100%; text-align: center; height: 40px;">가입
+					style="width: 100%; text-align: center; height: 50px;line-height:30px">가입
 					완료</label>
 					 <input type="button" id="request" name="regist-btn"
 					style="display: none;" onclick="regist()">
@@ -595,9 +599,9 @@
             if(userTel != ""){//beging userTel emptyCheck
                 let timerInterval
             Swal.fire({
-            title: '인증번호 입력',
-            html: 'I will close in <b></b> milliseconds.'+
-            '<br/><br/><input type="text" placeholder="number" id="auth_num" class="form-control">'+
+            title: '전송된 인증번호 입력',
+            html: '<b></b> 후에 종료됩니다.'+
+            '<br/><br/><input type="text" placeholder="전송된 인증 번호를 입력해주세요." id="auth_num" class="form-control">'+
             '<br/><input type="button" class="btn btn-primary" id="auth_num_btn" style="widht:100%;" value="인증 확인">',
             timer: 1000*60*3,
             timerProgressBar: true,
@@ -605,7 +609,7 @@
                 Swal.showLoading()
                 const b = Swal.getHtmlContainer().querySelector('b')
                 timerInterval = setInterval(() => {
-                b.textContent = Swal.getTimerLeft()
+                b.textContent = millisToMinutesAndSeconds(Swal.getTimerLeft())
                 }, 100)
             },
             willClose: () => {
@@ -627,7 +631,9 @@
                 }
                 });
             }//end userTel empty Check
-            
+            else{
+            	swal("","전화번호를 입력해주세요.","warning");
+            }
             //인증번호 입력후 확인 버튼 클릭 시.
             $(document).on('click','#auth_num_btn', function(){
             var userAuthNum = $("#auth_num").val();
@@ -649,7 +655,11 @@
             }
             });
         });
-        
+        function millisToMinutesAndSeconds(millis) {
+        	  var minutes = Math.floor(millis / 60000);
+        	  var seconds = ((millis % 60000) / 1000).toFixed(0);
+        	  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+        	}
     </script>
 
 </body>

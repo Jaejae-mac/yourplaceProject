@@ -183,9 +183,9 @@
 					</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Logged in as:</div>
-					${userId }
+					${userVO.userId }
 				</div>
-				<input type="hidden" value="${userId }" name="userId" value="userId" />
+				<input type="hidden" value="${userVO.userId }" name="userId" value="userId" />
 			</nav>
 			<!--사이드바 nav태그((사이드메뉴)) 끝-->
 		</div>

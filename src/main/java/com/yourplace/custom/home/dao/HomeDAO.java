@@ -8,4 +8,5 @@ import com.yourplace.custom.interest.vo.InterestVO;
 public interface HomeDAO {
 	List<PlaceCardVO> getLatestPlaceList();
 	List<PlaceCardVO> getCatePlaceList(String maincate, String subcate);
+	List<PlaceCardVO> getCatePlaceListAll();
 }

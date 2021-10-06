@@ -20,14 +20,22 @@ import com.yourplace.custom.login.vo.UserVO;
 public class CateController {
 	@Autowired
 	private CategoryService categoryService;
-	
+	@Autowired
+	private CategoryService categoryAllService;
 	@Autowired
 	private BookmarkListService bookmarkListService;
 	
 	@GetMapping("/category.do")
 	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, Model model,HttpSession session) {
-		List<PlaceCardVO> list = categoryService.getCatePlace(maincate, subcate);
+		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
+		
+		if(maincate != "" && subcate !="") {
+			list = categoryService.getCatePlace(maincate, subcate);
+		}else {
+			list = categoryAllService.getCatePlace("","");
+		}
+		
 		if(session.getAttribute("userVO") != null) {
 			InterestVO vo = new InterestVO();
 			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();

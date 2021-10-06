@@ -33,6 +33,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where b.no > #{rowNum}
 			limit 5;
 	</select>
+		<select id="getReviewListSuggestion" resultMap="detailReviewtList">
+		SELECT b.* FROM (
+			SELECT @rownum:=@rownum+1 as no, 
+				a.rsv_num,
+        		a.user_id,
+        		a.place_num,
+        		a.review_guest_wr,
+        		a.review_guest_rate,
+        		a.help_cnt,
+        		DATE_FORMAT(a.review_guest_regd, '%Y. %m. %d') as review_guest_regd,
+				(select user_nick_name from member where user_id = a.user_id) as user_nick_name
+					from reviewGuest a, (select @rownum:=0) temp
+					where place_num = #{placeNum}
+					order by review_guest_regd ) b
+			where b.no > #{rowNum}
+			limit 5;
+	</select>
 	<update id="updateHelpCnt">
 		<choose>
 		 <when test="helpFlag">

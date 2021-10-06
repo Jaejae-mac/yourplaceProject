@@ -133,7 +133,7 @@
 	<!-- 모든 카테고리-->
 	<!-- Main body 시작 -->
 	<!--메인 바디 카드 레이아웃-->
-	<div class="main_card" style="position: relative; top: 100px;">
+	<div class="main_card" style="position: relative; top: 100px; margin-bottom:40px">
 		<div
 			style="flex-direction: row; display: flex; justify-content: center; position: relative;">
 			<div
@@ -564,7 +564,7 @@
 						onclick="hourplace_v2.userLog('W', '/', 'click', 'category', 'all');window.location.href='/category';"
 						class="h_center h_hover_button"
 						style="width: 280px; height: 56px; border-radius: 8px; background-color: rgb(245, 249, 255); cursor: pointer;">
-						<div class="h_row_center show_all_category">
+						<div class="h_row_center show_all_category" onclick="location.href='/category.do?maincate=&subcate='">
 							<p>아워플레이스 모든 장소 보기</p>
 							<img
 								src="<c:url value="/resources/custom/icon/before_blue.svg" />"
