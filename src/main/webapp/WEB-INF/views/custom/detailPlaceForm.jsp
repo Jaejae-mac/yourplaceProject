@@ -9,9 +9,10 @@
 
 <title>${placeInfo.placeName}</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/detail-place.css" />" />
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <script type="text/javascript"
 	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -26,8 +27,8 @@
 <script src="<c:url value="/resources/js/datepicker.ko.js" />"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
-	<script type="text/javascript"
-   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1145e3da7175bb2ed15571464168022&libraries=services"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1145e3da7175bb2ed15571464168022&libraries=services"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet"
@@ -41,6 +42,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1145e3da7175bb2ed15571464168022&libraries=services"></script>
+
+	
 <style>
 .flipsnap_sub_list .next {
 	top: 50%;
@@ -180,7 +185,8 @@
 					<div class="h_row_center"
 						style="position: relative; margin-top: 30px; height: 60px; width: 100%;">
 						<div class="h_row_center"
-							style="max-width: 583px; height: 60px; width: fit-content; cursor: pointer;">
+							style="max-width: 583px; height: 60px; width: fit-content; cursor: pointer;"
+							onclick="gotoProfile()">
 							<!--프로필 이미지.-->
 							<div style="width: 60px; height: 60px; margin-right: 20px">
 								<img
@@ -213,6 +219,9 @@
 							</div>
 						</div>
 					</div>
+
+
+
 					<div
 						style="margin-top: 30px; width: 100%; height: 1px; background-color: rgb(231, 234, 238);"></div>
 					<p
@@ -304,41 +313,40 @@
 						위치</p>
 					<!-- 다음 지도 표시 하는 곳 시작. -->
 					<div class="h_center" id="openPlace" onclick="toggle_open_map()"
-                  style="margin-top: 20px; width: 158px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
-                  <div class="h_row_center">
-                     <img src=" <c:url value="/resources/custom/icon/place.svg"/>"
-                        style="width: 24px; height: 24px" />
-                     <p id="map_txt"
-                        style="margin-left: 6px; margin-bottom: 0px; font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                        지도 보기</p>
-                  </div>
-               </div>
+						style="margin-top: 20px; width: 158px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
+						<div class="h_row_center">
+							<img src=" <c:url value="/resources/custom/icon/place.svg"/>"
+								style="width: 24px; height: 24px" />
+							<p id="map_txt"
+								style="margin-left: 6px; margin-bottom: 0px; font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+								지도 보기</p>
+						</div>
+					</div>
 
-               <div id="place_map"
-                  style="position: relative; margin-top: 20px; width: 100%; height: 300px; display: block;">
-                  <div id="map"
-                     style="background: white; overflow: hidden; width: 100%; height: 300px;">
-                  </div>
-                  <!-- 장소로 이동버튼 아직 미구현이라 none 처리 -->
-                  <div
-                     style="border-radius: 5px; position: absolute; bottom: 4px; left: 4px; overflow: hidden; width: 90px; height: 30px; margin: 0px; padding: 0px; z-index: 1; background: rgb(255, 255, 255); display: none;">
-                     <button onclick="panTo()"
-                        style="width: 100%; height: 100%; ">장소로
-                        이동</button>
-                  </div>
-                  <div class="h_row_center"
-                     style="margin-top: 10px; margin-bottom: 10px; position: relative">
-                     <p
-                        style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; color: rgb(36, 111, 248);">
-                        주소 :</p>
+					<div id="place_map"
+						style="position: relative; margin-top: 20px; width: 100%; height: 300px; display: block;">
+						<div id="map"
+							style="background: white; overflow: hidden; width: 100%; height: 300px;">
+						</div>
+						<!-- 장소로 이동버튼 아직 미구현이라 none 처리 -->
+						<div
+							style="border-radius: 5px; position: absolute; bottom: 4px; left: 4px; overflow: hidden; width: 90px; height: 30px; margin: 0px; padding: 0px; z-index: 1; background: rgb(255, 255, 255); display: none;">
+							<button onclick="panTo()" style="width: 100%; height: 100%;">장소로
+								이동</button>
+						</div>
+						<div class="h_row_center"
+							style="margin-top: 10px; margin-bottom: 10px; position: relative">
+							<p
+								style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; color: rgb(36, 111, 248);">
+								주소 :</p>
 
-                     <p id="place_addr"
-                        style="margin-left: 10px; line-height: 0.7; letter-spacing: -0.67px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: rgb(69, 75, 80);">
-                        ${placeInfo.placeAddr }</p>
-                  </div>
-               </div>
-					
-					
+							<p id="place_addr"
+								style="margin-left: 10px; line-height: 0.7; letter-spacing: -0.67px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: rgb(69, 75, 80);">
+								${placeInfo.placeAddr }</p>
+						</div>
+					</div>
+
+
 					<div style="margin-top: 40px; width: 100%; height: 1px"></div>
 					<div
 						style="width: 100%; height: 1px; background-color: rgb(231, 234, 238);"></div>
@@ -370,11 +378,11 @@
 								5.0</p>
 							<div class="h_row_center" style="position: absolute; right: 0px">
 								<p class="align_btn"
-									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer;" id="suggest">
-									추천순</p>
+									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer;"
+									id="suggest">추천순</p>
 								<p class="align_btn"
-									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; margin-left: 10px;" id="newest">
-									최신순</p>
+									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; margin-left: 10px;"
+									id="newest">최신순</p>
 								<!-- color: rgb(174, 179, 184); -->
 							</div>
 						</div>
@@ -392,6 +400,7 @@
 											style="font-style: normal; font-weight: normal; font-size: 14px; line-height: 22px; color: rgb(158, 164, 170);">
 											${review.reviewGuestRegd}</p>
 									</div>
+
 									<div style="margin-top: 6px">
 										<div class="review_star">
 											<c:forEach var="i" begin="1" end="${review.reviewGuestRate}">
@@ -413,8 +422,9 @@
 										style="margin-top: 16px; padding: 12px; position: static; min-width: 77px; width: fit-content; height: 29px; left: 0px; top: 76px; box-sizing: border-box; border-radius: 4px; cursor: pointer; border: 1px solid rgb(223, 226, 231);">
 										<div class="h_row_center"
 											style="font-style: normal; font-weight: 500; font-size: 12px; line-height: 14px; color: rgb(114, 120, 127);">
-											<p style="margin-bottom: 0px" onclick="helpClick('${review.rsvNum}', '${review.userId }')" id="${review.rsvNum }">도움돼요
-												${review.helpCnt }</p>
+											<p style="margin-bottom: 0px"
+												onclick="helpClick('${review.rsvNum}', '${review.userId }')"
+												id="${review.rsvNum }">도움돼요 ${review.helpCnt }</p>
 										</div>
 									</div>
 								</div>
@@ -535,7 +545,7 @@
 											<input type="hidden" name="rstPrice" id="rst_price" /> <input
 												type="hidden" name="detailTitle" id="form_detail_title" />
 											<input type="hidden" name="hostNickName" id="host_nick_name" />
-											<input type="hidden" name="userId"
+											<input type="hidden" name="userId" id="hostId"
 												value="${placeInfo.userId }" /> <input type="hidden"
 												name="placeName" value="${placeInfo.placeName}" /> <input
 												type="hidden" name="placePrice"
@@ -674,16 +684,18 @@
 									<c:choose>
 										<c:when test="${bookmark eq false}">
 											<img
-											src=" <c:url value="/resources/custom/icon/bookmark_g.png"/>"
-											style="width: 24px; height: 24px; margin-right: 10px" id="bookmark_img"/>	
+												src=" <c:url value="/resources/custom/icon/bookmark_g.png"/>"
+												style="width: 24px; height: 24px; margin-right: 10px"
+												id="bookmark_img" />
 										</c:when>
 										<c:otherwise>
 											<img
 												src=" <c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
-												style="width: 24px; height: 24px; margin-right: 10px" id="bookmark_img"/>
+												style="width: 24px; height: 24px; margin-right: 10px"
+												id="bookmark_img" />
 										</c:otherwise>
 									</c:choose>
-									
+
 									<p
 										style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(69, 75, 80); margin-bottom: 0px;">
 										관심장소</p>
@@ -788,10 +800,11 @@
 		<div class="h_column_center"
 			style="position: fixed; width: 49px; height: 192px; padding-right: 1px; right: -1px; bottom: 60px; background: rgb(255, 255, 255); border: 1px solid rgb(223, 226, 231); border-bottom-left-radius: 8px; border-top-left-radius: 8px; z-index: 1;">
 			<div id="bookmark_29386" class="h_center bookmark"
-				style="width: 48px; height: 48px; cursor: pointer" onclick="yourplaceBookmark()">
+				style="width: 48px; height: 48px; cursor: pointer"
+				onclick="yourplaceBookmark()">
 				<img
 					src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
-					style="width: 24px; height: 24px" id = "bookmark_img2"/>
+					style="width: 24px; height: 24px" id="bookmark_img2" />
 			</div>
 			<div data-clipboard-text="https://hourplace.co.kr/place/29386"
 				class="h_center btn_share"
@@ -812,7 +825,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script>
       $(document).ready(function(){
         var glob;
@@ -871,6 +884,71 @@
       });
       });
 
+    </script>
+	<script>
+	// 지도보기 토글
+	// display = none 일때 지도 깨짐 오류가 나서 block 으로 처리후 none으로 변환 하는 함수
+	$(document).ready(function(){
+			document.getElementById('place_map').style.display = 'none';
+		})
+	  
+	  function toggleMap(r){
+		 $(r).toggle();
+	  }
+	  function toggle_open_map(){
+		 console.log("지도보기클릭");
+		 const pm = document.getElementById('place_map');
+		 pm.disabled = true;
+		 toggleMap("#place_map");
+	  }
+    </script>
+	<script>
+	// 지도 api 불러오기 
+    var mapContainer = document.getElementById("map");
+    var mapOptions = {
+    		center: new kakao.maps.LatLng(33.450701, 126.570667),
+    		level: 3,
+    };
+    
+    var map = new kakao.maps.Map(mapContainer, mapOptions);
+    
+    // 장소로 부드럽게 이동하는 메서드 임시 보류
+    function panTo() {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(33.450701, 126.570667);
+        
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);            
+    }    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    var Addr = $('#place_addr').text();
+ 	// 주소로 좌표를 검색합니다
+    geocoder.addressSearch(Addr, function(result, status, panTo) {
+
+        // 정상적으로 검색이 완료됐으면 
+         if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+     		// 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px; text-align:center; color: rgb(36, 111, 248);">장소 위치</div>'
+            });
+            infowindow.open(map, marker);
+            
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords); 
+        } 
+    });
+ 	// ---- kakao 지도 api 끝 
     </script>
 	<script>
       //토글에 관하여 처리할 함수.
@@ -1227,7 +1305,7 @@
 
     init();
     </script>
-    <!-- 리뷰 스크립트 -->
+	<!-- 리뷰 스크립트 -->
 	<script>
     function moreReviews(){
     	var nickName='test';
@@ -1341,8 +1419,8 @@
 	    
     }
     </script>
-    <!-- 북마크 처리. -->
-    <script>
+	<!-- 북마크 처리. -->
+	<script>
     function yourplaceBookmark(){
     	console.log("bookmark Clicked");
     	var sessionUser ="${userVO.userId}"; 
@@ -1370,8 +1448,8 @@
     	
     }
     </script>
-    <!-- 지도 스크립트 시작. -->
-   	<script>
+	<!-- 지도 스크립트 시작. -->
+	<script>
    			
    	function toggleMap(r){
         $(r).toggle();
@@ -1432,6 +1510,13 @@
 
    	
    	</script>
+	<script>
+		function gotoProfile(){
+			var Id = $("#hostId").val();
+			console.log("프로필페이지클릭"+Id);
+			location.href="/hostProfile.do?hostId="+Id;			
+		}
+	</script>
 	<%@ include file="footer.jsp"%>
 </body>
 </html>
