@@ -93,26 +93,6 @@ public class HostLoginController {
 		
 	}
 	
-	@RequestMapping(value="/updateProfile.hdo", method=RequestMethod.POST) //변경되는거 확인
-	public String updateProfile(HostVO vo, HttpServletRequest request) throws Exception{
-		String testId = request.getParameter("userId");
-		String testnick = request.getParameter("name");
-		String testintro = request.getParameter("intro");
-		
-		System.out.println(testId);
-		System.out.println(testnick);
-		System.out.println(testintro);
-		vo.setUserId(testId);
-		vo.setUserNickName(testnick);
-		vo.setUserIntro(testintro);
-		HttpSession session = request.getSession();
-		
-		
-		service.updateProfile(vo);
-		session.setAttribute("userNick", testnick);
-		session.setAttribute("userInfo", testintro);
-		return "redirect:updateProfileforHost.hdo";
-	}
 	
 
 }

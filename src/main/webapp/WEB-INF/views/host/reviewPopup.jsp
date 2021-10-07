@@ -13,8 +13,7 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>.
 
 
 <style>
@@ -99,7 +98,7 @@
 					
 					<div style="position:relative; right:110px; bottom:40px;">
 						<input type="button" class="btn btn-primary"
-							style="font-size: 10px; margin-left: 10px;" value="등록" name="subb" id="subb" onclick="test(); a();" />
+							style="font-size: 10px; margin-left: 10px;" value="등록" name="subb" id="subb" onclick="a();" />
 							
 					</div>
 
@@ -108,47 +107,48 @@
 			</div>
 		</div>
 	</div>
-	<form id="sub" name="sub" method="post"  hidden="hidden" action="/reviewValue.hdo">
+
+				<form id="sub" name="sub" method="POST"  hidden="hidden">
+	
 				<input type="hidden" name="star" id="star" value="" > 
 				<input type="hidden" name="contents" id="contents" value="">
 
-					</form>
+					 </form>
 </div>
 </body>
  
 <script>
 
-function test() {
-    var obj_value = $("input:radio[name='rating']:checked").val();
-	var contentV = $('#content').val();
-    $("#star").val(obj_value);
-  	$("#contents").val(contentV);
-  	window.close();
-
-}
-
-
-
-
 
 
 function a()
 {
-	var params = $("#sub").serialize();
+	var arr1 = new Array();
+	var arr2 = new Array();
+	
+	var obj_value = $("input:radio[name='rating']:checked").val();
+	var contentV = $('#content').val();
+
+	arr1.push(obj_value);
+	arr2.push(contentV);
+	
+	console.log(arr1);
+	console.log(arr2);
 	
 	$.ajax(
 
-	{
-			url : '/reserveValue.hdo',
-			data : params,
-			dataType : 'text',
-			async    : false,
-			type : 'POST',
-			success : function(xh) {
-				window.close();
-			}
-		});
-	}
+			{
+			
+			url : '/reviewVal.hdo',
+					data : {star : arr1, review : arr2},
+					datatype : "text",
+					type : 'POST',
+					success : function(xh) {
+					 	alert("전송완료");
+						window.close();
+					}
+				});
+	};
 </script>
  
 	

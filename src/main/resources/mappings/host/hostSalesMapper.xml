@@ -24,10 +24,4 @@
 		select * from invoice
 	</select>
 
-
-<select id="getCharForHost">
-	select * from invoice where 
-</select>
-
-
 </mapper>

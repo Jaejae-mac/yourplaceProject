@@ -41,7 +41,6 @@
 	</select>
 
 	<delete id="deletePlace">
-
 		delete place, place_detail, place_img
 		FROM place
 		JOIN place_detail USING (place_num)

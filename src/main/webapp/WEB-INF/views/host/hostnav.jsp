@@ -42,7 +42,6 @@
 					aria-labelledby="navbarDropdown">
 					
 					<li><a class="dropdown-item" href="/logout.do">로그아웃</a></li>
-					<li><a class="dropdown-item" href="/logout.hdo">Settings</a></li><!-- 프로필 보기로 -->
 					<li><a class="dropdown-item" href="/myProfile.hdo">계정 관리</a></li><!-- 프로필 보기로 -->
 				
 				</ul></li>
@@ -147,9 +146,8 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/refund.hdo">환불 신청</a> <a
-									class="nav-link" href="layout-sidenav-light.html">환불 진행중</a>
-								<a class="nav-link" href="layout-sidenav-light.html">환불 완료
-									</a> 
+									class="nav-link" href="/refundRequest.hdo">환불 진행중</a>
+							
 							</nav>
 						</div>
 

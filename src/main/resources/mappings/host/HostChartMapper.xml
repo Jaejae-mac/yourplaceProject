@@ -19,7 +19,7 @@
 
 	
 	<select id="getAllChart" resultMap="getAllHostChart">
-select test_invoice.*, reserve.* from test_invoice inner join reserve on reserve.pay_num = test_invoice.pay_num inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
+select test_invoice.*, reserve.* from test_invoice inner join reserve on reserve.pay_num = test_invoice.pay_num inner join place on place.place_num = reserve.place_num where place.user_id=#{userId} and reserve.rsv_refund_yn=0
 	</select>
 	
 

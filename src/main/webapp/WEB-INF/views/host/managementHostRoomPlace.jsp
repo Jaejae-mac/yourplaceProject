@@ -67,13 +67,13 @@
 							var cell6 = row.insertCell(5);	
 							var cell7 = row.insertCell(6);
 						
-							cell1.innerHTML = "<tr><td></td>"
+							cell1.innerHTML = "<tr><td><input type='text' name='pNum' id='pNum' placeholder='장소 번호를 적어주세요'/></td>"
 							cell2.innerHTML = "<td><input type='text'  name='roomNum' id='roomNum'/></td>"
 							cell3.innerHTML = "<td><input type='text'  name='detailTitle' id='detailTitle' placeholder='방 이름을 적어주세요'/></td>"
 							cell4.innerHTML = "<td><input type='text'  name='detailPersonNum' id='detailPersonNum' placeholder='인원수를 적어주세요'/></td>"
 							cell5.innerHTML = "<td><input type='text' name='surcharge' id='surcharge' placeholder='추가 금액을 적어주세요'/></td>"								
 							cell6.innerHTML ="<td><button type='button' class='btn btn-danger' onclick='delete_row()' style='font-size: 10px; margin-left: 10px;'>삭제</button></td>"
-							cell7.innerHTML="<td><input type='submit'  id='getValue' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;' value='등록'/></td></tr>"
+							cell7.innerHTML="<td><input type='submit' id='getValue' name='getValue' class='btn btn-primary' style='font-size: 10px; margin-left: 10px;' value='등록'/></td></tr>"
 						
 						
 								}

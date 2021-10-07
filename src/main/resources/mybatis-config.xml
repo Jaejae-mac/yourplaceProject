@@ -4,8 +4,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.yourplace.admin.account.vo.AccountVO"
-			alias="myAccount" />
+	
 		<typeAlias type="com.yourplace.admin.login.vo.AdminVO"
 			alias="myAdmin" />
 		<typeAlias type="com.yourplace.admin.memberview.vo.MemberVO"
@@ -113,7 +112,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/regist-place-mapping.xml" />
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
 		<mapper resource="mappings/custom/custom-access-mapping.xml" />
-		<mapper resource="mappings/admin/admin-account-mapping.xml" />
+		
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
 		<mapper resource="mappings/admin/admin-coupon-mapping.xml" />
