@@ -856,10 +856,6 @@
 				close_category_all()
 				$('.search_container').show()
 				$('body').addClass('modal-open')
-<<<<<<< HEAD
-=======
-				//search_vue.get_recommend();
->>>>>>> fixfromJey
 			} else {
 				close_search_container()
 			}
