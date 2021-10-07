@@ -25,7 +25,6 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
 <link rel="stylesheet"
-<<<<<<< HEAD
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -39,6 +38,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1145e3da7175bb2ed15571464168022&libraries=services"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 .flipsnap_sub_list .next {
 	top: 50%;
@@ -167,7 +170,7 @@
 					<div class="h_row_center"
 						style="position: relative; margin-top: 30px; height: 60px; width: 100%;">
 						<div class="h_row_center"
-							style="max-width: 583px; height: 60px; width: fit-content; cursor: pointer;">
+							style="max-width: 583px; height: 60px; width: fit-content; cursor: pointer;" onclick="gotoProfile()">
 							<!--프로필 이미지.-->
 							<div style="width: 60px; height: 60px; margin-right: 20px">
 								<img
@@ -184,8 +187,7 @@
 									<!--호스트 닉네임 시작.-->
 									<p
 										style="margin-top: 2px; font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);"
-										id="nickName">
-										${placeInfo.userNickName }</p>
+										id="nickName">${placeInfo.userNickName }</p>
 									<!--호스트 닉네임 끝.-->
 								</div>
 							</div>
@@ -201,6 +203,15 @@
 							</div>
 						</div>
 					</div>
+					
+					<script>
+					function gotoProfile(){
+						var Id = $("#hostId").val();
+						console.log("프로필페이지클릭"+Id);
+						location.href="/hostProfile.do?hostId="+Id;			
+					}
+					</script>
+					
 					<div
 						style="margin-top: 30px; width: 100%; height: 1px; background-color: rgb(231, 234, 238);"></div>
 					<p
@@ -290,32 +301,46 @@
 					<p
 						style="margin-top: 40px; font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
 						위치</p>
-					<div onclick="toggle_place_map()" class="h_center"
+					<!-- 지도 부분 -->
+
+					<div class="h_center" id="openPlace" onclick="toggle_open_map()"
 						style="margin-top: 20px; width: 158px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
 						<div class="h_row_center">
 							<img src=" <c:url value="/resources/custom/icon/place.svg"/>"
 								style="width: 24px; height: 24px" />
 							<p id="map_txt"
-								style="margin-left: 6px; font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+								style="margin-left: 6px; margin-bottom: 0px; font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
 								지도 보기</p>
 						</div>
 					</div>
+
 					<div id="place_map"
-						style="position: relative; display: none; margin-top: 20px; width: 100%; height: 300px;">
+						style="position: relative; margin-top: 20px; width: 100%; height: 300px; display: block;">
 						<div id="map"
-							style="background: white; overflow: hidden; width: 100%; height: 100%;">
-							지도</div>
+							style="background: white; overflow: hidden; width: 100%; height: 300px;">
+						</div>
+						<!-- 장소로 이동버튼 아직 미구현이라 none 처리 -->
 						<div
-							style="border-radius: 5px; position: absolute; bottom: 4px; left: 4px; overflow: hidden; width: 90px; height: 30px; margin: 0px; padding: 0px; z-index: 1; background: rgb(255, 255, 255);">
-							<button onclick="setCenter()" style="width: 100%; height: 100%">
-								장소로 이동</button>
-							<input type="hidden" id="place_addr"
-								value=${placeInfo.placeAddr }>
+							style="border-radius: 5px; position: absolute; bottom: 4px; left: 4px; overflow: hidden; width: 90px; height: 30px; margin: 0px; padding: 0px; z-index: 1; background: rgb(255, 255, 255); display: none;">
+							<button onclick="panTo()"
+								style="width: 100%; height: 100%; ">장소로
+								이동</button>
+						</div>
+						<div class="h_row_center"
+							style="margin-top: 10px; margin-bottom: 10px; position: relative">
+							<p
+								style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; color: rgb(36, 111, 248);">
+								주소 :</p>
+
+							<p id="place_addr"
+								style="margin-left: 10px; line-height: 0.7; letter-spacing: -0.67px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: rgb(69, 75, 80);">
+								${placeInfo.placeAddr }</p>
 						</div>
 					</div>
-					<p
-						style="margin-top: 20px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: rgb(69, 75, 80);">
-						자세한 주소는 호스트 승인 후, 메시지로 문의 가능합니다.</p>
+
+
+
+
 					<div style="margin-top: 40px; width: 100%; height: 1px"></div>
 					<div
 						style="width: 100%; height: 1px; background-color: rgb(231, 234, 238);"></div>
@@ -374,8 +399,8 @@
 									<p
 										style="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
 										일정이 바빠서 너무 늦게 후기를 쓰네요 ㅜㅜ 사장님이 너무 친절하시고 잘해주십니다. <br />사전에 가서
-										미리 볼 수도 있고 , 배려를 많이 해주십니다!! 다음에 또 방문하겠습니다<br />
-										<br />p.s - 음료와 음식도 맛있어용 ㅎㅎ
+										미리 볼 수도 있고 , 배려를 많이 해주십니다!! 다음에 또 방문하겠습니다<br /> <br />p.s -
+										음료와 음식도 맛있어용 ㅎㅎ
 									</p>
 									<div
 										style="min-width: 56px; width: 56px; height: 56px; margin-left: 20px; border-radius: 4px; overflow: hidden; cursor: pointer;">
@@ -450,10 +475,10 @@
 											<input class="form-check-input" type="radio" value=""
 												name="flexRadio" id="detail_title${status.index }" checked>
 											<input type="hidden" value="${detailRoom.detailNum }"
-												class="detail_num${status.index }"> 
-											<input type="hidden" value="123"
-												class="detail_detail_capa${status.index }"> 
-												<label class="form-check-label" for="detail_title${status.index }">
+												class="detail_num${status.index }"> <input
+												type="hidden" value="123"
+												class="detail_detail_capa${status.index }"> <label
+												class="form-check-label" for="detail_title${status.index }">
 												${detailRoom.detailTitle } </label>
 										</div>
 									</c:forEach>
@@ -488,47 +513,49 @@
 									<div class="booking_calendar"
 										style="display: none; position: absolute; z-index: 2; top: 74px; right: 0px; width: 540px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 										<!--날짜 선택 달력.-->
-										<form action="/reserveForm.do?placeNum=${placeInfo.placeNum}" id="detail_form" hidden="hidden" method="post">
-											<input type="hidden" name="rsvYear" id="rsv_year"> 
-											<input type="hidden" name="rsvMonth" id="rsv_month">
-											<input type="hidden" name="rsvDate" id="rsv_date">
-											<input type="hidden" name="rsvStartT" id="form_start_time">
+										<form action="/reserveForm.do?placeNum=${placeInfo.placeNum}"
+											id="detail_form" hidden="hidden" method="post">
+											<input type="hidden" name="rsvYear" id="rsv_year"> <input
+												type="hidden" name="rsvMonth" id="rsv_month"> <input
+												type="hidden" name="rsvDate" id="rsv_date"> <input
+												type="hidden" name="rsvStartT" id="form_start_time">
 											<input type="hidden" name="rsvEndT" id="form_end_time">
 											<input type="hidden" name="detailNum" id="detail_num" />
 											<!-- 인원수 -->
 											<input type="hidden" name="headCount" id="head_count" />
 											<!-- 1인당 가격 -->
 											<!-- 넘겨주는 이유는 프론트에서 1인당가격을 방에 따라서 재 계산 하기 때문. -->
-											<input type="hidden" name="rstPrice" id="rst_price" />
-											<input type="hidden" name="detailTitle" id="form_detail_title"/>
+											<input type="hidden" name="rstPrice" id="rst_price" /> <input
+												type="hidden" name="detailTitle" id="form_detail_title" />
 											<input type="hidden" name="hostNickName" id="host_nick_name" />
-											<input type="hidden" name="userId" value="${placeInfo.userId }" />
-											<input type="hidden" name="placeName" value="${placeInfo.placeName}"/>
-											<input type="hidden" name="placePrice" value="${placeInfo.placePrice}"/>
-											<input type="hidden" name="placeMaincate" value="${placeInfo.placeMaincate}"/>
-											<input type="hidden" name="placeCate" value="${placeInfo.placeCate}"/>
+											<input type="hidden" name="userId" id="hostId"
+												value="${placeInfo.userId }" /> <input type="hidden"
+												name="placeName" value="${placeInfo.placeName}" /> <input
+												type="hidden" name="placePrice"
+												value="${placeInfo.placePrice}" /> <input type="hidden"
+												name="placeMaincate" value="${placeInfo.placeMaincate}" />
+											<input type="hidden" name="placeCate"
+												value="${placeInfo.placeCate}" />
 										</form>
-											<div class="date_picker"
-												style="margin: 10px 10px; position: relative; display: inline-block;">
-											</div>
+										<div class="date_picker"
+											style="margin: 10px 10px; position: relative; display: inline-block;">
+										</div>
+										<div
+											style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
 											<div
-												style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
-												<div
-													style="margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
-													<p style="color: gray">시작 시간</p>
-													<input type="text" style="min-height: 30px; width: 200px"
-														id="start_time" placeholder="시작 시간을 선택해주세요."
-														 readonly>
-												</div>
-												<br>
-												<div
-													style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
-													<p style="color: gray">종료 시간</p>
-													<input type="text" style="min-height: 30px; width: 200px"
-														id="end_time" placeholder="종료 시간을 선택해주세요."
-														 readonly>
-												</div>
+												style="margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
+												<p style="color: gray">시작 시간</p>
+												<input type="text" style="min-height: 30px; width: 200px"
+													id="start_time" placeholder="시작 시간을 선택해주세요." readonly>
 											</div>
+											<br>
+											<div
+												style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
+												<p style="color: gray">종료 시간</p>
+												<input type="text" style="min-height: 30px; width: 200px"
+													id="end_time" placeholder="종료 시간을 선택해주세요." readonly>
+											</div>
+										</div>
 										<div class="h_row_center"
 											style="position: relative; width: 100%; height: 70px; border-top: 1px solid rgb(231, 234, 238); z-index: 0;"
 											onclick="resetDateTime()">
@@ -614,7 +641,9 @@
 									<div class="request on">
 										<div class="btn btn-primary"
 											style="width: 100%; vertical-align: middle;" id="reserve_btn">
-											<p style="width: 100%; margin-bottom: 0px;min-height:33px;line-height:33px">예약 하기</p>
+											<p
+												style="width: 100%; margin-bottom: 0px; min-height: 33px; line-height: 33px">예약
+												하기</p>
 										</div>
 									</div>
 								</div>
@@ -746,8 +775,7 @@
 					src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
 					style="width: 24px; height: 24px" />
 			</div>
-			<div
-				data-clipboard-text="https://hourplace.co.kr/place/29386"
+			<div data-clipboard-text="https://hourplace.co.kr/place/29386"
 				class="h_center btn_share"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/share_v5.svg"/>"
@@ -756,7 +784,6 @@
 			<div onclick="$(document).scrollTop(0);" class="h_center"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/scroll_top_v2.svg"/>"
-
 					style="width: 24px; height: 24px" />
 			</div>
 			<div onclick="$(document).scrollTop($(document).height());"
@@ -822,6 +849,71 @@
       });
       });
 
+    </script>
+	<script>
+	// 지도보기 토글
+	// display = none 일때 지도 깨짐 오류가 나서 block 으로 처리후 none으로 변환 하는 함수
+	$(document).ready(function(){
+			document.getElementById('place_map').style.display = 'none';
+		})
+	  
+	  function toggleMap(r){
+		 $(r).toggle();
+	  }
+	  function toggle_open_map(){
+		 console.log("지도보기클릭");
+		 const pm = document.getElementById('place_map');
+		 pm.disabled = true;
+		 toggleMap("#place_map");
+	  }
+    </script>
+	<script>
+	// 지도 api 불러오기 
+    var mapContainer = document.getElementById("map");
+    var mapOptions = {
+    		center: new kakao.maps.LatLng(33.450701, 126.570667),
+    		level: 3,
+    };
+    
+    var map = new kakao.maps.Map(mapContainer, mapOptions);
+    
+    // 장소로 부드럽게 이동하는 메서드 임시 보류
+    function panTo() {
+        // 이동할 위도 경도 위치를 생성합니다 
+        var moveLatLon = new kakao.maps.LatLng(33.450701, 126.570667);
+        
+        // 지도 중심을 부드럽게 이동시킵니다
+        // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+        map.panTo(moveLatLon);            
+    }    
+    // 주소-좌표 변환 객체를 생성합니다
+    var geocoder = new kakao.maps.services.Geocoder();
+    var Addr = $('#place_addr').text();
+ 	// 주소로 좌표를 검색합니다
+    geocoder.addressSearch(Addr, function(result, status, panTo) {
+
+        // 정상적으로 검색이 완료됐으면 
+         if (status === kakao.maps.services.Status.OK) {
+
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+      
+
+            // 결과값으로 받은 위치를 마커로 표시합니다
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords
+            });
+     		// 인포윈도우로 장소에 대한 설명을 표시합니다
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="width:150px; text-align:center; color: rgb(36, 111, 248);">장소 위치</div>'
+            });
+            infowindow.open(map, marker);
+            
+            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+            map.setCenter(coords); 
+        } 
+    });
+ 	// ---- kakao 지도 api 끝 
     </script>
 	<script>
       //토글에 관하여 처리할 함수.
@@ -1140,6 +1232,7 @@
         
       });
     </script>
+
 	<%@ include file="footer.jsp"%>
 </body>
 </html>

@@ -17,6 +17,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="reviewCnt" column="review_cnt" />
 	</resultMap>
 
+	<!-- 호스트 프로필 -->
+	<select id="getHostPlaceList" resultMap="cardResult">
+	select
+		place_num, user_id, place_area, place_cate, place_name, place_price, place_capa,
+		place_capa_car, place_thumb,
+		(select count(*) from reviewGuest where
+		user_id=a.user_id) as review_cnt,
+		(select round(avg(review_guest_rate),1) from reviewGuest where
+		user_id = a.user_id) as avg_rate
+		from place a
+		where a.place_allow = 1
+		AND user_id = #{userId}
+		order by place_reg_date desc;
+	</select>
+
 	<select id="getLatestPlaceList" resultMap="cardResult">
 		select
 		place_num,

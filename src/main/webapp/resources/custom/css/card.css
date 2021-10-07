@@ -19,6 +19,16 @@
   /* margin-right: (((places.indexOf(place) + 1) % 4 === 0) ? '0' : '20px'); */
   /* 여백 문제로 인해 위치 조정탓에 수정함. 60px->100px*/
 }
+
+.card_layout_two {
+  width: calc((100% - 45px) / 2);
+  margin-bottom: 40px;
+  margin-right: 7.5px;
+  margin-left: 7.5px;
+  /* margin-right: (((places.indexOf(place) + 1) % 4 === 0) ? '0' : '20px'); */
+  /* 호스트 마이페이지에서 쓰는 카드레이아웃 4개에서 2개로 조정*/
+}
+
 .card {
   position: relative;
   height: 346px;
