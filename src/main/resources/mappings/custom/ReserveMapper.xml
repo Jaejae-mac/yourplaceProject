@@ -166,12 +166,22 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb	
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE r.user_num = #{userNum}
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 0 
         AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb)
-		NOT IN( 
-		SELECT 
+		NOT IN(SELECT 
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb
+		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
+        WHERE r.user_num = #{userNum}
+		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)
+		OR r.user_num = #{userNum} AND a.rsv_refund_yn = 1
+		AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb)
+		NOT IN(SELECT 
 			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
@@ -286,16 +296,26 @@
 <!-- 검색 -->
 	<select id="getkeywordList" resultMap="getmyreserveList">
 		SELECT DISTINCT
-			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,re.rsv_date,
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb	
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE r.user_num = #{userNum}
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 0
         AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb)		
-		NOT IN( 
-		SELECT 
+		NOT IN(SELECT 
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb
+		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
+        WHERE r.user_num = #{userNum}
+		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)
+		OR r.user_num = #{userNum} AND a.rsv_refund_yn = 1
+        AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb)		
+		NOT IN(SELECT 
 			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb

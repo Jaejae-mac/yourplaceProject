@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yourplace Reserve</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/user-register.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -397,16 +397,17 @@
        				var rsvStartT = list[i].rsvStartT;
        				var rsvEndT = list[i].rsvEndT;
        				var rsvRefundYn = list[i].rsvRefundYn;
+       				var rsvRefundYnS = null;
        				if(rsvRefundYn == 0){
-       					rsvRefundYn = "정상예약";
+       					rsvRefundYnS = "정상예약";
        				}else if(rsvRefundYn == 1){
-       					rsvRefundYn = "환불 진행중";
+       					rsvRefundYnS = "환불 진행중";
        				}
        				else if(rsvRefundYn == 2){
-       					rsvRefundYn = "환불 완료";
+       					rsvRefundYnS = "환불 완료";
        				}
        				else if(rsvRefundYn == 3){
-       					rsvRefundYn = "호스트에 의한 환불";
+       					rsvRefundYnS = "호스트에 의한 환불";
        				}
        				var rsvPay = list[i].invBfTax;
        				var userId = list[i].userId
@@ -447,12 +448,12 @@
        				res += rsvPay +'원</p></div>';
        				res += '<div class="h_row_center" style="width: 150px;">'
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
-       				res += rsvRefundYn +'</p></div>';
+       				res += rsvRefundYnS +'</p></div>';
        				res += '<div class="h_center" style="width: 80px;">';
        				res += '<p id="salesSip'+i+'" onclick="" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += '보기</p></div>';
        				res += '<div class="h_center" style="width: 85px;">';
-       				if(rsvRefundYn == "환불 진행중" || rsvRefundYn == "환불완료"){
+       				if(rsvRefundYn === 2 || rsvRefundYn === 3){
 	       				res += '<p id="refund'+i+'"onclick="Arefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '환불신청 </p></div>';
        				}else if(btDay > 4){
