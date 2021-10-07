@@ -15,10 +15,18 @@
 	href="<c:url value="/resources/custom/css/mainHome.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/bodyfont.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+	
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+	
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+	<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <title>YourPlace Home</title>
 </head>
 <body>
@@ -598,7 +606,7 @@
 				</div>
 			</div>
 
-			<div class="total_card_layout">
+			<div class="total_card_layout" id="newestPlace">	
 				<!--신규등록 장소 추천 반복 시작. -->
 				<c:forEach var="latestPlace" items="${latestPlaces }"
 					varStatus="status">
@@ -1274,5 +1282,12 @@ function gotoDetail(e){
     	}
     	
     }
+</script>
+<script type="text/javascript">
+      $.noConflict();
+	$("#newestPlace").slick({
+	      slidesToShow: 4,
+	      slidesToScroll: 4,
+	    });
 </script>
 </html>
