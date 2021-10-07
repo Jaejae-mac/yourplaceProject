@@ -18,13 +18,13 @@
 	rel="stylesheet" />
 <link href="<c:url value="/resources/host/css/styles.css" />"
 	rel="stylesheet" />
-
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
 
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 <script
 	src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
@@ -44,46 +44,6 @@
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
-<script>
-      $(document).on("click", ".trigger", function () {
-        Swal.fire("리뷰보기 입니다.");
-      });
-      $(function () {
-        $("#toggle-one").bootstrapToggle({
-          on: "게스트리뷰",
-          off: "호스트리뷰",
-          offstyle: "success",
-        });
-      });
-      $(document).ready(function () {
-        var lang_kor = {
-          decimal: "",
-          emptyTable: "데이터가 없습니다.",
-          info: "_START_ - _END_ (총 _TOTAL_ 개)",
-          infoEmpty: "0명",
-          infoFiltered: "(전체 _MAX_ 명 중 검색결과)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "_MENU_ 개씩 보기",
-          loadingRecords: "로딩중...",
-          processing: "처리중...",
-          search: "검색 : ",
-          zeroRecords: "검색된 데이터가 없습니다.",
-          paginate: {
-            first: "첫 페이지",
-            last: "마지막 페이지",
-            next: "다음",
-            previous: "이전",
-          },
-          aria: {
-            sortAscending: " :  오름차순 정렬",
-            sortDescending: " :  내림차순 정렬",
-          },
-        };
-      
-
-      
-    </script>
 
 <script>
     function checkAll(){
@@ -122,15 +82,17 @@
 						class="table table-bordered display" width="100%">
 						<thead>
 							<tr>
-								<th>장소명 / 장소번호</th>
+								<th>장소명 </th>
+									<th>장소번호 </th>
 								<th>예약번호</th>
-								<th>예약자</th>
+								
 								<th>예약자 ID</th>
 
 								<th>입실</th>
 								<th>퇴실</th>
 								<th>인원</th>
 								<th>금액</th>
+								<th>예약 일</th>
 								<th><input type="checkbox" name="allCheck" id="allCheck"
 									onclick="checkAll();" /></th>
 
@@ -139,14 +101,26 @@
 						</thead>
 						<tbody>
 
-							<c:forEach items="${list}" var="list">
+							<c:forEach items="${list}" var="e" varStatus="status">
+
 								<tr>
-									<td>${list }</td>
+									<td>${e.placeName}</td>
+									<td>${e.placeNum }</td>
+									<td>${e.reserveNum}</td>
+									<td>${e.reserveId}</td>
+									<td>${e.startTime}</td>
+									<td>${e.endTime }</td>
+									<td>${e.personNum}</td>
+									<td>${e.payPrice}</td>
+									<td>${e.reserveDatee}</td>
+
 									<td><input type="checkbox" name="allReview" id="allReview" /></td>
 
 								</tr>
-
 							</c:forEach>
+
+
+
 
 						</tbody>
 
@@ -225,32 +199,33 @@
 					var arr1 = new Array();
 					var arr2 = new Array();
 					var arr3 = new Array();
-					var arr4 = new Array();
 					
 					
-					var placeNum = td.eq(0).text();
-					var reserveNum = td.eq(1).text();
-					var reserveName = td.eq(2).text();
+					
+					var placeNum = td.eq(1).text();
+					var reserveNum = td.eq(2).text();
 					var reserveId = td.eq(3).text();
-
 				
+					
+				
+					
 					arr1.push(placeNum);
 					arr2.push(reserveNum);
-					arr3.push(reserveName);
-					arr4.push(reserveId);
+					arr3.push(reserveId);
+					
+					
+					console.log(arr2);
 					
 					  $(document).on("click", "button[name='review']", function () {
 						  $.ajax({
 						      url: "/reserveValue.hdo",
 						      type:'POST',
-						      async    : false,
-						      dataType:"text",
+						      dataType : 'text',
+						  
 						      data: {placeNum : arr1,
-						      		reserveNum : arr2,
-						      		reserveName : arr3,
-						      		reserveId : arr4
-						      
-						      	
+						      		reservNum : arr2,
+						      		reserveId : arr3
+						 
 						      },
 						      
 						      success: function(data){

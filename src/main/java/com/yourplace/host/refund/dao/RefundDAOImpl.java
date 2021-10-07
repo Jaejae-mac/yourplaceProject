@@ -20,4 +20,16 @@ public class RefundDAOImpl implements RefundDAO{
 		return session.selectList("HostRefundMapper.getAllReserveDate", vo);
 	}
 
+	@Override
+	public void update(RefundVO vo) throws Exception {
+		session.update("HostRefundMapper.updateRefund", vo);
+		
+	}
+
+	@Override
+	public List<RefundVO> getRefund(RefundVO vo) throws Exception {
+		return session.selectList("HostRefundMapper.getRefundConfirm", vo);
+	}
+
+
 }

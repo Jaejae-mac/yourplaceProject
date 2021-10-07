@@ -53,13 +53,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<update id="updateHostInfo">
-		<trim suffixOverrides=",">
-			UPDATE member SET user_nick_name=#{userNickName},
-			user_intro=#{userIntro}
-			WHERE user_id=#{userId};
-
-		</trim>
+	UPDATE member SET user_profile_img =#{imgUrl} WHERE user_id=#{userId};
 	</update>
+	
 	
 
 

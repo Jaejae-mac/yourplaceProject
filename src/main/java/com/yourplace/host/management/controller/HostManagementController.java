@@ -108,6 +108,9 @@ public class HostManagementController {
 		vo.setUserId(userId);
 
 		List<HostManagementRoomVO> roomlist = service2.getRoomList(vo);
+		
+		System.out.println(roomlist);
+		
 		System.out.println(roomlist.toString());
 		mav.addObject("userId", userId);
 		mav.addObject("list2", roomlist);
@@ -119,14 +122,17 @@ public class HostManagementController {
 	public String insertRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception {
 		HttpSession session = request.getSession();
 		
-		int placeNum = Integer.parseInt(String.valueOf(session.getAttribute("placeNum")));
-		
+		String placeNum = request.getParameter("pNum");
 		String detailNum = request.getParameter("roomNum");
 		String roomname = request.getParameter("detailTitle"); //방 이름
 		String roomPer = request.getParameter("detailPersonNum"); //인원수
 		String extra = request.getParameter("surcharge"); //할증
 		
-
+		System.out.println(placeNum);
+		System.out.println(detailNum);
+		System.out.println(roomname);
+		System.out.println(roomPer);
+		System.out.println(extra);
 		
 		vo.setDetailNum(detailNum);
 		String userId = (String)session.getAttribute("userId");

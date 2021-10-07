@@ -89,7 +89,6 @@ public class HostLoginController {
 		
 		
 	}
-	
 	@RequestMapping(value="/updateProfile.hdo", method=RequestMethod.POST) //변경되는거 확인
 	public String updateProfile(HostVO vo, HttpServletRequest request) throws Exception{
 		String testId = request.getParameter("userId");

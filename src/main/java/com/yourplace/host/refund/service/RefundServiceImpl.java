@@ -17,6 +17,20 @@ private RefundDAO dao;
 	@Override
 	public List<RefundVO> getAllDate(RefundVO vo) throws Exception {
 		return dao.getAllDate(vo);
+		
 	}
+
+	@Override
+	public void update(RefundVO vo) throws Exception {
+		dao.update(vo);
+		
+	}
+
+	@Override
+	public List<RefundVO> getRefund(RefundVO vo) throws Exception {
+		return dao.getRefund(vo);
+	}
+
+
 
 }

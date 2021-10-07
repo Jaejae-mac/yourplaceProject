@@ -72,7 +72,7 @@
 											<td>
 										   <!-- delete -->
 									
-												<button type="submit" class="btn btn-danger" name="delete" id="delete" style="font-size: 10px; margin-left: 10px;">삭제</button>
+												<input type="submit" class="btn btn-danger"	onclick="location.href='/deletePlace.hdo?placeNum=${mana.placeNum}'" name="delete" id="delete" style="font-size: 10px; margin-left: 10px;" value="삭제"/>
 												<button type="button" class="btn btn-primary" name="change" id="change"
 												onclick="location.href='/updatePlaceDetail.hdo?placeNum=${mana.placeNum}'"
 													style="font-size: 10px; margin-left: 10px;">수정</button>
@@ -107,8 +107,8 @@
 
 			
 
-			<form id="sub" name="sub" method="get" action="/reviewForGuest.hdo" hidden="hidden">
-				<input type="hidden" name="placeNum" id="placeNum" value="" >
+			<form id="sub" name="sub" method="get" action="/deletePlace.hdo" hidden="hidden">
+				<input type="hidden" name="placeNumm" id="placeNum" value="" >
 					</form>
 
 		</main>
@@ -148,27 +148,21 @@
 			{
 		var chk = confirm("삭제하시겠습니까?");
 
-		if (chk) {
-			var tdArr = new Array();
-			var c = $(this);
-			
-			var tr = c.parent().parent();
-			var td = tr.children();
-
-			var active = td.eq(0).text();
-			var no = td.eq(0).text();
-			
-			td.each(function(i)
-			{
-				tdArr.push(td.eq(i).text());
-			});
-			
-			console.log (no);
-			$("#placeNum").val(no);
 	
+			if (chk) {
+					var c = $(this);
 
+					var tr = c.parent().parent();
+					var td = tr.children();
 
-		}
+					var active = td.eq(0).text();
+					var no = td.eq(0).text();
+
+					
+					console.log(no);
+					$("#placeNum").val(no);
+					console.log($("#placeNum").val());
+					$('sub').submit();				}
 			});
-</script>
+		</script>
 </html>

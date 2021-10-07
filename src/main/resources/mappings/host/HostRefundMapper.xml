@@ -23,8 +23,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="getAllReserveDate" resultMap="refund">
-	select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId}
+	select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId} and rsv_refund_yn=0
 	</select>
+
+
+<update id="updateRefund">
+UPDATE reserve SET rsv_refund_yn=3, rsv_refund_reason=#{RefundReason} WHERE rsv_num =#{reserveNum}
+</update>
+
+<select id="getRefundConfirm" resultMap="refund">
+select * from reserve join place on reserve.place_num = place.place_num join member on member.user_id = place.user_id where member.user_id=#{userId} and rsv_refund_yn=3
+</select>
+	
+
 
 	
 	

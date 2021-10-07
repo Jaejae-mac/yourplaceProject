@@ -7,9 +7,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Component
-@ToString
 @Getter
 @Setter
+@ToString
 public class RefundVO {
 	private String userId;
 	private String placeName;
@@ -24,5 +24,7 @@ public class RefundVO {
 	private int endTime;
 	private int personNum;
 	private int payPrice;
+	private String reserveDatee;
+	private String RefundReason;
 
 }
