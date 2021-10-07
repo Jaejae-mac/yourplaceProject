@@ -83,7 +83,7 @@
                       <th>장소명</th>
                       <th>연락처</th>
                       <th>이메일</th>
-                      <th>승인여부</th>
+                      <th>승인처리</th>
                       <th>장소삭제</th>
                     </tr>
                   </thead>
@@ -114,17 +114,18 @@
 <!-- 	                      		<option value="1">승인</option> -->
 <!-- 	                      		<option value="0">미승인</option> -->
 <!--                         </select> -->
-                   
+                   <c:if test="${spc.placeAllow eq '0'}">
                         <button type="button" class="btn btn-primary"
                         style="font-size: 10px;margin-left: 10px;" id="allow_btn">
-                        	승인
+                        	승인하기
                         </button>
-                        
+                   </c:if>
+                   <c:if test="${spc.placeAllow eq '1'}">
                         <button type="button" class="btn btn-danger"
                         style="font-size: 10px;margin-left: 10px;" id="deny_btn">
-                        	미승인
+                        	승인취소
                         </button>
-                        
+                   </c:if>     
                       </td>
                       
                       <td>
@@ -213,9 +214,21 @@
 			});
 			
 			console.log("장소 번호 text : " + no);
+			
+			var result = confirm("선택하신 장소를 삭제하시겠습니까?");
+			
+			if(result){
+			    alert("장소 삭제가 완료되었습니다.");
+			    
+				$("#deleteSpaceHidden").val(no);
+				$("#submitForm").submit();
+				console.log("정상!")
+			
+			}else{
+			    alert("장소 삭제가 취소되었습니다.");
+			}
 		
-			$("#deleteSpaceHidden").val(no);
-			$("#submitForm").submit();
+
 			
 		});
 			

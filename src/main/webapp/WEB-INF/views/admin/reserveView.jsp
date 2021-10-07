@@ -64,8 +64,9 @@
                       <th>장소번호</th> <!-- 2 -->
                       <th>호스트 아이디</th> <!-- 3 -->
                       <th>예약자 아이디</th> <!-- 4 -->
+                      <th>예약자 이름</th>
                       <th>예약자 연락처</th> <!-- 5 -->
-                      <th>예약일시</th> <!-- 6 -->
+                      <th>장소이용일</th> <!-- 6 -->
                       <th>사용목적</th> <!-- 7 -->
                       
                     </tr>
@@ -92,7 +93,8 @@
                       <td>${rsv.rsvNum }</td> <!-- 1 -->
                       <td>${rsv.placeNum }</td> <!-- 2 -->
                       <td>${rsv.userId }</td> <!-- 3 호스트 아이디 -->
-                      <td>${rsv.rsvId}</td> <!-- 4 예약자(께스트)아이디 -->
+                      <td>${rsv.userNum }</td> <!-- 4 예약자(께스트)아이디 -->
+                      <td>${rsv.rsvName }</td>
                       <td>${rsv.rsvTel }</td> <!-- 5 -->
                       <td>${rsv.rsvYear}년 ${rsv.rsvMonth}월 ${rsv.rsvDate}일</td> <!-- 6 -->
                       <td>${rsv.rsvPurpose }</td> <!-- 7 -->

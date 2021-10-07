@@ -1,6 +1,7 @@
 package com.yourplace.custom;
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.yourplace.commons.vo.IUserVO;
+import com.yourplace.custom.banner.service.AvailableBannerService;
+import com.yourplace.custom.banner.vo.BannerVO;
+
 import com.yourplace.custom.home.service.HomeGetLatestService;
 import com.yourplace.custom.home.vo.PlaceCardVO;
 import com.yourplace.custom.interest.service.BookmarkListService;
 import com.yourplace.custom.interest.vo.InterestVO;
-import com.yourplace.custom.login.vo.UserVO;
-import com.yourplace.host.login.vo.HostVO;
+
 
 
 @Controller
@@ -25,11 +28,17 @@ public class HomeController {
 	@Autowired
 	private BookmarkListService bookmarkListService;
 	
+	@Autowired
+	private AvailableBannerService availableService;
+	
 	@GetMapping("/home.do")
 	public String home(Model model,HttpSession session) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
+		//북마크.
 		List<InterestVO> bookmarks = null;
-		
+		//배너 리스트 불러오기.
+		List<BannerVO> bannerVO = availableService.displayBanner();
+		//로그인한 이력이 존재한다면.
 		if(session.getAttribute("userVO") != null) {
 			InterestVO vo = new InterestVO();
 			IUserVO iuvo = (IUserVO)session.getAttribute("userVO");
@@ -47,6 +56,8 @@ public class HomeController {
 			}
 		}
 		model.addAttribute("latestPlaces", latestPlaces);
+		model.addAttribute("banner", bannerVO);
+		
 		return "index";
 	}
 	@GetMapping("/detail.do")

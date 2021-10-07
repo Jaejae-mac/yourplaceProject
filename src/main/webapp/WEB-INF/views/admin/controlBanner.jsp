@@ -95,6 +95,16 @@
 	                      	이미지 등록
 	                </button>
 	                
+	                <button type="button" class="btn btn-primary" id="file_send_btn"
+	                      style="font-size: 10px; margin-left: 10px;">
+	                      	배너로 공개
+	                </button>
+	                
+	                <button type="button" class="btn btn-primary" id="file_disable_btn"
+	                      style="font-size: 10px; margin-left: 10px;">
+	                      	비공개 전환
+	                </button>
+	                
 	                <!-- Modal -->
 	                      <div class="modal fade" id="fileUploadModal"
 	                      tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -107,16 +117,19 @@
 				                    </div>
 				                      
 				                      <div class="modal-body">
-				                      	<form role="form" action="/uploadBannerImg.mdo" method="POST">
+				                      	<form action="/uploadBannerImg.mdo" method="POST" enctype="multipart/form-data">
 				                      		<div class="form-group">
+
+												<label for="url_banner"><span class="burl"></span>배너와 연결할 링크</label>
+				                      			<input type="text" class="form-control" id="url_banner" name="url"/>
 
 				                      			<!-- 이미지 업로드 시작 -->
 				                      				<div class="form-group">
 									                  <label for="inputSubject1"><span class="if"></span>
 									                  	이미지 업로드</label>
 									                  	
-									                  <input id="fileInput" filestyle="" type="file" data-class-button="btn btn-default"
-									                  data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload"
+									                  <input type="file" multiple="multiple" name="bannerImg" id="fileInput" filestyle="" data-class-button="btn btn-default"
+									                  data-class-input="form-control" data-button-text="" data-icon-name="fa fa-upload" accept="image/*"
 									                  class="form-contol" tabindex="-1" style="position: absolute; clip: rect(0px 0px 0px 0px);">
 									                     
 									                     <div class="bootstrap-filestyle and input-group">
@@ -131,6 +144,7 @@
 									                     
 									               </div>
                									<!-- 이미지 업로드 끝 -->
+               									
 
 				                      			<!-- 문의내용, 이메일에 같이 포함해서 보내야해서 hidden -->
 				                      			<!--  <input type="text" id="reportquestion" name="question" hidden="hidden"/>
@@ -166,19 +180,27 @@
                   <thead>
                     <tr>
 <!--                     	<th style="width:100px">전송</th> -->
+						<th>선택</th>
                         <th>이미지번호</th>
                         <th>미리보기</th>
+                        <th>연결된 주소</th>
                         <th>등록일자</th>
+                        <th>공개상태</th>
 <!--                         <th>파일삭제</th> -->
                     </tr>
                   </thead>
                   <tbody>
                   <c:forEach var="ban" items="${bannerList }">
                     <tr>
-<!--                       <td style="width:100px"><input type="checkbox" name="coup_check" value="coup_check" /></td> -->
+                      <td style="width:100px"><input type="checkbox" name="banner_check" value="banner_check" /></td>
                       <td>${ban.bannerNum }</td>
-                      <td>${ban.s3FileName }%</td> <!-- KEY -->
+                      <td><a href="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }">${ban.originalFileName }</a></td> <!-- KEY -->
+                      <td>${ban.bannerUrl }</td>
                       <td><fmt:formatDate value="${ban.fileRegDate}" pattern="yyyy-MM-dd" /></td>
+                      <td id="show">
+                      	<c:if test="${ban.bannerShow eq '0'}">비공개</c:if>
+                      	<c:if test="${ban.bannerShow eq '1'}">공개</c:if>
+                      </td>
                       <!--  <td><button type="button" class="btn btn-danger"
                       style="font-size: 10px;margin-left: 10px;" id="delete_btn">
                       	Delete
@@ -201,8 +223,12 @@
        	<input type="hidden" id="deleteCoupHidden" name="deleteCoupName">
        </form>
        
-       <form id = "submitForm2" method="POST" action="/couponSend.mdo" hidden="hidden">
-       	<input type="hidden" id="sendCoupHidden" name="sendCoupName" >
+       <form id = "submitForm2" method="POST" action="/applyBanner.mdo" hidden="hidden">
+       	<input type="hidden" id="sendBannerHidden" name="sendBannerName" >
+       </form>
+       
+       <form id = "submitForm3" method="POST" action="/nonapplyBanner.mdo" hidden="hidden">
+       	<input type="hidden" id="disableBannerHidden" name="disableBannerName" >
        </form>
         
         <footer class="py-4 bg-light mt-auto">
@@ -232,6 +258,17 @@
     ></script>
      <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
     
+    <script>
+  	//파일전송 시작.
+    var counterFile = 0;
+    var tagFile = {};
+    function addTag(value) {
+        tagFile[counterFile] = value;
+        counterFile++; // del-btn 의 고유 id 가 된다.
+    }
+    
+    </script>
+    
 	<script>
 	$(document).on("click","#file_upload_btn",function()
 	{
@@ -240,11 +277,81 @@
 	});
 	</script>
 	
-	<!-- <script>
-	    function coup_Regist() {
-	      $("#coup_regist_form").attr("action", "/couponRegist.mdo").submit();
-	   }
-    </script>  -->
+	<script>
+	   $(document).on("click","#file_send_btn",function(){
+		 
+		    var rowData = new Array();
+		    var rowNo = new Array();
+		    var tdAr = new Array();
+		    var checkbox = $("input[name=banner_check]:checked");
+		    
+		    checkbox.each(function(i)
+		    	{
+					var tr = checkbox.parent().parent().eq(i);
+					var td = tr.children();
+					rowData.push(tr.text());
+					
+					var no = td.eq(1).text();
+					var thumb = td.eq(2).text();
+					
+					tdAr.push(no);
+					tdAr.push(thumb);
+					
+					rowNo.push(no);
+					
+					console.log("each 문 안에서 돌려지는 쿠폰 번호= " + no)
+					
+		    	});
+
+		   	console.log("체크된 배너 이름= " + tdAr[0]);
+		   	console.log("체크된 배너 이름(배열)= " + rowNo);
+		   	
+		   	alert("선택한" + tdAr[0] + " 번 이미지가 배너로 공개되었습니다.");
+		   	
+		   	$("#sendBannerHidden").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+			$("#submitForm2").submit();
+		    
+		});
+	
+	</script>   
+	   
+		<script>
+	   $(document).on("click","#file_disable_btn",function(){
+		 
+		    var rowData = new Array();
+		    var rowNo = new Array();
+		    var tdAr = new Array();
+		    var checkbox = $("input[name=banner_check]:checked");
+		    
+		    checkbox.each(function(i)
+		    	{
+					var tr = checkbox.parent().parent().eq(i);
+					var td = tr.children();
+					rowData.push(tr.text());
+					
+					var no = td.eq(1).text();
+					var thumb = td.eq(2).text();
+					
+					tdAr.push(no);
+					tdAr.push(thumb);
+					
+					rowNo.push(no);
+					
+					console.log("each 문 안에서 돌려지는 쿠폰 번호= " + no)
+					
+		    	});
+
+		   	console.log("체크된 배너 이름= " + tdAr[0]);
+		   	console.log("체크된 배너 이름(배열)= " + rowNo);
+		   	
+		   	alert("선택한" + tdAr[0] + " 번 이미지가 비공개 처리되었습니다.");
+		   	
+		   	$("#disableBannerHidden").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+			$("#submitForm3").submit();
+		    
+		});
+	
+	</script>
     		
   </body>
 </html>

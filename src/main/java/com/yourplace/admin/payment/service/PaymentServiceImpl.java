@@ -19,6 +19,12 @@ public class PaymentServiceImpl implements PaymentService {
 		List<PaymentVO> list = paymentDAO.getPayment();
 		return list;
 	}
+
+	@Override
+	public List<PaymentVO> getRefund() {
+		List<PaymentVO> list = paymentDAO.getRefund();
+		return list;
+	}
 	
 	
 	

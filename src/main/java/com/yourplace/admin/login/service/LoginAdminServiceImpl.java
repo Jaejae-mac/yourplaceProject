@@ -17,7 +17,7 @@ public class LoginAdminServiceImpl implements LoginAdminService {
 	private BCryptPasswordEncoder passEncoder;
 	
 	@Override
-	public int loginAdmin(AdminVO vo) {
+	public AdminVO loginAdmin(AdminVO vo){
 		
 		System.out.println("-----------------");
 		System.out.println("Login Service");
@@ -25,20 +25,37 @@ public class LoginAdminServiceImpl implements LoginAdminService {
 		
 		System.out.println("-----------------");
 		
-		if(passEncoder.matches(vo.getAdminPw(), adminVO.getAdminPw())) {
+		//인코딩된 번호와 같으면
+		if (passEncoder.matches(vo.getAdminPw(), adminVO.getAdminPw()))
+		{
 			System.out.println("ID PW 일치 - 로그인 가능");
 			System.out.println("Login Status Changed to 1");
 			System.out.println("-----------------");
 			
-			return 1;
+			adminVO.setLoginSuccess(1);
 			
-		}else {
-			System.out.println("ID PW 일치 - 로그인 불가능");
+			return adminVO;
+			
+		}
+//		//또는 그냥 번호와 같으면
+//		else if (vo.getAdminPw() == adminVO.getAdminPw())
+//		{
+//			System.out.println("ID PW 일치 - 로그인 가능");
+//			System.out.println("Login Status Changed to 1");
+//			System.out.println("-----------------");
+//			
+//			return 1;
+//		}
+		
+		else
+		{
+			System.out.println("ID PW 불일치 - 로그인 불가능");
 			System.out.println("Login Status Changed to 0");
 			System.out.println("-----------------");
 			
-			return 0;
+			adminVO.setLoginSuccess(0);
 			
+			return adminVO;
 		}
 		
 	}

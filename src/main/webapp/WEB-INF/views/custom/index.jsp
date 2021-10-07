@@ -111,17 +111,16 @@
 				<div class="container h_column_center">
 					<div class="img_wrap">
 						<ul class="rollimgs">
-
-							<!-- a href="#" : 이미지 클릭시 url mapping-->
-							<!-- for each 문 시작 -->
-							<li><a href="#"> <img
-									src="<c:url value="/resources/custom/image/banner1.png" />" />
-							</a></li>
-							<!-- for each 문 완료 -->
-							<li><a href="#"> <img
-									src="<c:url value="/resources/custom/image/banner2.png" />">
-							</a></li>
-
+						<!-- a href="#" : 이미지 클릭시 url mapping-->
+						<!-- for each 문 시작 -->
+						<c:forEach var="ban" items="${banner}">
+							<li>
+								<a href="${ban.bannerUrl }">
+								<c:if test="${ban.bannerShow eq '1'}"><img src="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }" /></c:if>
+							</a>
+							</li>
+						</c:forEach>
+						<!-- for each 문 완료 -->
 						</ul>
 					</div>
 				</div>
@@ -1220,38 +1219,6 @@
 	<!-- script 시작 -->
 	<script>
 		var message_id = ''
-
-		function toggle_category_all() {
-			if ($('.category_all').css('display') === 'none') {
-				close_search_container()
-
-				$('.category_all').show()
-				$('body').addClass('modal-open')
-			} else {
-				close_category_all()
-			}
-		}
-
-		function close_category_all() {
-			$('.category_all').hide()
-			$('body').removeClass('modal-open')
-		}
-
-		function toggle_search_container() {
-			if ($('.search_container').css('display') === 'none') {
-				close_category_all()
-				$('.search_container').show()
-				$('body').addClass('modal-open')
-				search_vue.get_recommend()
-			} else {
-				close_search_container()
-			}
-		}
-
-		function close_search_container() {
-			$('.search_container').hide()
-			$('body').removeClass('modal-open')
-		}
 
 		function toggle_h_noti() {
 			if ($('.h_noti').css('display') === 'none') {

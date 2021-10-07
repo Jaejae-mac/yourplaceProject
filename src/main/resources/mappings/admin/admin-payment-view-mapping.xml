@@ -5,8 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="PaymentDAO">
 	<resultMap type="myPayment" id="paymentResult">
-		<id property="payNum" column="pay_num" />
-		<result property="payRefundYn" column="pay_refund_yn" />
+		<id property="orderNum" column="order_num" />
+		<result property="payNum" column="pay_num" />
+		<result property="rsvRefundYn" column="rsv_refund_yn"/>
 		<result property="invBfTax" column="inv_bf_tax" />
 		<result property="rsvNum" column="rsv_num" />
 		<result property="placeNum" column="place_num" />
@@ -14,16 +15,53 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payMonth" column="pay_month" />
 		<result property="payDate" column="pay_date" />
 		<result property="rsvName" column="rsv_name" />
+		
+		<result property="userNum" column="user_num" />
+		<result property="userId" column="user_id" />
+		<result property="rsvRefundReason" column="rsv_refund_reason" />
+		<result property="refundDate" column="refund_date" />
+		<result property="payCoupNum" column="pay_coup_num" />
+		<result property="refundCost" column="refund_cost" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+		
 	</resultMap>
 
-	<!-- 전체조회 -->
-	<select id="getPayment" resultMap="paymentResult">
+	<!-- 전체조회 test_invoice -->
+	<select id="getPaymentTest" resultMap="paymentResult">
 		SELECT 
 			(SELECT rsv_refund_yn FROM reserve WHERE rsv_num = a.rsv_num) AS pay_refund_yn,
-			pay_num, pay_year, pay_month, pay_date, inv_bf_tax, rsv_num,
+			order_num, pay_num, pay_year, pay_month, pay_date, inv_bf_tax, rsv_num,
 	    	(SELECT place_num FROM reserve WHERE rsv_num = a.rsv_num) AS place_num,
 	        (SELECT rsv_name FROM reserve WHERE rsv_num = a.rsv_num) AS rsv_name
 		FROM test_invoice a;
+	</select>
+	
+	<!-- 전체조회 payment-->
+	<select id="getPayment" resultMap="paymentResult">
+		SELECT 
+			rsv_refund_yn, order_num, pay_num, pay_year, pay_month, pay_date, inv_bf_tax, rsv_num,
+	    	(SELECT place_num FROM reservation WHERE rsv_num = a.rsv_num) AS place_num,
+	    	(SELECT user_id FROM member WHERE user_num = a.user_num) as user_id,
+	        (SELECT rsv_name FROM reservation WHERE rsv_num = a.rsv_num) AS rsv_name
+		FROM payment a;
+	</select>
+	
+	<select id="getRefund" resultMap="paymentResult">
+		select
+			rsv_refund_yn, order_num, pay_num, user_num, inv_bf_tax, refund_cost, rsv_refund_reason, refund_date,
+		    pay_coup_num,
+		    (select coup_dis_rate from coupon_all where coup_num = a.pay_coup_num) as coup_dis_rate
+		from payment a;
+	</select>
+	
+	<update id="refundDone">
+		UPDATE payment SET rsv_refund_yn = 2 WHERE order_num = #{orderNum}
+	</update>
+	
+	<select id="refundCoupon" resultMap="paymentResult">
+		select *,
+		(select user_id from member where user_num = a.user_num) as user_id 
+		from payment a where order_num = #{orderNum}
 	</select>
 	
 </mapper>

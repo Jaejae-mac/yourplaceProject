@@ -42,7 +42,7 @@
 				<!-- 모든 장소 보여주기 hourplace_v2.userLog('W', '/', 'click', 'tab', 'all');toggle_category_all() -->
 				<div class="h_row_center"
 					style="position: absolute; right: 0px; cursor: pointer;">
-					<div onclick="toggle_category_all()"
+					<div onclick="toggle_category()"
 						class="h_center h_header_button"
 						style="padding: 0px 13px; height: 50px;">
 						<p
@@ -182,15 +182,15 @@
                 </div>
 
 	            <!-- 검색기능 시작 -->
-	             <div onclick="toggle_search_container()"
+	            <div onclick="toggle_search_container()"
 	                class="h_center" style="width: 44px; height: 44px; cursor: pointer;">
-	                <img src="https://s3.hourplace.co.kr/web/images/icon/search_b.svg"
-	                    style="width: 50px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
-	             </div>
+	                <img src="/resources/img/search/search_b.png"
+	                    style="width: 24px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
+	            </div>
 	                <!-- 검색기능 끝-->
-	
-	                <div class="search_container"
-	                id="searhc_vue"
+
+                <div class="search_container"
+	                id="search_vue"
 	                style="position: fixed;top: 100px;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;background-color: rgba(0, 0, 0, 0.2);">
 	                <div style="width: 100%;height: 100%; display: flex; flex-direction: column;">
 	                    <div class="h_column_center" style="width: 100%; background-color: #FFF">
@@ -217,14 +217,13 @@
 	                                    </div>
 	                                    
 	                                </div>
-	                            </div>
+                                </div>
+<!-- 	                    <div style="flex: 1; cursor: pointer;" onclick="toggle_search_container()"> -->
 	            
-	                  
-	                    <div style="flex: 1; cursor: pointer;" onclick="toggle_search_container()">
-	            
-	                    </div>
-	                </div>
-	            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 					<!-- Toggle test 용 마이 페이지 -->
 					<div class="h_my_menu"
@@ -260,9 +259,11 @@
 
 					<!-- all toggle -->
 
-					<div class="category_all"
+					<div class="category_all" id="cate_all"
 						style="position: fixed; top: 100px; left: 0; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.2);"
-						onclick="toggle_category_all()">
+						onclick="toggle_category()"
+						>
+						<!-- onclick="toggle_category_all()" -->
 						<div class="h_column_center"
 							style="background-color: #FFFFFF; width: 100%; position: relative;">
 							<div
@@ -828,39 +829,51 @@
 		});
 	</script>
 	<script>
-		var message_id = ''
-
-		function toggle_category_all() {
+		function toggle_category() {
 			if ($('.category_all').css('display') === 'none') {
 				close_search_container()
-
+	
 				$('.category_all').show()
 				$('body').addClass('modal-open')
+				
+				console.log("category all 클릭");
 			} else {
 				close_category_all()
 			}
-		}
-
+		};
+		
+	
 		function close_category_all() {
 			$('.category_all').hide()
 			$('body').removeClass('modal-open')
 		}
+	</script>
+
+    <script>
 
 		function toggle_search_container() {
 			if ($('.search_container').css('display') === 'none') {
 				close_category_all()
 				$('.search_container').show()
 				$('body').addClass('modal-open')
+<<<<<<< HEAD
+=======
+				//search_vue.get_recommend();
+>>>>>>> fixfromJey
 			} else {
 				close_search_container()
 			}
-		}
+		};
 
 		function close_search_container() {
 			$('.search_container').hide()
 			$('body').removeClass('modal-open')
-		}
+		};
+    </script>
 
+	<script>
+		
+		
 		function toggle_h_noti() {
 			if ($('.h_noti').css('display') === 'none') {
 				h_show_popup('.h_noti')
@@ -871,41 +884,9 @@
 				h_hide_popup('h_noti')
 				// $('.h_noti').hide()
 			}
-		}
+		};
 	</script>
 
-	<script>
-		var swiper
-
-		$(document).ready(function() {
-			swiper = new Swiper('.swiper-container_big_banner', {
-				direction : 'vertical',
-				mousewheel : true,
-				pagination : {
-					el : '.swiper-pagination',
-					clickable : true,
-				},
-				autoplay : {
-					delay : 5000,
-					disableOnInteraction : false,
-				},
-				loop : true,
-			})
-
-			swiper.on('transitionEnd', function() {
-				swiper.loopFix()
-			})
-
-		})
-
-		function next() {
-			swiper.slideNext()
-		}
-
-		function prev() {
-			swiper.slidePrev()
-		}
-	</script>
 
 	<script>
 		function toggle_h_my_menu() {

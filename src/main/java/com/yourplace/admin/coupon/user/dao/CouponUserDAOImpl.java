@@ -22,8 +22,20 @@ public class CouponUserDAOImpl implements CouponUserDAO {
 		
 	}
 
-	
-	
+	//쿠폰 재발급
+	@Override
+	public void reInsertCoupon(String coupNum, String userId) {
+		System.out.println("---> MyBatis 로 reInsertCoupon 기능 처리");
+		
+		CouponUserVO vo = new CouponUserVO();
+		vo.setCoupNum(coupNum);
+		vo.setUserCoupId(userId);
+		
+		System.out.println("들어온 coupNum: " + coupNum);
+		System.out.println("들어온 userId" + userId);
+		
+		sqlSessionTemplate.update("CouponUserDAO.reInsertCoupon", vo);
+	}
 
 
 }

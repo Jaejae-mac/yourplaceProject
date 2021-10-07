@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class CouponAllVO {
 	
-	private int coupNum;
+	private String coupNum;
 	private String coupName;
 	private int coupDisRate;
 	

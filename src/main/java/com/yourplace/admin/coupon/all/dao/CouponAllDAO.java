@@ -15,4 +15,6 @@ public interface CouponAllDAO {
 	//쿠폰 등록
 	void insertCoupon(CouponAllVO coupVO);
 	
+
+	
 }
