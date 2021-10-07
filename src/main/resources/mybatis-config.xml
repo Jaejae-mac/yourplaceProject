@@ -4,7 +4,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-	
+		<typeAlias type="com.yourplace.admin.account.vo.AccountVO"
+			alias="myAccount" />
 		<typeAlias type="com.yourplace.admin.login.vo.AdminVO"
 			alias="myAdmin" />
 		<typeAlias type="com.yourplace.admin.memberview.vo.MemberVO"
@@ -123,6 +124,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
 		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		
+		<mapper resource="mappings/admin/admin-account-mapping.xml" />
 		<mapper resource="mappings/admin/admin-login-mapping.xml" />
 		<mapper resource="mappings/admin/admin-allview-mapping.xml" />
 		<mapper resource="mappings/admin/admin-coupon-mapping.xml" />
@@ -131,12 +133,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-reserve-view-mapping.xml" />
-		<mapper
-			resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
 		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/admin/admin-banner-mapping.xml" />
+		
+		
 		<mapper resource="mappings/custom/ReserveMapper.xml" />
 		<mapper resource="mappings/custom/coupon-mapping.xml" />
 		<mapper resource="mappings/host/HostReservMapper.xml" />
