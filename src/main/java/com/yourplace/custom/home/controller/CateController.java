@@ -32,7 +32,7 @@ public class CateController {
 	private BookmarkListService bookmarkListService;
 	
 	@GetMapping("/category.do")
-	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, @RequestParam String sort, Model model,HttpSession session) {
+	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, @RequestParam(value="sort" ,required=false) String sort, Model model,HttpSession session) {
 		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
 		
