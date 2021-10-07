@@ -44,7 +44,7 @@
 }
 #option-d {
   width: 1160px;
-  height: 130px;
+  height: 80px;
 }
 .h_row_center-d {
   
@@ -109,4 +109,10 @@
 }
 .h_right_button-d img{
   vertical-align: middle;
+}
+.h_row_center {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

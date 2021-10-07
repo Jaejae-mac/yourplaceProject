@@ -14,6 +14,14 @@ public class MyPageServiceImpl implements MyPageService {
 	private LoginDAO dao;
 	@Override
 	public UserVO getUser(UserVO vo) {
-		return dao.getUser(vo);
+		UserVO uvo = dao.getUser(vo);
+		if(uvo.getUserProfileImg() == null) {
+			String ThumbPath ="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png";
+			uvo.setUserProfileImg(ThumbPath);
+		}else {
+			String ThumbPath ="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/"+ uvo.getUserProfileImg();
+			uvo.setUserProfileImg(ThumbPath);
+		}
+		return uvo;
 	}
 }

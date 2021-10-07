@@ -2,6 +2,8 @@ package com.yourplace.commons.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface IUserVO {
 	public int getUserNum();
 	public void setUserNum(int userNum);
@@ -36,4 +38,6 @@ public interface IUserVO {
 	public int getLoginCheck() ;
 	public void setLoginCheck(int loginCheck) ;
 	public String toString() ;
+	public MultipartFile getProfile();
+	public void setProfile(MultipartFile profile);
 }

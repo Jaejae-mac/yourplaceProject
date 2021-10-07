@@ -40,4 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 	place_num = #{placeNum} 
 	</select>
 
+	<delete id="deleteInterestUser" parameterType="MyInterest">
+		DELETE FROM interest WHERE user_id = #{userId}
+	</delete>
+
 </mapper>

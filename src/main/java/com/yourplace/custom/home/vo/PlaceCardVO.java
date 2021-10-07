@@ -32,8 +32,12 @@ public class PlaceCardVO {
 	private String avgRate="0.0";
 	//총리뷰 개수
 	private String reviewCnt;
-	
 	boolean bookmark;
-	
+	//검색 단어
+	private String keyword;
+	private int placePeople;
+	private int minPrice;
+	private int maxPrice;
+
 }
 

@@ -20,6 +20,12 @@
 		});
 	});
 </script>
+<!-- SweetAlert Lib -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
 	<header>
@@ -199,21 +205,15 @@
 	                            <div style="height: 64px; width: 100%; border-bottom: 1px solid #e7eaee;">
 	                                <div class="h_row_center" style="height: 54px;">
 	                                    <div class="h_center" style="width: 44px;height: 44px;">
-	                                        <img src="https://s3.hourplace.co.kr/web/images/icon/search_v3.svg" style="width: 30px;height: 30px;" />
+	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
 	                                    </div>
 	                                    <div style="position:absolute;right: 77px;left: 57px;">
-	                                        <input id="search_input"
+	                                        <input id="search_input" onkeyup="enterkey();" 
 	                                            style="width: 100%;border-width: 0;font-size: 26px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
-	                                            onKeypress="javascript:if(event.keyCode==13) {search_vue.search_select_keyword(search_vue.keyword)}"
-	                                            :value="keyword"
-	                                            on:input="keyword = $event.target.value"
-	                                            v-on:keyup="getKeyword()"
-	                                            autocomplete="off"
 	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
 	                                    </div>
-	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;"
-	                                        v-if="keyword.length > 0" onclick="keyword = ''">
-	                                        <img src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg" style="width: 16px;height: 16px;" />
+	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;" onclick="delete_search()">
+	                                        <img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />" style="width: 16px;height: 16px;" />
 	                                    </div>
 	                                    
 	                                </div>
@@ -918,7 +918,31 @@
 		function click_category(id1, id2) {
 			console.log(category[id1][0] + " , " + category[id1][id2]);
 			location.href = "/category.do?maincate=" + category[id1][0]
-					+ "&subcate=" + category[id1][id2];
+					+ "&subcate=" + category[id1][id2] +"&sort=최신순";
+		}
+	</script>
+	<!-- 검색기능 -->
+	<script>
+		function enterkey() {
+	        if (window.event.keyCode == 13) {
+	        	gocateSearch();
+	        }
+		}
+		function delete_search(){
+			$('#search_input').val('');
+		}
+		function gocateSearch(){
+			var keyword = $('#search_input').val();
+			keyword = keyword.trim();
+			if(keyword.length < 2){
+				Swal.fire({
+	          		  icon: 'error',
+	         			  title: '검색 할 수 없습니다.',
+	         			  text: '검색창에 최소 2글자 이상 적어주시기 바랍니다.',
+	          		})
+			}else{
+				location.href = "/gocateSearch.do?keyword=" + keyword;
+			}
 		}
 	</script>
 </body>

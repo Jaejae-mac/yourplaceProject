@@ -15,6 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="placeThumb" column="place_thumb" />
 		<result property="avgRate" column="avg_rate" />
 		<result property="reviewCnt" column="review_cnt" />
+		<result property="keyword" column="keyword" />
 	</resultMap>
 
 	<select id="getLatestPlaceList" resultMap="cardResult">
@@ -36,7 +37,418 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		4;
 	</select>
 
-	<select id="getCatePlaceList" resultMap="cardResult">
+	<select id="getCatePlaceListNew" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+	</select>
+	<select id="getCatePlaceListOld" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+	</select>
+	<select id="getCatePlaceListBest" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
+			order by avg_rate desc, review_cnt desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
+			order by avg_rate desc, review_cnt desc
+		</if>
+	</select>
+	<select id="getCatePlaceListReview" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+	</select>
+	<select id="getCatePlaceListRank" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and 
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+	</select>
+	<select id="getKeywordPlaceList" resultMap="cardResult">
+		SELECT
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num)
+			as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest WHERE place_num = a.place_num) 
+			as avg_rate
+			FROM place a
+			WHERE
+			a.place_maincate LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
+			OR
+			a.place_name LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
+			OR
+			a.place_price LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
+			OR
+			a.place_area LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
+			OR
+			a.place_tag LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
+			order by place_reg_date desc
+	</select>
+	<select id="getPlacePeopleListNew" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and 
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+	</select>
+	<select id="getPlacePeopleListOld" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and 
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+	</select>
+	<select id="getPlacePeopleListBest" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and 
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+	</select>
+	<select id="getPlacePeopleListReview" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and 
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+	</select>
+	<select id="getPlacePeopleListRank" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and 
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_capa AS UNSIGNED) >= #{placePeople}
+			and
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+	</select>
+	<select id="getPlacePriceListNew" resultMap="cardResult">
 		<if test='placeMaincate == placeCate'>
 			select
 			place_num, user_id, place_area, place_cate,
@@ -51,6 +463,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where
 			a.place_maincate = #{placeMaincate}
 			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and 
 			a.place_allow = 1
 			order by place_reg_date desc
 		</if>
@@ -73,6 +489,244 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			a.place_maincate =
 			#{placeMaincate} and a.place_cate = #{placeCate}
 			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+	</select>
+	<select id="getPlacePriceListOld" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and 
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,
+			place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+	</select>
+	<select id="getPlacePriceListBest" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and 
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,
+			place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+	</select>
+	<select id="getPlacePriceListReview" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and 
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,
+			place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+	</select>
+	<select id="getPlacePriceListRank" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and 
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate,
+			place_name, place_price,
+			place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as
+			review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num =
+			a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate =
+			#{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			CAST(a.place_price AS UNSIGNED) >= #{minPrice}
+			and
+			#{maxPrice} >= CAST(a.place_price AS UNSIGNED)
+			and
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+	</select>
+	<select id="getPlaceAddrListNew" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and 
+			a.place_allow = 1
+			order by place_reg_date desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and
 			a.place_allow = 1
 			order by place_reg_date desc
 		</if>
@@ -87,5 +741,157 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from place a
             where a.place_allow = 1
 			order by place_reg_date desc
+	</select>
+	<select id="getPlaceAddrListOld" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and 
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and
+			a.place_allow = 1
+			order by place_reg_date asc
+		</if>
+	</select>
+	<select id="getPlaceAddrListBest" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and 
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and
+			a.place_allow = 1
+			order by review_cnt desc, avg_rate desc
+		</if>
+	</select>
+	<select id="getPlaceAddrListReview" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and 
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and
+			a.place_allow = 1
+			order by review_cnt desc
+		</if>
+	</select>
+	<select id="getPlaceAddrListRank" resultMap="cardResult">
+		<if test='placeMaincate == placeCate'>
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price, 
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and 
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
+		<if test="placeMaincate != placeCate ">
+			select
+			place_num, user_id, place_area, place_cate, place_name, place_price,
+			place_capa, place_capa_car, place_thumb,
+			(select count(*) from
+			reviewGuest where place_num=a.place_num) as review_cnt,
+			(select
+			round(avg(review_guest_rate),1) from reviewGuest
+			where
+			place_num = a.place_num) as avg_rate
+			from place a
+			where
+			a.place_maincate = #{placeMaincate} and a.place_cate = #{placeCate}
+			and
+			a.place_addr LIKE CONCAT('%',#{keyword},'%')
+			and
+			a.place_allow = 1
+			order by avg_rate desc
+		</if>
 	</select>
 </mapper>

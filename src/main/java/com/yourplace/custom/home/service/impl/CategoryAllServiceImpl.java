@@ -17,7 +17,7 @@ public class CategoryAllServiceImpl implements CategoryService {
 	private HomeDAO homeDAO;
 	
 	@Override
-	public List<PlaceCardVO> getCatePlace(String maincate, String subcate) {
+	public List<PlaceCardVO> getCatePlace(String maincate, String subcate,String sort) {
 			List<PlaceCardVO> list = homeDAO.getCatePlaceListAll();
 			DecimalFormat dc = new DecimalFormat("###,###,###,###");
 			for(PlaceCardVO vo : list) {

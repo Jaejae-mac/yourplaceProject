@@ -31,30 +31,28 @@
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
-	<div class="h_column_center" id="main_vue" style="min-height: 1000px;">
-		<div style="margin-top: 20px;">
+	<div class="h_column_center" id="main_vue" style="min-height: 1000px; margin-top: 100px;">
+		<div>
 			<p
 				style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 				프로필 편집</p>
 		</div>
+		
 		<div style="margin-top: 50px; margin-bottom: 120px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
+			<form action="" id="mypagefix_form" method="post" enctype="multipart/form-data">
 			<div class="h_center" style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center">
 				<label style="position: relative; width: 120px; height: 120px" data-toggle="tooltip"> 
-					<c:if test="${user.userProfileImg == null }">
-						<img src="<c:url value="/resources/img/icon/register/elements_image_empty_guest.png" />"
-							style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" name="userProfileImg"/> 
-					</c:if>
-					<c:if test="${user.userProfileImg != null }">
-						<img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
-							style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" name="userProfileImg"/> 
-					</c:if>
-					<img src="<c:url value="/resources/img/icon/register/my_profile_edit.png" />"
-						style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
-					<input type="file" id="input" accept="image/*" style="display: none" ">
+					<img src="${user.userProfileImg}"
+						style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" />
+					
+					<input type="file" id="input"  accept="image/*" style="display: none " name="Profile">
 				</label>
+				<div style="position: relative; width: 120px;" >
+					<img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
+						onclick= "deleteImg()"; style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
+				</div>									
 			</div>
 			
-				<form action="" id="mypagefix_form" method="post">
 				<div
 					style="margin-top: 60px; margin-left: 50px; margin-right: 50px; margin-bottom: 10px">
 					
@@ -64,7 +62,8 @@
 							style="margin-bottom: 0; font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #454b50;">
 							이름과 연락처, 이메일 및 비밀번호 등의 개인 정보 수정은 마이페이지 하단의 설정에서 변경 가능합니다.</p>
 					</div>
-					<input type="hidden" name="userId" value="${user.userId}">
+					<input type="hidden" name="userNum" value="${user.userNum}">
+					<input type="hidden" id="userId" name="userId" value="${user.userId}"/> 
 					<div
 						style="width: 448px; margin-top: 40px; display: flex; flex-direction: row">
 						<p
@@ -160,6 +159,11 @@
 				</div>
 				</form>
 				<script>
+					$(document).ready(function() {
+					    $('#input').on('change', function() {
+					        $('#imageupload-label').text($(this).val());
+					    });
+					});
 					function readImage(input) {
 					    if(input.files && input.files[0]) {
 					        const reader = new FileReader()
@@ -169,10 +173,11 @@
 					        }
 					        reader.readAsDataURL(input.files[0])
 					    }
+					    
 					}
 					const inputImage = document.getElementById("input")
 					inputImage.addEventListener("change", e => {
-					    readImage(e.target)
+					    readImage(e.target)					    
 					})
 					
 					
@@ -195,6 +200,10 @@
                     function delete_email() {
                         $('#userEmail').val('');
                         document.getElementById('Email').value = 'N'
+                    }
+                    function deleteImg(){
+                    	document.getElementById('avatar').setAttribute('src', 'https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png') 
+                    	$("#input").val("");
                     }
                     
                     // 이메일 유효성검사 및 오류메세지 출력기능

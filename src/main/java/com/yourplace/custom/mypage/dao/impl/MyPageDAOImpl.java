@@ -26,4 +26,9 @@ public class MyPageDAOImpl implements MyPageDAO {
 		System.out.println("--> MyBatis로 deleteUser() 기능 처리");
 		sqlSessionTemplate.delete("UserDAO.deleteUser", vo);
 	}
+	@Override
+	public void deleteInterest(UserVO vo) {
+		System.out.println("--> MyBatis로 deleteInterest() 기능 처리");
+		sqlSessionTemplate.delete("InterestDAO.deleteInterestUser", vo);
+	}
 }

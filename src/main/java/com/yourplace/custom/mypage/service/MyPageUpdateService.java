@@ -1,7 +1,9 @@
 package com.yourplace.custom.mypage.service;
 
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.yourplace.custom.login.vo.UserVO;
-import com.yourplace.custom.mypage.vo.MyPageReserveVO;
 
 public interface MyPageUpdateService {
 	void updateUser(UserVO vo);

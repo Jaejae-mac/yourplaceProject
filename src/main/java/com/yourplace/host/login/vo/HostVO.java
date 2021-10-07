@@ -3,6 +3,7 @@ package com.yourplace.host.login.vo;
 import java.sql.Date;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yourplace.commons.vo.IUserVO;
 
@@ -31,5 +32,6 @@ public class HostVO implements IUserVO {
 	private String userEmailAgree;
 	private String kakaoId;
 	private int loginCheck;
+	private MultipartFile profile;
 	
 }

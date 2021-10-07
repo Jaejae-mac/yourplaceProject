@@ -80,6 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user_nick_name = #{userNickName},
 			user_email = #{userEmail}, 
 			user_intro = #{userIntro},
+			user_profile_img = #{userProfileImg},
 			user_sms_agree = #{userSmsAgree},
 			user_email_agree = #{userEmailAgree}
 		WHERE user_id = #{userId}

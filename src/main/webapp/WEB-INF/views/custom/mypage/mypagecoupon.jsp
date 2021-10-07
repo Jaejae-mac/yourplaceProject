@@ -19,11 +19,11 @@
 		MY Page - ${userId }
 	</c:if>
 	<!-- Header -->
-	<!--  <%@ include file="../header.jsp" %>
+	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
 	<div class="h_column_center" id="main_vue" style="min-height: 1000px; margin-top: 100px">
         <div style="width: 1160px;">
-            <div style="margin-top: 20px;">
+            <div>
                 <p style="font-size: 32px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;text-align: center;color: #1b1d1f;">
                     쿠폰
                 </p>

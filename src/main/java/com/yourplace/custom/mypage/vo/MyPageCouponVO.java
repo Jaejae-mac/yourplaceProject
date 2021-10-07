@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class MyPageCouponVO {
-	private int userCoupNum;
+	private String userCoupNum;
 	private String userCoupId;
 	private String userCoupUseYn;
 	private Date coupStartD;
