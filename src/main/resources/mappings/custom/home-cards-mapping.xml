@@ -215,24 +215,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT
 			place_num, user_id, place_area, place_cate,place_name, place_price, 
 			place_capa, place_capa_car, place_thumb,
-			(select count(*) from reviewGuest where place_num=a.place_num) as
-			review_cnt,
-			(select round(avg(review_guest_rate),1) from reviewGuest
-			WHERE
-			place_num = a.place_num) as avg_rate
+			(select count(*) from reviewGuest where place_num=a.place_num)
+			as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest WHERE place_num = a.place_num) 
+			as avg_rate
 			FROM place a
 			WHERE
-			a.place_maincate LIKE CONCAT('%',#{keyword},'%')
+			a.place_maincate LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
 			OR
-			a.place_name LIKE CONCAT('%',#{keyword},'%')
+			a.place_name LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
 			OR
-			a.place_price LIKE CONCAT('%',#{keyword},'%')
+			a.place_price LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
 			OR
-			a.place_area LIKE CONCAT('%',#{keyword},'%')
+			a.place_area LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
 			OR
-			a.place_tag LIKE CONCAT('%',#{keyword},'%')
-			and 
-			a.place_allow = 1
+			a.place_tag LIKE CONCAT('%',#{keyword},'%') AND a.place_allow = 1
 			order by place_reg_date desc
 	</select>
 	<select id="getPlacePeopleListNew" resultMap="cardResult">

@@ -32,5 +32,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from interest
 		WHERE user_id = #{userId}
 	</select>
+	<delete id="deleteInterestUser" parameterType="MyInterest">
+		DELETE FROM interest WHERE user_id = #{userId}
+	</delete>
 
 </mapper>

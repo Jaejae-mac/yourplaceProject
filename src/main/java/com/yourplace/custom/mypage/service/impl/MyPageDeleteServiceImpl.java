@@ -18,4 +18,8 @@ public class MyPageDeleteServiceImpl implements MyPageDeleteService {
 		awsS3.delete(key);
 		mypagedao.deleteUser(vo);
 	}
+	@Override
+	public void deleteInterest(UserVO vo) {
+		mypagedao.deleteInterest(vo);
+	}
 }
