@@ -23,6 +23,7 @@ public class AdminController {
 	@Autowired
 	private LoginAdminService loginService;
 	
+	
 	@GetMapping("/login.mdo")
 	public String loginForm()
 	{
@@ -31,22 +32,41 @@ public class AdminController {
 	}
 	
 	
+	@GetMapping("/index-admin.mdo")
+	public String directIndex(HttpServletRequest request, Model model)
+	{
+		System.out.println("[Controller] index-admin 으로 직접 접근");
+	
+//		HttpSession session = request.getSession();
+//		
+//		//세션이 있으면 바로 index페이지로
+//		if(session.getAttribute("AdminNum") != null)
+//		{
+//			return "redirect:index-admin.mdo";
+//		}
+		
+		return "login";
+	}
+	
+	
 	@PostMapping("/login.mdo")
 	public String login(AdminVO vo, HttpServletRequest request, Model model)
 	{
-		int result = loginService.loginAdmin(vo);
-		if (result == 1) {
+		AdminVO login = loginService.loginAdmin(vo);
+		if (login.getLoginSuccess() == 1) {
 			
-			HttpSession session = request.getSession();
+			HttpSession session = request.getSession(); //세션 생성
 			
-			session.setAttribute("AdminId", vo.getAdminId());
-			session.setAttribute("AdminNum", vo.getAdminNum());
-
+			session.setAttribute("AdminId", login);
+			session.setAttribute("AdminNum", login.getAdminNum());
+			session.setAttribute("AdminAuthority", login.getAdminAuthority());
+			
 			// 로그인 성공시에는 return의 홈페이지로 이동시켜준다.
-			return "index";
+			return "index-admin";
 		}
-		model.addAttribute("result", "0");
-		return "index-admin";
+		
+		model.addAttribute("login", "0");
+		return "redirect:login.mdo";
 		
 	}
 	

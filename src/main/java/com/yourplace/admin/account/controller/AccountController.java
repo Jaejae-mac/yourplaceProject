@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,8 @@ public class AccountController {
 	@Autowired
 	private InsertAccountService insertAdmin;
 	
+	@Autowired
+	private BCryptPasswordEncoder passEncoder;
 	
 	//모든 admin 조회.
 	@GetMapping(value="/rootAccountView.mdo")
@@ -53,10 +56,13 @@ public class AccountController {
 		String email = request.getParameter("adminEmail");
 		String tel = request.getParameter("adminTel");
 		
+		//pw 인코딩
+		String encryptPw = passEncoder.encode(pw);
+		
 		//vo 객체에 세팅
 		vo.setAdminAuthority(authority);
 		vo.setAdminId(id);
-		vo.setAdminPw(pw);
+		vo.setAdminPw(encryptPw);
 		vo.setAdminName(name);
 		vo.setAdminEmail(email);
 		vo.setAdminTel(tel);

@@ -4,6 +4,6 @@ import com.yourplace.admin.login.vo.AdminVO;
 
 public interface LoginAdminService {
 
-	int loginAdmin(AdminVO vo);
+	AdminVO loginAdmin(AdminVO vo);
 	
 }

@@ -21,9 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 쿠폰 등록 -->
 	<insert id="insertCoupon">
 		INSERT INTO coupon_all
-		(coup_name, coup_dis_rate, coup_start_d, coup_end_d)
+		(coup_num, coup_name, coup_dis_rate, coup_start_d, coup_end_d)
 		values
-		(#{coupName}, #{coupDisRate}, #{coupStartD}, #{coupEndD});
+		(#{coupNum}, #{coupName}, #{coupDisRate}, #{coupStartD}, #{coupEndD});
 	</insert>
 	
 	<!-- 쿠폰 삭제 -->

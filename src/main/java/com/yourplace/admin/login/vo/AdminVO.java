@@ -21,4 +21,6 @@ public class AdminVO {
 	private String adminName;
 	private String adminTel;
 	private Date adminRegDate;
+	
+	private int loginSuccess;
 }

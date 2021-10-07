@@ -43,5 +43,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE coupon_user SET user_coup_use_yn = 'N'
 		WHERE coup_num = #{coupNum} AND user_coup_id = #{userCoupId};
 	</update>
+	
+	
+	<!-- 쿠폰번호에 대해 쓴적이 없는 사람 + 이 쿠폰 번호가 없는 사람수(count) 조회하기 -->
+	<select id="checkCount" resultMap="couponUserResult">
+		select distinct count(*) from coupon_user
+		where coup_num != #{coupNum} and user_coup_use_yn = 'N'
+	</select>
+	
+	<!-- 위에거에서 사람의 아이디 -->
+	<select id="checkId" resultMap="couponUserResult">
+		select distinct user_coup_id from coupon_user
+		where coup_num != #{coupNum} and user_coup_use_yn = 'N'
+	</select>
+	
+	<insert id="addCoupon">
+		INSERT INTO coupon_user
+		VALUES(#{coup_num}, #{user_coup_id}, 'N', #{coupStartD}, #{coupEndD})
+	</insert>
 
 </mapper>
