@@ -477,3 +477,142 @@
   align-items: center;
 }
 
+
+
+/*결제완료 페이지 용 추가 */
+
+.box_form {
+  position: relative;
+  margin-top: 40px;
+  padding: 0 15px;
+}
+.box_form.reserve_price {
+  margin-top: 35px;
+  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.text_rounded {
+  display: inline-block;
+  height: 26px;
+  padding: 0 12px;
+  background-color: #fff;
+  border-radius: 24px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  line-height: 26px;
+  color: #000;
+  font-family: NanumBarunGothic, sans-serif;
+}
+.flex_box {
+  position: relative;
+  display: table;
+  width: 100%;
+  padding: 5px 0;
+}
+.flex {
+  display: table-row-group;
+}
+.flex.align_right {
+  text-align: right;
+}
+.box_notice .notice_list.info_host,
+.box_notice .refund {
+  border-top: 1px solid #ebebeb;
+  border-spacing: 10px;
+}
+.box_notice .notice_list.info_host:first-child,
+.box_notice .refund:first-child {
+  border-top: 0;
+}
+
+.app_area .app_list .mobile_app span,
+.box_form .tit_check,
+.box_form > .tit,
+.box_notice .heading,
+.box_notice .refund dd,
+.box_notice .txt_timeinfo strong,
+.box_setting .txt_unit,
+.btn_filter em,
+.btn_location em,
+.btn_price_area,
+.calendar_wrap .calendar_tit strong,
+.event_wrap .event_desc a,
+.event_wrap .event_slide_wrap a,
+.feature_list li .tit,
+.heading .h3,
+.heading h3,
+.host_profile .pf_name,
+.layer_select .option_check,
+.nav_area,
+.notice_area.reservation .reserv_number dd,
+.notice_area .result_wrap .txt_keyword,
+.option,
+.order_list .txt_status,
+.others_wrap .space_list.no_data .p_result,
+.p_notification,
+.pc .box_form > .tit,
+.pc .box_form > .tit .option,
+.pc .box_form > .tit .tit_check,
+.pc .feature_list li .tit,
+.pc .host_profile .pf_name,
+.pc .reserve_person_wrap .flex_box .tit,
+.pc .review_box.no_data .p_result,
+.pc .sp_name,
+.pc .space_info_wrap .sp_name,
+.pc .text_box .h_intro,
+.pc .theme_area .result,
+.radio + label,
+.recomm_wrap h2,
+.reserv_list .lst .radio + label,
+.reserv_list .lst strong,
+.reserve_calendar_wrap .calendar_tit strong,
+.reserve_calendar_wrap .calendar table tr td .date,
+.reserve_price_wrap dd,
+.review_box.no_data .p_result,
+.section_cont .h_space .space_name,
+.sp_name,
+.space_info_wrap .sp_name,
+.terms_wrap .checkbox + label,
+.text_box .h_intro,
+.theme_area .result,
+.theme_list .article_theme.article_text .info_area .tit_theme,
+.theme_list .article_theme .th_area .h_theme,
+.txt_price,
+strong {
+  font-family: NanumBarunGothicBold;
+  vertical-align: top;
+}
+
+.box_notice .list_wrap {
+  padding: 8px 15px;
+}
+.p_guide.warn {
+  display: none;
+  font-size: 11px;
+  padding-left: 15px;
+  color: #ff3a48;
+}
+
+.reserve_price_btns {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+}
+.btn_print {
+  display: none;
+}
+
+.btn_cancle {
+  border-radius: 8px;
+  background-color: rgb(77, 77, 77);
+  border: solid 1px;
+  color: white;
+}
+.btn_goto_main {
+  border-radius: 8px;
+  background-color: rgb(36, 160, 237);
+  border: solid 1px;
+  color: white;
+}
+
