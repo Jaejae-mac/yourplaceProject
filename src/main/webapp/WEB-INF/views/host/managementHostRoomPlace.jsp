@@ -90,6 +90,43 @@
 						</script>
 	<script>
 	
+	
+	var arr1 = new Array();
+	var arr2 = new Array();
+	var arr3 = new Array();
+	var arr4 = new Array();
+	var arr5 = new Array();
+	
+	
+
+	 $(document).on("click","#getValue",function(){
+			var placeNum = $('#pNum').val();
+			var roomNum =  $('#roomNum').val();
+			 var roomName =  $('#detailTitle').val();
+			 var personNum =  $('#detailPersonNum').val();
+			 var extra = $('#surcharge').val();
+			 
+			 arr1.push(placeNum);
+			 arr2.push(roomNum);
+			 arr3.push(roomName);
+			 arr4.push(personNum);
+			 arr5.push(extra);
+			 
+	
+		 $.ajax(
+
+			{
+			
+			url : '/getRoomVlaue.hdo',
+					data : {placeNum : arr1, detailNum : arr2, detailTitle : arr3, detailPersonNum:arr4, surcharge: arr5},
+					datatype : "text",
+					type : 'POST',
+					success : function(xh) {
+					}
+				});
+	
+	});
+	
 
 	  
 	  $(document).on("click","#delete",function()

@@ -2,6 +2,7 @@ package com.yourplace.host.management.controller;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import com.yourplace.host.management.service.HostManagementService;
 import com.yourplace.host.management.vo.HostManagementImgVO;
 import com.yourplace.host.management.vo.HostManagementRoomVO;
 import com.yourplace.host.management.vo.HostManagementVO;
+import com.yourplace.host.refund.vo.RefundVO;
 
 @Controller
 public class HostManagementController {
@@ -118,26 +120,21 @@ public class HostManagementController {
 		return mav;
 	}
 	
-	@GetMapping("/getRoomVlaue.hdo")
-	public String insertRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception {
+	@PostMapping("/getRoomVlaue.hdo")
+	public String insertRoom(HttpServletRequest request, HostManagementRoomVO vo, Map<String, Object> param) throws Exception {
 		HttpSession session = request.getSession();
 		
-		String placeNum = request.getParameter("pNum");
-		String detailNum = request.getParameter("roomNum");
-		String roomname = request.getParameter("detailTitle"); //방 이름
-		String roomPer = request.getParameter("detailPersonNum"); //인원수
-		String extra = request.getParameter("surcharge"); //할증
-		
-		System.out.println(placeNum);
-		System.out.println(detailNum);
-		System.out.println(roomname);
-		System.out.println(roomPer);
-		System.out.println(extra);
-		
-		vo.setDetailNum(detailNum);
 		String userId = (String)session.getAttribute("userId");
-		System.out.println(userId);
 		
+		int placeNum = vo.getPlaceNum();
+		String detailNum = vo.getDetailNum();
+		String detailTitle = vo.getDetailTitle();
+		String detatilPersonNum = vo.getDetailPersonNum();
+		String surcharge = vo.getSurcharge();
+		
+		System.out.println(vo.toString());
+		System.out.println(userId);
+	
 		service2.insertRoom(vo);
 		
 		return "redirect:/managementHostRoomPlace.hdo";

@@ -134,7 +134,7 @@
                       align-items-center
                       justify-content-between
                     ">
-									<a class="small text-white stretched-link" href="#">View
+									<a class="small text-white stretched-link" href="/getInvoiceForHost.hdo">View
 										Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
@@ -162,7 +162,7 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-danger text-white mb-4">
-								<div class="card-body">Danger Card</div>
+								<div class="card-body">환불신청</div>
 								<div
 									class="
                       card-footer
@@ -170,7 +170,7 @@
                       align-items-center
                       justify-content-between
                     ">
-									<a class="small text-white stretched-link" href="#">View
+									<a class="small text-white stretched-link" href="/refund.hdo">View
 										Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
@@ -179,79 +179,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-xl-6">
-							<div class="card mb-4">
-								<div class="card-header">
-									<i class="fas fa-chart-area me-1"></i> Area Chart Example
-								</div>
-								<div class="card-body">
-									<canvas id="myAreaChart" width="100%" height="40"></canvas>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-6">
-							<div class="card mb-4">
-								<div class="card-header">
-									<i class="fas fa-chart-bar me-1"></i> Bar Chart Example
-								</div>
-								<div class="card-body">
-									<canvas id="myBarChart" width="100%" height="40"></canvas>
-								</div>
-							</div>
-						</div>
+					
 					</div>
-					<div class="card mb-4">
-						<div class="card-header">
-							<i class="fas fa-table me-1"></i> 최근 예약 현황
-						</div>
-						<div class="card-body">
-							<!-- <table id="datatablesSimple" class="table table-bordered"> -->
-							<table id="mainPageTable" class="table table-bordered display"
-								width="100%">
-								<thead>
-									<tr>
-										<th>장소명</th>
-										<th>예약번호</th>
-										<th>예약자</th>
-										<th>예약년도</th>
-										<th>예약 월</th>
-										<th>예약 일</th>
-										<th>입실</th>
-										<th>퇴실</th>
-										<th>인원</th>
-										<th>금액</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach var="test" items="${list}">
-										<tr>
-											<td>${test.placeName}</td>
-											<td>${test.reserveNum }</td>
-											<td>${test.reserveName }</td>
-											<td>${test.reserveYear }</td>
-											<td>${test.reserveMonth }</td>
-											<td>${test.reserveDate }</td>
-											<td>${test.startTime }</td>
-											<td>${test.endTime }</td>
-											<td>${test.personNum }</td>
-											<td>${test.payPrice }</td>
-
-
-										</tr>
-
-
-									</c:forEach>
-
-
-
-								</tbody>
-								<tfoot></tfoot>
-							</table>
-						</div>
-					</div>
-				</div>
-				
+					
 					
 			</main>
 			<footer class="py-4 bg-light mt-auto">

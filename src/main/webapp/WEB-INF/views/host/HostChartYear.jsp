@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 		<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +87,9 @@ var myChart = new Chart(ctx, {
 
 </script>
 
-<%@include file="hostnav.jsp"%>
+<body>
+		<%@include file="hostnav.jsp"%>
+
 	<div id="layoutSidenav_content">
 
 		<main>
