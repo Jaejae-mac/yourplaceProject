@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yourplace.commons.coolsms.SMSCertification;
 import com.yourplace.custom.login.service.IdCheckService;
+import com.yourplace.custom.login.service.InsertCouponService;
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.service.RegistService;
 import com.yourplace.custom.login.vo.UserVO;
+import com.yourplace.custom.reservation.vo.CouponVO;
 
 //회원가입관련 요청과 응답을 처리할 컨트롤러.
 @Controller
@@ -31,8 +34,8 @@ public class RegistController {
 	private RegistService registService;
 	@Autowired
 	private LoginUserService loginUserService;
-
-	
+	@Autowired
+	private InsertCouponService insertCouponService;
 	//회원 가입 모듈로 보내주는 메서드.
 	@GetMapping("/register.do")
 	public String registerForm(HttpServletRequest request) {
@@ -73,24 +76,26 @@ public class RegistController {
 	
 	//회원가입 처리 메서드.(INSERT)
 	@PostMapping("/regist.do")
-	public String regist(UserVO vo, HttpServletRequest request) {
+	public String regist(UserVO vo, HttpServletRequest request, RedirectAttributes redirect) {
 		//제대로된 아이디와 비밀번호 가 전송되었을 경우.
 		if(vo.getUserId().length() > 0 && vo.getUserPw().length() > 0) {
-			
+			CouponVO welcomeCoupon = new CouponVO();
+			welcomeCoupon.setUserCoupId(vo.getUserId());
+			//회원정보를 멤버테이블에 등록.
 			registService.insertUser(vo);
+			//가입환영 쿠폰을 넣어준다.
+			insertCouponService.welcomeCoupon(welcomeCoupon);
 			UserVO userVO = loginUserService.getUser(vo);
 			//회원가입 완료후 아이디 세션 생성.
-			HttpSession session = request.getSession();		
+			HttpSession session = request.getSession();
+			redirect.addAttribute("welcomeCoupon", "welcomeCoupon");
+			session.setAttribute("userId", userVO.getUserId());
 			session.setAttribute("userVO", userVO);
+			
 		}
 		
 		//회원가입후 홈으로 보내주고, 쿠폰을 발급해 주어야 한다. - 미구현.
 		return "redirect:home.do";
-	}
-	
-	
-	
-	
-		
-	}
+	}	
+}
 

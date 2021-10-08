@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/card.css" />" />
 <link rel="stylesheet"
@@ -15,19 +20,16 @@
 	href="<c:url value="/resources/custom/css/mainHome.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/bodyfont.css" />" />
+	
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-	
-<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 	
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-	<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 <title>YourPlace Home</title>
 </head>
 <body>
@@ -50,7 +52,25 @@
 			swal('', '유효하지 않은 페이지입니다.\n비밀번호 찾기를 다시 진행해주세요.', "success");
 		</script>
 	</c:if>
-
+	<c:if test="${welcomeCoupon=='welcomeCoupon'}">
+		<script>
+		console.log('111111');
+		Swal.fire({
+			  position: 'top-end',
+			  icon: 'success',
+			  title: '신규 가입 쿠폰 발급 완료!',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: '쿠폰 확인',
+			  timer: 6000
+			}).then((result) => {
+				  if (result.isConfirmed) {
+					   	location.href="/gocoupon.do";
+					  }
+					})		
+		</script>
+	</c:if>
 	<!--배너 스크립트-->
 	<script>
 		let banner = {
@@ -605,9 +625,24 @@
 
 					</div>
 				</div>
+				<div class="h_row_center" style="position: absolute; right: 12px;">
+					<div id="flipsnap_prev" class="h_center prev"
+							style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; cursor: default;">
+							<img
+								src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
+								id="flipsnap_prev_img" style="width: 16px; height: 16px" />
+						</div>
+						<div id="flipsnap_next" class="h_center next"
+							style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; cursor: pointer;">
+							<img
+								src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
+								id="flipsnap_next_img"
+								style="width: 16px; height: 16px; transform: rotate(180deg)" />
+					</div>
+				</div>
 			</div>
-
-			<div class="total_card_layout" id="newestPlace">	
+			
+			<div class="total_card_layout newestPlace">	
 				<!--신규등록 장소 추천 반복 시작. -->
 				<c:forEach var="latestPlace" items="${latestPlaces }"
 					varStatus="status">
@@ -1226,6 +1261,18 @@
 	<!--footer-->
 
 	<!-- script 시작 -->
+	<script type="text/javascript">
+      $.noConflict();
+      
+	$(".newestPlace").slick({
+		  infinite:true,
+	      slidesToShow: 4,
+	      slidesToScroll: 4,
+	      nextArrow:$('#flipsnap_next'),
+          prevArrow:$('#flipsnap_prev'),
+          speed: 500,
+	    });
+</script>
 	<script>
 		var message_id = ''
 
@@ -1284,11 +1331,5 @@ function gotoDetail(e){
     	
     }
 </script>
-<script type="text/javascript">
-      $.noConflict();
-	$("#newestPlace").slick({
-	      slidesToShow: 4,
-	      slidesToScroll: 4,
-	    });
-</script>
+
 </html>

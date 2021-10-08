@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yourplace.commons.vo.IUserVO;
 import com.yourplace.custom.banner.service.AvailableBannerService;
@@ -32,12 +33,13 @@ public class HomeController {
 	private AvailableBannerService availableService;
 	
 	@GetMapping("/home.do")
-	public String home(Model model,HttpSession session) {
+	public String home(Model model,HttpSession session, @RequestParam(value="welcomeCoupon", required = false) String welcomeCoupon) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
 		//북마크.
 		List<InterestVO> bookmarks = null;
 		//배너 리스트 불러오기.
 		List<BannerVO> bannerVO = availableService.displayBanner();
+		System.out.println(welcomeCoupon);
 		//로그인한 이력이 존재한다면.
 		if(session.getAttribute("userVO") != null) {
 			InterestVO vo = new InterestVO();
@@ -54,6 +56,9 @@ public class HomeController {
 					}
 				}
 			}
+		}
+		if(welcomeCoupon != null) {
+			model.addAttribute("welcomeCoupon", welcomeCoupon);
 		}
 		model.addAttribute("latestPlaces", latestPlaces);
 		model.addAttribute("banner", bannerVO);

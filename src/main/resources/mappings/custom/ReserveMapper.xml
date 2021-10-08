@@ -64,7 +64,7 @@
 		<result property="userNum" column="user_num" />
 	</resultMap>
 
-	<resultMap type="detailPlaceVO" id="getDetailInfo">
+	<resultMap type="detailPlaceVO" id="detailInfo">
 		<result property="placeNum" column="place_num" />
 		<result property="detailNum" column="detail_num" />
 		<result property="detailTitle" column="detail_title" />
@@ -217,7 +217,7 @@
 		and place_num=#{placeNum} and place_detail_num=#{detailNum} order by
 		rsv_start_t asc;
 	</select>
-	<select id="getDetail" resultMap="getDetailInfo">
+	<select id="getDetail" resultMap="detailInfo">
 		SELECT a.*, b.place_price FROM
 		place_detail a, place b where a.place_num = #{placeNum} and
 		a.detail_num=#{detailNum} and b.place_num=#{placeNum};
@@ -236,7 +236,7 @@
 	<select id="getImgList" resultMap="placeImgResult">
 		SELECT * FROM place_img WHERE place_num=#{placeNum}
 	</select>
-	<select id="getDetailInfoList" resultMap="getDetailInfo">
+	<select id="getDetailInfoList" resultMap="detailInfo">
 		SELECT * FROM place_detail WHERE place_num = #{placeNum}
 
 	</select>

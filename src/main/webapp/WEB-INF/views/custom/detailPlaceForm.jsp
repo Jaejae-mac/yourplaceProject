@@ -9,6 +9,7 @@
 
 <title>${placeInfo.placeName}</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/detail-place.css" />" />
@@ -872,7 +873,7 @@
         dataType:"json",
         async:false,
         contentType: "application/json",
-        data: JSON.stringify({"placeNum":24, "detailNum":valueRdId}),
+        data: JSON.stringify({"placeNum":"${placeInfo.placeNum}", "detailNum":valueRdId}),
         success:function(data){
           //성공적으로 서버로부터 세부방정보에대해 전달 받는다면.
           console.log(data);
@@ -1439,8 +1440,8 @@
                 		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
                 		$("#bookmark_img2").attr("src",'<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>');
                 	}else{
-                		$("#bookmark_img1").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
-                		$("#bookmark_img2").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                		$("#bookmark_img").attr("src",'<c:url value="/resources/custom/icon/bookmark_g.png"/>');
+                		$("#bookmark_img2").attr("src",'<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>');
                 	}
                 }
     		});	

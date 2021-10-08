@@ -15,7 +15,10 @@ public class GetDetailInfoImpl implements GetDetailInfo {
 	
 	@Override
 	public DetailPlaceVO getDetailInfo(DetailPlaceVO vo) {
-		return rsvDAO.getDetailInfo(vo);
+		DetailPlaceVO dvo = rsvDAO.getDetailInfo(vo);
+		System.out.println("DVO SERVICE Of VO  : -> "+vo.toString());
+		System.out.println("DVO SERVICE : -> "+dvo.toString());
+		return dvo;
 	}
 
 }

@@ -60,7 +60,6 @@ public class PlaceInfoVO {
 	private String avgRate = "0.0";
 	// 총리뷰 개수
 	private String reviewCnt;
-	
 	private List<String> hashTags;
 	private String rateHeader;
 	private int imgCnt;

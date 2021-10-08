@@ -42,6 +42,7 @@ public class RsvController {
 	public DetailPlaceVO DetailInfo(@RequestBody DetailPlaceVO vo) {
 		System.out.println(vo.toString());
 		DetailPlaceVO info = getDetailInfo.getDetailInfo(vo);
+		System.out.println("선택된 세부 방 정보 : " +info.toString());
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
 		if(!vo.getDetailNum().contains("default")) {
 			int total = Integer.parseInt(info.getPlacePrice()) + Integer.parseInt(info.getSurcharge());

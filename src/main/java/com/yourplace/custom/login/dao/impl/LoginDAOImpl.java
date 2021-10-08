@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yourplace.custom.login.dao.LoginDAO;
 import com.yourplace.custom.login.vo.UserVO;
+import com.yourplace.custom.reservation.vo.CouponVO;
 
 @Repository("loginDAO")
 public class LoginDAOImpl implements LoginDAO {
@@ -89,6 +90,13 @@ public class LoginDAOImpl implements LoginDAO {
 	public void deleteAccessNum(String tokenNum) {
 		System.out.println("[MyBatis] 토큰 DELETE 수행");
 		sqlSessionTemplate.delete("AccessNum.deleteAccessNum", tokenNum);
+	}
+
+
+	@Override
+	public void welcomeCoupon(CouponVO vo) {
+		sqlSessionTemplate.insert("CouponDAO.InsertWelcomeCoupon",vo);
+		
 	}
 
 }

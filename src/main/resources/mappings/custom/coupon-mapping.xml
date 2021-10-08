@@ -32,4 +32,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteCoupon" parameterType="MyPageCouponVO">
 		DELETE FROM coupon_user WHERE user_coup_id = #{userCoupId}
 	</delete>
+	<insert id="InsertWelcomeCoupon">
+		INSERT INTO 
+			coupon_user 
+				VALUES(1,#{userCoupId},'N',
+						date_format(current_timestamp,"%Y-%m-%d"),
+						date_format(date_add(current_timestamp, INTERVAL 1 MONTH),"%Y-%m-%d")
+					);
+	</insert>
 </mapper>

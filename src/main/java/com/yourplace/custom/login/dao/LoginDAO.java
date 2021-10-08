@@ -1,6 +1,7 @@
 package com.yourplace.custom.login.dao;
 
 import com.yourplace.custom.login.vo.UserVO;
+import com.yourplace.custom.reservation.vo.CouponVO;
 
 public interface LoginDAO {
 	UserVO idCheck(UserVO vo);
@@ -20,6 +21,8 @@ public interface LoginDAO {
 	
 	public void setAccessNum(String tokenNum);
 	public int getAccessNum(String tokenNum);
+	
 	public void deleteAccessNum(String tokenNum);
-
+	//회원가입시 쿠폰 발급 (신규가입쿠폰 가입일로부터 1달)
+	void welcomeCoupon(CouponVO vo);
 }
