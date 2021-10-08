@@ -62,8 +62,8 @@
     
   </head>
   <body class="sb-nav-fixed">
-
 <%@include file="hostnav.jsp" %>
+
       <div id="layoutSidenav_content">
         <main>
 

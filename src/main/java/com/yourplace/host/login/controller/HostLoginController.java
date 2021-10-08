@@ -52,7 +52,7 @@ public class HostLoginController {
 			session.setAttribute("userNum", vo.getUserNum());
 
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
-			return "redirect:/indexOurPlace.hdo";
+			return "redirect:/indexYourPlace.hdo";
 			
 		}
 		model.addAttribute("result", "1");
@@ -72,7 +72,7 @@ public class HostLoginController {
 				String info = list.get(i).getUserIntro();
 				String mail = list.get(i).getUserEmail();
 				String tel = list.get(i).getUserTel();
-				
+				String userImg = list.get(i).getUserProfileImg();
 				
 				
 				
@@ -82,7 +82,7 @@ public class HostLoginController {
 				session.setAttribute("userInfo", info);
 				session.setAttribute("userMail", mail);
 				session.setAttribute("userTel", tel);
-
+				session.setAttribute("userImg", userImg);
 				
 				
 			}

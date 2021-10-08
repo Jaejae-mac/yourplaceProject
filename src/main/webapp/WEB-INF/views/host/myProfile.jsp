@@ -34,7 +34,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">프로필 수정</h1>
+                    <h1 class="mt-4">프로필 </h1>
 
 
 
@@ -49,7 +49,7 @@
                             style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
                             <label data-toggle="tooltip" style="position: relative; width: 120px; height: 120px;"
                                 data-original-title="" title=""><img
-                                    src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png"
+                                    src="${userImg}"
                                     id="avatar"
                                     style="width: 100%; height: 100%; border-radius: 60px; position: absolute;"> 
                               </div>

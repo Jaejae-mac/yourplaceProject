@@ -67,6 +67,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="HostSalesVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
 			alias="AskVO" />
+			
 		
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
@@ -100,8 +101,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="com.yourplace.host.chart.vo.HostChartVO"
 			alias="HostChartVO" />
 			
-					<typeAlias type="com.yourplace.host.management.vo.HostManagementImgVO"
-			alias="HostManagementImgVO" />
+			<typeAlias type="com.yourplace.host.management.vo.HostManagementImgVO" alias="HostManagementImgVO"/>
+			
 				<typeAlias type="com.yourplace.host.refund.vo.RefundVO" alias="RefundVO" />
 	</typeAliases>
 
