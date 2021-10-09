@@ -151,6 +151,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				(select round(avg(review_guest_rate),1) from reviewGuest
 				where place_num = a.place_num) as avg_rate
 			from place a
+			where
 			<if test="placeMaincate == ''">
 				a.place_allow = 1
 			order by review_cnt desc, avg_rate desc
