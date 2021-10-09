@@ -3,10 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- 전달된 파라미터가 0 이라면 아이디또는 비밀번호의 불일치 이므로. -->
-<c:if test="${param.result == 0 }">
+<c:if test="${param.result == '0' }">
 	<script>
 		//alert 를 내보낸다.
-		alert('아이디 또는 비밀번호가 틀렸습니다.');
+		alert('아이디 또는 비밀번호를 확인해주세요.');
 	</script>
 </c:if>
 <c:if test="${accessDenied == 'accessDenied' }">
@@ -27,10 +27,8 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
-<!-- SweetAlert Lib -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+
+
 
 <title>Login</title>
 <style>
@@ -80,7 +78,7 @@ input:focus{
 </script>
 </head>
 <body>
-	<input type="hidden" id="check" value="${result}">
+
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
@@ -108,28 +106,31 @@ input:focus{
 					<div style="width: 100%; padding-right: 40px; padding-left: 40px;">
 
 						<!-- id 입력 -->
-						<form id="form_login" method="GET">
+						<form id="form_login" method="POST">
 							<input type="hidden" name="_token"
 								value="CO5NSkoOWiPrEihilmn86B2BXu2M6ulfg3KoaUuk">
 							<div class="input_container2 bottom"
-								style="width: 480px; margin-left: 50px;">
+								style="width: 480px; margin-left: 50px;"
+								v-bind:class="{'focus':idfocus===true}">
 								<input type="id" placeholder="아이디" value="" id="id"
-									name="userId"required>
-								<div class="delete" onclick="deleteId()">
+									name="userId" v-model="id" required>
+								<div class="delete" v-show="id.length > 0" v-on:click="id"= ''">
 									<img
-										src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
+										src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
 										style="width: 16px; height: 16px;" />
 								</div>
 							</div>
 
 							<!-- pw 입력 -->
 							<div class="input_container2 bottom"
-								style="width: 480px; margin-top: 10px; margin-left: 50px;">
+								style="width: 480px; margin-top: 10px; margin-left: 50px;"
+								v-bind:class="{'focus':passwordfocus===true}">
 								<input type="password" placeholder="비밀번호" value="" id="password"
-									name="userPw"required>
-								<div class="delete" style="margin-left: 50px;"onclick="deletePw()">
+									name="userPw" v-model="password" required>
+								<div class="delete" style="margin-left: 50px;"
+									v-show="password.length > 0" v-on:click="password = ''">
 									<img
-										src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
+										src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
 										style="width: 16px; height: 16px;" />
 								</div>
 							</div>
@@ -138,14 +139,14 @@ input:focus{
 							<!-- 로그인 버튼 -->
 							<!-- Login v-on:click="login()" -->
 							<div
-								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
+								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
 								onclick="login_guest_do()">
 								<label for="login_guest" class="login_guest_lb">게스트 로그인</label> <input
 									type="button" id="login_guest" >
 							</div>
 
 							<div
-								style="margin-top: 20px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;"onclick="loginGuestKakaoDo()">
+								style="margin-top: 20px; height: 52px; border-radius: 8px; background-color: var(- -blue-020); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;"onclick="loginGuestKakaoDo()">
 
 								<label for="login_kakao" class="login_kakao"><img
 									src="<c:url value="/resources/img/kakao/kakao_login_btn.png" />"
@@ -170,10 +171,10 @@ input:focus{
 						<div
 							style="display: flex; flex-direction: row; align-items: center; justify-content: center">
 							<p
-								style="margin-left: 8px; margin-right: 8px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #72787f; cursor: pointer;"
+								style="margin-left: 8px; margin-right: 8px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
 								onclick="location.href='/find/account/accountForm.do'">아이디 찾기</p>
 							<div
-								style="width: 10px; height: 1px; transform: rotate(90deg); background-color: #e7eaee;"></div>
+								style="width: 10px; height: 1px; transform: rotate(90deg); background-color: var(- -grey-020);"></div>
 
 
                                 <!-- original: "window.location.href='/service'" -->
@@ -181,14 +182,14 @@ input:focus{
                                 onclick="window.location.href='service.html'">
                                     고객센터
                                 </p> -->
-                                <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #72787f; cursor: pointer;"
+                                <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: var(--grey-050); cursor: pointer;"
                                 onclick="location.href='/reset/passwordForm.do'">
                                     비밀번호 찾기
                                 </p>
-                                <div style="width: 10px;height: 1px;transform: rotate(90deg);background-color: #e7eaee;"></div>
+                                <div style="width: 10px;height: 1px;transform: rotate(90deg);background-color: var(--grey-020);"></div>
 
                                 <!-- original : "window.location.href='/register'" -->
-                                <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;text-align: right;color: #246ff8; cursor: pointer;"
+                                <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;text-align: right;color: var(--blue-030); cursor: pointer;"
                                 onclick="location.href='/register.do'">
                                     회원가입
                                 </p>
@@ -222,8 +223,9 @@ input:focus{
 	<script>
 		//아래 함수 3개는 form태그의 액션을 변경하여 사용하는 JS 방법이다.
 		function login_guest_do() {
-			$("#form_login").attr("action", "/login.do").submit();		         
-        }		
+			$("#form_login").attr("action", "/login.do").submit();
+
+		}
 		function loginHostHdo() {
 			console.log("host btn click");
 			$("#form_login").attr("action", "/login.hdo").submit();
@@ -258,11 +260,6 @@ input:focus{
 		function callRegisterFormUser() {
 			location.href = "/register.do";
 		}
-		function deleteId(){
-			$("#id").val("");
-		}
-		function deletePw(){}
-			$("#password").val("");
 	</script>
 </body>
 </html>

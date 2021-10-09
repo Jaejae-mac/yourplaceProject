@@ -18,7 +18,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 </head>
 <body>
-	<c:if test="${param.result == 0 }">
+	<c:if test="${param.result == '0' }">
 		<script>
 			alert('비밀번호를 다시 확인해주세요.');
 		</script>
@@ -43,7 +43,7 @@
 			style="margin-top: 50px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
 
 			<div style="margin: 40px 50px;">
-				<form action="" id="checkpass_form" method="GET">
+				<form action="" id="checkpass_form" method="post">
 					<input type="hidden" name="userId" value="${userVO.userId}">	
 					<div
 						style="font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
