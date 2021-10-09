@@ -1,4 +1,4 @@
-package com.yourplace.admin.revenue.vo;
+package com.yourplace.admin.login.vo;
 
 import lombok.Getter;
 import lombok.Setter;

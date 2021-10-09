@@ -45,8 +45,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<!-- 아예 새로운 쿠폰 발급할때 전체 조회 -->
+	<select id="checkIdAll" resultMap="couponUserResult">
+		SELECT user_id AS userCoupId FROM member WHERE user_type = 0;
+	</select>	
+	
+	
+	
+	<!-- 기존 쿠폰에 대한 발급 -->
 	<!-- 쿠폰번호에 대해 쓴적이 없는 사람 + 이 쿠폰 번호가 없는 사람수(count) 조회하기 -->
 	<select id="checkCount" resultMap="couponUserResult">
+		select distinct count(*) from coupon_user
+		where coup_num != #{coupNum} and user_coup_use_yn = 'N'
+	</select>
+	
+	<select id="checkCountInt" resultType="int">
 		select distinct count(*) from coupon_user
 		where coup_num != #{coupNum} and user_coup_use_yn = 'N'
 	</select>
@@ -57,9 +70,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where coup_num != #{coupNum} and user_coup_use_yn = 'N'
 	</select>
 	
+	
+	
 	<insert id="addCoupon">
 		INSERT INTO coupon_user
-		VALUES(#{coup_num}, #{user_coup_id}, 'N', #{coupStartD}, #{coupEndD})
+		VALUES(#{coupNum}, #{userCoupId}, #{userCoupUseYn}, #{coupStartD}, #{coupEndD})
 	</insert>
+
+	<select id="idMinus" resultMap="couponUserResult">
+		SELECT m.user_id as user_coup_id
+		from member as m
+			Left join coupon_user as c on c.user_coup_id = m.user_id and c.coup_num != #{coupNum}
+		where m.user_type = '0' and c.user_coup_id is null;
+	</select>
 
 </mapper>

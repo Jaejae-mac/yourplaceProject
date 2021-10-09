@@ -27,13 +27,7 @@
     ></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    
-    <script>
-    $(document).on("click","#coup_send_form",function()
-	{
-		alert("선택하신 쿠폰이 정상적으로 전송되었습니다.");
-	});
-</script>
+
      
   <!-- ///////////////// -->
   </head>
@@ -129,12 +123,14 @@
       	
         
         <!-- delete -->
-       <form id = "submitForm" method="POST" action="/deleteCoupon.mdo" hidden="hidden">
+       <form id="submitForm" method="POST" action="/deleteCoupon.mdo" hidden="hidden">
        	<input type="hidden" id="deleteCoupHidden" name="deleteCoupName">
        </form>
        
-       <form id = "submitForm2" method="POST" action="/couponSend.mdo" hidden="hidden">
-       	<input type="hidden" id="sendCoupHidden" name="sendCoupName" >
+       <form id="submitForm2" method="POST" action="/couponSend.mdo" hidden="hidden">
+       	<input type="hidden" id="coup_num" name="numCoup" >
+       	<input type="hidden" id="start_date" name="startD" >
+       	<input type="hidden" id="end_date" name="endD" >
        </form>
         
         <footer class="py-4 bg-light mt-auto">
@@ -216,9 +212,14 @@
 					
 					var no = td.eq(1).text();
 					var name = td.eq(2).text();
+					var rate = td.eq(3).text();
+					var start = td.eq(4).text();
+					var end = td.eq(5).text();
 					
-					tdAr.push(no);
-					tdAr.push(name);
+					tdAr.push(no); //0
+					tdAr.push(name); //1
+					tdAr.push(start); //2
+					tdAr.push(end); //3
 					
 					rowNo.push(no);
 					
@@ -227,21 +228,26 @@
 					
 		    	});
 
-		   	console.log("체크된 쿠폰 이름= " + tdAr[0]);
+		   	console.log("체크된 쿠폰 번호= " + tdAr[0]);
+		   	console.log("체크된 쿠폰 이름= " + tdAr[1]);
+		   	console.log("체크된 쿠폰 시작일= " + tdAr[2]);
+		   	console.log("체크된 쿠폰 종료일= " + tdAr[3]);
+		   	
 		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo);
 		   	
-		   	$("#sendCoupHidden").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
-			$("#submitForm2").submit();
+		   	$("#coup_num").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+		   	$("#start_date").val(tdAr[2]);
+		   	$("#end_date").val(tdAr[3]);
+		   	
+		   	$("#submitForm2").submit();
+		   	
+		   	alert(tdAr[0] + tdAr[1] + tdAr[2] + tdAr[3]);
 		    
 		});
 		    
     </script>
 	
-	<script>
-	    function coup_send() {
-	      $("#coup_send_form").attr("action", "/couponSend.mdo").submit();
-	   }
-    </script>
+
 	
   </body>
 </html>
