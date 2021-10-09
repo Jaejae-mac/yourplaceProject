@@ -8,4 +8,6 @@ public interface SpaceListService {
 
 	List<SpaceVO> getSpaceList();
 	
+	List<SpaceVO> beforeAllow();
+	
 }

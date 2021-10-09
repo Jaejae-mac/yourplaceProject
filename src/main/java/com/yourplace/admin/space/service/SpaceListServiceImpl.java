@@ -19,6 +19,12 @@ public class SpaceListServiceImpl implements SpaceListService {
 		List<SpaceVO> spaceVO = spaceDAO.getSpaceList();
 		return spaceVO;
 	}
+
+	@Override
+	public List<SpaceVO> beforeAllow() {
+		List<SpaceVO> list = spaceDAO.beforeAllow();
+		return list;
+	}
 	
 	
 	

@@ -20,6 +20,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="year" column="year" />
 		
 		<result property="invCost" column="inv_cost" />
+		<result property="coupDisRate" column="coup_dis_rate" />
+		<result property="invBfTax" column="inv_bf_tax"/>
+		<result property="invTax" column="inv_tax" />
 		<result property="invAftTax" column="inv_aft_tax" />
 		<result property="userNum" column="user_num" />
 		

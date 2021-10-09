@@ -78,6 +78,14 @@ public class SpaceDAOImpl implements SpaceDAO {
 	}
 
 
+	@Override
+	public List<SpaceVO> beforeAllow() {
+		System.out.println("---> MyBatis 로 beforeAllow 기능 처리: index 용");
+		List<SpaceVO> list = sqlSessionTemplate.selectList("spaceDAO.beforeAllow");
+		return list;
+	}
 
+
+	
 
 }

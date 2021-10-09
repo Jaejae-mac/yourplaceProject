@@ -25,14 +25,6 @@
     ></script>
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   
-
-
-<script>
-    $(document).on("click","#delete_btn",function()
-	{
-		alert("선택한 사용자가 탈퇴처리 되었습니다. (계정삭제)");
-	});
-</script>
   
   </head>
   
@@ -93,9 +85,7 @@
 				<tbody>
                   <c:forEach var="mem" items="${memberList}">
                     <tr>
-                    	<td id="active">
-	                      	<c:if test="${mem.userActive eq '0'}">제한된 이용자</c:if>
-	                      	<c:if test="${mem.userActive eq '1'}">사용가능</c:if>
+                    	<td id="active"><c:if test="${mem.userActive eq '0'}">제한된 이용자</c:if><c:if test="${mem.userActive eq '1'}">사용가능</c:if>
                      	</td>
                     
                       <td>${mem.userNum }</td>
@@ -118,11 +108,23 @@
                       <td>${mem.userSmsAgree }</td>
                       <td>${mem.userEmailAgree }</td>
                       <td>
+                      
+                      <c:if test="${mem.userActive eq '1'}">
 	                      <button type="button"
 	                      class="btn btn-danger"
 	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
-	                      	제한
+	                      	사용 제한
 	                      </button>
+	                  </c:if>
+	                  
+	                  <c:if test="${mem.userActive eq '0'}">
+	                      <button type="button"
+	                      class="btn btn-primary"
+	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
+	                      	제한 해제
+	                      </button>
+	                  </c:if>
+	                    
                       </td>
                       <td>
 	                      <button type="button"
@@ -210,8 +212,22 @@
 			
 			console.log("아이디 text : " + id);
 		
-			$("#deleteUserHidden").val(id);
-			$("#submitForm").submit();
+			var result = confirm("선택한 회원을 삭제 및 탈퇴처리 하시겠습니까?");
+			
+			if(result){
+			    alert("선택한 회원이 탈퇴되었습니다.");
+			    
+			    $("#deleteUserHidden").val(id);
+				$("#submitForm").submit();
+	
+				console.log("정상!")
+			
+			}else{
+				
+			    alert("취소되었습니다.");
+			}
+			
+			
 			
 		});
 			
@@ -221,8 +237,7 @@
 
 		$(document).on("click","#disable_btn",function()
 		{
-// 			console.log('유저 접근제한 버튼 클릭');
-			
+
 			var tdArr = new Array();
 			var checkBtn = $(this);
 			

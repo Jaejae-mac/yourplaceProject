@@ -1,6 +1,11 @@
 package com.yourplace.admin.coupon;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +19,7 @@ import com.yourplace.admin.coupon.all.service.DeleteCouponService;
 import com.yourplace.admin.coupon.all.service.InsertCouponService;
 import com.yourplace.admin.coupon.all.vo.CouponAllVO;
 import com.yourplace.admin.coupon.user.service.CouponUserService;
+import com.yourplace.admin.coupon.user.service.SendCouponService;
 import com.yourplace.admin.coupon.user.vo.CouponUserVO;
 
 @Controller
@@ -30,6 +36,9 @@ public class CouponController {
 	
 	@Autowired
 	private CouponUserService coupUserSend;
+	
+	@Autowired
+	private SendCouponService sendService;
 	
 	
 	//쿠폰 조회 페이지 호출
@@ -84,13 +93,40 @@ public class CouponController {
 	}
 	
 	//쿠폰 전송 처리
-	@PostMapping(value="/couponSend.mdo")
-	public String sendCoupon(@RequestParam("sendCoupName") String sendCoupName, CouponUserVO vo)
+/*	@PostMapping(value="/couponSend.mdo")
+	public String sendCoupon(@RequestParam("numCoup") String sendCoupName, CouponUserVO vo)
 	{
-		System.out.println("---쿠폰 전송---");
-		coupUserSend.sendCoupon(vo, sendCoupName);
+		System.out.println("[Controller] 쿠폰을 전송합니다.");
+		//coupUserSend.sendCoupon(vo, sendCoupName);
 		System.out.println("정상적으로 전송되었습니다.");
 		return "redirect:couponView.mdo";
 	}
+*/
+	
+	//수정한 쿠폰전송 controller
+	@PostMapping(value="/couponSend.mdo")
+	public String modifiedSendCoup(HttpServletRequest request) throws ParseException {
+		
+		System.out.println("[Controller] 쿠폰을 전송합니다. // modifiedSendCoup Method");
+		
+		//값 받기
+		String num = request.getParameter("numCoup");
+		String std = request.getParameter("startD");
+		String ed = request.getParameter("endD");
+		
+		SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+		Date startD = fmt.parse(std);
+		Date endD = fmt.parse(ed);
+		
+		System.out.println("[Controller] 받아온 값을 조회합니다.");
+		System.out.println("-------------------------------");
+		System.out.println("num: " + num + "startD" + startD + "endD" + endD);
+		System.out.println("-------------------------------");
+		
+		sendService.addCoupon(num, startD, endD);
+		
+		return "redirect:couponView.mdo";
+	}
 
+	
 }

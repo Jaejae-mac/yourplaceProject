@@ -1,4 +1,4 @@
-package com.yourplace.admin.space.vo;
+package com.yourplace.admin.login.vo;
 
 import java.sql.Date;
 

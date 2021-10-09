@@ -27,4 +27,7 @@ public interface SpaceDAO {
 	//장소 승인 상태
 	SpaceVO getSpaceActive(String spaceNum);
 	
+	//승인 대기중인 장소 전부 조회
+	List<SpaceVO> beforeAllow();
+	
 }
