@@ -260,7 +260,7 @@
 <body>
 <%@ include file="../header.jsp" %>
 	<form action="" id="regist_form" method="post">
-	<div class="h_column_center" style="margin-top: 20px;">
+	<div class="h_column_center" style="margin-top: 100px;">
 		<p
 			style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 			회원가입</p>
