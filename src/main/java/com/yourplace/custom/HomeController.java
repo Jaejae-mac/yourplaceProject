@@ -33,7 +33,8 @@ public class HomeController {
 	private AvailableBannerService availableService;
 	
 	@GetMapping("/home.do")
-	public String home(Model model,HttpSession session, @RequestParam(value="welcomeCoupon", required = false) String welcomeCoupon) {
+	public String home(Model model,HttpSession session, @RequestParam(value="welcomeCoupon", required = false) String welcomeCoupon,
+			@RequestParam(value="hostAccessDenied", required = false) String hostAccessDenied) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
 		//북마크.
 		List<InterestVO> bookmarks = null;
@@ -59,6 +60,9 @@ public class HomeController {
 		}
 		if(welcomeCoupon != null) {
 			model.addAttribute("welcomeCoupon", welcomeCoupon);
+		}
+		if(hostAccessDenied != null) {
+			model.addAttribute("hostAccessDenied", "hostAccessDenied");
 		}
 		model.addAttribute("latestPlaces", latestPlaces);
 		model.addAttribute("banner", bannerVO);

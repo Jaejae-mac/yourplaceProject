@@ -1253,6 +1253,7 @@
         if(parseInt($("#people_cnt").text()) < ${placeInfo.placeCapa}){
         	swal("","기본 ${placeInfo.placeCapa}인 이상 부터 예약 가능합니다.","warning");
         	$("#people_cnt").focus();
+        	
         }else{
         	var beginTime = $("#form_start_time").val();
             var endTime = $("#form_end_time").val();

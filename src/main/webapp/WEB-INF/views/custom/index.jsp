@@ -47,6 +47,11 @@
 			swal('', '비밀번호 변경을 완료했습니다.', "success");
 		</script>
 	</c:if>
+	<c:if test="${hostAccessDenied =='hostAccessDenied' }">
+		<script>
+			swal("","호스트로 가입한 회원은 예약을 이용할 수 없습니다.","warning");
+		</script>
+	</c:if>
 	<c:if test="${noAccess == '1' }">
 		<script>
 			swal('', '유효하지 않은 페이지입니다.\n비밀번호 찾기를 다시 진행해주세요.', "success");
@@ -71,6 +76,7 @@
 					})		
 		</script>
 	</c:if>
+	
 	<!--배너 스크립트-->
 	<script>
 		let banner = {

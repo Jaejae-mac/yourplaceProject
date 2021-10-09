@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yourplace.commons.vo.IUserVO;
 import com.yourplace.custom.home.service.CategoryKewordService;
 import com.yourplace.custom.home.service.CategorySearchService;
 import com.yourplace.custom.home.service.CategoryService;
@@ -44,7 +45,7 @@ public class CateController {
 		
 		if(session.getAttribute("userVO") != null) {
 			InterestVO vo = new InterestVO();
-			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			String userId = ((IUserVO)session.getAttribute("userVO")).getUserId();
 			vo.setUserId(userId);
 			bookmarks = bookmarkListService.bookmarkList(vo);
 			for(PlaceCardVO card : list) {
