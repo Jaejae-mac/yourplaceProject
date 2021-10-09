@@ -96,9 +96,9 @@
 							<dl class="flex_box refund" style="margin: 10px 0; padding: 0px;">
 								<dt class="flex tit" style="font-size: 20px;">장소명</dt>
 								<dd class="flex" style="font-size: 20px;">
-									${reserve.placeName} <a href="" class="move_link">[상세보기로
+									${placeInfo.placeName} <a href="/detailPlaceForm.do?placeNum=${placeInfo.placeNum }" class="move_link">[상세보기로
 										이동]</a><br>
-								<dt class="flex tit" style="font-size: 32px;">예약이 확정되었습니다.</dt>
+								<dt class="flex tit" style="font-size: 28px;">예약이 확정되었습니다.</dt>
 								</dd>
 							</dl>
 
@@ -118,8 +118,6 @@
 
 
 					</div>
-					<input type="hidden" value="${placeInfo.hostNickName}"
-						id="nick_name" />
 					<!--여기 하단부터 반복 복사-->
 					<!--1. 예약내용 div-->
 					<div style="width: 100%; margin-top: 50px">
@@ -152,39 +150,33 @@
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">예약일</dt>
-											<dd class="flex">2021 10 07 19시</dd>
+											<dd class="flex">${placeInfo.reservationDate}&nbsp;&nbsp;${placeInfo.reservationTime}</dd>
 											<!--${reserve.rsvYear}.${reserve.rsvMonte}.${reserve.rsvDate}일 -->
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">예약공간</dt>
 											<dd class="flex">
-												[강서/화곡] A room 비비호디에 스튜디오
+												${placeInfo.placeName }
 												<!--${reserve.placeNum} .-->
 											</dd>
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
-											<dt class="flex tit" style="color: rgb(36, 111, 248);">예약내용</dt>
-											<dd class="flex">2021 10월 08일11시 ~ 2021 10월 08일15시까지</dd>
-											<!--${reserve.rsvStartT}시 ~ ${reserve.rsvEndT} 시 까지-->
-										</dl>
-										<dl class="flex_box refund"
-											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">예약인원</dt>
-											<dd class="flex">7명</dd>
+											<dd class="flex">${placeInfo.headCount }명</dd>
 											<!--${reserve.personNum}명-->
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">요청사항</dt>
-											<dd class="flex">없습니다.</dd>
+											<dd class="flex">${placeInfo.rsvRequest }</dd>
 											<!--${reserve.rsvRequest}명-->
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">사용목적</dt>
-											<dd class="flex">촬영</dd>
+											<dd class="flex">${placeInfo.rsvPurpose }</dd>
 											<!--${reserve.purPose}명-->
 										</dl>
 									</div>
@@ -228,21 +220,21 @@
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">예약자명</dt>
-											<dd class="flex">${reserve.userName}</dd>
+											<dd class="flex">${placeInfo.rsvName}</dd>
 											<!--${reserve.userName}-->
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">연락처</dt>
 											<dd class="flex">
-												${reserve.userPw}
+												${placeInfo.rsvTel}
 											<!--${reserve.userPw}-->	
 											</dd>
 										</dl>
 										<dl class="flex_box refund"
 											style="margin: 10px 0; padding: 0px;">
 											<dt class="flex tit" style="color: rgb(36, 111, 248);">이메일</dt>
-											<dd class="flex">${reserve.userEmail}</dd>
+											<dd class="flex">${placeInfo.rsvEmail}</dd>
 											<!--${reserve.userEmail}-->	
 										</dl>
 
@@ -377,7 +369,7 @@
 																예약날짜:</p>
 															<label
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-																2021 09 08일 </label>
+																${placeInfo.reservationDate } </label>
 														<!--${reserve.rsvYear}.${reserve.rsvMonte}.${reserve.rsvDate}일 -->
 														</div>
 														<div class="h_row_center"
@@ -387,7 +379,7 @@
 																예약시간:</p>
 															<label
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-																9월 9일 17시 ~ 19시 까지</label>
+																${placeInfo.reservationTime }</label>
 														<!--${reserve.rsvStartT}시 ~ ${reserve.rsvEndT} 시 까지-->
 														</div>
 														<div class="h_row_center"
@@ -397,17 +389,18 @@
 																예약인원:</p>
 															<label
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-																7명</label>
+																${placeInfo.headCount}명</label>
 														<!--${reserve.personNum}명-->		
 														</div>
 														<div class="h_row_center"
 															style="margin-top: 20px; width: 1180px; margin-bottom: 30px; flex-wrap: wrap;">
 															<p
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center;">
-																결제정보:</p>
+																쿠폰정보:</p>
 															<label
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-																카카오페이</label>
+																${placeInfo.coupName }
+																</label>
 														<!--${reserve.rsvPayMthd}-->			
 														</div>
 
@@ -419,11 +412,11 @@
 															style="margin-top: 20px; width: 1180px; margin-bottom: 30px; flex-wrap: wrap;">
 
 															<p
-																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; font-size: 24px;">
+																style="margin-left: 10px; margin-bottom: 0; font-size: 18px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; font-size: 24px;">
 																합계 &#8361;(원):</p>
 															<label
 																style="margin-left: 10px; margin-bottom: 0; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248); font-size: 24px;">
-																30,000</label>
+																${placeInfo.placePrice }</label>
 
 														</div>
 														
@@ -436,14 +429,14 @@
 									<div class="h_center">
 										<div class="h_row_center">
 										<!-- 예약 취소 버튼 예약 진행중 페이지로-->
-										<a href="/goreserve.do?userId=${userId}" style="text-decoration: none; color: black;">
+										<a href="/goreserve.do?userId=${userVO.userId}" style="text-decoration: none; color: black;">
 											<button class="btn_cancle"
-												style="width: 180px; height: 80px; font-size: 30px;">예약취소</button>
+												style="width: 180px; height: 50px; font-size: 20px;">예약취소</button>
 												</a>
 											<!--메인으로 가는 버튼-->
 											<a href="/home.do" style="text-decoration: none; color: black;">
 											<button class="btn_goto_main" 
-												style="width: 180px; height: 80px; font-size: 30px;">메인으로
+												style="width: 180px; height: 50px; font-size: 20px;">메인으로
 											</button>
 											</a>
 											<!---->

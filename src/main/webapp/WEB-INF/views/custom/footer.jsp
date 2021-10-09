@@ -48,20 +48,20 @@
 
                 <p
                     style="font-size: 15px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.33;letter-spacing: -0.1px;color: #9ea4aa;">
-                    (주)먼치팩토리 사업자 정보
+                    (주)Connect 사업자 정보
                 </p>
                 <p
                     style="margin-top: 16px;font-size: 12px;font-weight: normal;font-stretch: normal;font-style: normal;line-height: 1.67;letter-spacing: normal;color: #9ea4aa;">
-                    대표 서영석<br>
-                    주소 서울특별시 강남구 압구정로2길 62 대성빌딩 202호<br>
-                    사업자 등록번호 494-81-00558<br>
-                    통신판매업신고번호 2018-서울강남-04057<br>
-                    (주)먼치팩토리는 통신판매중개자로서, 통신판매의 당사자가 아니라는 사실을 고지하며 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
+                    대표 BYLA<br>
+                    주소 서울특별시 강남구 ***로*길 ** **빌딩 ***호<br>
+                    사업자 등록번호 132-234-123456<br>
+                    통신판매업신고번호 1111-1234-1234<br>
+                    (주)Connect는 통신판매중개자로서, 통신판매의 당사자가 아니라는 사실을 고지하며 상품의 예약, 이용 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
                 </p>
 
                 <p
                     style="position:absolute; bottom: 50px;font-size: 11px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.36;letter-spacing: normal;color: #9ea4aa;">
-                    © munchfactory Inc.
+                    © Connect Inc.
                 </p>
 
                 <div class="h_row_center" style="position:absolute; bottom: 50px; right: 0;">

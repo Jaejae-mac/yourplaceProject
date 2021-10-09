@@ -58,7 +58,7 @@
 	<%@ include file="../header.jsp" %>
 
     <div id="main_vue" class="h_column_center" style="min-height: 1000px;">
-      <div style="width: 1160px;">
+      <div style="width: 1160px;margin-top:60px">
         <p
         class="h_center"
           style="
@@ -79,7 +79,7 @@
                 margin-top: 30px;
                 width: 100%;
                 height: 1px;
-                background-color: rgb(40, 121, 227);
+                background-color: rgb(149, 183, 227);
               "
             ></div>
         <div class="h_row_center" style="margin-top: 19px; height: 24px">
@@ -176,7 +176,7 @@
                     margin-right:20px;
                     ">
                   <img
-                    src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/thumbnail/${placeInfo.userId}/${placeInfo.placeNum }/ThumbImg.jpeg"
+                    src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${placeInfo.placeThumb }"
                     style="
                       width: 100%;
                       height: 100%;
@@ -923,7 +923,7 @@
                      <select name="couponList" id="coupon_list" style="width:100%;min-height:30px;outline:none;border:0px;margin-left:5px;margin-right:5px">
                      	<option value="none" selected>[ 쿠폰 선택 ]</option>
                      <c:forEach var="coupon" items="${myCouponList }">
-                     	<option value="${coupon.coupNum}#${coupon.coupDisRate}">[ ${coupon.coupName} ] ${coupon.coupDisRate}%할인</option>	
+                     	<option value="${coupon.coupNum}#${coupon.coupDisRate}#${coupon.coupName}">[ ${coupon.coupName} ] ${coupon.coupDisRate}%할인</option>	
                      </c:forEach>
                      	
                      </select>
@@ -1157,11 +1157,6 @@
 		
   	});
   });
-	 
-		  
-	  
-	  
-  
   
   $("#cancel_btn").click(function(){
 	 swal({
@@ -1235,7 +1230,24 @@
 					        msg += '상점 거래ID : ' + rsp.merchant_uid;
 					        msg += '결제 금액 : ' + rsp.paid_amount;
 					        msg += '카드 승인번호 : ' + rsp.apply_num; */
-					        location.href="/home.do?reserve=1";
+					        var valueList = "?placeName=${placeInfo.placeName}&placeNum=${placeInfo.placeNum}";
+					        var couponInfo=$("#coupon_list").val().split("#");//쿠폰정보.
+					        var coupName = couponInfo[2];//쿠폰 이름.
+					        console.log("coupName = " + coupName);
+					        if(!coupName){
+	    						valueList += ("&coupName="+coupName);    			
+			        		}
+					        valueList+=("&rsvName="+$("#user_name").val());
+					        valueList+=("&rsvEmail="+$("#user_email").val());
+					        valueList+=("&rsvTel="+$("#user_tel").val());
+					        valueList+=("&rsvPurpose="+$("#rsv_purpose").val());
+					        valueList+=("&rsvRequest="+$("#rsv_request").val());
+					        valueList+=("&reservationTime=${placeInfo.rsvStartT }:00 ~ ${placeInfo.rsvEndT }:00 (${placeInfo.rsvEndT-placeInfo.rsvStartT }시간)");
+					        valueList+=("&reservationDate=${placeInfo.rsvYear}년 ${placeInfo.rsvMonth }월 ${placeInfo.rsvDate}일");
+					        valueList+=("&headCount=${placeInfo.headCount }");
+					        valueList+=("&placePrice=${placeInfo.placePrice }");
+					        
+					        location.href="/rsvResult.do"+valueList;
 				    	}
 				     }
 					});

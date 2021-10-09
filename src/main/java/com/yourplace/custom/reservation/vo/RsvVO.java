@@ -30,6 +30,8 @@ public class RsvVO {
 	private int payMonth;
 	private int payDate;
 	private String payCoupNum = "none";
+	//쿠폰 이름.
+	private String coupName;
 	// 프론트에서 계산된 총 결제 가격.
 	private String rstPrice;
 	// 사용자 입력 인원 수
@@ -49,4 +51,9 @@ public class RsvVO {
 	private String placeMaincate;
 	// 서브 카테고리.
 	private String placeCate;
+	//썸네일 경로.
+	private String placeThumb;
+	//결제완료창에 보여질 예약시간 및 날짜.
+	private String reservationDate;
+	private String reservationTime;
 }

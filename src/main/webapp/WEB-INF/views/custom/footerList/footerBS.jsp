@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="chrome">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YourPlace</title>
+<title>YourPlace-사업자정보확인</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/footerlist.css" />">
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -41,10 +41,10 @@
 
 
 			<p class="h_policy_title">통신 판매 번호</p>
-			<p class="h_policy_desc">2018-서울강남-04057</p>
+			<p class="h_policy_desc">1111-1234-1234</p>
 
 			<p class="h_policy_title">사업자 등록번호</p>
-			<p class="h_policy_desc">494-81-00558</p>
+			<p class="h_policy_desc">132-234-123456</p>
 
 			<p class="h_policy_title">신고현황</p>
 			<p class="h_policy_desc">통신판매업 신고</p>
@@ -53,13 +53,13 @@
 			<p class="h_policy_desc">법인</p>
 
 			<p class="h_policy_title">상호</p>
-			<p class="h_policy_desc">주식회사 먼치팩토리</p>
+			<p class="h_policy_desc">주식회사 Connect</p>
 
 			<p class="h_policy_title">대표자명</p>
-			<p class="h_policy_desc">서영석,노한준</p>
+			<p class="h_policy_desc">BYLA</p>
 
 			<p class="h_policy_title">대표 전화번호</p>
-			<p class="h_policy_desc">070-4225-4947</p>
+			<p class="h_policy_desc">010-****-****</p>
 
 			<p class="h_policy_title">판매방식</p>
 			<p class="h_policy_desc">인터넷</p>
@@ -68,23 +68,23 @@
 			<p class="h_policy_desc">종합몰, 기타</p>
 
 			<p class="h_policy_title">전자우편</p>
-			<p class="h_policy_desc">team@yourplace.co.kr</p>
+			<p class="h_policy_desc">kgteambyla@gmail.com</p>
 
 			<p class="h_policy_title">신고일자</p>
-			<p class="h_policy_desc">2017년 11월 28일</p>
+			<p class="h_policy_desc">2021년 **월 **일</p>
 
 			<p class="h_policy_title">사업장 소재지</p>
-			<p class="h_policy_desc">서울특별시 강남구 신사동 512번지 10호</p>
+			<p class="h_policy_desc">서울특별시 강남구 ***로*길 ** **빌딩 ***호</p>
 			<p class="h_policy_title">사업장 소재지(도로명)</p>
-			<p class="h_policy_desc">서울특별시 강남구 압구정로2길 62, 대성빌딩 2층 202호 (신사동)
+			<p class="h_policy_desc">서울특별시 강남구 ***로*길 ** **빌딩 ***호
 			</p>
 
 			<p class="h_policy_title">인터넷 도메인</p>
-			<p class="h_policy_desc">www.yourplace.co.kr</p>
+			<p class="h_policy_desc">ec2-3-38-115-143.ap-northeast-2.compute.amazonaws.com/home.do</p>
 			<p class="h_policy_title">호스트 서버 소재지</p>
-			<p class="h_policy_desc">서울특별시 강남구 논현로 508, 12층(역삼동)</p>
+			<p class="h_policy_desc">AMAZON AWS</p>
 			<p class="h_policy_title">통신판매업 신고기관명</p>
-			<p class="h_policy_desc">서울특별시 강남구청 (02-3423-5515,5382)</p>
+			<p class="h_policy_desc">서울특별시 강남구청</p>
 		</div>
 	</div>
 	<!-- 신고하기 팝업 내용 끝 -->

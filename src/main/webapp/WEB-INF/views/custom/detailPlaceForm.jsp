@@ -554,6 +554,8 @@
 												name="placeMaincate" value="${placeInfo.placeMaincate}" />
 											<input type="hidden" name="placeCate"
 												value="${placeInfo.placeCate}" />
+											<input type="hidden" name="placeThumb"
+												value="${placeInfo.placeThumb}" />
 										</form>
 										<div class="date_picker"
 											style="margin: 10px 10px; position: relative; display: inline-block;">

@@ -16,7 +16,6 @@ import com.yourplace.custom.reservation.service.GetDetailInfo;
 import com.yourplace.custom.reservation.service.RsvGetReservationService;
 import com.yourplace.custom.reservation.vo.DetailPlaceVO;
 import com.yourplace.custom.reservation.vo.RsvVO;
-import com.yourplace.custom.reserve.vo.ReserveVO;
 
 @RestController
 public class RsvController {

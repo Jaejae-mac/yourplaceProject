@@ -147,8 +147,11 @@ public class DetailController {
 	}
 
 	@GetMapping("/rsvResult.do")
-	public String rsvResultForm() {
-		System.out.println("hi");
+	public String rsvResultForm(RsvVO vo, Model model) {
+		if(vo.getCoupName().equals("undefined")) {
+			vo.setCoupName("없음");
+		}
+		model.addAttribute("placeInfo", vo);
 		return "reservation/rsvResult";
 	}
 
