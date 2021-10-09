@@ -150,7 +150,7 @@
 						<!-- for each 문 시작 -->
 						<c:forEach var="ban" items="${banner}">
 							<li>
-								<a href="${ban.bannerUrl }">
+								<a href='/category.do?maincate=&subcate=&sort=최신순'>
 								<c:if test="${ban.bannerShow eq '1'}"><img src="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }" /></c:if>
 							</a>
 							</li>

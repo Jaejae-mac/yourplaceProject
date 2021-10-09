@@ -93,7 +93,7 @@
 							style="width: 20px; height: 20px;">
 						<p id="main_booking"
 							style="margin-bottom: 0; margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; text-align: center; color: var(- -grey-060);">
-							신청일 순</p>
+							신청순</p>
 					</div>
 				</div>
 				<div class="booking_sort"
@@ -102,11 +102,11 @@
 						style="padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 12px;">
 						<div id="close_booking_ing" class="h_hover_button"
 							style="margin-bottom: 0; position: relative; display: flex; flex-direction: row; align-items: center; height: 40px; padding: 0px 30px;">
-							<p>신청일 순</p>
+							<p>신청순</p>
 						</div>
 						<div id="close_booking_app" class="h_hover_button"
 							style="margin-bottom: 0; position: relative; display: flex; flex-direction: row; align-items: center; height: 40px; padding: 0px 30px;">
-							<p>최신일 순</p>
+							<p>오래된 순</p>
 						</div>
 					</div>
 				</div>	
@@ -269,12 +269,12 @@
         }
         // 원하는 정렬 클릭시 상태 변화
         $(document).on('click','#close_booking_ing',function(){
-        	document.getElementById('main_booking').innerHTML='신청일 순';
+        	document.getElementById('main_booking').innerHTML='신청순';
             document.getElementById('resList').style.flexDirection ='column';
             h_hide_popup('.booking_sort')
         })
         $(document).on('click','#close_booking_app',function(){
-        	document.getElementById('main_booking').innerHTML='최신일 순';
+        	document.getElementById('main_booking').innerHTML='오래된 순';
             document.getElementById('resList').style.flexDirection ='column-reverse';
             h_hide_popup('.booking_sort')
         })
