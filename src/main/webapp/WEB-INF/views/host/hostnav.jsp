@@ -10,7 +10,7 @@
 <body>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="/indexOurPlace.hdo">Yourplace
+		<a class="navbar-brand ps-3" href="/indexYourPlace.hdo">Yourplace
 			Host</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -122,8 +122,7 @@
 						<div class="collapse" id="collapseMember"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/placeReserveListForHost.hdo">예약
-									현황</a>
+								<a class="nav-link" href="/placeReserveListForHost.hdo">예약현황</a>
 
 						<a class="nav-link" href="/LastPlaceReserveListForHost.hdo">지난 예약 현황</a>
 							</nav>
@@ -167,10 +166,9 @@
 							<div class="collapse" id="collapsePayManagement"
 								aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 								<nav class="sb-sidenav-menu-nested nav">
-									<a class="nav-link" href="/hostSales.hdo">결제 정보</a> <a
-										class="nav-link" href="#">매출 현황</a>
+									<a class="nav-link" href="/hostSales.hdo">결제 정보</a> 
 										<a class="nav-link" href="/getYearChartForHost.hdo">연간 차트</a>
-										<a class="nav-link" href="/getInvoiceForHost.hdo">메출 차트</a>
+										<a class="nav-link" href="/getInvoiceForHost.hdo">매출 차트</a>
 								</nav>
 							</div>
 						</div>

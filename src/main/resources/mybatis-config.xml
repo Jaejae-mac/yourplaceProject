@@ -84,6 +84,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="MyPageCouponVO" />
 		<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO"
 			alias="cardPlace" />
+
 		<typeAlias
 			type="com.yourplace.custom.mypage.vo.MyPageHostReviewVO"
 			alias="MyPageHostReviewVO" />
@@ -113,7 +114,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.interest.vo.InterestVO" alias="MyInterest" />
 	<!-- custom 끝 -->	
-
 	</typeAliases>
 
 

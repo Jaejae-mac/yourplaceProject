@@ -26,14 +26,7 @@
     position:relative; right:10px;
 
 }
-   .photoFrame{
-      width: 500px;
-      height: 500px;
-    }
-    .photoFrame:hover{
-      cursor: pointer;
-    }
-
+  
 </style>
 
 
@@ -58,23 +51,21 @@
                         style="margin-top: 50px;position: relative; left: 100px; margin-bottom: 120px; width: 580px; border-radius: 10px; border: 1px solid rgb(223, 226, 231); background-color: rgb(255, 255, 255);">
                         <div class="h_center"
                             style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-						<div id="image_container"  >
-
-	
-							<img
-								src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png"
-								id="default"
-								style="width: 100%; height: 100%; border-radius: 60px; position: relative; left: 100px; width: 120px; height: 120px;">
-
-							<input type="file"
-								name="uploadImg" id="uploadImg"
-			
-								style="position: relative; left: 10px; top: 70px;">
-								  <div id="pictures"></div>
-
 						</div>
+						
+						<div style="position:relative; left:70px;">
+						<div id="image_container" style="position:relative; left:150px;"  >
 
-					</div>
+							<div class="image-container">
+								<img style="width: 120px; height: 120px; border-radius: 100%;"
+									id="preview-image" src="${userImg}">
+									<br><br>
+								<input style="display: block; font-size: 10px; margin-left: 10px; position:relative; right:40px;" class="btn btn-primary" type="file" id="input-image" name="input-image">
+							</div>
+</div>
+							
+						</div>
+					
                         <div id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true"
                             class="modal fade">
                             <div role="document" class="modal-dialog">
@@ -86,8 +77,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="img-container">
-                                        <img id="image" src="https://avatars0.githubusercontent.com/u/3456749"
-                                                style="max-width: 400px;"></div>
+                                     </div>
                                     </div>
                                     <div class="modal-footer"><button type="button" data-dismiss="modal"
                                             class="btn btn-default">취소</button> <button type="button" id="crop"
@@ -157,7 +147,7 @@
                              </div>
                              
                               <div style="position:relative; left:70px;">
-                            <input type="submit" class="btn btn-primary" name="sub" id="sub" onclick="a()"
+                            <input type="submit" class="btn btn-primary" name="sub" id="sub" onclick="a(); d();"
                                 style="font-size: 10px;margin-left: 10px; position:relative; left: 190px; top: 80px;" value="확인"/>
 						
 
@@ -169,11 +159,11 @@
 
         </div>
     </div>
+</div>
 
-
     </div>
     </div>
-    </div>
+   
       
     </main>
 
@@ -226,16 +216,17 @@ function a()
 	console.log(arr3);
 	
 
-	var userProfileImg = $('input[name="uploadImg"]').get(0).files[0];
+	var userProfileImg = $('input[name="input-image"]').get(0).files[0];
 	var formData = new FormData();
 	formData.append('userProfileImg', userProfileImg);
 	
+	console.log(userProfileImg);
 	
 	$.ajax(
 
 	{
 	
-	url : '/myProfile.hdo',
+	url : '/profileUpdate.hdo',
 			data :formData,
 			processData : false,
 			contentType : false,
@@ -255,7 +246,6 @@ function a()
 					datatype : "text",
 					type : 'POST',
 					success : function(xh) {
-					 	alert("전송완료");
 					}
 				});
 	
@@ -263,10 +253,35 @@ function a()
 	
 	
 	
-	
+	function d(){
+		alert('변경이 완료되었습니다.');
+	}
 	
 </script>
  
+<script>
+function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    }
+}
+// input file에 change 이벤트 부여
+const inputImage = document.getElementById("input-image")
+inputImage.addEventListener("change", e => {
+    readImage(e.target)
+})
+
+</script>
   
   
     

@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="HostDAO">
+
 	<resultMap type="myHost" id="hostResult">
 		<id property="userNum" column="user_num" />
 		<result property="userType" column="user_type" />
@@ -27,9 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT * FROM member WHERE user_type=1 and user_id=#{userId}
 	
 	</select>
-	
-	
-		<resultMap type="myHost" id="hostInfo">
+
+
+	<resultMap type="myHost" id="hostInfo">
 		<id property="userNum" column="user_num" />
 		<result property="userType" column="user_type" />
 		<result property="userName" column="user_name" />
@@ -52,11 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 
-	<update id="updateHostInfo">
-	UPDATE member SET user_profile_img =#{imgUrl} WHERE user_id=#{userId};
-	</update>
-	
-	
 
+
+	<update id="updateHostInfoImg">
+		UPDATE member SET user_profile_img=#{imgUrl} 
+		WHERE user_id=#{userId}
+	</update>
+
+
+	<update id="updateHostInfo">
+		UPDATE member SET user_nick_name=#{userNickName}, 
+		user_email=#{userEmail}, user_intro=#{userIntro} WHERE user_id=#{userId}
+	</update>
 
 </mapper>

@@ -19,7 +19,7 @@ public class HomeController {
 	@Inject
 	HostReservService service;
 	
-	@RequestMapping(value= "/indexOurPlace.hdo")
+	@RequestMapping(value= "/indexYourPlace.hdo")
 	public ModelAndView mainView(HttpServletRequest request, HostReservVO vo) throws Exception {
 		List<HostReservVO> list = service.getAllReserve(vo);
 		
