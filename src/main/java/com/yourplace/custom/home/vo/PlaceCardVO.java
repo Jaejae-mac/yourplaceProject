@@ -35,8 +35,11 @@ public class PlaceCardVO {
 	boolean bookmark;
 	//검색 단어
 	private String keyword;
+	// 인원수 옵션
 	private int placePeople;
+	// 최소 가격 옵션
 	private int minPrice;
+	// 최대 가격 옵션
 	private int maxPrice;
 
 }

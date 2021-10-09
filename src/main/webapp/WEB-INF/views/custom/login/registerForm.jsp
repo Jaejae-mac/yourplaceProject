@@ -53,16 +53,16 @@
             //참 : 동의 상태 / 거짓: 동의 안한 상태.
             $(document).on('click','.agree-all',function(){
                 if(!chkAllFlag){
-                    $(".agree-all").css({"background-color":"rgb(7,94,214)", "border-radius":"50px","border":"1px solid lightgray"});
-                    $(".agree-service").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
-                    $(".agree-personal").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check_b.png' />");
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
                     chkAllFlag=true;
                     chkService=true;
                     chkPersonal=true;
                 }else{
-                    $(".agree-all").css({"background-color":"rgb(255,255,255)", "border-radius":"100px","border":"1px solid lightgray"});
-                    $(".agree-service").css({"filter":"opacity(1) drop-shadow(0 0 0 lightgray)"});
-                    $(".agree-personal").css({"filter":"opacity(1) drop-shadow(0 0 0 lightgray)"});
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_g.png' />");
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_g.png' />");
                     chkAllFlag=false;
                     chkService=false;
                     chkPersonal=false;
@@ -72,35 +72,49 @@
             //수정해야함. 아직 미완성.
             $(document).on('click','.agree-service',function(){
                 if(!chkAllFlag &&chkPersonal && !chkService){
-                    $(".agree-all").css({"background-color":"rgb(7,94,214)", "border-radius":"50px","border":"1px solid lightgray"});
-                    $(".agree-service").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
-                    $(".agree-personal").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check_b.png' />");
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
                     chkAllFlag=true;
                     chkService=true;
                     chkPersonal=true;
                     return;
                 }
-                if(chkAllFlag &&chkPersonal && !chkService){
-                    $(".agree-all").css({"background-color":"rgb(7,94,214)", "border-radius":"50px","border":"1px solid lightgray"});
-                    chkAllFlag=true;
+                else if(!chkAllFlag &&!chkPersonal &&!chkService){
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
                     chkService=true;
-                    chkPersonal=true;
                     return;
-                }
-                if(!chkService){
-                    $(".agree-service").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
-                    $(".agree-personal").css({"filter":"opacity(1) drop-shadow(0 0 0 blue)"});
-                    chkAllFlag=true;
-                    chkService=true;
-                    chkPersonal=true;
                 }else{
-                    $(".agree-all").css({"background-color":"rgb(255,255,255)", "border-radius":"100px","border":"1px solid lightgray"});
-                    $(".agree-service").css({"filter":"opacity(1) drop-shadow(0 0 0 lightgray)"});
-                    $(".agree-personal").css({"filter":"opacity(1) drop-shadow(0 0 0 lightgray)"});
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_g.png' />");
                     console.log("back!!");
+                    chkAllFlag=false;
                     chkService=false;
+                    return;
                 }
-                
+            });
+            $(document).on('click','.agree-personal',function(){
+                if(!chkAllFlag &&!chkPersonal && chkService){
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check_b.png' />");
+                	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                    chkAllFlag=true;
+                    chkService=true;
+                    chkPersonal=true;
+                    return;
+                }
+                else if(!chkAllFlag &&!chkPersonal && !chkService){
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
+                    chkPersonal=true;
+                    return;
+                }else{
+                	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
+                	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_g.png' />");
+                    console.log("back!!");
+                    chkAllFlag=false;
+                    chkPersonal=false;
+                    return;
+                }
             });
         });
         $(function () {
@@ -505,7 +519,7 @@
 
 			<div class="h_row_center h_round_check"
 				style="margin-top: 21px; height: 32px; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); background-color: #ffffff;">
-				<img
+				<img id="agree-all"
 					src="<c:url value="/resources/img/icon/register/controls_round_check.png" />"
 					style="margin-left: 6px; margin-right: 12px; width: 24px; height: 24px"
 					class="agree-all" />
@@ -516,7 +530,7 @@
 
 			<div class="h_row_center h_check"
 				style="margin-top: 10px; height: 32px; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); background-color: #ffffff;">
-				<img
+				<img id="agree-service"
 					src="<c:url value="/resources/img/icon/register/check_g.png" />"
 					style="margin-left: 8px; margin-right: 10px; width: 18px; height: 18px"
 					class="agree-service" />
@@ -530,7 +544,7 @@
 
 			<div class="h_row_center h_check"
 				style="height: 32px; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); background-color: #ffffff;">
-				<img
+				<img id="agree-personal"
 					src="<c:url value="/resources/img/icon/register/check_g.png" />"
 					style="margin-left: 8px; margin-right: 10px; width: 18px; height: 18px;"
 					class="agree-personal" />

@@ -592,7 +592,7 @@
 						onclick="hourplace_v2.userLog('W', '/', 'click', 'category', 'all');window.location.href='/category';"
 						class="h_center h_hover_button"
 						style="width: 280px; height: 56px; border-radius: 8px; background-color: rgb(245, 249, 255); cursor: pointer;">
-						<div class="h_row_center show_all_category" onclick="location.href='/category.do?maincate=&subcate='">
+						<div class="h_row_center show_all_category" onclick="location.href='/category.do?maincate=&subcate=&sort=최신순'">
 							<p>아워플레이스 모든 장소 보기</p>
 							<img
 								src="<c:url value="/resources/custom/icon/before_blue.svg" />"
@@ -613,7 +613,7 @@
 		<div style="margin-top: 80px; margin-bottom: 80px; width: 1176px;">
 			<div class="h_row_center">
 				<!--onclick="" 신규 등록 장소 목록-->
-				<div onclick=" " style="padding-left: 10px; cursor: pointer;">
+				<div onclick="new_category()" style="padding-left: 10px; cursor: pointer;">
 					<div class="h_row_center new_reco_m_title"
 						style="padding: 0px 0px 0px 0px;">
 
@@ -1331,5 +1331,17 @@ function gotoDetail(e){
     	
     }
 </script>
-
+<script type="text/javascript">
+      $.noConflict();
+	$("#newestPlace").slick({
+	      slidesToShow: 4,
+	      slidesToScroll: 4,
+	    });
+</script>
+<!-- 신규 버튼 -->
+<script>
+	function new_category(){
+		location.href = "/newcategory.do"
+	}
+</script>
 </html>

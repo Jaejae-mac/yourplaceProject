@@ -67,40 +67,30 @@
                     </p>
                 </-div> -->
 
-					<div class="h_center h_header_button"
-						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
-							가성비 스튜디오</p>
-					</div>
-					<div class="h_center h_header_button"
+					<div class="h_center h_header_button" onclick="new_category()"
 						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 						<p
 							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
 							신규</p>
 					</div>
-					<div class="h_center h_header_button"
-						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
-							장르별</p>
-					</div>
-					<div class="h_center h_header_button"
-						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
-							컨셉별</p>
-					</div>
-					<div class="h_center h_header_button"
-						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
-						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
-							공간별</p>
-					</div>
-
-					<div
-						style="width: 1px; height: 30px; background-color: rgb(201, 205, 210); margin-right: 10px; margin-left: 20px;">
-					</div>
+					
+					<div class="h_center" style="background-color: #FFF; width: 500px; position:relative; margin-left:35px;">            
+	                            <div style="height: 45px; width: 100%;">
+	                                <div class="h_row_center" style="height: 40px;">
+	                                    <div class="h_center" style="width: 30px;height: 30px;">
+	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
+	                                    </div>
+	                                    <div style="position:absolute;right: 77px;left: 57px;">
+	                                        <input id="search_input" onkeyup="enterkey();" 
+	                                            style="width: 100%;border-width: 0;font-size: 20px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
+	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
+	                                    </div>
+	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;" onclick="delete_search()">
+	                                        <img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />" style="width: 16px;height: 16px;" />
+	                                    </div>
+	                                </div>
+                                </div>
+                      </div>
 
 
 
@@ -183,48 +173,6 @@
 						</c:otherwise>
 					</c:choose>
 
-					<div
-                    style="width: 1px; height: 30px; background-color: rgb(201, 205, 210); margin-right: 10px; margin-left: 20px;">
-                </div>
-
-	            <!-- 검색기능 시작 -->
-	            <div onclick="toggle_search_container()"
-	                class="h_center" style="width: 44px; height: 44px; cursor: pointer;">
-	                <img src="/resources/img/search/search_b.png"
-	                    style="width: 24px; padding: 0px 13px; height: 40px; margin-left: 8px;" />
-	            </div>
-	                <!-- 검색기능 끝-->
-
-                <div class="search_container"
-	                id="search_vue"
-	                style="position: fixed;top: 100px;left: 0;width: 100%;height: 100%;display: none;z-index: 9999;background-color: rgba(0, 0, 0, 0.2);">
-	                <div style="width: 100%;height: 100%; display: flex; flex-direction: column;">
-	                    <div class="h_column_center" style="width: 100%; background-color: #FFF">
-	                        <div class="h_column_center" style="background-color: #FFF; width: 964px; position:relative; margin-bottom: 40px;">
-	            
-	                            <div style="height: 64px; width: 100%; border-bottom: 1px solid #e7eaee;">
-	                                <div class="h_row_center" style="height: 54px;">
-	                                    <div class="h_center" style="width: 44px;height: 44px;">
-	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
-	                                    </div>
-	                                    <div style="position:absolute;right: 77px;left: 57px;">
-	                                        <input id="search_input" onkeyup="enterkey();" 
-	                                            style="width: 100%;border-width: 0;font-size: 26px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
-	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
-	                                    </div>
-	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;" onclick="delete_search()">
-	                                        <img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />" style="width: 16px;height: 16px;" />
-	                                    </div>
-	                                    
-	                                </div>
-                                </div>
-<!-- 	                    <div style="flex: 1; cursor: pointer;" onclick="toggle_search_container()"> -->
-	            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 					<!-- Toggle test 용 마이 페이지 -->
 					<div class="h_my_menu"
 						style="display: none; z-index: 9999; position: absolute; top: 80px; right: 0; width: 220px; border-radius: 8px; box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.1); border: solid 1px #eff3f5; background-color: #ffffff;">
@@ -278,7 +226,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(0,1)">
+										onclick="click_category(0,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">전체</p>
 									</div>
@@ -341,7 +289,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(1,1)">
+										onclick="click_category(1,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -457,7 +405,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(2,1)">
+										onclick="click_category(2,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -517,7 +465,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(3,1)">
+										onclick="click_category(3,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -594,7 +542,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(4,1)">
+										onclick="click_category(4,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -671,7 +619,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(5,1)">
+										onclick="click_category(5,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -748,7 +696,7 @@
 									<!-- 상세 카테고리 시작 -->
 									<div class="h_hover_button h_row_center"
 										style="padding-left: 8px; height: 32px; width: 100%; border-radius: 2px;"
-										onclick="click_category(6,1)">
+										onclick="click_category(6,0)">
 										<p
 											style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #454b50;">
 											전체</p>
@@ -921,8 +869,15 @@
 					+ "&subcate=" + category[id1][id2] +"&sort=최신순";
 		}
 	</script>
+	<!-- 신규 버튼 -->
+	<script>
+		function new_category(){
+			location.href = "/newcategory.do"
+		}
+	</script>
 	<!-- 검색기능 -->
 	<script>
+		// 엔터키 입력시
 		function enterkey() {
 	        if (window.event.keyCode == 13) {
 	        	gocateSearch();

@@ -82,6 +82,7 @@
 	    function updatePw(){
 	    	$("#updatepassword").attr("action","/updatePw.do").submit();
 	    }
+	    // 비밀번호 유효성 검사
 	    function chkPW(){
 	        var pw = $("#userPw").val();
 	        var id = $("#userId").val();
@@ -112,6 +113,7 @@
 	          return true;
 	        }
 	    }
+	    // 비밀번호 확인검사
 	    function chkCPW(){
 		    if(document.getElementById('userPw').value != '' && document.getElementById('checkpass').value != ''){
 		        if(document.getElementById('userPw').value == document.getElementById('checkpass').value){

@@ -1,7 +1,6 @@
 package com.yourplace.custom.reservation.controller;
 
 import java.text.DecimalFormat;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.yourplace.custom.home.service.CategoryKewordService;
+import com.yourplace.custom.home.vo.PlaceCardVO;
 import com.yourplace.custom.interest.service.ChkMyBookmarkService;
 import com.yourplace.custom.interest.vo.InterestVO;
 import com.yourplace.custom.login.vo.UserVO;
@@ -49,7 +50,9 @@ public class DetailController {
 	// 북마크 존재여부 확인용 서비스.
 	@Autowired
 	private ChkMyBookmarkService chkMyBookmarkService;
-
+	//선택 태그로 검색을 위한 서비스
+	@Autowired
+	private CategoryKewordService categorykeywordService;
 	@GetMapping("/detailPlaceForm.do")
 	public String detailPlaceForm(@RequestParam("placeNum") String placeNum, Model model, HttpServletRequest request) {
 		PlaceInfoVO vo = new PlaceInfoVO();
@@ -201,5 +204,15 @@ public class DetailController {
 			break;
 		}
 		return rstPrice;
+	}
+	// 태그클릭시 페이지 이동 컨트롤러
+	@GetMapping("/tag.do")
+	public String searchTagForm(@RequestParam String hashTag, Model model) {
+		PlaceCardVO vo = new PlaceCardVO();
+		vo.setKeyword(hashTag);
+		model.addAttribute("keyword", hashTag);
+		model.addAttribute("placeCateList", categorykeywordService.getKeywordList(vo));
+		System.out.println(model);
+		return "indexCategory";
 	}
 }

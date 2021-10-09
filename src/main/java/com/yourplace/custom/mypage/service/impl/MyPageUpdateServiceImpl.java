@@ -28,9 +28,11 @@ public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 	private BCryptPasswordEncoder passEncoder;
 	@Override
 	public void updateUser(UserVO vo) {
+		// 프로필 업로드
 		System.out.println("업데이트 테스트");
 		MultipartFile mf = vo.getProfile();
 		String Profile = mf.getOriginalFilename();
+		System.out.println("테스트"+Profile);
 		if(Profile != "") {
 			
 			String fileType = Profile.substring(Profile.lastIndexOf(".") + 1);
@@ -73,9 +75,6 @@ public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 				e1.printStackTrace();
 			}
 		}else {
-			loginDAO.getUser(vo);
-			String userProfileImg = vo.getUserProfileImg();
-			vo.setUserProfileImg(userProfileImg);
 			mypageDAO.updateUser(vo);
 		}
 		

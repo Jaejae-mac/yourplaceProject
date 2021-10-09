@@ -166,12 +166,22 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb	
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE r.user_num = #{userNum}
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 0 
         AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb)
-		NOT IN( 
-		SELECT 
+		NOT IN(SELECT 
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb
+		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
+        WHERE r.user_num = #{userNum}
+		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)
+		OR r.user_num = #{userNum} AND a.rsv_refund_yn = 1
+		AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb)
+		NOT IN(SELECT 
 			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
@@ -206,21 +216,21 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE a.rsv_refund_yn = 2 OR a.rsv_refund_yn = 3
-		AND r.user_num = #{userNum}
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 2
+        OR r.user_num = #{userNum} AND a.rsv_refund_yn = 3
 		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
 	</select>
 	<!-- JJ 작성부. -->
 	<select id="getRsvList" resultMap="getmyreserveList">
 		SELECT * FROM reservation where
-		rsv_year=#{rsvYear} and rsv_month=#{rsvMonth} and rsv_date=#{rsvDate}
-		and place_num=#{placeNum} and place_detail_num=#{detailNum} order by
-		rsv_start_t asc;
+			rsv_year=#{rsvYear} and rsv_month=#{rsvMonth} and rsv_date=#{rsvDate}
+		and place_num=#{placeNum} and place_detail_num=#{detailNum}
+		order by rsv_start_t asc;
 	</select>
 	<select id="getDetail" resultMap="detailInfo">
-		SELECT a.*, b.place_price FROM
-		place_detail a, place b where a.place_num = #{placeNum} and
-		a.detail_num=#{detailNum} and b.place_num=#{placeNum};
+		SELECT a.*, b.place_price 
+		FROM place_detail a, place b 
+		where a.place_num = #{placeNum} and a.detail_num=#{detailNum} and b.place_num=#{placeNum};
 	</select>
 	<select id="getPlaceInfo" resultMap="placeResult">
 		select
@@ -229,9 +239,9 @@
 			(select round(avg(review_guest_rate),1) from reviewGuest where
 			place_num = a.place_num) as avg_rate,
 			(select user_nick_name from member where user_id=a.user_id) as user_nick_name
-				from place a
-					where place_num=#{placeNum}
-					order by place_reg_date desc ;
+		from place a
+		where place_num=#{placeNum}
+		order by place_reg_date desc ;
 	</select>
 	<select id="getImgList" resultMap="placeImgResult">
 		SELECT * FROM place_img WHERE place_num=#{placeNum}
@@ -245,64 +255,73 @@
 		select distinct a.*,
 				(select coup_name from coupon_all where coup_num = a.coup_num) as coup_name,
         		(select coup_dis_rate from coupon_all where coup_num = a.coup_num) as coup_dis_rate
-        	from coupon_user a
-        		where user_coup_id = #{userCoupId}
-					and 
-					<![CDATA[
-						current_timestamp >= a.coup_start_d
-					and
-						current_timestamp <= a.coup_end_d
-            		and 
-            		]]>
-            			a.user_coup_use_yn = 'n';
+        from coupon_user a
+        	where user_coup_id = #{userCoupId}
+			and 
+			<![CDATA[
+				current_timestamp >= a.coup_start_d
+			and
+				current_timestamp <= a.coup_end_d
+            and 
+            ]]>
+            a.user_coup_use_yn = 'n';
 	</select>
 	<insert id="insertReservation">
 		INSERT INTO reservation (place_num, rsv_num, user_num, rsv_year, rsv_month, rsv_date, rsv_start_t, rsv_end_t, rsv_purpose, rsv_request,
-						inv_bf_tax, pay_num,rsv_name, rsv_email, rsv_tel,place_detail_num , head_count,pay_coup_num)
-                        VALUES(
-						#{placeNum},#{rsvNum},#{userNum},#{rsvYear},#{rsvMonth},#{rsvDate},#{rsvStartT},#{rsvEndT},#{rsvPurpose},#{rsvRequest},#{invBfTax},#{payNum}, #{rsvName},#{rsvEmail},
-                        #{rsvTel},#{placeDetailNum},#{headCount},#{payCoupNum}
-                        );
+			inv_bf_tax, pay_num,rsv_name, rsv_email, rsv_tel,place_detail_num , head_count,pay_coup_num)
+        VALUES(
+			#{placeNum},#{rsvNum},#{userNum},#{rsvYear},#{rsvMonth},#{rsvDate},#{rsvStartT},#{rsvEndT},#{rsvPurpose},
+			#{rsvRequest},#{invBfTax},#{payNum},#{rsvName},#{rsvEmail},#{rsvTel},#{placeDetailNum},#{headCount},#{payCoupNum}
+        	);
 	</insert>
 	<update id="updateCouponStatus">
 		UPDATE coupon_user SET user_coup_use_yn = 'Y' where coup_num=#{coupNum} and user_coup_id=#{userCoupId}
 	</update>
 	<insert id="insertPayment">
 		INSERT INTO payment(
-							rsv_num, pay_num, place_maincate, place_cate,
-							pay_year, pay_month, pay_date, inv_cost,
-							coup_dis_rate, inv_bf_tax, inv_tax, inv_aft_tax,
-							user_num, pay_coup_num, order_num
-						)
-			VALUES(
-					#{rsvNum}, #{payNum} , #{placeMaincate} , #{placeCate} , 
-					#{payYear} , #{payMonth} , #{payDate} , #{invCost} ,
-					#{coupDisRate} , #{invBfTax} , #{invTax} , #{invAftTax} , 
-					#{userNum} , #{payCoupNum} , #{orderNum}
-				);
+			rsv_num, pay_num, place_maincate, place_cate,
+			pay_year, pay_month, pay_date, inv_cost,
+			coup_dis_rate, inv_bf_tax, inv_tax, inv_aft_tax,
+			user_num, pay_coup_num, order_num
+			)
+		VALUES(
+			#{rsvNum}, #{payNum} , #{placeMaincate} , #{placeCate} , 
+			#{payYear} , #{payMonth} , #{payDate} , #{invCost} ,
+			#{coupDisRate} , #{invBfTax} , #{invTax} , #{invAftTax} , 
+			#{userNum} , #{payCoupNum} , #{orderNum}
+			);
 	</insert>
 	
 	
 <!-- 검색 -->
 	<select id="getkeywordList" resultMap="getmyreserveList">
 		SELECT DISTINCT
-			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,re.rsv_date,
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb	
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE r.user_num = #{userNum}
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 0 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
         AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb)		
-		NOT IN( 
-		SELECT 
+		NOT IN(SELECT 
+			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb
+		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
+        WHERE r.user_num = #{userNum}
+		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)		
+		OR r.user_num = #{userNum} AND a.rsv_refund_yn = 1 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+        AND (r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
+			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
+			p.user_id,p.place_area,p.place_name,p.place_thumb)		
+		NOT IN(SELECT 
 			r.place_num,r.user_num,r.rsv_num,r.rsv_year,r.rsv_month,r.rsv_date,
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum}
 		AND DATE_FORMAT(CURDATE(), '%m') >= r.rsv_month AND DATE_FORMAT(CURDATE(), '%d') > r.rsv_date)
-		AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
         ORDER BY r.rsv_month ASC, r.rsv_date ASC;	
 	</select>
 	<select id="getkeywordListAll" resultMap="getmyreserveList">
@@ -333,8 +352,10 @@
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum}
-		AND a.rsv_refund_yn = 2 OR at.rsv_refund_yn = 3
-		AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		AND a.rsv_refund_yn = 2 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		ORDER BY r.rsv_month ASC, r.rsv_date ASC
+		OR a.rsv_refund_yn = 3 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		ORDER BY r.rsv_month ASC, r.rsv_date ASC
+		
 	</select>
 </mapper>

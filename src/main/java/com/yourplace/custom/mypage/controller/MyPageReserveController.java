@@ -26,7 +26,7 @@ public class MyPageReserveController {
 	private MyPageService mypageService;
 	@Autowired
 	private MyPageReviewService mypagereviewService;
-	
+	// 예약 리스트 
 	@RequestMapping("/goreserve.do")
 	public String goreserve(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -37,6 +37,7 @@ public class MyPageReserveController {
 		model.addAttribute("user", mypageService.getUser(vo));
 		return "mypage/mypageReserve";
 	}
+	// 진행중에 해당하는 예약 리스트
 	@RequestMapping("/reserveListIng.do")
 	@ResponseBody
 	public List<MyPageReserveVO> getReserveList(int num) {
@@ -50,6 +51,7 @@ public class MyPageReserveController {
 		System.out.println(tvo);
 		return tvo;
 	}
+	// 전체에 해당하는 예약 리스트
 	@RequestMapping("/reserveListAll.do")
 	@ResponseBody
 	public List<MyPageReserveVO> getReserveListAll(int num) {
@@ -62,6 +64,7 @@ public class MyPageReserveController {
 		System.out.println(tvo);
 		return tvo;
 	}
+	// 지난 내역에 해당하는 예약리스트
 	@RequestMapping("/reserveListEnd.do")
 	@ResponseBody
 	public List<MyPageReserveVO> getReserveListEnd(int num) {
@@ -74,6 +77,7 @@ public class MyPageReserveController {
 		System.out.println(tvo);
 		return tvo;
 	}
+	// 취소에 해당하는 예약리스트
 	@RequestMapping("/reserveListCancel.do")
 	@ResponseBody
 	public List<MyPageReserveVO> getReserveListCancel(int num) {
@@ -86,6 +90,7 @@ public class MyPageReserveController {
 		System.out.println(tvo);
 		return tvo;
 	}
+	// 예약 검색 기능
 	@RequestMapping("/reserveListkeyword.do")
 	@ResponseBody
 	public List<MyPageReserveVO> getReserveListkeyWord(String keyword,String title, int num) {
@@ -124,6 +129,7 @@ public class MyPageReserveController {
 			return null;
 		}
 	}
+	// 정상예약을 환불진행중으로 바꾸는 컨트롤러
 	@RequestMapping("/mypagerefund.do")
 	@ResponseBody
 	public String updateUser(String rsvNum){
@@ -134,6 +140,7 @@ public class MyPageReserveController {
 		reserveservice.updateReserve(vo);
 		return "success";
 	}
+	// 리뷰 컨트롤러
 	@RequestMapping("/insertGuestReview.do")
 	public String insertReview(MyPageGuestReviewVO vo) {
 		System.out.println("[mypageController] insertReview 기능");
