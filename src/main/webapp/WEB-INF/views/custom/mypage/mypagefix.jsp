@@ -42,11 +42,14 @@
 			<form action="" id="mypagefix_form" method="post" enctype="multipart/form-data">
 			<div class="h_center" style="margin-top: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center">
 				<label style="position: relative; width: 120px; height: 120px" data-toggle="tooltip"> 
-					<img src="${user.userProfileImg}"
+					<img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
 						style="width: 100%; height: 100%; border-radius: 60px; position: absolute;" id="avatar" />
 					
 					<input type="file" id="input"  accept="image/*" style="display: none " name="Profile">
 				</label>
+				<!-- 프로필에서 이미지 변경을 안할시 이미지 유지를 위한 값 설정 -->
+				<input type="hidden" name="userProfileImg" id="userProfileImg" value='${user.userProfileImg}'>
+				<!-- 설정 끝 -->
 				<div style="position: relative; width: 120px;" >
 					<img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
 						onclick= "deleteImg()"; style="width: 24px; height: 24px; position: absolute; right: 0; bottom: 0;" />
@@ -101,7 +104,10 @@
 								style="width: 16px; height: 16px;" />
 						</div>
 					</div>
+					<!-- 이메일 입력칸에 값 존재 여부 -->
 					<input type="hidden" name="Email" id="Email" value="Y">
+					<!-- 존재 여부 끝 -->
+					
 					<!-- 이메일 검증 결과 내역 -->
 					<div
 						style="height: 36px; display: flex; flex-direction: row; align-items: center;">
@@ -129,12 +135,14 @@
 						<p id="cMail"
 							style="margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 							[선택] 아워플레이스 소식 메일 수신 동의</p>
+						<!-- DB에서 동의 여부에 따른 상태 변화 확인-->
 						<c:if test="${userEmailAgree == 'N' }">
 							<input type="hidden" name="userEmailAgree" id="emailagree" value="N">
 						</c:if>
 						<c:if test="${userEmailAgree == 'Y' }">
 							<input type="hidden" name="userEmailAgree" id="emailagree" value="Y">
 						</c:if>
+						<!-- 상태 변화 확인 끝 -->
 					</div>
 					<div class="h_row_center h_check"
 						style="height: 32px; background-color: #ffffff; cursor: pointer;">
@@ -144,12 +152,14 @@
 						<p id="cSMS"
 							style="margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 							[선택] 아워플레이스 SMS 수신 동의</p>
+						<!-- DB에서 동의 여부에 따른 상태 변화 확인-->
 						<c:if test="${userSmsAgree eq 'N' }">
 							<input type="hidden" name="userSmsAgree" id="smsagree" value="N">
 						</c:if>
 						<c:if test="${userSmsAgree eq 'Y' }">
 							<input type="hidden" name="userSmsAgree" id="smsagree" value="Y">
 						</c:if>
+						<!-- 상태 변화 확인 끝 -->
 					</div>
 				</div>
 				<div class="h_column_center" style="margin-bottom: 60px;">
@@ -159,6 +169,7 @@
 				</div>
 				</form>
 				<script>
+				// 프로필 미리보기를 위한 function
 					$(document).ready(function() {
 					    $('#input').on('change', function() {
 					        $('#imageupload-label').text($(this).val());
@@ -179,8 +190,9 @@
 					inputImage.addEventListener("change", e => {
 					    readImage(e.target)					    
 					})
-					
-					
+				// 프로필 미리보기 끝
+				
+				// DB에서의 동의 값이 Y일 경우 색 변화
 					var userEmailAgree = $(emailagree).val()
                     var userSmsAgree = $(smsagree).val()
                     $(document).ready(function(){
@@ -203,6 +215,7 @@
                     }
                     function deleteImg(){
                     	document.getElementById('avatar').setAttribute('src', 'https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png') 
+                    	document.getElementById('userProfileImg').value="profile/default/defaultprofile.png";
                     	$("#input").val("");
                     }
                     
@@ -237,7 +250,7 @@
         	            $("#mypagefix_form").attr("action","/updateUser.do").submit();
         	            }
                     }
-                    // 동의 내역
+                    // 동의 내역 클릭시 색변화 및 상태 변화
                     $(document).on('click', '.agree-mail', function () {
                         if (userEmailAgree != "Y") {
                             document.getElementById('agree-mail').setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");

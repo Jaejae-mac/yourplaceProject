@@ -66,21 +66,29 @@ public class MypageController {
 	public String updateUser(UserVO vo) throws IOException{
 		System.out.println("[mypageController] updateUser 기능");
 		System.out.println(vo.toString());
+		String Img = vo.getUserProfileImg();
+		
 		mypageupdateService.updateUser(vo);
 		return "redirect:mypage.do";
 	}
 	// 회원 탈퇴 기능 
 	@RequestMapping("/deleteUser.do")
-	public String deleteBoard(HttpServletRequest request) {
+	public String deleteBoard(HttpServletRequest request, UserVO uvo) {
 		System.out.println("[mypageController] deleteUser 기능");
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		String userImg = (String)session.getAttribute("user.userProfileImg");
-		System.out.println("유저 아이디" + userId);
+		String userImg = uvo.getUserProfileImg();
+		int num = uvo.getUserNum();
 		UserVO vo = new UserVO();
+		// 디폴트이미지일 경우 해당유저 프로필 경로로 재설정
+		if(userImg.equals("profile/default/defaultprofile.png")) {
+			userImg = "profile/guest/"+num+"/ThumbImg.png";
+			vo.setUserProfileImg(userImg);
+		}
+		System.out.println("유저 아이디 : " + userId + "이미지 :" + userImg);
 		vo.setUserId(userId);
-		vo.setUserProfileImg(userImg);
 		mypagedeleteService.deleteUser(vo);
+		mypagedeleteService.deleteInterest(vo);
 		MyPageCouponVO cvo = new MyPageCouponVO();
 		cvo.setUserCoupId(userId);
 		couponservice.deleteCoupon(cvo);
@@ -111,7 +119,6 @@ public class MypageController {
 	public String gocheckPw(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		UserVO user = (UserVO)session.getAttribute("userVO");
-
 		session.setAttribute("userVO", user);
 		return "mypage/mypagecheckPw";
 	}

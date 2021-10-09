@@ -39,7 +39,7 @@ public class CateController {
 		if(maincate != "" && subcate !="") {
 			list = categoryService.getCatePlace(maincate, subcate, sort);
 		}else {
-			list = categoryAllService.getCatePlace("","","");
+			list = categoryService.getCatePlace("","",sort);
 		}
 		
 		if(session.getAttribute("userVO") != null) {
@@ -102,6 +102,7 @@ public class CateController {
 		System.out.println(model);
 		return "indexCategory";
 	}
+	//검색 기능
 	@GetMapping("/gocateSearch.do")
 	public String categorySearchForm(@RequestParam String keyword, Model model) {
 		System.out.println(keyword);
@@ -112,11 +113,46 @@ public class CateController {
 		System.out.println(model);
 		return "indexCategory";
 	}
+	//신규 등록 장소리스트 컨트롤러
+	@GetMapping("/newcategory.do")
+	public String newCategoryForm(Model model) {
+		String keyword = "신규로 등록된 장소";
+		PlaceCardVO vo = new PlaceCardVO();
+		vo.setKeyword(keyword);
+		model.addAttribute("keyword", keyword);
+		model.addAttribute("placeCateList", categorykeywordService.getnewCategoryList());
+		System.out.println(model);
+		return "indexCategory";
+	}
+	// 사람 인원수에 따른 장소리스트
 	@GetMapping("/placeListP.do")
 	public String placeListPeopleForm(@RequestParam int num, @RequestParam String maincate, 
-			@RequestParam String subcate,@RequestParam String sort, Model model) {
+			@RequestParam String subcate,@RequestParam String sort, Model model, HttpSession session) {
 		System.out.println("숫자"+ num +"메인" + maincate + "서브" + subcate);
-		List<PlaceCardVO> list = categorySearchService.getPlacePeople(num,maincate,subcate,sort);
+		List<PlaceCardVO> list = null;
+		List<InterestVO> bookmarks = null;
+		
+		if(maincate != "" && subcate !="") {
+			list = categorySearchService.getPlacePeople(num,maincate,subcate,sort);
+		}else {
+			list = categorySearchService.getPlacePeople(num,"","",sort);
+		}
+		
+		if(session.getAttribute("userVO") != null) {
+			InterestVO vo = new InterestVO();
+			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			vo.setUserId(userId);
+			bookmarks = bookmarkListService.bookmarkList(vo);
+			for(PlaceCardVO card : list) {
+				for(InterestVO bookmark : bookmarks) {
+					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
+						card.setBookmark(true);
+					}else {
+						card.setBookmark(false);
+					}
+				}
+			}
+		}
 		String[][] menuList = {
 				{"가정집", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" },
 				{"스튜디오", "자연광", "호리존", "유튜브", "단독주택형", "빈티지", "키친",
@@ -159,11 +195,35 @@ public class CateController {
 		}
 		return "indexCategory";
 	}
+	// 가격에 따른 장소 리스트
 	@GetMapping("/placeListPrice.do")
 	public String placeListPriceForm(@RequestParam int min, @RequestParam int max, @RequestParam String maincate, 
-			@RequestParam String subcate,@RequestParam String sort, Model model) {
+			@RequestParam String subcate,@RequestParam String sort, Model model,HttpSession session) {
 		System.out.println("min"+ min + "max"+ max +"메인" + maincate + "서브" + subcate);
-		List<PlaceCardVO> list = categorySearchService.getPlacePrice(min,max,maincate,subcate,sort);
+		List<PlaceCardVO> list = null;
+		List<InterestVO> bookmarks = null;
+		
+		if(maincate != "" && subcate !="") {
+			list = categorySearchService.getPlacePrice(min,max,maincate,subcate,sort);
+		}else {
+			list = categorySearchService.getPlacePrice(min,max,"","",sort);
+		}
+		
+		if(session.getAttribute("userVO") != null) {
+			InterestVO vo = new InterestVO();
+			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			vo.setUserId(userId);
+			bookmarks = bookmarkListService.bookmarkList(vo);
+			for(PlaceCardVO card : list) {
+				for(InterestVO bookmark : bookmarks) {
+					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
+						card.setBookmark(true);
+					}else {
+						card.setBookmark(false);
+					}
+				}
+			}
+		}
 		String[][] menuList = {
 				{"가정집", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" },
 				{"스튜디오", "자연광", "호리존", "유튜브", "단독주택형", "빈티지", "키친",
@@ -208,11 +268,35 @@ public class CateController {
 		System.out.println(list);
 		return "indexCategory";
 	}
+	// 주소에 따른 장소리스트
 	@GetMapping("/placeListAddr.do")
 	public String placeListAddrForm(@RequestParam String addr, @RequestParam String maincate, 
-			@RequestParam String subcate,@RequestParam String sort, Model model) {
+			@RequestParam String subcate,@RequestParam String sort, Model model,HttpSession session) {
 		System.out.println("주소"+ addr + "메인" + maincate + "서브" + subcate);
-		List<PlaceCardVO> list = categorySearchService.getPlaceAddr(addr,maincate,subcate,sort);
+		List<PlaceCardVO> list = null;
+		List<InterestVO> bookmarks = null;
+		
+		if(maincate != "" && subcate !="") {
+			list = categorySearchService.getPlaceAddr(addr,maincate,subcate,sort);
+		}else {
+			list = categorySearchService.getPlaceAddr(addr,"","",sort);
+		}
+		
+		if(session.getAttribute("userVO") != null) {
+			InterestVO vo = new InterestVO();
+			String userId = ((UserVO)session.getAttribute("userVO")).getUserId();
+			vo.setUserId(userId);
+			bookmarks = bookmarkListService.bookmarkList(vo);
+			for(PlaceCardVO card : list) {
+				for(InterestVO bookmark : bookmarks) {
+					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
+						card.setBookmark(true);
+					}else {
+						card.setBookmark(false);
+					}
+				}
+			}
+		}
 		String[][] menuList = {
 				{"가정집", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" },
 				{"스튜디오", "자연광", "호리존", "유튜브", "단독주택형", "빈티지", "키친",

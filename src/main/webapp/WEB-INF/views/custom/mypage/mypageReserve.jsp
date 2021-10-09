@@ -21,8 +21,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 <style type="text/css">
+/*sweetalert 이 제일 위로 하기 위한 css*/
       .swal2-container {
-        z-index: 100000;
+        z-index: 100000
       };
 </style>
 </head>
@@ -110,9 +111,10 @@
 					</div>
 				</div>	
 			</div>
+			<!-- 검색창 -->
 			<div class="h_row_center" style="position: relative; width: 100%; margin-top: 30px;"> 
 				<div class="h_center" style="position: absolute; right: 0px;">
-					<input type="hidden" id="state" value="진행중"/>
+					<input type="hidden" id="state" value="진행중"/><!-- 현 페이지의 상태값 -->
 					<input type="text" placeholder="장소 이름을 입력하세요" id="searchKeyword" name="searchKeyword" style="padding-left: 10px; border: solid 1px; border-radius: 10px;"/>
 					<p id ="keyword" class="btn btn-primary btn-sm" style="margin-left: 7px; margin-bottom: 0px;font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; letter-spacing: normal;">검색</p>
 				</div>
@@ -163,9 +165,10 @@
 				</div>
 			</div>
 			<hr>
-			
+			<!-- 예약 리스트  -->
 			<div id="resList" style="display: flex; flex-direction: column;">				
 			</div>
+			
 			<!-- 리뷰 팝업 -->
 			<div class="direct h_center" id="direct_vue"
 			style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.6);">
@@ -238,6 +241,7 @@
 	<%@ include file="../footer.jsp" %>
 	<!-- Footer 끝 -->
 	<script>
+	// 정렬 팜업창 열고 닫기
         function show_booking_sort(){
             if ($('.booking_sort').css('display') === 'none') {
                 h_show_popup('.booking_sort')
@@ -245,6 +249,7 @@
                 h_hide_popup('.booking_sort')
             }
         }
+	// 리뷰창 열기
         function show_direct(rsvnum,placenum) {
         	document.getElementById('rsvNum').value= rsvnum
         	document.getElementById('placeNum').value= placenum
@@ -255,12 +260,14 @@
 			$('body').removeClass('modal-open')
 			$('.direct').hide()
 		}
+        
         function h_show_popup(id) {
             $(id).show()
         }
         function h_hide_popup(id) {
             $(id).hide()
         }
+        // 원하는 정렬 클릭시 상태 변화
         $(document).on('click','#close_booking_ing',function(){
         	document.getElementById('main_booking').innerHTML='신청일 순';
             document.getElementById('resList').style.flexDirection ='column';
@@ -271,6 +278,7 @@
             document.getElementById('resList').style.flexDirection ='column-reverse';
             h_hide_popup('.booking_sort')
         })
+        //예약 내역 불러오기
 		$(document).ready(function(){
 			reserveListIng();			
 		})
@@ -286,6 +294,7 @@
            		}
            	});
 		};
+		// 전체 클릭시 예약내역 값가져오기
 		$(document).on('click','#all',function(){
 			var userNum = $('#userNum').val();
         	document.getElementById('rsv_state').innerHTML='전체'
@@ -307,6 +316,7 @@
            		}
            	});
         });
+		// 지난 내역 예약 내역 가져오기
         $(document).on('click','#end',function(){
         	var userNum = $('#userNum').val();
         	$.ajax({
@@ -328,6 +338,7 @@
             document.getElementById('all').style.backgroundColor = 'rgb(245, 247, 248)';
             document.getElementById('cancel').style.backgroundColor = 'rgb(245, 247, 248)';
         });
+		// 취소 예약 내역 가져오기
         $(document).on('click','#cancel',function(){
         	var userNum = $('#userNum').val();
         	$.ajax({
@@ -350,6 +361,7 @@
             document.getElementById('cancel').style.backgroundColor = '#ffffff';
             
         });
+		// 검색 내역 가져오기
         $(document).on('click','#keyword',function(){
         	var userNum = $('#userNum').val();
         	var keyword = $('#searchKeyword').val();
@@ -377,6 +389,7 @@
 	           	});
 	        }
         });
+		// ajax로 가져온 값 리스트로 만들기
         function getRserveListCall(data){
         	var res = "";
         	var list = data;
@@ -423,7 +436,7 @@
        				var Time = now.getHours();
        				var rsvDay = new Date(rsvYear,rsvMonth,rsvDate,rsvEndT);
        				var nowDay = new Date(year,month,day,Time);
-       				
+       				// 날짜 차이 계산
        				var btms = rsvDay.getTime() - nowDay.getTime();
        				var btDay = btms / (1000*60*60*24);
        				res += '<div class="h_row_center" style="position: relative; padding: 0px 8px; width: 1160px; height: 150px;">';
@@ -453,6 +466,7 @@
        				res += '<p id="salesSip'+i+'" onclick="" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += '보기</p></div>';
        				res += '<div class="h_center" style="width: 85px;">';
+       				// 환불 신청 상태 설정
        				if(rsvRefundYn === 2 || rsvRefundYn === 3){
 	       				res += '<p id="refund'+i+'"onclick="Arefundbtn(refund'+i+')"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '환불신청 </p></div>';
@@ -464,6 +478,7 @@
 	       				res += '환불신청</p></div>';
        				}
        				res += '<div class="h_center" style="width: 85px;">';
+       				// 리뷰 작성 가능 여부 설정
        				if(rsvRefundYn == "환불 진행중" || rsvRefundYn == "환불완료"){
 	       				res += '<p id="review'+i+'"onclick="Review1()"class="btn btn-secondary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
 	       				res += '리뷰쓰기 </p></div></div></div>';
@@ -480,6 +495,7 @@
        				
        			}
        		}else{
+       			// 예약 내역 없을시 출력
        			res +='<div class="h_center" style="width: 100%; height: 800px; position: relative;">';
        			res +='<div class="h_column_center">';
        			res +='<img src="https://s3.hourplace.co.kr/web/images/icon/guest_empty.png" style="width: 80px; height: 80px;">';
@@ -488,15 +504,17 @@
        			res +='</div>';
        			res +='</div>';
        		}        	
-       		$("#resList").html(res);
+       		$("#resList").html(res); //해당 id의 div에 값 넣기
         };
+        // 환불신청
         function refundbtn(e,w){
+        	//버튼 클릭시 시간계산
         	var checkdate = new Date();
         	var checkyear = checkdate.getFullYear();
 			var checkmonth = checkdate.getMonth()+1;
 			var checkday = checkdate.getDate();
 			var checkDay = new Date(checkyear,checkmonth,checkday);
-			
+			//시간 차이 계산
 			var btms = $(w).val() - checkDay.getTime();
 			var btDay = btms / (1000*60*60*24);
         	console.log(e, btDay)
@@ -541,6 +559,7 @@
           		})
         	}
         }
+        // 환불 거부 예약일로부터 4일이내
         function Nrefundbtn(e){
         	console.log(e)
         	Swal.fire({
@@ -549,6 +568,7 @@
        			  text: '예약일로부터 4일이내에는 환불하실수 없습니다.',
         	})
         }
+        // 환불 거부 이미 환불상태
         function Arefundbtn(e){
         	console.log(e)
         	Swal.fire({
@@ -557,6 +577,7 @@
         		text: '이미 환불하셨거나 진행중인 예약입니다.',
         	})
         }
+        //리뷰창 열기
         function reviewbtn(e,w){
         	var rsvnum = $(e).val();
         	var placenum = $(w).val()
@@ -564,6 +585,7 @@
         	console.log(placenum)
         	show_direct(rsvnum,placenum)
         }
+        //리뷰 등록
         function reviewsubmit(){
         	var checkRate = $('input[name=reviewGuestRate]').is(":checked");
         	console.log(checkRate)
@@ -588,6 +610,7 @@
         	}
         	
         }
+        // 리뷰 거부 환불상태
         function Review1(){
         	Swal.fire({
        			icon: 'error',
@@ -595,6 +618,7 @@
         		text: '환불하셨거나 환불진행중인 장소에는 리뷰를 쓰실 수 없습니다.',
         	})
         }
+        // 리뷰 거부 이용전
         function Review2(){
         	Swal.fire({
        			icon: 'error',
@@ -602,6 +626,7 @@
         		text: '해당 장소를 이용하신 후 작성해주시기 바랍니다.',
         	})
         }
+        // 리뷰 거부 이미 작성
         function Review3(){
         	Swal.fire({
        			icon: 'error',

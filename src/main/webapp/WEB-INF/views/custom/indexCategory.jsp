@@ -37,10 +37,18 @@
 				</c:forEach>
 			</ul>
 		</div>
+		<!-- 검색기능 이용시 검색값 출력 -->
 		<c:if test="${keyword != null}">
-			<div style="margin-top: 20px;">
-				<p style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
+			<div style="margin-top: 10px;">
+				<p style="margin-bottom: 80px; margin-top: 20px;font-size: 40px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 				${keyword }
+				</p>
+			</div>
+		</c:if>
+		<c:if test="${mainCategory == ''}">
+			<div style="margin-top: 10px;">
+				<p style="margin-bottom: 80px; margin-top: 20px;font-size: 40px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
+					전체
 				</p>
 			</div>
 		</c:if>
@@ -97,7 +105,7 @@
 			</div>
 			</c:if>
 		</div>
-		
+			<!-- 인원 수 입력 버튼 -->
 			<div class="booking_people"
 				style="display: none; position: absolute; z-index: 2; left: 180px; top: 250px; width: 340px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<div style="width: 100%; height: fit-content">
@@ -138,6 +146,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- 장소이용비용 입력 버튼 -->
 			<div class="booking_price"
 				style="display: none; position: absolute; z-index: 2; left: 250px; top: 250px; width: 340px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<div class="h_center"style="width: 100%; height: fit-content">
@@ -145,7 +154,7 @@
 						style="width: 280px; margin: 30px 15px 20px; height: 44px; position: relative;">
 						<div style="width: 150px; margin: 0px 14px; height: 44px; border-radius: 4px; border: solid 2px #dfe2e7; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 							<input type="text"id="select_search_minprice" placeholder="10,000"
-								style="padding-left: 8px; width: 100%; height: 100%; border-width: 0px;  font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;" />
+								style="outline:none; padding-left: 8px; width: 100%; height: 100%; border-width: 0px;  font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;">
 							<p class="h_center"style="margin-right: 5px; width: 20px; height: 100%; border-width: 0px; text-align: right;font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #131415;">
 							원</p>
 						</div>
@@ -155,7 +164,7 @@
 						</div>
 						<div style="width: 150px; margin: 0px 14px; height: 44px; border-radius: 4px; border: solid 2px #dfe2e7; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 							<input type="text"id="select_search_maxprice" placeholder="9,900,000"
-								style="padding-left: 8px; width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;" />
+								style="outline:none; padding-left: 8px; width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;">
 							<p class="h_center"style="margin-right: 5px; width: 20px; height: 100%; border-width: 0px; text-align: right;font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #131415;">
 							원</p>
 						</div>
@@ -177,7 +186,7 @@
 					</div>
 				</div>
 			</div>
-			
+			<!-- 장소주소 입력 버튼 -->
 			<div class="booking_addr"
 				style="display: none; position: absolute; z-index: 2; left: 320px; top: 250px; width: 340px; border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<div class="h_center"style="width: 100%; height: fit-content">
@@ -206,6 +215,7 @@
 					</div>
 				</div>
 			</div>
+		<!-- 리스트값이 없을 떄 출력 -->
 		<c:if test="${fn:length(placeCateList) == 0 }">
 	            <div class="h_center" style="width: 1160px; height: 1000px;">
 	                <div class="h_column_center">
@@ -339,27 +349,33 @@ function interest(){
 <script>
 	$(document).ready(function(){
 		var placesort = "${placeSort}";
-		if(placesort.equals("평점")){
+		if(placesort == "평점"){
 			placesort = "평점높은순"
-		}else if(placesort.equals("리뷰")){
+			document.getElementById('main_booking').innerHTML= placesort;
+		}else if(placesort =="리뷰"){
 			placesort = "리뷰많은순"
-		}
+			document.getElementById('main_booking').innerHTML= placesort;
+		}else{
 		document.getElementById('main_booking').innerHTML= placesort;
+		}
 	});
 </script>
+<!-- 인원수 -->
 <script>
-// 인원수
+	//버튼 출릭시 보이기/감추기
 	function toggleBooking(e){
 	    $(e).toggle();
 	}
 	function hideBooking(e){
 		$(e).hide();
 	}
+	// 인원수 버튼 클릭시 다른 팝업 감추기
 	$("#bookingPeople").click(function(){
 	    toggleBooking(".booking_people");
 	    hideBooking(".booking_price");
 	    hideBooking(".booking_addr");
 	});
+	// 플러스 마이나스 버튼 클릭시 인원수 변경
 	$("#people_plus").click(function(){
 		var t = parseInt($("#select_search_people").val())+1;
 	    console.log(t);
@@ -373,10 +389,12 @@ function interest(){
     	console.log(t);
     	$("#select_search_people").val(t);
   	});
+	// 입력한 인원수 초기화
 	function resetPeople(){
 	    $("#select_search_people").val("1");
 	    $("#select_search_people").attr("placeholer","1");
 	}
+	// 인원수 입력 완료
 function setPeople(){
 	  var num = $("#select_search_people").val();
 	  var main ="${mainCategory}";
@@ -385,6 +403,7 @@ function setPeople(){
       location.href='/placeListP.do?num='+num+'&maincate='+main+'&subcate='+sub+'&sort=최신순';
 }
 </script>
+<!-- 대여가격 -->
 <script>
 	$("#bookingPrice").click(function(){
 	    toggleBooking(".booking_price");
@@ -397,6 +416,7 @@ function setPeople(){
 	}
 	function setPrice(){
 		var min = $("#select_search_minprice").val();
+		// 숫자인지 아닌지 검사
 		var mincheck = $.isNumeric(min)
 		var max = $("#select_search_maxprice").val();
 		var maxcheck = $.isNumeric(max)
@@ -412,6 +432,7 @@ function setPeople(){
 		location.href='/placeListPrice.do?min='+min+'&max='+max+'&maincate='+main+'&subcate='+sub+'&sort=최신순';
 	}
 </script>
+<!-- 주소 입력 -->
 <script>
 $("#bookingAddr").click(function(){
     toggleBooking(".booking_addr");
@@ -438,6 +459,7 @@ function setAddr(){
 	}
 }
 </script>
+<!-- 정렬 버튼 클릭 -->
 <script>
 $("#show_booking_sort").click(function(){
 	toggleBooking(".booking_sort");

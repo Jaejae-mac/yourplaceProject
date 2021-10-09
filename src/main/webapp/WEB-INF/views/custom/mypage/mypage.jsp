@@ -15,6 +15,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+<!-- 리뷰를 불러오기위한 스크립트 -->
 <script>
 	$(document).ready(function(){
 		reviewList();
@@ -24,10 +25,6 @@
 </head>
 <body>
 	
-	<!-- 세션에 아이디 값이 존재 한다면 마이페이지를 불러주어라. -->
-	<c:if test="${userId != null}">
-		MY Page - ${userId }
-	</c:if>
 	<!-- Header -->
 	<%@ include file="../header.jsp" %>
 	<!-- Header End -->
@@ -39,14 +36,21 @@
                 </p>
             </div>
         </div>
+        <!-- 회원탈퇴를 위한 form -->
+        <form action="" id="mypagedelete_form" method="post">
+        	<input type="hidden" name="userNum" value="${user.userNum}"/>
+        	<input type="hidden" name="userProfileImg" value="${user.userProfileImg}"/>
+        </form>
+        
         <div style="margin-top: 50px; width: 100%; height: 1px; background-color: #e7eaee;"></div>
         <div class="h_row" style="margin-top: 60px; margin-bottom: 200px;">
             <div class="h_column_center" style="width: 360px;">
                 <div style="width: 360px;border-radius: 10px;border: solid 1px #dfe2e7;background-color: #ffffff;">
                     <div class="h_column_center">
                         <div style="position:relative; margin-top: 50px; width: 120px; height: 120px; border-radius: 60px; overflow:hidden;">         
-                            <img src="${user.userProfileImg}"
-                                style="width: 100%; height: 100%; position: absolute;">    
+                            <img src="https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/${user.userProfileImg}"
+                                style="width: 100%; height: 100%; position: absolute;"> 
+                            
                         </div>
                         <p style="padding: 0 20px; margin-top: 20px; font-size: 16px; font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.38;letter-spacing: -0.1px;text-align: center;color: #1b1d1f;">
                         	${user.userNickName}
@@ -77,12 +81,14 @@
                     </div>
                 </div>
                 <div class="h_row_center">
+                	<!-- 쿠폰 이동버튼 -->
 	                <div onclick="location.href='/gocoupon.do'" class="h_center h_hover_button"
 	                    style="margin-top: 30px; margin-right: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
 	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
 	                    	쿠폰
 	                    </p>
 	                </div>
+	                <!-- 예약내역 이동버튼 -->
 	                <div onclick="location.href='/goreserve.do'" class="h_center h_hover_button"
 	                    style="margin-top: 30px; margin-left: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
 	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
@@ -91,12 +97,14 @@
 	                </div>
                 </div>
                 <div class="h_row_center">
+                	<!-- 편집이동 버튼 -->
 	                <div onclick="location.href='/gopagefix.do'" class="h_center h_hover_button"
 	                    style="margin-top: 30px; margin-right: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
 	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
 	                    	프로필 편집
 	                    </p>
 	                </div>
+	                <!-- 비밀번호 변경버튼 -->
 	                <div onclick="location.href='/gocheckPw.do'" class="h_center h_hover_button"
 	                    style="margin-top: 30px; margin-left: 5px; width: 141px; height: 52px; border-radius: 8px; border: 1px solid rgb(223, 226, 231); cursor: pointer;">
 	                    <p style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
@@ -108,6 +116,7 @@
                 	회원 탈퇴
                 </p>
             </div>
+            <!-- 유저 소개란 -->
             <div style="margin-left: 60px; width: 580px;">
                 <p style="font-size: 24px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.33;letter-spacing: -0.3px;color: #1b1d1f;">
                 	소개
@@ -148,6 +157,7 @@
 	<%@ include file="../footer.jsp" %>
 	<!-- Footer 끝 -->
 	<script>
+	//리뷰 컨트롤러에서 값을 가져우기
 	 function reviewList(){
 		 $.ajax({
         	url:"/mypagereviewList.do",
@@ -158,7 +168,7 @@
         	}
         });
 	 }
-	 
+	 //회원 탈퇴 기능
 	 function deleteUser(){
 	    	Swal.fire({
 	    		  title: '정말로 탈퇴하시겠습니까?',
@@ -175,12 +185,13 @@
 	    		      text : '지금까지 YourPlace를 이용해 주셔서 감사합니다.',
 	    		      icon :'success'
 	    		    }).then((result) => {
-	    		    	location.href='/deleteUser.do'
+	    		    	$("#mypagedelete_form").attr("action","/deleteUser.do").submit();
 	    		    })
 	    		  }
 	    		})
 	    			 
 	    }
+	 //컨트롤러에서 가져온 리뷰 값을 출력하기위한 함수
 	 function getreivewListCall(data){
 		 var list = data;
          var listLen = data.length;

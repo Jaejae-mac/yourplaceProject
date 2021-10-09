@@ -6,4 +6,5 @@ import com.yourplace.custom.home.vo.PlaceCardVO;
 
 public interface CategoryKewordService {
 	List<PlaceCardVO> getKeywordList(PlaceCardVO vo);
+	List<PlaceCardVO> getnewCategoryList();
 }
