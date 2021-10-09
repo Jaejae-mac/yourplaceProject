@@ -199,7 +199,10 @@
                     });
                 	}//end userId empty check
                 	else{
-                		alert("아이디를 입력해주세요.");
+                		Swal.fire({
+                			  icon:'error',
+                			  title:'아이디를 입력해 주세요.',
+                      });
                 	}
                  });
                 

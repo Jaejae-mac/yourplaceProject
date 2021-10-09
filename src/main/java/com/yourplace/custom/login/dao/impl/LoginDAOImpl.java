@@ -39,7 +39,9 @@ public class LoginDAOImpl implements LoginDAO {
 	// 로그인용 유저정보 얻어오기.
 	@Override
 	public UserVO getUser(UserVO vo) {
-		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
+		UserVO uvo = sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
+		System.out.println(uvo);
+		return uvo ;
 	}
 
 	// 카카오 회원 가입여부 판단.
