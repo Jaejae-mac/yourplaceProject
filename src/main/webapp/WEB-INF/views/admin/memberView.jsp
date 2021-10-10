@@ -91,9 +91,10 @@
                     
                       <td>${mem.userNum }</td>
                       
-                      <td id="memberType">
-                      	<c:if test="${mem.userType eq '0'}">게스트</c:if><c:if test="${mem.userType eq '1'}"><font color="blue">호스트</font></c:if>
-                      </td>
+                      
+                      <c:if test="${mem.userType eq '0'}"><td>게스트</td></c:if>
+                      <c:if test="${mem.userType eq '1'}"><td id="userType_host" style="color: blue">호스트</td></c:if>
+                      
                       
                       <td>${mem.userId  }</td>
                       <td>${mem.userName }</td>
