@@ -131,8 +131,8 @@
 						<option value="편의시설">편의 시설</option>
 						<option value="문화공간">문화공간</option>
 						<option value="특수공간">특수공간</option>
-						<option value="대형공간">대형공간</option>
-						<option value="야외">야외</option>
+						<option value="대형공간/야외">대형공간/야외</option>
+						
 					</select>
 					<p>소분류</p>
 					<select class="form-select form-select-lg mb-3"
@@ -512,12 +512,10 @@
 				case '특수공간':
 					addOptions(select, maincate, special);
 					break;
-				case '대형공간':
+				case '대형공간/야외':
 					addOptions(select, maincate, large);
 					break;
-				case '야외':
-					addOptions(select, maincate, outdoor);
-					break;
+				
 
 				}
 			});
