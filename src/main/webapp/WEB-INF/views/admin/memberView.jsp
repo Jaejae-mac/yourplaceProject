@@ -64,6 +64,7 @@
 	              	<option value="1">호스트만 보기</option>
 	              </select>
                 <table id="datatablesSimple">
+
                   <thead>
                     <tr>
                     	<th>정지 여부</th>
@@ -91,12 +92,7 @@
                       <td>${mem.userNum }</td>
                       
                       <td id="memberType">
-                      	<c:if test="${mem.userType eq '0'}">
-                      	게스트
-                      	</c:if>
-                      	<c:if test="${mem.userType eq '1'}">
-                      	호스트
-                      	</c:if>
+                      	<c:if test="${mem.userType eq '0'}">게스트</c:if><c:if test="${mem.userType eq '1'}"><font color="blue">호스트</font></c:if>
                       </td>
                       
                       <td>${mem.userId  }</td>
@@ -291,6 +287,7 @@
 		}
 		
 	</script>
+
 	
   </body>
 </html>
