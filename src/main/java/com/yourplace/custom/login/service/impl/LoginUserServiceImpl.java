@@ -22,21 +22,23 @@ public class LoginUserServiceImpl implements LoginUserService {
 	@Override
 	public UserVO getUser(UserVO vo) {
 		UserVO uvo = loginDAO.getUser(vo);
+		int success = 1;
+		int fail = 0;
 		// 아이디를 조건으로 DB select 시도 후 , 리턴받은 값이 Null 이 아니라면.
 		if (uvo != null) {
 			// 리턴받은 객체의 비밀번호와 매개로 전달받은 객체의 비밀번호를 비교하여 같다면.
 			if (passEncoder.matches(vo.getUserPw(), uvo.getUserPw())) {
 				// 1을 리턴해주겠다. 
-				uvo.setLoginCheck(1);
+				uvo.setLoginCheck(success);
 				return uvo;
 			}else {
 				//비밀번호가 서로 다르다면 0을 리턴해주겠다.
-				uvo.setLoginCheck(0);
+				uvo.setLoginCheck(fail);
 				return uvo;
 			}
 		} else {
 			//아이디가 존재하지 않는 유저이면 0을 리턴해주겠다.
-			uvo.setLoginCheck(0);
+			uvo.setLoginCheck(fail);
 			return uvo;
 		}
 	}
