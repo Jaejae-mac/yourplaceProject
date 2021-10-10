@@ -73,7 +73,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- index 에서 쓸 장소승인 대기중 리스트 조회 -->
 	<select id="beforeAllow" resultMap="spaceResult">
-		select * from place where place_allow = '0';
+		select place_num, user_id, place_area, place_maincate, place_reg_date
+		where place_allow = '0';
 	</select>
 
 </mapper>

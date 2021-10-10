@@ -315,7 +315,7 @@
 	
 	</script>   
 	   
-		<script>
+	<script>
 	   $(document).on("click","#file_disable_btn",function(){
 		 
 		    var rowData = new Array();
