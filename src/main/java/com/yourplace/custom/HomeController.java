@@ -32,10 +32,14 @@ public class HomeController {
 	@Autowired
 	private AvailableBannerService availableService;
 	
+	@Autowired
+	private HomeGetLatestService homeGetPolularService;
+	
 	@GetMapping("/home.do")
 	public String home(Model model,HttpSession session, @RequestParam(value="welcomeCoupon", required = false) String welcomeCoupon,
 			@RequestParam(value="hostAccessDenied", required = false) String hostAccessDenied) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
+		List<PlaceCardVO> popularPlaces = homeGetPolularService.getLatestPlaceList();
 		//북마크.
 		List<InterestVO> bookmarks = null;
 		//배너 리스트 불러오기.
@@ -66,6 +70,7 @@ public class HomeController {
 		}
 		model.addAttribute("latestPlaces", latestPlaces);
 		model.addAttribute("banner", bannerVO);
+		model.addAttribute("popularPlaces", popularPlaces);
 		
 		return "index";
 	}

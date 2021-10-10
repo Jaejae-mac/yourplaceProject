@@ -117,4 +117,9 @@ public class HomeDAOImpl implements HomeDAO{
 		
 		return sqlSessionTemplate.selectList("HomeDAO.getCatePlaceListAll");
 	}
+
+	@Override
+	public List<PlaceCardVO> getPopularPlaceList() {
+		return sqlSessionTemplate.selectList("HomeDAO.getPopularPlaceList");
+	}
 }

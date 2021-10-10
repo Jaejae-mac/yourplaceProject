@@ -45,6 +45,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		Limit
 		8;
 	</select>
+	<select id="getPopularPlaceList" resultMap="cardResult">
+		select
+			a.place_num,user_id, place_area, place_cate, place_name, place_price, place_capa,
+			place_capa_car, place_thumb,
+			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
+			(select round(avg(review_guest_rate),1) from reviewGuest where place_num = a.place_num) as avg_rate
+		from place a,
+        (select place_num,count(*) as cnt from reservation group by place_num order by cnt desc) res
+		where a.place_allow = 1 
+			and
+			  a.place_num = res.place_num
+		Limit
+		8;
+	</select>
 	
 	<select id="getnewCategoryList" resultMap="cardResult">
 		SELECT

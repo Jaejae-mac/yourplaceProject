@@ -7,6 +7,7 @@ import com.yourplace.custom.interest.vo.InterestVO;
 
 public interface HomeDAO {
 	List<PlaceCardVO> getLatestPlaceList();
+	List<PlaceCardVO> getPopularPlaceList();
 	List<PlaceCardVO> getCatePlaceListAll();
 	List<PlaceCardVO> getCatePlaceList(String maincate, String subcate, String sort);
 	List<PlaceCardVO> getKeywordPlaceList(PlaceCardVO vo);
@@ -14,4 +15,5 @@ public interface HomeDAO {
 	List<PlaceCardVO> getPlacePeopleList(int num, String maincate, String subcate, String sort);
 	List<PlaceCardVO> getPlacePriceList(int min, int max, String maincate, String subcate, String sort);
 	List<PlaceCardVO> getPlaceAddrList(String addr, String maincate, String subcate, String sort);
+	
 }
