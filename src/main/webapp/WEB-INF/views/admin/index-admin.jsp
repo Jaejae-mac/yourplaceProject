@@ -43,19 +43,44 @@
               <li class="breadcrumb-item active">Admin Page from Team Connect</li>
             </ol>
             
-            <!-- 첫화면 가장 큰 table/chart 자리 -->
-            <div class="row">
-            	<div class="card mb-4">
-	            	<div class="card-header">
-	                <i class="fas fa-chart-area me-1"></i>
-	                	월대비 매출 조회
-	              	</div>
-	              	
-	              	<div class="card-body" id="flow-chart" >
-	                	<canvas id="myLineChart" width="800px" height="300"></canvas>
-	              	</div>
-            	</div>
+            <div class="card mb-4">
+              <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                	승인대기 중인 장소
+              </div>
+              <div class="card-body">
+                <table id="datatablesSimple">
+                
+                  <thead>
+                    <tr>
+                      <th>장소번호</th>
+                      <th>호스트 아이디</th>
+                      <th>장소지역</th>
+                      <th>메인 카테고리</th>
+                      <th>장소 등록일자</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <c:forEach var="a" items="${AllowList}">
+                    <tr>
+                      <td>${a.placeNum }</td>
+                      <td>${a.userId }</td>
+                      <td>${a.placeArea }</td>
+                      <td>${a.placeMaincate }</td>
+                      <td>
+	                      <fmt:formatDate value="${a.placeRegDate }" pattern="yyyy-MM-dd" />
+	                      
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </tbody>
+                  
+                </table>
+              </div>
             </div>
+            
+            
             <!-- 화면에서 두번째 칸에 들어갈 차트 2개 -->
             <div class="row">
               <div class="col-xl-6">
@@ -83,44 +108,40 @@
                     	성별별 인기 장소
                   </div>
                   <div class="card-body">
-                    <canvas id="myBarChart" width="100%" height="40"></canvas>
+                    <canvas id="myBarChart2" width="100%" height="40"></canvas>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="card mb-4">
-              <div class="card-header">
-                <i class="fas fa-table me-1"></i>
-                	승인대기 중인 장소
-              </div>
-              <div class="card-body">
-                <table id="datatablesSimple">
-                
-                  <thead>
-                    <tr>
-                      <th>장소번호</th>
-                      <th>호스트 아이디</th>
-                      <th>장소지역</th>
-                      <th>메인 카테고리</th>
-                      <th>장소 등록일자</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                  <c:forEach var="a" items="${AllowList}">
-                    <tr>
-                      <td>${a.placeNum }</td>
-                      <td>${a.userId }</td>
-                      <td>${a.placeArea }</td>
-                      <td>${a.placeMainCate }</td>
-<%--                       <td><fmt:formatDate value=${a.placeRegDate } pattern="yyyy-MM-dd" /></td> --%>
-                    </tr>
-                    </c:forEach>
-                  </tbody>
-                  
-                </table>
-              </div>
+            
+            <!-- 첫화면 가장 큰 table/chart 자리 -->
+            <div class="row">
+            	<div class="card mb-4">
+	            	<div class="card-header">
+	                <i class="fas fa-chart-area me-1"></i>
+	                	월 매출 조회
+	              	</div>
+	              	
+	              	<div class="card-body" id="flow-chart" >
+	                	<canvas id="myBarChart" width="800px" height="300"></canvas>
+	              	</div>
+            	</div>
             </div>
+            
+            <!-- 첫화면 가장 큰 table/chart 자리 -->
+            <div class="row">
+            	<div class="card mb-4">
+	            	<div class="card-header">
+	                <i class="fas fa-chart-area me-1"></i>
+	                	월대비 매출 조회
+	              	</div>
+	              	
+	              	<div class="card-body" id="flow-chart" >
+	                	<canvas id="myLineChart" width="800px" height="300"></canvas>
+	              	</div>
+            	</div>
+            </div>
+            
           </div>
         </main>
         <footer class="py-4 bg-light mt-auto">
@@ -258,6 +279,77 @@
                         {
                             fill: false,
                             data: Data,
+                            backgroundColor: backgroundcolor,
+                            borderColor: borderColor,
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }
+                        ]
+                    }
+                }
+            });
+        </script>
+        
+        <!-- chart -->
+        <script type="text/javascript">
+
+	        var Year = [2020, 2021];
+	        var labelName = new Array();
+	        var firstData = new Array();
+	        
+	        var backgroundcolor =
+            	['rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(120, 110, 220, 0.2)',
+                'rgba(110, 90, 90, 0.2)'];
+            
+            var borderColor =
+            	['rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(120, 110, 220, 1)',
+                'rgba(110, 90, 90, 1)'];
+	        
+	        //foreach 문으로 값 세팅
+	            <c:forEach items="${FirstList}" var="first">
+	            	firstData.push('${first.revenue}');
+	            	labelName.push('${first.payMonth}')
+	            </c:forEach> 	
+	        
+	        console.log(firstData);
+            
+                
+            var context = document
+                .getElementById('myBarChart')
+                .getContext('2d');
+            
+            var myChart = new Chart(context, {
+                type: 'bar', // 차트의 형태
+                data: { // 차트에 들어갈 데이터
+                    labels: labelName,
+                    
+                    datasets: [
+                        
+                        {
+                            label: "월별 데이터",
+                            fill: false,
+                            data: firstData,
                             backgroundColor: backgroundcolor,
                             borderColor: borderColor,
                             borderWidth: 1

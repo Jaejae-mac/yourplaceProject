@@ -58,7 +58,7 @@ public class AdminController {
 			session.setAttribute("AdminAuthority", login.getAdminAuthority());
 			
 			// 로그인 성공시에는 return의 홈페이지로 이동시켜준다.
-			return "index-admin";
+			return "redirect:index-admin.mdo";
 		}
 		
 		model.addAttribute("login", "0");
@@ -66,18 +66,37 @@ public class AdminController {
 		
 	}
 	
-	
-	//Index-admin
-	
-	@GetMapping("/index-admin.mdo")
-	public String directIndex(HttpServletRequest request, Model model)
+	@GetMapping(value="/home.mdo")
+	public String homeClick()
 	{
-		System.out.println("[Controller] index-admin 으로 직접 접근");
-		return "login";
-	} 
+		return "redirect:index-admin.mdo";
+	}
 	
-	@PostMapping(value="/index-admin.mdo")
-	public String viewForm(Model model)
+	@GetMapping(value="/index-admin.mdo")
+	public void viewForm(Model model)
+	{
+		//월대비 매출 관련
+		List<Double> list1 = revenueMonthService.getMoM(2021);
+		model.addAttribute("MoMList", list1); // 2021 월대비
+
+		//인기 카테고리
+		List<RevenueVO> list2 = revenueCntService.getMainCateRank(2021); // 메인
+		model.addAttribute("MainCateRank", list2);
+		
+		//월별
+		List<RevenueVO> list3 = revenueMonthService.getMonthSumFirst(2021);
+		System.out.println(list3.toString());
+		model.addAttribute("FirstList", list3);
+		
+		/////////Table			
+		//승인 대기중인 테이블 조회
+		List<SpaceVO> list4 = spaceList.beforeAllow();
+		model.addAttribute("AllowList", list4);
+		
+	}
+	
+	
+/*	public void viewForm(Model model)
 	{
 		//매출 조회 시작
 		int thisYear = 2021;
@@ -105,6 +124,7 @@ public class AdminController {
 		return "index-admin";
 	}
 	
+	*/
 
 	
 //	@RequestMapping("/login.mdo")

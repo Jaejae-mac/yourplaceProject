@@ -85,7 +85,7 @@
 				<tbody>
                   <c:forEach var="mem" items="${memberList}">
                     <tr>
-                    	<td id="active"><c:if test="${mem.userActive eq '0'}">제한된 이용자</c:if><c:if test="${mem.userActive eq '1'}">사용가능</c:if>
+                    	<td id="active"><c:if test="${mem.userActive eq '0'}"><font color="red">제한된 이용자</font></c:if><c:if test="${mem.userActive eq '1'}">사용가능</c:if>
                      	</td>
                     
                       <td>${mem.userNum }</td>
@@ -260,15 +260,20 @@
 			$("#disableUserHidden").val(id);
 			$("#submitForm2").submit();
 			
+			
+			var result = confirm("선택한 이용자의 상태를 변경하시겠습니까?");
 
-			if(active == '제한된 이용자')
-				{
-					alert("사용 가능으로 변경되었습니다.");
-				}
-			else(active == '사용가능')
-				{
-					alert("선택한 사용자는 접근이 제한되었습니다.");
-				}
+			if(result)
+			{
+				alert("변경되었습니다.")
+			
+			}else
+			{
+				
+			    alert("취소되었습니다.");
+			}
+			
+			
 			
 		});
 			
