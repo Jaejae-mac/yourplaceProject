@@ -52,7 +52,7 @@
 						class="h_center h_header_button"
 						style="padding: 0px 13px; height: 50px;">
 						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
+							style="margin-bottom:15px;margin-top:15px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
 							모든 장소</p>
 					</div>
 
@@ -70,30 +70,26 @@
 					<div class="h_center h_header_button" onclick="new_category()"
 						style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 						<p
-							style="font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
+							style="margin-bottom:15px;margin-top:15px;font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31);">
 							신규</p>
 					</div>
-					
-					<div class="h_center" style="background-color: #FFF; width: 500px; position:relative; margin-left:35px;">            
+					<div class="h_center" style="background-color: #FFF; width: 500px; position:relative; margin-left:25px;">            
 	                            <div style="height: 45px; width: 100%;">
-	                                <div class="h_row_center" style="height: 40px;">
-	                                    <div class="h_center" style="width: 30px;height: 30px;">
+	                                <div class="h_row_center" style="right: 10px; height: 40px;border: solid 2px rgb(114, 120, 127); border-radius: 30px;">
+	                                    <div class="h_center" style="left:15px; width: 30px;height: 30px;">
 	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
 	                                    </div>
 	                                    <div style="position:absolute;right: 77px;left: 57px;">
 	                                        <input id="search_input" onkeyup="enterkey();" 
-	                                            style="width: 100%;border-width: 0;font-size: 20px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
+	                                            style="outline:none; padding-top: 3px; width: 100%; border-width: 0;font-size: 18px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.31;letter-spacing: -0.3px;color: #1b1d1f;"
 	                                            placeholder="어떤 장소에서 콘텐츠를 만들고 싶으세요?" />
 	                                    </div>
-	                                    <div class="h_center" style="position:absolute;right: 44px;width: 24px;height: 44px; cursor:pointer;" onclick="delete_search()">
+	                                    <div class="h_row_center" style="position:absolute; right: 10px; width: 24px;height: 44px; cursor:pointer;" onclick="delete_search()">
 	                                        <img src="<c:url value="/resources/img/icon/register/round_delete_g.png" />" style="width: 16px;height: 16px;" />
 	                                    </div>
 	                                </div>
-                                </div>
+                                </div>              
                       </div>
-
-
-
 					<c:choose>
 						<c:when test="${userVO.userType == 0}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
@@ -101,23 +97,27 @@
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									관심장소</p>
 							</div>
-
+							
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
+							
 							<div onclick="logout()" class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									로그아웃</p>
 							</div>
-
+							
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
+							
 							<!-- 로그인 기능 show_login() -->
 							<div class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;"
 								onclick="location.href='/mypage.do'">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									마이페이지</p>
 							</div>
 							<!-- 로그인 기능 끝 -->
@@ -125,27 +125,33 @@
 						</c:when>
 						<c:when test="${userVO.userType == 1}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="window.location.href='/indexOurPlace.hdo'"
+							<div onclick="window.location.href='/regist/place/form.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									장소등록</p>
 							</div>
+							
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
+							
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
 							<div onclick="window.location.href='/logout.do'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									로그아웃</p>
 							</div>
+							
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
+							
 							<!-- 로그인 기능 show_login() -->
 							<div onclick="window.location.href='/updateProfileforHost.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									마이페이지</p>
 							</div>
 							<!-- 로그인 기능 끝 -->
@@ -157,16 +163,17 @@
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									호스트 로그인</p>
 							</div>
-
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);">
+                    		</div>
 							<!-- 로그인 기능 show_login() -->
 							<div onclick="location.href='/loginForm.do'"
 								class="h_center h_header_button"
-								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
+								style="padding: 0px 13px; height: 50px; cursor: pointer;">
 								<p
-									style="font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
 									게스트 로그인</p>
 							</div>
 							<!-- 로그인 기능 끝 -->
@@ -204,7 +211,7 @@
 
 
 					</div>
-
+					
 					<!-- all toggle -->
 
 					<div class="category_all" id="cate_all"

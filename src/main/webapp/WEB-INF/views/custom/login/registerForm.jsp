@@ -59,6 +59,9 @@
                     chkAllFlag=true;
                     chkService=true;
                     chkPersonal=true;
+                    $('#agreeAll').val("Y");
+                    $('#agreeService').val("Y");
+                    $('#agreePersonal').val("Y");
                 }else{
                 	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
                 	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_g.png' />");
@@ -66,6 +69,9 @@
                     chkAllFlag=false;
                     chkService=false;
                     chkPersonal=false;
+                    $('#agreeAll').val("N");
+                    $('#agreeService').val("N");
+                    $('#agreePersonal').val("N");
                 }
                 
             });
@@ -78,11 +84,15 @@
                     chkAllFlag=true;
                     chkService=true;
                     chkPersonal=true;
+                    $('#agreeAll').val("Y");
+                    $('#agreeService').val("Y");
+                    $('#agreePersonal').val("Y");
                     return;
                 }
                 else if(!chkAllFlag &&!chkPersonal &&!chkService){
                 	document.getElementById("agree-service").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
                     chkService=true;
+                    $('#agreeService').val("Y");
                     return;
                 }else{
                 	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
@@ -90,6 +100,8 @@
                     console.log("back!!");
                     chkAllFlag=false;
                     chkService=false;
+                    $('#agreeAll').val("N");
+                    $('#agreeService').val("N");
                     return;
                 }
             });
@@ -101,11 +113,15 @@
                     chkAllFlag=true;
                     chkService=true;
                     chkPersonal=true;
+                    $('#agreeAll').val("Y");
+                    $('#agreeService').val("Y");
+                    $('#agreePersonal').val("Y");
                     return;
                 }
                 else if(!chkAllFlag &&!chkPersonal && !chkService){
                 	document.getElementById("agree-personal").setAttribute('src', "<c:url value='/resources/img/icon/register/check_b.png' />");
                     chkPersonal=true;
+                    $('#agreePersonal').val("Y");
                     return;
                 }else{
                 	document.getElementById("agree-all").setAttribute('src', "<c:url value='/resources/img/icon/register/controls_round_check.png' />");
@@ -113,9 +129,12 @@
                     console.log("back!!");
                     chkAllFlag=false;
                     chkPersonal=false;
+                    $('#agreeAll').val("N");
+                    $('#agreePersonal').val("N");
                     return;
                 }
             });
+            
         });
         $(function () {
             $("input").keyup(function () {
@@ -160,6 +179,13 @@
                         checkPw = false;
                     }
                 }
+                if(email != ""){
+                	if(!emailchk()){
+                		$("#alert-danger-email").show();
+                	}else{
+                		$("#alert-danger-email").hide();
+                	}
+                }
             });
             
             //ID 중복 여부를 서버와 통신하여 체그하는 함수.
@@ -184,12 +210,14 @@
                     			idChkBtn = false;
                     			//중복됨 : true
                     			overlap = true;
+                    			$('#idcheck').val('N');
                     			Swal.fire({
                       			  icon:'error',
                       			  title:'사용불가능한 아이디 입니다.',
                             });
                     		}else if(responseData === '0'){
                     			overlap = false;
+                    			$('#idcheck').val('Y');
                     			Swal.fire({
                         			  icon:'success',
                         			  title:'사용 가능한 아이디 입니다.',
@@ -199,33 +227,75 @@
                     });
                 	}//end userId empty check
                 	else{
-                		alert("아이디를 입력해주세요.");
+                		Swal.fire({
+                			  icon:'error',
+                			  title:'아이디를 입력해주세요.',
+                      });
                 	}
-                 });
-                
+                 });    
         });
-
-        function regist(){
-            var flag = true;
-            //전화번호 인증 완료 여부 판단해야 함.
-            /*
-            여기에
-            */
-            //닉네임 입력 여부.
-            if(nickname===""){ 
-                $("#alert-danger-nick").show();
-                flag = false;
+		function regist(){
+           	console.log("regist pressed");
+           	var name = $('#name').val().trim();
+            var nickname = $('#nickname').val().trim();
+           	var idcheck = $('#idcheck').val();
+           	var telcheck = $('#telcheck').val();
+           	var agreeAll = $('#agreeAll').val();
+            var agreeService = $('#agreeService').val();
+            var agreePersonal = $('#agreePersonal').val();
+           	if(idcheck == "N"){
+               	Swal.fire({
+              		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+               		text: '아이디를 입력해주시거나 중복확인을 해주시기 바랍니다.'
+                })
+               	return false;
+            }else if(!chkPW()){
+            	Swal.fire({
+               		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+                	text: '비밀번호를 제대로 입력해주세요.'
+                })
+                return false;
+/*            }else if(telcheck == "N"){
+                Swal.fire({
+               		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+                	text: '본인인증을 해주시기 바랍니다.'
+                })
+                return false;*/
+            }else if(name == ""){ 
+                Swal.fire({
+               		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+               		text: '이름을 입력해주세요.',
+               	})
+               	return false;
+            }else if(nickname == ""){ 
+                Swal.fire({
+               		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+               		text: '닉네임을 입력해주세요.',
+               	})
+                return false;
+            }else if(!emailchk()){
+               	Swal.fire({
+              		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+                	text: '이메일을 제대로 입력해주세요.'
+               	})
+                return false;
+            }else if(agreeAll == "N" || agreeService == "N" || agreePersonal == "N"){
+                Swal.fire({
+               		icon: 'error',
+                	title: '회원가입을 하실수 없습니다.',
+                	text: '서비스 동의를  체크해주세요.'
+               	})
+               	return false;
+            }else{
+                $("#regist_form").attr("action","/regist.do").submit();
             }
-            //이메일 입력 여부
-            if(email === ""){
-                $("#alert-danger-email").show();
-                flag = false;
-            }
-            //비밀번호 입력 및 확인 여부.
-            if(!checkPw){
-                flag = false;
-            }
-        }
+       }
      //전화번호 정규식.
      var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
 
@@ -253,14 +323,24 @@
          return true;
        }
      }
-
+	function emailchk(){
+		 var email = $("#email").val().trim();
+         var regEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+         if(email != ''){
+             if(regEmail.test(email)){
+                 return true;
+             }else{
+                 return false;
+             }
+         }
+	}
      
    </script>
 </head>
 <body>
 <%@ include file="../header.jsp" %>
 	<form action="" id="regist_form" method="post">
-	<div class="h_column_center" style="margin-top: 20px;">
+	<div class="h_column_center" style="margin-top: 100px;">
 		<p
 			style="font-size: 32px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.31; letter-spacing: -0.3px; text-align: center; color: #1b1d1f;">
 			회원가입</p>
@@ -277,18 +357,18 @@
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
 					style="margin-left: 4px; width: 6px; height: 6px">
+				<input type="hidden" id="idcheck" value="N">
 			</div>
 			<div class="input_container disabled"
 				style="margin-top: 8px; cursor: pointer;">
 				<!-- 인증기능 페이지로 이동-->
-				<input type="text" placeholder="아이디를 입력해주세요." id="id" name="userId"
+				<input type="text" autocomplete=”off” placeholder="아이디를 입력해주세요." id="id" name="userId"
 					required />
-				<div class="h_center"
+				<div class="h_center" id="id_chk"
 					style="position: absolute; right: 7px; padding-right: 18px; padding-left: 18px; height: 38px; border-radius: 4px; background-color: black;">
 					<label for="id_chk"
 						style="margin-bottom: 0; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: #ffffff;">
-						중복 확인 </label> <input type="button" id="id_chk" name=""
-						style="display: none;">
+						중복 확인 </label>
 				</div>
 			</div>
 			<div class="h_row" style="margin-top: 20px;">
@@ -344,6 +424,7 @@
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
 					style="margin-left: 4px; width: 6px; height: 6px">
+				<input type="hidden" id="telcheck" value="N">
 			</div>
 			<div class="input_container disabled"
 				style="margin-top: 8px; cursor: pointer;">
@@ -515,6 +596,9 @@
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
 					style="margin-top: 10px; margin-left: 4px; width: 6px; height: 6px">
+				<input type="hidden" id="agreeAll" value="N">
+				<input type="hidden" id="agreeService" value="N">
+				<input type="hidden" id="agreePersonal" value="N">
 			</div>
 
 			<div class="h_row_center h_round_check"
@@ -539,7 +623,7 @@
 					아워플레이스 서비스 이용약관 동의</p>
 				<p
 					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
-					onclick="window.open('policy/service.html')">보기</p>
+					onclick="window.open('/footertos.do')">보기</p>
 			</div>
 
 			<div class="h_row_center h_check"
@@ -553,7 +637,7 @@
 					onclick="agree_personal = true">아워플레이스 개인정보 처리방침 동의</p>
 				<p
 					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
-					onclick="window.open('policy/personal.html')">보기</p>
+					onclick="window.open('/footerpv.do')">보기</p>
 			</div>
 			<div class="" style="margin-top: 30px;height:50px;">
 				<label for="request" class="btn btn-primary"
@@ -601,10 +685,7 @@
             $('#confirm_password').val('');
         }
         
-        function regist(){
-        	console.log("regist pressed");
-        	$("#regist_form").attr("action","/regist.do").submit();
-        }
+        
         
         $(document).on('click','#tel', function(){
             var userTel = $("#userPhoneNum").val();
@@ -659,6 +740,7 @@
           			  icon:'success',
           			  title:'인증번호 일치합니다.',
                 });
+                $('#telcheck').val("Y")
             }else{
             	Swal.fire({
             			  icon:'error',
@@ -666,6 +748,7 @@
             			  text:'다시 인증해주세요.'
             	});
                 console.log("다릅니다.");
+                $('#telcheck').val("N")
             }
             });
         });

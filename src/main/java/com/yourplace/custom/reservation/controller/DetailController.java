@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.yourplace.commons.vo.IUserVO;
 import com.yourplace.custom.home.service.CategoryKewordService;
 import com.yourplace.custom.home.vo.PlaceCardVO;
 import com.yourplace.custom.interest.service.ChkMyBookmarkService;
 import com.yourplace.custom.interest.vo.InterestVO;
-import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.reservation.service.GetDetailInfoList;
 import com.yourplace.custom.reservation.service.GetImgInfoService;
 import com.yourplace.custom.reservation.service.GetMyCouponListService;
@@ -64,7 +66,7 @@ public class DetailController {
 		if (session.getAttribute("userVO") != null) {
 			bookMarkVO = new InterestVO();
 			bookMarkVO.setPlaceNum(Integer.parseInt(placeNum));
-			bookMarkVO.setUserId(((UserVO) session.getAttribute("userVO")).getUserId());
+			bookMarkVO.setUserId(((IUserVO) session.getAttribute("userVO")).getUserId());
 			boolean mybookmark = chkMyBookmarkService.chkMyBookmark(bookMarkVO);
 			model.addAttribute("bookmark", mybookmark);
 		} else {
@@ -110,39 +112,47 @@ public class DetailController {
 
 	@PostMapping("/reserveForm.do")
 	public String reserveForm(RsvVO vo, Model model, HttpServletRequest request,
-			@RequestParam("placeNum") int placeNum) {
+			@RequestParam("placeNum") int placeNum, RedirectAttributes redirect) {
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
 		// 세션이 존재하지 않으면 예약을 처리하지 못하도록 처리해야함.
 		HttpSession session = request.getSession();
 		if (session.getAttribute("userVO") != null) {
-			DetailPlaceVO dvo = new DetailPlaceVO();
-			dvo.setPlaceNum(placeNum);
-			System.out.println("[ POST ] : DetailController - reserveForm");
-			String userCoupId = ((UserVO) session.getAttribute("userVO")).getUserId();
-			//유저가 가진 사용가능한 쿠폰목록을 불러온다.
-			List<CouponVO> myCouponList = getMyCouponListService.getMyCouponList(userCoupId);
-			PlaceInfoVO pvo = new PlaceInfoVO();
-			pvo.setPlaceNum(placeNum);
-			PlaceInfoVO placeInfoVO = getPlaceService.getPlaceInfo(pvo);
-			System.out.println(vo.toString());
-			System.out.println(placeNum);
-			//예약한종료시간 - 시작시간 = 총 예약한 시간.
-			int hours = vo.getRsvEndT() - vo.getRsvStartT();
-			// 금액 계산.(시간당 가격 * 시간)
-			int totalPrice = resultPrice(Integer.parseInt(placeInfoVO.getPlaceExtrachrg()), Integer.parseInt(vo.getPlacePrice()), vo.getHeadCount(),
-					Integer.parseInt(placeInfoVO.getPlaceCapa()), hours);
-			//가격을 000,000,000 ... 과같은 형식으로 맞춰주기 위해 포맷을변경한다.
-			String price = dc.format(Double.parseDouble(String.valueOf(totalPrice)));
-			vo.setPlacePrice(String.valueOf(price));
-			vo.setPlaceNum(placeNum);
-			model.addAttribute("myCouponList", myCouponList);
-			model.addAttribute("reserving", "1");
-			model.addAttribute("placeInfo", vo);
-			model.addAttribute("detailNum", vo.getDetailNum());
-			model.addAttribute("placeMaincate", vo.getPlaceMaincate());
-			model.addAttribute("placeCate", vo.getPlaceCate());
+			if(((IUserVO)session.getAttribute("userVO")).getUserType() == 1) {
+				System.out.println("호스트 거부당했지렁.");
+				redirect.addAttribute("hostAccessDenied", "hostAccessDenied");
+				return "redirect:home.do";
+			}else {
+				System.out.println("HELOLOOOOOO");
+				DetailPlaceVO dvo = new DetailPlaceVO();
+				dvo.setPlaceNum(placeNum);
+				System.out.println("[ POST ] : DetailController - reserveForm");
+				String userCoupId = ((IUserVO) session.getAttribute("userVO")).getUserId();
+				//유저가 가진 사용가능한 쿠폰목록을 불러온다.
+				List<CouponVO> myCouponList = getMyCouponListService.getMyCouponList(userCoupId);
+				PlaceInfoVO pvo = new PlaceInfoVO();
+				pvo.setPlaceNum(placeNum);
+				PlaceInfoVO placeInfoVO = getPlaceService.getPlaceInfo(pvo);
+				System.out.println(vo.toString());
+				System.out.println(placeNum);
+				//예약한종료시간 - 시작시간 = 총 예약한 시간.
+				int hours = vo.getRsvEndT() - vo.getRsvStartT();
+				// 금액 계산.(시간당 가격 * 시간)
+				int totalPrice = resultPrice(Integer.parseInt(placeInfoVO.getPlaceExtrachrg()), Integer.parseInt(vo.getPlacePrice()), vo.getHeadCount(),
+						Integer.parseInt(placeInfoVO.getPlaceCapa()), hours);
+				//가격을 000,000,000 ... 과같은 형식으로 맞춰주기 위해 포맷을변경한다.
+				String price = dc.format(Double.parseDouble(String.valueOf(totalPrice)));
+				vo.setPlacePrice(String.valueOf(price));
+				vo.setPlaceNum(placeNum);
+				model.addAttribute("myCouponList", myCouponList);
+				model.addAttribute("reserving", "1");
+				model.addAttribute("placeInfo", vo);
+				model.addAttribute("detailNum", vo.getDetailNum());
+				model.addAttribute("placeMaincate", vo.getPlaceMaincate());
+				model.addAttribute("placeCate", vo.getPlaceCate());
 
-			return "reservation/reserveForm";
+				return "reservation/reserveForm";
+			}
+			
 		}
 		// 만약 세션이 존재하지 않는다면 접근거부로 판단 로그인 창으로 보내주어야한다.
 		model.addAttribute("accessDenied", "accessDenied");
