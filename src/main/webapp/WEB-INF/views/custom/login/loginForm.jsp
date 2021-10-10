@@ -168,7 +168,7 @@ input:focus{
 						<div
 							style="display: flex; flex-direction: row; align-items: center; justify-content: center">
 							<p
-								style="margin-left: 8px; margin-right: 8px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
+								style="margin-left: 8px; margin-right: 8px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #72787f; cursor: pointer;"
 								onclick="location.href='/find/account/accountForm.do'">아이디 찾기</p>
 							<div
 								style="width: 10px; height: 1px; transform: rotate(90deg); background-color: #e7eaee;"></div>
