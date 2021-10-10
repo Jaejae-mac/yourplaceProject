@@ -112,8 +112,8 @@
                       <td>${a.placeNum }</td>
                       <td>${a.userId }</td>
                       <td>${a.placeArea }</td>
-                      <td>${a.placeMaincate }</td>
-                      <td><fmt:formatDate value=${a.placeRegDate } pattern="yyyy-MM-dd" /></td>
+                      <td>${a.placeMainCate }</td>
+<%--                       <td><fmt:formatDate value=${a.placeRegDate } pattern="yyyy-MM-dd" /></td> --%>
                     </tr>
                     </c:forEach>
                   </tbody>

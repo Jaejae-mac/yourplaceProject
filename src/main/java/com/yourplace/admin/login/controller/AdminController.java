@@ -69,14 +69,14 @@ public class AdminController {
 	
 	//Index-admin
 	
-//	@GetMapping("/index-admin.mdo")
-//	public String directIndex(HttpServletRequest request, Model model)
-//	{
-//		System.out.println("[Controller] index-admin 으로 직접 접근");
-//		return "login";
-//	} 
+	@GetMapping("/index-admin.mdo")
+	public String directIndex(HttpServletRequest request, Model model)
+	{
+		System.out.println("[Controller] index-admin 으로 직접 접근");
+		return "login";
+	} 
 	
-	@GetMapping(value="/index-admin.mdo")
+	@PostMapping(value="/index-admin.mdo")
 	public String viewForm(Model model)
 	{
 		//매출 조회 시작
