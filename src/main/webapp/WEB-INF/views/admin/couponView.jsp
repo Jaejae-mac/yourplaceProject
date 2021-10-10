@@ -75,8 +75,8 @@
 	                </button>
                 </td>
                 <td>
-	                <button type="button" class="btn btn-danger"
-	                style="font-size: 10px;margin-left: 10px;">
+	                <button type="button" class="btn btn-danger" onclick="deleteall()"
+	                style="font-size: 10px;margin-left: 10px;" id="alldelete" name="alldel">
 	                	기한만료쿠폰 전체삭제
 	                </button>
                 </td>
@@ -132,21 +132,11 @@
        	<input type="hidden" id="start_date" name="startD" >
        	<input type="hidden" id="end_date" name="endD" >
        </form>
+       
+       <form id="submitForm3" method="POST" action="/alldelete.mdo" hidden="hidden">
+       </form>
         
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script
@@ -246,8 +236,13 @@
 		});
 		    
     </script>
+    
+    <script>
+    $(document).on("click","#alldelete",function(){
+    	$("#submitForm3").submit();
+    });
+    </script>
 	
-
 	
   </body>
 </html>

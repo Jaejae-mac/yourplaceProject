@@ -27,13 +27,6 @@
     ></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    
-    <script>
-	    $(document).on("click","#coup_send_form",function()
-		{
-			alert("선택하신 쿠폰이 정상적으로 전송되었습니다.");
-		});
-	</script>
 	
 	<script type="text/javascript">
       $(document).ready(function(){
@@ -96,12 +89,12 @@
 	                </button>
 	                
 	                <button type="button" class="btn btn-primary" id="file_send_btn"
-	                      style="font-size: 10px; margin-left: 10px;">
+	                      style="font-size: 10px; margin-left: 10px; background: rgb(0, 204, 120); border-color: rgb(0, 204, 120);">
 	                      	배너로 공개
 	                </button>
 	                
 	                <button type="button" class="btn btn-primary" id="file_disable_btn"
-	                      style="font-size: 10px; margin-left: 10px;">
+	                      style="font-size: 10px; margin-left: 10px; background: rgb(96, 96, 96); border-color: rgb(96, 96, 96);">
 	                      	비공개 전환
 	                </button>
 	                
@@ -231,20 +224,7 @@
        	<input type="hidden" id="disableBannerHidden" name="disableBannerName" >
        </form>
         
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script

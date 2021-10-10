@@ -127,6 +127,12 @@ public class CouponController {
 		
 		return "redirect:couponView.mdo";
 	}
-
 	
+	@PostMapping(value="/alldelete.mdo")
+	public String alldelete()
+	{
+		System.out.println("[Controller] 기한만료 전체삭제");
+		coupDelete.deleteAllCoupon();
+		return "redirect:couponView.mdo";
+	}
 }

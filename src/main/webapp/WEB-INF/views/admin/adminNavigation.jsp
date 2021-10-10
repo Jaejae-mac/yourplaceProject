@@ -219,7 +219,7 @@
                 >
                   <nav class="sb-sidenav-menu-nested nav">
                     
-                    <a class="nav-link" href="/revenueView.mdo">매출 현황</a>
+<!--                     <a class="nav-link" href="/revenueView.mdo">매출 현황</a> -->
                     <a class="nav-link" href="/specificRevenue.mdo">매출 조회</a>
                     
                   </nav>
@@ -266,7 +266,7 @@
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-question-circle"></i>
                   </div>
-                  문의사항 관리
+                  		문의사항 관리
                   <div class="sb-sidenav-collapse-arrow">
                     <i class="fas fa-angle-down"></i>
                   </div>

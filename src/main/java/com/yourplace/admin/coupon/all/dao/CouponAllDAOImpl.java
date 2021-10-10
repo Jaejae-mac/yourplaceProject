@@ -33,6 +33,12 @@ public class CouponAllDAOImpl implements CouponAllDAO {
 		sqlSessionTemplate.insert("CouponAllDAO.insertCoupon", coupVO);
 	}
 
+	@Override
+	public void deleteAllCoupon() {
+		System.out.println("---> MyBatis 로 deleteAllCoupon 처리");
+		sqlSessionTemplate.delete("CouponAllDAO.deleteAllCoupon");
+	}
+
 
 
 }
