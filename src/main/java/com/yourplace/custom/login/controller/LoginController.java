@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.yourplace.custom.login.service.IdCheckService;
 import com.yourplace.custom.login.service.KakaoUserService;
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
@@ -20,8 +19,7 @@ public class LoginController {
 	private LoginUserService loginUserService;
 	@Autowired
 	private KakaoUserService KakaoUserService;
-	@Autowired
-	private IdCheckService idCheckService;
+	
 	//로그인 폼을 호출해주는 컨트롤러.
 
 	@GetMapping("/loginForm.do")
@@ -32,27 +30,20 @@ public class LoginController {
 	
 	
 	//로그인 처리를 해주는 컨트롤러.
-	@GetMapping("/login.do")
+	@PostMapping("/login.do")
 	public String login(UserVO vo, HttpServletRequest request, Model model) {
-		String idresult = idCheckService.idCheck(vo);
-		if(idresult == "1") {
-			UserVO result = loginUserService.getUser(vo);
-			if (result.getLoginCheck() == 1) {
-				// 로그인 성공시에는세션을 생성해준다.
-				HttpSession session = request.getSession();
-				// 세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
-				session.setAttribute("userVO", result);
-				session.setAttribute("userId", result.getUserId());
-				// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
-				return "redirect:home.do";
-			}else {
-				model.addAttribute("result", 0);
-				return "redirect:loginForm.do";
-			}
-		}else {
-			model.addAttribute("result", 0);
-			return "redirect:loginForm.do";
+		UserVO result = loginUserService.getUser(vo);
+		if (result.getLoginCheck() == 1) {
+			// 로그인 성공시에는세션을 생성해준다.
+			HttpSession session = request.getSession();
+			// 세션의 키로 userId 를 주고 세션의 값으로 유저의 아이디를 준다.
+			session.setAttribute("userVO", result);
+			session.setAttribute("userId", result.getUserId());
+			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
+			return "redirect:home.do";
 		}
+		model.addAttribute("result", "0");
+		return "redirect:loginForm.do";
 	}
 
 
