@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yourplace.admin.question.service.AnswerService;
+import com.yourplace.admin.question.service.InsertAnswerService;
 import com.yourplace.admin.question.service.QuestionService;
 import com.yourplace.admin.question.service.SendResponseMail;
 import com.yourplace.admin.question.service.UpdateStatusService;
+import com.yourplace.admin.question.vo.AnswerVO;
 import com.yourplace.admin.question.vo.QuestionVO;
 
 @Controller
@@ -22,6 +25,8 @@ public class QueController {
 	//조회 서비스
 	@Autowired
 	private QuestionService queService;
+	@Autowired
+	private AnswerService ansService;
 	
 	//메일 전송 서비스 - 문의에 대한 답변 전송
 	@Autowired
@@ -31,12 +36,25 @@ public class QueController {
 	@Autowired
 	private UpdateStatusService updateService;
 	
+	@Autowired
+	private InsertAnswerService insertAnswerService;
+	
 	@GetMapping(value="/questionView.mdo")
-	public void queView(Model model)
+	public String queView(Model model)
 	{
 		System.out.println("[Controller] 문의사항 리스트 호출");
 		List<QuestionVO> list = queService.getQue();
 		model.addAttribute("queList", list);
+		return "questionView";
+	}
+	
+	@GetMapping(value="/answerView.mdo")
+	public String ansView(Model model)
+	{
+		System.out.println("[Controller] 문의사항 리스트 호출");
+		List<AnswerVO> list = ansService.getAns();
+		model.addAttribute("ansList", list);
+		return "answerView";
 	}
 	
 	@PostMapping(value="/sendQuestion.mdo")
@@ -62,9 +80,16 @@ public class QueController {
 		System.out.println("----------------------------------");
 		
 		//메일 전송 서비스
-		sendResponse.sendResponse(id, number, email, content, question);
-		
+//		sendResponse.sendResponse(id, number, email, content, question);
 		System.out.println("문의답변 메일 정상 발송 완료");
+		
+		//답변 테이블에 값을 삽입하는과정.
+		AnswerVO insertAnsVO = new AnswerVO();
+		insertAnsVO.setUserId(id);
+		insertAnsVO.setRsvNum(number);
+		insertAnsVO.setReprtContentAns(content);
+		insertAnswerService.insertAnswer(insertAnsVO);
+		
 		System.out.println("문의사항 View List 페이지로 돌아갑니다.");
 		
 		//보냄과 동시에 문의사항 업데이트

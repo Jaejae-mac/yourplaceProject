@@ -4,22 +4,24 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-	
-	<!-- ADMIN 시작 -->
+
+		<!-- ADMIN 시작 -->
 		<typeAlias type="com.yourplace.admin.account.vo.AccountVO"
 			alias="myAccount" />
 		<typeAlias type="com.yourplace.admin.login.vo.AdminVO"
 			alias="myAdmin" />
 		<typeAlias type="com.yourplace.admin.memberview.vo.MemberVO"
 			alias="myMember" />
-		<typeAlias type="com.yourplace.admin.coupon.all.vo.CouponAllVO"
+		<typeAlias
+			type="com.yourplace.admin.coupon.all.vo.CouponAllVO"
 			alias="myCouponAll" />
-		<typeAlias type="com.yourplace.admin.coupon.user.vo.CouponUserVO"
+		<typeAlias
+			type="com.yourplace.admin.coupon.user.vo.CouponUserVO"
 			alias="myCouponUser" />
 		<typeAlias type="com.yourplace.admin.space.vo.SpaceVO"
 			alias="mySpaceAllow" />
-		<typeAlias type="com.yourplace.admin.faq.guest.vo.FaqGuestVO"
-			alias="myFAQGuest" />
+		<typeAlias
+			type="com.yourplace.admin.faq.guest.vo.FaqGuestVO" alias="myFAQGuest" />
 		<typeAlias type="com.yourplace.admin.faq.host.vo.FaqHostVO"
 			alias="myFAQHost" />
 		<typeAlias type="com.yourplace.admin.revenue.vo.RevenueVO"
@@ -30,21 +32,25 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="myPayment" />
 		<typeAlias type="com.yourplace.admin.question.vo.QuestionVO"
 			alias="myQuestion" />
+		<typeAlias type="com.yourplace.admin.question.vo.AnswerVO"
+			alias="myAnswer" />
 		<typeAlias type="com.yourplace.admin.banner.vo.BannerVO"
 			alias="myBanner" />
-	<!-- ADMIN 끝 -->		
-	
-	
-	<!-- HOST 시작 -->		
+		<!-- ADMIN 끝 -->
+
+
+		<!-- HOST 시작 -->
 		<typeAlias type="com.yourplace.host.login.vo.HostVO"
 			alias="myHost" />
 		<typeAlias type="com.yourplace.host.reserv.vo.HostReservVO"
 			alias="HostReservVO" />
 		<typeAlias type="com.yourplace.host.review.vo.HostReviewVO"
 			alias="HostReviewVO" />
-		<typeAlias type="com.yourplace.host.management.vo.HostManagementVO"
+		<typeAlias
+			type="com.yourplace.host.management.vo.HostManagementVO"
 			alias="HostManagementVO" />
-		<typeAlias type="com.yourplace.host.management.vo.HostManagementRoomVO"
+		<typeAlias
+			type="com.yourplace.host.management.vo.HostManagementRoomVO"
 			alias="HostManagementRoomVO" />
 		<typeAlias type="com.yourplace.host.regist.vo.PlaceVO"
 			alias="myPlace" />
@@ -58,29 +64,34 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			alias="AskVO" />
 		<typeAlias type="com.yourplace.host.chart.vo.HostChartVO"
 			alias="HostChartVO" />
-		<typeAlias type="com.yourplace.host.management.vo.HostManagementImgVO"
+		<typeAlias
+			type="com.yourplace.host.management.vo.HostManagementImgVO"
 			alias="HostManagementImgVO" />
 		<typeAlias type="com.yourplace.host.refund.vo.RefundVO"
 			alias="RefundVO" />
 		<typeAlias type="com.yourplace.host.ask.vo.AskVO"
 			alias="AskVO" />
-	<!-- HOST 끝 -->
+		<!-- HOST 끝 -->
 
 
-	<!-- custom 시작 -->
+		<!-- custom 시작 -->
 		<typeAlias type="com.yourplace.custom.login.vo.UserVO"
 			alias="myUser" />
 		<typeAlias type="com.yourplace.custom.reservation.vo.RsvVO"
 			alias="reserveVO" />
-		<typeAlias type="com.yourplace.custom.reservation.vo.PaymentVO"
+		<typeAlias
+			type="com.yourplace.custom.reservation.vo.PaymentVO"
 			alias="paymentVO" />
-		<typeAlias type="com.yourplace.custom.reservation.vo.CouponVO"
-			alias="couponVO" />
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+		<typeAlias
+			type="com.yourplace.custom.reservation.vo.CouponVO" alias="couponVO" />
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO" />
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageReserveVO"
 			alias="MyPageReserveVO" />
-		<typeAlias type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
+		<typeAlias
+			type="com.yourplace.custom.mypage.vo.MyPageCouponVO"
 			alias="MyPageCouponVO" />
 		<typeAlias type="com.yourplace.custom.home.vo.PlaceCardVO"
 			alias="cardPlace" />
@@ -92,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 			type="com.yourplace.custom.mypage.vo.MyPageGuestReviewVO"
 			alias="MyPageGuestReviewVO" />
 		<typeAlias
-			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" /> 
+			type="com.yourplace.custom.question.vo.QuestionVO" alias="MyQues" />
 		<typeAlias
 			type="com.yourplace.custom.question.vo.GuestInfoVO"
 			alias="MyGuestInfo" />
@@ -106,14 +117,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias
 			type="com.yourplace.custom.reservation.vo.PlaceInfoVO"
 			alias="placeInfo" />
-		<typeAlias type="com.yourplace.custom.reservation.vo.ReviewVO"
+		<typeAlias
+			type="com.yourplace.custom.reservation.vo.ReviewVO"
 			alias="detailReviewVO" />
 		<typeAlias
 			type="com.yourplace.custom.reservation.vo.PlaceImgVO"
 			alias="placeImgInfo" />
 		<typeAlias
 			type="com.yourplace.custom.interest.vo.InterestVO" alias="MyInterest" />
-	<!-- custom 끝 -->	
+		<!-- custom 끝 -->
 	</typeAliases>
 
 
@@ -129,8 +141,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/admin/admin-faq-guest-mapping.xml" />
 		<mapper resource="mappings/admin/admin-faq-host-mapping.xml" />
 		<mapper resource="mappings/admin/admin-revenue-mapping.xml" />
-		<mapper resource="mappings/admin/admin-reserve-view-mapping.xml" />
-		<mapper resource="mappings/admin/admin-payment-view-mapping.xml" />
+		<mapper
+			resource="mappings/admin/admin-reserve-view-mapping.xml" />
+		<mapper
+			resource="mappings/admin/admin-payment-view-mapping.xml" />
 		<mapper resource="mappings/admin/admin-question-mapping.xml" />
 		<mapper resource="mappings/admin/admin-banner-mapping.xml" />
 
@@ -144,7 +158,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/host/HostRefundMapper.xml" />
 		<mapper resource="mappings/host/host-login-mapping.xml" />
 		<mapper resource="mappings/host/regist-place-mapping.xml" />
-		
+
 		<mapper resource="mappings/custom/review-mapping.xml" />
 		<mapper resource="mappings/custom/custom-ques-mapping.xml" />
 		<mapper resource="mappings/custom/custom-info-mapping.xml" />
@@ -156,7 +170,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mappings/custom/custom-login-mapping.xml" />
 		<mapper resource="mappings/custom/custom-access-mapping.xml" />
 		<mapper resource="mappings/custom/home-cards-mapping.xml" />
-		
+
 	</mappers>
-	
+
 </configuration>

@@ -285,6 +285,7 @@
                 >
                   <nav class="sb-sidenav-menu-nested nav">
                     <a class="nav-link" href="/questionView.mdo">문의사항 답변</a>
+                    <a class="nav-link" href="answerView.mdo">답변목록 확인</a>
                 </div>
                 <a
                   class="nav-link collapsed"

@@ -9,15 +9,18 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class QuestionVO {
-
+public class AnswerVO {
+	private int reprtSeqAns;
 	private int reprtSeq;
-	private int rsvNum;
-	private String userId;
-	private String reprtContent;
-	private String reprtDoneYn;
+	private String rsvNum;
 	private int userType;
+	private String userId;
 	private String userEmail;
-	private Date regDate;
+	private String reprtContentAns;
+	private Date regDateAns;
+	
+	
+	
 	
 }
+ 

@@ -7,11 +7,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="myQuestion" id="questionResult">
 		<id property="reprtSeq" column="reprt_seq" />
 		<result property="rsvNum" column="rsv_num" />
+		<result property="reprtDoneYn" column="reprt_done_yn" />
 		<result property="userId" column="user_id" />
 		<result property="reprtContent" column="reprt_content" />
-		<result property="reprtDoneYn" column="reprt_done_yn" />
 		<result property="userType" column="user_type" />
 		<result property="userEmail" column="user_email" />
+		<result property="regDate" column="reg_date" />
+	</resultMap>
+	
+	<resultMap type="myAnswer" id="answerResult">
+		<id property="reprtSeqAns" column="reprt_seq_ans" />
+		<result property="reprtSeq" column="reprt_seq" />
+		<result property="rsvNum" column="rsv_num" />
+		<result property="userId" column="user_id" />
+		<result property="reprtContentAns" column="reprt_content_ans" />
+		<result property="userType" column="user_type" />
+		<result property="userEmail" column="user_email" />
+		<result property="regDateAns" column="reg_date_ans" />
 	</resultMap>
 
 	<!-- 전체조회 -->
@@ -21,10 +33,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    (SELECT user_type FROM member WHERE user_id = a.user_id) as user_type,
 		    user_id,
 		    (SELECT user_email FROM member WHERE user_id = a.user_id) as user_email,
-		    reprt_content
+		    reprt_content,
+		    reg_date
 		FROM question a;
 	</select>
 	
+	<!-- 전체조회 -->
+	<select id="getAns" resultMap="answerResult">
+		SELECT 
+    		ans.*,b.user_id,b.user_email,b.rsv_num,b.user_type
+		FROM question_ans as ans,
+    		(SELECT 
+        		reprt_done_yn,
+            	reprt_seq,
+            	rsv_num,
+            	(SELECT user_type FROM member
+                	WHERE user_id = a.user_id) AS user_type, user_id,
+            	(SELECT user_email FROM member WHERE user_id = a.user_id) AS user_email FROM question a) b 
+		where 
+			ans.reprt_seq = b.reprt_seq;
+	</select>
+	<!-- 답변을 답변 테이블에 삽입. -->
+	<insert id="insertAnswer">
+	INSERT INTO 
+		question_ans(reprt_seq, reprt_content_ans) 
+		VALUES((SELECT reprt_seq FROM question WHERE user_id=#{userId} and rsv_num=#{rsvNum}),#{reprtContentAns});
+	</insert>
 	<!-- 문의 처리(Y)으로 -->
 	<update id="yQue">
 		UPDATE question SET reprt_done_yn = 'Y' WHERE reprt_seq = #{reprtSeq}
