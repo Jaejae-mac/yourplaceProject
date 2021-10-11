@@ -61,49 +61,49 @@
 	<div id="layoutSidenav_content">
 
 		<main>
-		
+
 			<div class="container-fluid px-4">
 				<h1 class="mt-4">환불 내역</h1>
 				<div class="card mb-4">
 					<div class="card-body">신청하신 환불내역을 확인하실 수있습니다.</div>
-					
-   
-				</div>
-					<table id="mainPageTable" name="table"
-						class="table table-bordered display" width="100%">
-						<thead>
-							<tr>
-								<th>장소명</th>
-								<th>장소번호 </th>
-								<th>예약번호</th>
-						
-								<th>예약자 ID</th>
-<th>예약 날짜</th>
-								<th>입실</th>
-								<th>퇴실</th>
-								<th>인원</th>
-								<th>금액</th>
-								
-							</tr>
 
-						</thead>
+
+				</div>
+				<table id="mainPageTable" name="table"
+					class="table table-bordered display" width="100%">
+					<thead>
+						<tr>
+							<th>장소명</th>
+							<th>장소번호</th>
+							<th>예약번호</th>
+
+
+							<th>예약 날짜</th>
+							<th>입실</th>
+							<th>퇴실</th>
+							<th>인원</th>
+							<th>금액</th>
+
+						</tr>
+
+					</thead>
 					<tbody>
 
 
 
 						<c:forEach items="${list}" var="e">
 							<tr>
-								
+
 								<td>${e.placeName}</td>
 								<td>${e.placeNum}</td>
 								<td>${e.reserveNum }</td>
-								<td>${e.reserveId }</td>
-								<td>${e.reserveYear}년- ${e.reserveMonth} 월- ${e.reserveDate }일</td>
+
+								<td>${e.reserveYear}년-${e.reserveMonth} 월- ${e.reserveDate }일</td>
 								<td>${e.startTime }</td>
 								<td>${e.endTime}</td>
 								<td>${e.personNum}</td>
 								<td>${e.payPrice }</td>
-							
+
 							</tr>
 						</c:forEach>
 
@@ -113,10 +113,7 @@
 
 				</table>
 
-				</div>
-
-		
-			</div>
+			</div></div>
 	</div>
 	</div>
 	

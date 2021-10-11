@@ -16,8 +16,10 @@ public class HostSalesDAOImpl implements HostSalesDAO {
 	private SqlSession session;
 
 	@Override
-	public List<HostSalesVO> getAllSales() throws Exception {
-		return session.selectList("hostSalesMapper.getAllSales");
+	public List<HostSalesVO> getAllSales(HostSalesVO vo) throws Exception {
+		return session.selectList("hostSalesMapper.getAllSales", vo);
 	}
+
+
 	
 }

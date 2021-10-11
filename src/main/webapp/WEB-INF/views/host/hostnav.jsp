@@ -97,12 +97,7 @@ th,td{
 						</div>
 						
 					
-							<div class="collapse" id="collapseHost"
-							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/AskforHost.hdo">고객문의</a>
-							</nav>
-						</div>
+						
 						
 					
 							

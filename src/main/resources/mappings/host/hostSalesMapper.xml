@@ -4,24 +4,26 @@
 <mapper namespace="hostSalesMapper">
 
 
-<resultMap type="HostSalesVO" id="AllSales">
-	<result property="rsvNum" column="rsv_num" />
-	<result property="payNum" column="pay_num" />
-	<result property="placeMainCa" column="place_maincate" />
-	<result property="placeCate" column="place_cate" />
-	<result property="payYear" column="pay_year" />
-	<result property="payMonth" column="pay_month" />
-	<result property="payDate" column="pay_date" />
-	<result property="invCost" column="inv_cost" />
-	<result property="coupDisPercent" column="coup_dis_rate" />
-	<result property="invBeforeCost" column="inv_bf_tax" />
-	<result property="invTax" column="inv_tax" />
-	<result property="invAfterCost" column="inv_aft_tax" />
-</resultMap>
+	<resultMap type="HostSalesVO" id="AllSales">
+		<result property="reserveNum" column="rsv_num" />
+		<result property="paymentNum" column="pay_num" />
+		<result property="payYear" column="pay_year" />
+		<result property="payMonth" column="pay_month" />
+		<result property="payDate" column="pay_date" />
+		<result property="invCost" column="inv_cost" />
+		<result property="invTax" column="inv_tax" />
+		<result property="coupDisPercent" column="coup_dis_rate" />
+		<result property="invBeforeTax" column="inv_bf_tax" />
+		<result property="mainCate" column="place_maincate" />
+		<result property="subCate" column="place_cate" />
+		<result property="invAfterTax" column="inv_aft_tax" />
+	</resultMap>
 
 	
 	<select id="getAllSales" resultMap="AllSales">
-		select * from invoice
+	 select * from payment inner join reservation on payment.rsv_num = reservation.rsv_num
+	 inner join place on place.place_num = reservation.place_num
+	 where place.user_id=#{userId} and payment.rsv_refund_yn='N'
 	</select>
 
 </mapper>

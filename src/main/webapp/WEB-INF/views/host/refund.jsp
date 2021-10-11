@@ -78,7 +78,6 @@ th,td{
 							<th>장소명</th>
 							<th>장소번호</th>
 							<th>예약번호</th>
-							<th>예약자 ID</th>
 							<th>예약 날짜</th>
 							<th>입실</th>
 							<th>퇴실</th>
@@ -99,7 +98,6 @@ th,td{
 								<td>${e.placeName}</td>
 								<td>${e.placeNum}</td>
 								<td>${e.reserveNum }</td>
-								<td>${e.reserveId }</td>
 								<td>${e.reserveDatee}</td>
 								<td>${e.startTime }</td>
 								<td>${e.endTime}</td>

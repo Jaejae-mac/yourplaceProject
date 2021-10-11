@@ -7,4 +7,5 @@ import com.yourplace.host.review.vo.HostReviewVO;
 public interface HostReviewDAO {
 	List<HostReviewVO> getReviewList(HostReviewVO vo) throws Exception;
 	void insertReviewForHost(HostReviewVO vo) throws Exception;
+	void updateReviewYN(HostReviewVO vo)throws Exception;
 }

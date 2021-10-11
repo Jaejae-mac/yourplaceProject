@@ -28,6 +28,13 @@ public class HostReviewDAOImpl implements HostReviewDAO {
 		session.insert("HostReviewMapper.insertReview", vo);
 		
 	}
+
+
+	@Override
+	public void updateReviewYN(HostReviewVO vo) throws Exception {
+		session.update("HostReviewMapper.updateReviewY", vo);
+		
+	}
 	
 
 }

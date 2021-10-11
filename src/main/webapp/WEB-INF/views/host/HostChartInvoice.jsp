@@ -28,51 +28,7 @@ th,td{
 	text-align:center;
 }
 </style>
-<script>
 
-var datas=[${map}];
-
-$(function() { 
-	var ctx = document.getElementById("myChart").getContext('2d');
-
-	var myChart = new Chart(ctx, {
-	    type: 'bar',
-	    data: {
-	        labels: ["이번 달의 매출"],
-	        datasets: [{
-	            label: '세후 금액',
-	            data: datas,
-	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	               
-	             
-	            ],
-	            borderColor: [
-	                'rgba(255,99,132,1)',
-	                'rgba(54, 162, 235, 1)',
-	                'rgba(255, 206, 86, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
-	            ],
-	            borderWidth: 1
-	        }]
-	    },
-	    options: {
-	        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero:true
-	                }
-	            }]
-	        }
-	    }
-	});
-});
-
-
-</script>
 
 </head>
 
@@ -106,6 +62,56 @@ $(function() {
 			</div>
 		</footer>
 	</div>
-	
+	<script>
+
+var datas=[${map}];
+
+var ctx = document.getElementById("myChart").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일", "11일", "12일", "13일", "14일" , "15일", "16일", "17일", "18일", "19일", "20일", "21일", "22일", "23일", "24일", "25일","26일","27일", "28일", "29일", "30일", "31일"],
+        datasets: [{
+            label: '#한달 간 매출 현황',
+            data: datas,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+             
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
 </body>
 </html>

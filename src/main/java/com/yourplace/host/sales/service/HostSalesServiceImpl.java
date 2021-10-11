@@ -16,8 +16,8 @@ public class HostSalesServiceImpl implements HostSalesService {
 	private HostSalesDAO dao;
 
 	@Override
-	public List<HostSalesVO> getAllSales() throws Exception {
-		return dao.getAllSales();
+	public List<HostSalesVO> getAllSales(HostSalesVO vo) throws Exception {
+		return dao.getAllSales(vo);
 	}
 	
 }

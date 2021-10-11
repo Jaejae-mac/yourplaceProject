@@ -116,15 +116,15 @@
 								<tbody>
 									<c:forEach var="sales" items="${list}">
 										<tr>
-											<td>${sales.rsvNum}</td>
-												<td>${sales.payNum}</td>
-											<td>${sales.placeMainCa} / ${sales.placeCate} </td>
+											<td>${sales.reserveNum}</td>
+												<td>${sales.paymentNum}</td>
+											<td>${sales.mainCate} / ${sales.subCate} </td>
 											<td>${sales.payYear}년-${sales.payMonth }-월${sales.payDate }일</td>
 												<td>${sales.invCost} 원</td>
 												<td>${sales.coupDisPercent}%</td>
-											<td>${sales.invBeforeCost} 원</td>
+											<td>${sales.invBeforeTax} 원</td>
 												<td>${sales.invTax} 원</td>
-												<td>${sales.invAfterCost} 원</td>
+												<td>${sales.invAfterTax} 원</td>
 										
 
 										</tr>
