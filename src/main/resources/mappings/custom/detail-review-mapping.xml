@@ -105,4 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			from  clicked_review
 			where rsv_num=#{rsvNum} and clicked_user_id=#{clickedUserId} 
 	</select>
+	<select id="getReviewCntAvg" resultMap="detailReviewtList">
+		select count(*)as reviewCnt, round(avg(review_guest_rate),1) as avgReview from reviewGuest where place_num = #{placeNum};
+	</select>
 </mapper>

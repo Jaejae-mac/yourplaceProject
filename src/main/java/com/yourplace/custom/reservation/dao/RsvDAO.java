@@ -28,5 +28,7 @@ public interface RsvDAO {
 	void deleteClickedReview(ReviewVO vo);
 	ReviewVO getHelpCount(ReviewVO vo); 
 	ReviewVO checkHelpBtnUser(ReviewVO vo);
+	//리뷰 갯수 파악하는 것.
+	ReviewVO reviewCntAvg(ReviewVO vo);
 	
 }

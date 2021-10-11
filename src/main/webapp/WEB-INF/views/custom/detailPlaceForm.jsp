@@ -367,16 +367,16 @@
 						<div class="h_row_center"
 							style="margin-top: 40px; position: relative">
 							<p
-								style="font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
+								style="font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);margin-bottom:2px">
 								장소 리뷰</p>
 							<p
-								style="margin-left: 9px; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
-								9</p>
+								style="margin-left: 9px; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);margin-bottok:2px">
+								${reviewCnt }</p>
 							<img src=" <c:url value="/resources/custom/icon/gold_star.png"/>"
 								style="width: 24px; height: 24px; margin-left: 13px" />
 							<p
-								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43);">
-								5.0</p>
+								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43);margin-bottom:2px;">
+								${avgReview }</p>
 							<div class="h_row_center" style="position: absolute; right: 0px">
 								<p class="align_btn"
 									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer;"

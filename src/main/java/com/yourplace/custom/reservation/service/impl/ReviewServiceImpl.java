@@ -17,7 +17,11 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	@Override
 	public List<ReviewVO> reviewList(ReviewVO vo) {
+		
 		return rsvDAO.reviewList(vo);
 	}
 
+	public ReviewVO getAvgCng(ReviewVO vo) {
+		return rsvDAO.reviewCntAvg(vo);
+	}
 }

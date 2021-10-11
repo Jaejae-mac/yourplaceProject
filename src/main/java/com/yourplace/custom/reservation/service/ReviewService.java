@@ -6,4 +6,5 @@ import com.yourplace.custom.reservation.vo.ReviewVO;
 
 public interface ReviewService {
 	List<ReviewVO> reviewList(ReviewVO vo);
+	ReviewVO getAvgCng(ReviewVO vo);
 }

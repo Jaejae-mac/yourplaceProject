@@ -41,5 +41,8 @@ public class ReviewVO {
 	boolean reviewMoreBtn;
 	
 	private String clickedUserId;
-
+	//리뷰 총 개수.
+	int reviewCnt;
+	//리뷰 전체 평균.
+	double avgReview;
 }

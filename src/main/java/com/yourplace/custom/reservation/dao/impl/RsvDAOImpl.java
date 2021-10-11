@@ -101,4 +101,9 @@ public class RsvDAOImpl implements RsvDAO{
 		sqlSessionTemplate.selectOne("ReviewMapper.deleteClickedUser",vo);
 		
 	}
+
+	@Override
+	public ReviewVO reviewCntAvg(ReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewMapper.getReviewCntAvg",vo);
+	}
 }

@@ -82,7 +82,9 @@ public class DetailController {
 		List<PlaceImgVO> imgList = getImgInfoService.getImgInfo(Integer.parseInt(placeNum));
 		List<DetailPlaceVO> detailInfoList = getDetailInfoList.getDetailInfo(dvo);
 		List<ReviewVO> reviewList = reviewService.reviewList(rvo);
-
+		//해당하는 장소에 존재하는 리뷰의 총 개수와, 평점의 평균.
+		ReviewVO avgAndCnt = reviewService.getAvgCng(rvo);
+		
 		String[] htArr = placeInfo.getPlaceTag().split("#");
 		System.out.println(htArr.toString());
 		List<String> hashTags = new ArrayList<String>();
@@ -105,6 +107,8 @@ public class DetailController {
 		model.addAttribute("imgList", imgList);
 		model.addAttribute("detailInfoList", detailInfoList);
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewCnt", avgAndCnt.getReviewCnt());
+		model.addAttribute("avgReview", avgAndCnt.getAvgReview());
 		// 리뷰 더보기 클릭 시 마지막 로우넘을 서버로 보내 마지막 로우넘 이후 5개를 더 불러와 붙여야 하므로 모델에 값을 적용.
 		model.addAttribute("rowNum", 0);
 		return "detailPlaceForm";
