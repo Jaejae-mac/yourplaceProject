@@ -88,7 +88,7 @@ public class LoginController {
 			
 
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
-			return "index";
+			return "redirect:/home.do";
 
 		}
 
