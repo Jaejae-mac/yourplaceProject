@@ -32,7 +32,7 @@ public class LoginController {
 	
 	
 	//로그인 처리를 해주는 컨트롤러.
-	@GetMapping("/login.do")
+	@PostMapping("/login.do")
 	public String login(UserVO vo, HttpServletRequest request, Model model) {
 		String idresult = idCheckService.idCheck(vo);
 		if(idresult == "1") {

@@ -106,7 +106,7 @@ input:focus{
 					<div style="width: 100%; padding-right: 40px; padding-left: 40px;">
 
 						<!-- id 입력 -->
-						<form id="form_login" method="GET">
+						<form id="form_login" method="POST">
 							<input type="hidden" name="_token"
 								value="CO5NSkoOWiPrEihilmn86B2BXu2M6ulfg3KoaUuk">
 							<div class="input_container2 bottom"
