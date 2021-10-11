@@ -32,6 +32,7 @@
             <div style="margin: 40px 50px;">
 
                 <form action="" id="updatepassword" method="POST" >
+                	<input type="hidden" name="userType" id="userType" value="${userVO.userType}">
                 	<input type="hidden" name="userId" id="userId" value="${userVO.userId}">
                     <div style="font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #9ea4aa;">
                         	새 비밀번호

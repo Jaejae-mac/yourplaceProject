@@ -17,15 +17,15 @@ public class HostProfileServiceImpl implements HostProfileService{
 	@Inject
 	private HostProfileDAO dao;
 	
-	@Override
-	public void updateProfileImg(HostInfoUpdateImgVO vo) throws Exception {
-		dao.updateProfileImg(vo);
-	}
+//	@Override
+//	public void updateProfileImg(HostInfoUpdateImgVO vo) throws Exception {
+//		dao.updateProfileImg(vo);
+//	}
 
-	@Override
-	public void updateProfile(HostInfoUpdateVO vo) throws Exception {
-		dao.updateProfile(vo);
-	}
+//	@Override
+//	public void updateProfile(HostInfoUpdateVO vo) throws Exception {
+//		dao.updateProfile(vo);
+//	}
 
 	@Override
 	public List<HostVO> getHostInfo(HostVO vo) throws Exception {

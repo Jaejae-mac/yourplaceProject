@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
@@ -66,10 +65,17 @@ public class MypageController {
 	public String updateUser(UserVO vo) throws IOException{
 		System.out.println("[mypageController] updateUser 기능");
 		System.out.println(vo.toString());
-		String Img = vo.getUserProfileImg();
-		
-		mypageupdateService.updateUser(vo);
-		return "redirect:mypage.do";
+		int type = vo.getUserType();
+		if(type==0) {
+			mypageupdateService.updateUser(vo);
+			System.out.println("업데이트 완료");
+			return "redirect:mypage.do";
+		}else {
+			mypageupdateService.updateUser(vo);
+			System.out.println("업데이트 완료");
+			return "redirect:myProfile.hdo";
+		}
+
 	}
 	// 회원 탈퇴 기능 
 	@RequestMapping("/deleteUser.do")
@@ -133,14 +139,22 @@ public class MypageController {
 			session.setAttribute("userVO", result);
 			return "mypage/MyPageresetPw";
 		}
+		model.addAttribute("result", 0);
 		return "mypage/mypagecheckPw";
 	}
 	//비밀번호 변경
 	@RequestMapping("/updatePw.do")
 	public String UpdatePw(UserVO vo) {
 		System.out.println("[Mypagecontroller UpdatePw 기능 수행]");
-		mypageupdateService.updatePw(vo);
-		return "redirect:mypage.do";
+		int type = vo.getUserType();
+		if(type==0) {
+			mypageupdateService.updatePw(vo);
+			return "redirect:mypage.do";
+		}else {
+			mypageupdateService.updatePw(vo);
+			return "redirect:myProfile.hdo";
+		}
+
 	}
 	//리뷰
 	@RequestMapping("/mypagereviewList.do")

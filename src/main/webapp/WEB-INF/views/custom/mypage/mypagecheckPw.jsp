@@ -44,6 +44,7 @@
 
 			<div style="margin: 40px 50px;">
 				<form action="" id="checkpass_form" method="get">
+					<input type="hidden" name="userType" value="${userVO.userType}">
 					<input type="hidden" name="userId" value="${userVO.userId}">	
 					<div
 						style="font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">

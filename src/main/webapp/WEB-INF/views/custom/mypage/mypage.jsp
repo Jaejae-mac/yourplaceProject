@@ -43,7 +43,7 @@
         </form>
         
         <div style="margin-top: 50px; width: 100%; height: 1px; background-color: #e7eaee;"></div>
-        <div class="h_row" style="margin-top: 60px; margin-bottom: 200px;">
+        <div class="h_row_center" style="margin-top: 60px; margin-bottom: 200px;">
             <div class="h_column_center" style="width: 360px;">
                 <div style="width: 360px;border-radius: 10px;border: solid 1px #dfe2e7;background-color: #ffffff;">
                     <div class="h_column_center">
