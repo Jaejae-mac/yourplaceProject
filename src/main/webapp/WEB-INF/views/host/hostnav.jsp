@@ -5,7 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<style>
+th,td{
+	text-align:center;
+}
+</style>
 </head>
 <body>
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -66,13 +70,6 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="collapseHost"
-							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-							
-							
-							</nav>
-						</div>
 							<div class="collapse" id="collapseHost"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
@@ -110,8 +107,8 @@
 					
 							
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-							data-bs-target="#collapseMember" aria-expanded="false"
-							aria-controls="collapseMember">
+							data-bs-target="#collapseReservation" aria-expanded="false"
+							aria-controls="collapseReservation">
 							<div class="sb-nav-link-icon">
 								<i class="fa fa-calendar-check"></i>
 							</div> 예약 관리
@@ -119,7 +116,7 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="collapseMember"
+						<div class="collapse" id="collapseReservation"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/placeReserveListForHost.hdo">예약현황</a>
@@ -132,8 +129,8 @@
 
 				
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-							data-bs-target="#collapseMember" aria-expanded="false"
-							aria-controls="collapseMember">
+							data-bs-target="#collapseRefund" aria-expanded="false"
+							aria-controls="collapseRefund">
 							<div class="sb-nav-link-icon">
 									<i class="fas fa-money-bill-alt"></i>
 							</div> 환불
@@ -141,7 +138,7 @@
 								<i class="fas fa-angle-down"></i>
 							</div>
 						</a>
-						<div class="collapse" id="collapseMember"
+						<div class="collapse" id="collapseRefund"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/refund.hdo">환불 신청</a> <a
@@ -186,4 +183,19 @@
 			<!--사이드바 nav태그((사이드메뉴)) 끝-->
 		</div>
 </body>
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="<c:url value="/resources/host/assets/demo/chart-area-demo.js" />"></script>
+	<script
+		src="<c:url value="/resources/host/assets/demo/chart-bar-demo.js" />"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
+		crossorigin="anonymous"></script>
+	<script
+		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
 </html>

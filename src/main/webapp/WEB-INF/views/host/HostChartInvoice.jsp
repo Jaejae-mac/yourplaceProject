@@ -13,7 +13,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
@@ -22,6 +23,11 @@
 <link href="<c:url value="/resources/host/css/styles.css" />"
 	rel="stylesheet" />
 
+<style>
+th,td{
+	text-align:center;
+}
+</style>
 <script>
 
 var datas=[${map}];
@@ -70,10 +76,10 @@ $(function() {
 
 </head>
 
-<body>
+<body class="sb-nav-fixed">
+<%@include file="hostnav.jsp" %>
 
-<%@include file="hostnav.jsp"%>
-	<div id="layoutSidenav_content">
+		<div id="layoutSidenav_content">
 
 		<main>
 			<div class="container-fluid px-4">
@@ -82,24 +88,24 @@ $(function() {
 					<div class="card-body">최근 몇개월 간의 매출을 조회할 수 있습니다.</div>
 
 				</div>
-	
-<div style="width: 900px; position:relative; left:200px;">
-	<canvas id="myChart"></canvas>
-</div>	
 
-</div>
-	</main>
+				<div style="width: 900px; position: relative; left: 200px;">
+					<canvas id="myChart"></canvas>
+				</div>
 
-
-	<footer class="py-4 bg-light mt-auto">
-		<div class="container-fluid px-4">
-			<div class="d-flex align-items-center justify-content-between small">
-				<div class="text-muted">Copyright &copy; YourPlace</div>
-				<div></div>
 			</div>
-		</div>
-	</footer>
+		</main>
+
+
+		<footer class="py-4 bg-light mt-auto">
+			<div class="container-fluid px-4">
+				<div class="d-flex align-items-center justify-content-between small">
+					<div class="text-muted">Copyright &copy; YourPlace</div>
+					<div></div>
+				</div>
+			</div>
+		</footer>
 	</div>
-	</div>
+	
 </body>
 </html>
