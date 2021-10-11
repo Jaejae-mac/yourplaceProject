@@ -36,7 +36,7 @@ public class HostLoginController {
 	@GetMapping("/login.hdo")
 	public String login(HostVO vo, Model model, HttpServletRequest request) throws Exception {
 		HostVO result = service.getHostLogin(vo);
-		if(result != null) {
+		if(result.getLoginCheck() == 1) {
 			//로그인 성공시에는세션을 생성해준다.
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", result);
@@ -50,10 +50,10 @@ public class HostLoginController {
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
 			return "redirect:/indexYourPlace.hdo";
 			
+		}else {
+			model.addAttribute("result", 0);
+			return "redirect:loginForm.hdo";
 		}
-		model.addAttribute("result", 1);
-		return "redirect:loginForm.hdo";
-		
 	}
 	
 	public void getHostInfo(HttpServletRequest request, HostVO vo) throws Exception{

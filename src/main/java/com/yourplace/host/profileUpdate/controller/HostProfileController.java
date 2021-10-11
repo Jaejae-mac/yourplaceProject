@@ -1,31 +1,30 @@
 package com.yourplace.host.profileUpdate.controller;
 
-import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yourplace.commons.awss3.AwsS3;
+import com.yourplace.custom.login.service.LoginUserService;
+import com.yourplace.custom.login.vo.UserVO;
+import com.yourplace.custom.mypage.service.MyPageUpdateService;
+import com.yourplace.host.login.service.HostLoginService;
 import com.yourplace.host.login.vo.HostVO;
 import com.yourplace.host.profileUpdate.service.HostProfileService;
-import com.yourplace.host.profileUpdate.vo.HostInfoUpdateImgVO;
-import com.yourplace.host.profileUpdate.vo.HostInfoUpdateVO;
 
 @Controller
 public class HostProfileController {
+	@Autowired
+	private HostLoginService hostloginService;
 	@Inject
 	private HostProfileService service;
-
-	
-
 
 	@RequestMapping(value = "/myProfile.hdo")
 	public ModelAndView viewProfile(HttpServletRequest request, HostVO vo) throws Exception {
@@ -42,83 +41,53 @@ public class HostProfileController {
 			String userEmail = getList.get(i).getUserEmail();
 			String userProfile = getList.get(i).getUserProfileImg();
 			String userIntro = getList.get(i).getUserIntro();
-		
-		String imgBucket = "https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/";
+			String userName = getList.get(i).getUserName();
 		
 		if(userProfile == null) {
-			String img = "https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png";
+			String img = "profile/default/defaultprofile.png";
 			mav.addObject("userImg", img);
 		}else {
-			mav.addObject("userImg", imgBucket + userProfile);
+			mav.addObject("userImg", userProfile);
 		}
 		
-		System.out.println(imgBucket+ userProfile);
+		System.out.println(userProfile);
 		mav.addObject("userId", userId);
 		mav.addObject("userNick", userNickName);
 		mav.addObject("userInfo", userIntro);
 		mav.addObject("userMail", userEmail);
 		mav.addObject("userTel", userTel);
-	
+		mav.addObject("userName", userName);
 		
 		mav.setViewName("myProfile");
 		
 	}
 		return mav;
 	}
-	
-	@RequestMapping(value = "/profileUpdate.hdo", method = { RequestMethod.POST, RequestMethod.GET })
-	public void getUserImg(Map<String, Object> param, HostInfoUpdateImgVO vo, HttpServletRequest request) throws Exception{
+	//비밀번호 확인 페이지 이동
+	@RequestMapping("/gocheckPw.hdo")
+	public String gocheckPw(HttpServletRequest request,HostVO vo) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		
-			AwsS3 awsS3 = AwsS3.getInstance();
-			String contentType = vo.getUserProfileImg().getContentType();
-			String fileName = vo.getUserProfileImg().getOriginalFilename();
-			long filelength = vo.getUserProfileImg().getSize();
-
-			File file = new File(fileName);
-	
-			String key = "profile/host/" + userId + "/thumbnail/" + fileName;
-			System.out.println(key);
-			
-
-			awsS3.upload(file, key);
-		
-			vo.setUserId(userId);
-			vo.setImgUrl(key);
-		
-
-			service.updateProfileImg(vo);
-			
-		
+		mav.addObject("userId",userId);
+		return "myProfilePassCheck";
 	}
-	
-
-	@RequestMapping(value = "/getInfoValue.hdo", method = { RequestMethod.POST, RequestMethod.GET })
-	public void getUserIntro(Map<String, Object> param,	HostInfoUpdateVO vo, HttpServletRequest request) throws Exception {
-			HttpSession session = request.getSession();
-			
-			String userId = (String) session.getAttribute("userId");
-			
-			String userNick = vo.getUserNickName();
-			String email = vo.getUserEmail();
-			String userIntro = vo.getUserIntro();
-			
-			
-			vo.setUserNickName(userNick);
-			vo.setUserEmail(email);
-			vo.setUserIntro(userIntro);
-			vo.setUserId(userId);
-			System.out.println(vo.toString());
-			
-			service.updateProfile(vo);
-	
-
-			
-		
-	
-	}
-	
+	//비밀번호 변경페이지 이동
+		@RequestMapping("/gochangPw.hdo")
+		public String MypageChangPw(HostVO vo, HttpServletRequest request) {
+			ModelAndView mav = new ModelAndView();
+			System.out.println("[MypageController MypageChangPw 기능 수행]");
+			HostVO result = hostloginService.getHostLogin(vo);
+			if(result.getLoginCheck() == 1) {
+				HttpSession session = request.getSession();
+				String userId = (String)session.getAttribute("userId");
+				mav.addObject("userId",userId);
+				return "myProfilePassChange";
+			}else {
+				mav.addObject("result", 0);
+				return "myProfilePassCheck";
+			}
+		}
 	@RequestMapping(value="/updateProfileforHost.hdo")
 	public ModelAndView getHostInfo(HostVO vo, HttpServletRequest request)throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -133,30 +102,27 @@ public class HostProfileController {
 			String userEmail = getList.get(i).getUserEmail();
 			String userProfile = getList.get(i).getUserProfileImg();
 			String userIntro = getList.get(i).getUserIntro();
-		
-		String imgBucket = "https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/";
+			int userNum = getList.get(i).getUserNum();
+
 		
 		if(userProfile == null) {
-			String img = "https://yourplacebuc.s3.ap-northeast-2.amazonaws.com/profile/default/defaultprofile.png";
+			String img = "profile/default/defaultprofile.png";
 			mav.addObject("userImg", img);
 		}else {
-			mav.addObject("userImg", imgBucket + userProfile);
+			mav.addObject("userImg", userProfile);
 		}
 		
-		System.out.println(imgBucket+ userProfile);
+		System.out.println(userProfile);
 		mav.addObject("userId", userId);
 		mav.addObject("userNick", userNickName);
 		mav.addObject("userInfo", userIntro);
 		mav.addObject("userMail", userEmail);
 		mav.addObject("userTel", userTel);
-	
-		mav.setViewName("profileUpdate");
+		mav.addObject("userNum", userNum);
 		
-		
-		}
-		
-		return mav;
-		
+		mav.setViewName("profileUpdate");	
+		}		
+		return mav;		
 	}
 	
 	

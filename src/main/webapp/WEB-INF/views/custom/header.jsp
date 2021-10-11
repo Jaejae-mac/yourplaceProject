@@ -147,7 +147,7 @@
 							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
 							
 							<!-- 로그인 기능 show_login() -->
-							<div onclick="window.location.href='/updateProfileforHost.hdo'"
+							<div onclick="window.location.href='/myProfile.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p

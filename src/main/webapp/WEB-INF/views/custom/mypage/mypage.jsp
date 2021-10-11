@@ -41,7 +41,6 @@
         	<input type="hidden" name="userNum" value="${user.userNum}"/>
         	<input type="hidden" name="userProfileImg" value="${user.userProfileImg}"/>
         </form>
-        
         <div style="margin-top: 50px; width: 100%; height: 1px; background-color: #e7eaee;"></div>
         <div class="h_row" style="margin-top: 60px; margin-bottom: 200px;">
             <div class="h_column_center" style="width: 360px;">
@@ -117,19 +116,22 @@
                 </p>
             </div>
             <!-- 유저 소개란 -->
+            
             <div style="margin-left: 60px; width: 580px;">
-                <p style="font-size: 24px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.33;letter-spacing: -0.3px;color: #1b1d1f;">
-                	소개
-                </p>
-                <p id="Intro" style ="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                    <c:if test="${user.userIntro == null or user.userIntro == ''}">
-                    	안녕하세요. ${user.userNickName} 입니다.
-                    </c:if>
-                    <c:if test="${user.userIntro != null }">
-                    	${user.userIntro}
-                    </c:if>
-                    
-                </p>
+            	<div>
+	                <p style="font-size: 24px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.33;letter-spacing: -0.3px;color: #1b1d1f;">
+	                	소개
+	                </p>
+	                <p id="Intro" style ="margin-top: 20px; font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+	                    <c:if test="${user.userIntro == null or user.userIntro == ''}">
+	                    	안녕하세요. ${user.userNickName} 입니다.
+	                    </c:if>
+	                    <c:if test="${user.userIntro != null }">
+	                    	${user.userIntro}
+	                    </c:if>
+	                    
+	                </p>
+				</div>
                 <div style="margin-top: 40px; height: 1px; background-color: rgb(231, 234, 238);"></div>
                 <div style="margin-top: 40px;">
                     <div
