@@ -1116,6 +1116,7 @@
 	  var emailtest = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
 	  var code = '';
 	  var name = $("#user_name").val().trim();
+	  var agree = $("#all").is(':checked')
 	  if(name == ""){
 		  Swal.fire({
          		icon: 'error',
@@ -1135,6 +1136,13 @@
 			  icon: 'error',
 			  title: '예약을 하실수 없습니다.',
 			  text: '이메일을 제대로 입력해주세요.'
+			  });
+		  return false;
+	  }else if(!agree){
+		  Swal.fire({
+			  icon: 'error',
+			  title: '예약을 하실수 없습니다.',
+			  text: '약관에 동의해 주시기 바랍니다.'
 			  });
 		  return false;
 	  }else{
