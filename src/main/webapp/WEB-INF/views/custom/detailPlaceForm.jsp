@@ -613,7 +613,7 @@
 											<div class="h_row_center"
 												style="width: 280px; margin: 30px 30px 20px; height: 44px; position: relative;">
 												<p
-													style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: var(- -grey-080);">
+													style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: #1b1d1f;">
 													총인원 수</p>
 												<div class="h_row_center"
 													style="height: 44px; width: 168px; position: absolute; right: 0px;">
@@ -625,10 +625,10 @@
 															style="width: 20px; height: 20px" />
 													</div>
 													<div
-														style="width: 60px; margin: 0px 14px; padding: 0px 2px; height: 44px; border-radius: 4px; border: solid 1px var(- -grey-025); display: flex; flex-direction: row; align-items: center; justify-content: center;">
+														style="width: 60px; margin: 0px 14px; padding: 0px 2px; height: 44px; border-radius: 4px; border: solid 1px #dfe2e7; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 														<input type="text" pattern="[0-9]*"
 															id="select_search_people" placeholder="1"
-															style="width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; text-align: center; color: var(- -grey-080);"
+															style="width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; text-align: center; color: #1b1d1f;"
 															value="1" />
 													</div>
 													<div
@@ -726,7 +726,7 @@
 			</div>
 		</div>
 		<div class="direct_phone h_center"
-			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: var(- -opacity-black-60);">
+			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.6);">
 			<div
 				style="position: relative; width: 420px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<div class="h_center"
@@ -756,7 +756,7 @@
 			</div>
 		</div>
 		<div class="photo_feedback h_center"
-			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: var(- -opacity-black-60);">
+			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.6);">
 			<div
 				style="position: relative; width: 750px; height: 576px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<!---->
@@ -788,7 +788,7 @@
 			</div>
 		</div>
 		<div class="photo_feedback_v2 h_center"
-			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: var(- -opacity-black-60);">
+			style="position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; display: none; z-index: 9999; background-color: rgba(0, 0, 0, 0.6);">
 			<div
 				style="position: relative; width: 750px; height: 576px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 8px 0px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255);">
 				<!---->

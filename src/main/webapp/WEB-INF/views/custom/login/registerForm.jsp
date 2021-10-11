@@ -352,7 +352,7 @@
 
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					아이디</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -373,7 +373,7 @@
 			</div>
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					비밀번호</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -396,7 +396,7 @@
 			</div>
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					비밀번호 확인</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -419,7 +419,7 @@
 				style="margin-top: 10px; font-size: 13px;">비밀번호가 일치하지 않습니다.</div>
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					본인 인증</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -446,7 +446,7 @@
 					src="<c:url value="/resources/img/icon/register/more_info.png" />"
 					style="width: 14px; height: 14px;" />
 				<p
-					style="margin-left: 4px; margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; text-align: right; color: var(- -blue-030);">
+					style="margin-left: 4px; margin-bottom: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; text-align: right; color: #246ff8;">
 					본인 인증 안내</p>
 
 				<div class="auth_info"
@@ -487,7 +487,7 @@
 
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 10px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 10px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					이름</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -505,13 +505,13 @@
 			</div>
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="font-size: 12px; margin-bottom: 10px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="font-size: 12px; margin-bottom: 10px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					성별</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
 					style="margin-left: 4px; width: 6px; height: 6px">
 			</div>
-			<div  style="margin-top: 0; border-radius: 4px; border: 1px solid var(--grey-020);min-height:52px;vertical-align:middle;line-height:52px;text-align:center;">
+			<div  style="margin-top: 0; border-radius: 4px; border: 1px solid #e7eaee;min-height:52px;vertical-align:middle;line-height:52px;text-align:center;">
 				<div style=" float: left; width: 49%;">
 				<input type="radio" name="userSex" id="r2" value="male" checked/>
 				<label for="r2" style="margin-left:10px">남성</label>
@@ -526,7 +526,7 @@
 
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					닉네임</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -559,7 +559,7 @@
 				style="margin-top: 10px; font-size: 13px;">닉네임을 입력해주세요.</div>
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					이메일</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -591,7 +591,7 @@
 
 			<div class="h_row" style="margin-top: 20px;">
 				<p
-					style="margin-bottom: 0; margin-top: 10px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0; margin-top: 10px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					서비스 동의</p>
 				<img
 					src="<c:url value="/resources/img/icon/register/invalid.png" />"
@@ -608,7 +608,7 @@
 					style="margin-left: 6px; margin-right: 12px; width: 24px; height: 24px"
 					class="agree-all" />
 				<p
-					style="margin-bottom: 5px; font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: var(- -grey-040);">
+					style="margin-bottom: 5px; font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: #9ea4aa;">
 					전체 동의하기</p>
 			</div>
 
@@ -619,10 +619,10 @@
 					style="margin-left: 8px; margin-right: 10px; width: 18px; height: 18px"
 					class="agree-service" />
 				<p
-					style="margin-bottom: 0px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-bottom: 0px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					아워플레이스 서비스 이용약관 동의</p>
 				<p
-					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
+					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #72787f; cursor: pointer;"
 					onclick="window.open('/footertos.do')">보기</p>
 			</div>
 
@@ -633,10 +633,10 @@
 					style="margin-left: 8px; margin-right: 10px; width: 18px; height: 18px;"
 					class="agree-personal" />
 				<p
-					style="margin-bottom: 0px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);"
+					style="margin-bottom: 0px; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;"
 					onclick="agree_personal = true">아워플레이스 개인정보 처리방침 동의</p>
 				<p
-					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-050); cursor: pointer;"
+					style="position: absolute; right: 0; font-size: 12px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #72787f; cursor: pointer;"
 					onclick="window.open('/footerpv.do')">보기</p>
 			</div>
 			<div class="" style="margin-top: 30px;height:50px;">

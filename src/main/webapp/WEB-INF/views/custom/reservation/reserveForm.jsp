@@ -618,11 +618,6 @@
               </div>
                
               
-              <div align="center">
-               <br/>
-               <input type="submit" value="동의"><input type="reset" value="비동의">
-               <br/>
-              </div>
              </div>
              </div>
              <!-- check Box 이벤트처리를 위한 Script -->
@@ -1117,7 +1112,40 @@
   //결제하기 버튼 클릭시.
   $("#reserve_btn").click(function(){
 	  console.log("결제하기 클릭.");
+	  var teltest = /^\d{3}-\d{3,4}-\d{4}$/; //전화번호 정규식
+	  var emailtest = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
 	  var code = '';
+	  var name = $("#user_name").val().trim();
+	  var agree = $("#all").is(':checked')
+	  if(name == ""){
+		  Swal.fire({
+         		icon: 'error',
+          		title: '예약을 하실수 없습니다.',
+         		text: '예약자 성함을 입력해주세요.'
+         	});
+		  return false;
+	  }else if(!teltest.test($("#user_tel").val())){
+		  Swal.fire({
+			  icon: 'error',
+			  title: '예약을 하실수 없습니다.',
+			  text: '전화번호을 제대로 입력해주세요.'
+			  });
+		  return false;
+	  }else if(!emailtest.test($("#user_email").val())){
+		  Swal.fire({
+			  icon: 'error',
+			  title: '예약을 하실수 없습니다.',
+			  text: '이메일을 제대로 입력해주세요.'
+			  });
+		  return false;
+	  }else if(!agree){
+		  Swal.fire({
+			  icon: 'error',
+			  title: '예약을 하실수 없습니다.',
+			  text: '약관에 동의해 주시기 바랍니다.'
+			  });
+		  return false;
+	  }else{
 	  $.ajax({
 		  type:"post",
 		  url:"/importnum.do"
@@ -1153,9 +1181,9 @@
 		  var userTel =$("#user_tel").val();
 		  var placePrice= $("#place_price").text().replace(",","");
 		  arr.hostNickName=$("#nick_name").val();
-		  iamport(code,placeName,userEmail,userName,userTel,placePrice,arr);
-		
-  	});
+		  iamport(code,placeName,userEmail,userName,userTel,placePrice,arr);	
+  		});
+	  }
   });
   
   $("#cancel_btn").click(function(){

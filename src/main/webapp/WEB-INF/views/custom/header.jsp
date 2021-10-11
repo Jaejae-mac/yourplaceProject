@@ -77,7 +77,7 @@
 	                            <div style="height: 45px; width: 100%;">
 	                                <div class="h_row_center" style="right: 10px; height: 40px;border: solid 2px rgb(114, 120, 127); border-radius: 30px;">
 	                                    <div class="h_center" style="left:15px; width: 30px;height: 30px;">
-	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
+	                                        <img src="<c:url value="/resources/img/icon/search_v3.svg" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
 	                                    </div>
 	                                    <div style="position:absolute;right: 77px;left: 57px;">
 	                                        <input id="search_input" onkeyup="enterkey();" 

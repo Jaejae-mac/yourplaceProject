@@ -87,7 +87,7 @@
 				</div>
 				
 				<div onclick="show_booking_sort()" class="h_center h_hover_button"
-					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px var(#dfe2e7); cursor: pointer;">
+					style="position: absolute; right: 0px; width: 130px; height: 40px; border-radius: 4px; border: solid 1px #dfe2e7; cursor: pointer;">
 					<div class="h_row_center">
 						<img src="<c:url value="/resources/img/icon/sort.png" />"
 							style="width: 20px; height: 20px;">
@@ -182,7 +182,7 @@
 				<div class="h_center"
 					style="width: 24px; height: 24px; position: absolute; right: 40px; top: 30px; cursor: pointer;"
 					onclick="close_direct()">
-					<img src="https://s3.hourplace.co.kr/web/images/icon/close.svg"
+					<img src="<c:url value="/resources/img/icon/register/close.png"/>"
 						style="width: 24px; height: 24px;" />
 				</div>
 
@@ -463,7 +463,7 @@
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvRefundYnS +'</p></div>';
        				res += '<div class="h_center" style="width: 80px;">';
-       				res += '<p id="salesSip'+i+'" onclick="" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       				res += '<p id="salesSip'+i+'" onclick="/invoice.do?rsvNum=' + rsvNum + '" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += '보기</p></div>';
        				res += '<div class="h_center" style="width: 85px;">';
        				// 환불 신청 상태 설정
@@ -498,7 +498,7 @@
        			// 예약 내역 없을시 출력
        			res +='<div class="h_center" style="width: 100%; height: 800px; position: relative;">';
        			res +='<div class="h_column_center">';
-       			res +='<img src="https://s3.hourplace.co.kr/web/images/icon/guest_empty.png" style="width: 80px; height: 80px;">';
+       			res +='<img src="<c:url value="/resources/img/icon/register/guest_empty.png"/>" style="width: 80px; height: 80px;">';
        			res +='<p style="margin-top: 20px; font-size: 24px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; text-align: center; color: rgb(27, 29, 31);">';
        			res +='예약 내역이 없어요</p>';
        			res +='</div>';
