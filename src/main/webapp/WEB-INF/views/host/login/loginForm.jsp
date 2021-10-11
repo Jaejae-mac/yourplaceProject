@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- 전달된 파라미터가 0 이라면 아이디또는 비밀번호의 불일치 이므로. -->
-<c:if test="${param.result == 1}">
+<c:if test="${param.result == 0}">
 	<script>
 		//alert 를 내보낸다.
 		alert('아이디 또는 비밀번호를 확인해주세요.');
@@ -181,7 +181,7 @@ input:focus{
 								|
                                 <!-- original : "window.location.href='/register'" -->
                                 <p style="margin-left: 8px; margin-right: 8px;font-size: 12px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;text-align: right;color: #246ff8; cursor: pointer;"
-                                onclick="location.href='/register.do'">
+                                onclick="location.href='/Hostregister.do'">
                                    호스트 회원가입
                                 </p>
                             </div>

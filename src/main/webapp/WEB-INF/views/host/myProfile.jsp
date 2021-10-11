@@ -109,14 +109,14 @@
                 	<div class="h_center">
                 	<!-- 편집이동 버튼 -->
 		                <div onclick="location.href='/updateProfileforHost.hdo'" class="h_center h_hover_button"
-		                    style="margin-top: 100px;margin-left: 20px; width: 141px; height: 52px; border-radius: 8px; background-color: #195bfa;border: 3px solid #72787f; cursor: pointer;">
+		                    style="margin-top: 100px;margin-left: 20px; width: 141px; height: 52px; border-radius: 8px; background-color: #3c82fa;border: 3px solid #72787f; cursor: pointer;">
 		                    <p style="padding-top: 12px;font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: #ffffff;">
 		                    	프로필 편집
 		                    </p>
 		                </div>
 		                <!-- 비밀번호 변경버튼 -->
 		                <div onclick="location.href='/gocheckPw.hdo'" class="h_center h_hover_button"
-		                    style="margin-top: 20px;margin-left: 20px; width: 141px; height: 52px; border-radius: 8px; background-color: green;border: 3px solid #72787f; cursor: pointer;">
+		                    style="margin-top: 20px;margin-left: 20px; width: 141px; height: 52px; border-radius: 8px; background-color: #3c82fa;border: 3px solid #72787f; cursor: pointer;">
 		                    <p style="padding-top: 12px;font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; text-align: center; letter-spacing: -0.1px; color: #ffffff;">
 		                    	비밀번호 변경
 		                    </p>

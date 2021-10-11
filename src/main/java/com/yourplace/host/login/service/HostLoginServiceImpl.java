@@ -45,10 +45,11 @@ public class HostLoginServiceImpl implements HostLoginService{
 				hvo.setLoginCheck(fail);
 				return hvo;
 			}
-		} else {
+		}else {
 			//아이디가 존재하지 않는 유저이면 0을 리턴해주겠다.
-			hvo.setLoginCheck(fail);
-			return hvo;
+			HostVO nvo = new HostVO();
+			nvo.setLoginCheck(fail);
+			return nvo;
 		}
 	}
 

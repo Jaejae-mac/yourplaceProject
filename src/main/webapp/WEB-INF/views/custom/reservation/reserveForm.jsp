@@ -1048,23 +1048,7 @@
                   }
               
                  }
-                }
-              
-               form1.onsubmit = function(e) {
-                e.preventDefault();
-              
-                if ( !form1_data['c1'] ) {
-                 alert('이용동의 약관에 동의하지 않았습니다.');  
-                 return false; 
-                }
-              
-                if ( !form1_data['c2'] ) {
-                 alert('개인정보 수집 및 이용에 대한 안내를 동의하지 않았습니다.'); 
-                 return false; 
-                }
-              
-                this.submit(); 
-               }; 
+                } 
 	});
     });
     $("#user_tel").keyup(function(){
@@ -1279,9 +1263,17 @@
 				    	}
 				     }
 					});
-		        	alert("결제 및 결제검증완료");
+	        		Swal.fire({
+		    		      title : '결제가 완료',
+		    		      text : '성공적으로 결제가 완료되었습니다.',
+		    		      icon :'success'
+	        		})
 	        	} else {
-	        		alert("결제 실패");
+	        		Swal.fire({
+	           			icon: 'error',
+	            		title: '결제 실패',
+	            		text: '결제에 실패되었습니다.',
+	            	})
 	        	}
 	        });
 		    /* if ( rsp.success ) {
