@@ -43,7 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where a.place_allow = 1
 		order by place_reg_date desc
 		Limit
-		8;
+		12;
 	</select>
 	<select id="getPopularPlaceList" resultMap="cardResult">
 		select

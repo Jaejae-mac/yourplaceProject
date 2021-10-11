@@ -1,4 +1,5 @@
 package com.yourplace.custom;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,7 +40,9 @@ public class HomeController {
 	public String home(Model model,HttpSession session, @RequestParam(value="welcomeCoupon", required = false) String welcomeCoupon,
 			@RequestParam(value="hostAccessDenied", required = false) String hostAccessDenied) {
 		List<PlaceCardVO> latestPlaces = homeGetLatestService.getLatestPlaceList();
+		List<PlaceCardVO> latestPlacesModel = new ArrayList<PlaceCardVO>();
 		List<PlaceCardVO> popularPlaces = homeGetPolularService.getLatestPlaceList();
+		List<PlaceCardVO> popularPlacesModel = new ArrayList<PlaceCardVO>();
 		//북마크.
 		List<InterestVO> bookmarks = null;
 		//배너 리스트 불러오기.
@@ -52,25 +55,43 @@ public class HomeController {
 			String userId = iuvo.getUserId();
 			vo.setUserId(userId);
 			bookmarks = bookmarkListService.bookmarkList(vo);
+			
 			for(PlaceCardVO card : latestPlaces) {
 				for(InterestVO bookmark : bookmarks) {
 					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
 						card.setBookmark(true);
+						break;
 					}else {
 						card.setBookmark(false);
 					}
 				}
+				latestPlacesModel.add(card);
 			}
+			for(PlaceCardVO card : popularPlaces) {
+				for(InterestVO bookmark : bookmarks) {
+					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
+						card.setBookmark(true);
+						break;
+					}else {
+						card.setBookmark(false);
+					}
+				}
+				popularPlacesModel.add(card);
+			}
+		}else {
+			latestPlacesModel = latestPlaces;
+			popularPlacesModel = popularPlaces;
 		}
+		System.out.println(latestPlacesModel.toString());
 		if(welcomeCoupon != null) {
 			model.addAttribute("welcomeCoupon", welcomeCoupon);
 		}
 		if(hostAccessDenied != null) {
 			model.addAttribute("hostAccessDenied", "hostAccessDenied");
 		}
-		model.addAttribute("latestPlaces", latestPlaces);
+		model.addAttribute("latestPlaces", latestPlacesModel);
 		model.addAttribute("banner", bannerVO);
-		model.addAttribute("popularPlaces", popularPlaces);
+		model.addAttribute("popularPlaces", popularPlacesModel);
 		
 		return "index";
 	}
