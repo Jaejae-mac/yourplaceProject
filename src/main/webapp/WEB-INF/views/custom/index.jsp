@@ -777,13 +777,13 @@
 
 						<div class="card">
 							<div class="card_header"
-								onclick="gotoDetail('#place_num${status.index }')">
+								onclick="gotoDetail('#p_place_num${status.index }')">
 
 								<img src="${popularPlace.placeThumb}" alt="이미지 넣는 곳" />
 								<!-- 데이터 베이스의 해당 image 가져오기-->
 							</div>
 							<div class="card_body"
-								onclick="gotoDetail('#place_num${status.index }')">
+								onclick="gotoDetail('#p_place_num${status.index }')">
 								<div class="card_body_header">
 									<p>
 										${popularPlace.placeCate } · ${popularPlace.placeArea }
@@ -848,8 +848,8 @@
 							</div>
 						</div>
 					</div>
-					<%-- <input type="hidden" id="place_num${status.index }"
-						value="${latestPlace.placeNum} " /> --%>
+					<input type="hidden" id="p_place_num${status.index }"
+						value="${popularPlace.placeNum} " /> 
 				</c:forEach>
 			</div>
 			<!--total_card_layout END-->
