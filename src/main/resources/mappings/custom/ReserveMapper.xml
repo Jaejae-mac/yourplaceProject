@@ -182,7 +182,7 @@
         OR  r.user_num = #{userNum}
         	AND DATE_FORMAT(CURDATE(), '%Y') = r.rsv_year AND DATE_FORMAT(CURDATE(), '%m') = r.rsv_month 
         	AND DATE_FORMAT(CURDATE(), '%e') > r.rsv_date)
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<select id="getMyReserveListAll" resultMap="getmyreserveList">
 		SELECT 
@@ -191,7 +191,7 @@
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum}
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<select id="getMyReserveListEnd" resultMap="getmyreserveList">
 		SELECT 
@@ -206,7 +206,7 @@
         OR  r.user_num = #{userNum}
         	AND DATE_FORMAT(CURDATE(), '%Y') = r.rsv_year AND DATE_FORMAT(CURDATE(), '%m') = r.rsv_month 
         	AND DATE_FORMAT(CURDATE(), '%e') > r.rsv_date
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;	
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;	
 		
 		
 	</select>
@@ -217,14 +217,14 @@
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum} AND a.rsv_refund_yn IN ('2','3')
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<!-- JJ 작성부. -->
 	<select id="getRsvList" resultMap="getmyreserveList">
 		SELECT * FROM reservation where
 			rsv_year=#{rsvYear} and rsv_month=#{rsvMonth} and rsv_date=#{rsvDate}
 		and place_num=#{placeNum} and place_detail_num=#{detailNum}
-		order by rsv_start_t asc;
+		order by rsv_start_t DESC;
 	</select>
 	<select id="getDetail" resultMap="detailInfo">
 		SELECT a.*, b.place_price 
@@ -315,7 +315,7 @@
         OR  r.user_num = #{userNum}
         	AND DATE_FORMAT(CURDATE(), '%Y') = r.rsv_year AND DATE_FORMAT(CURDATE(), '%m') = r.rsv_month 
         	AND DATE_FORMAT(CURDATE(), '%e') > r.rsv_date)
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<select id="getkeywordListAll" resultMap="getmyreserveList">
 		SELECT 
@@ -325,7 +325,7 @@
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum}
         AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<select id="getkeywordListEnd" resultMap="getmyreserveList">
 		SELECT 
@@ -341,7 +341,7 @@
         	AND DATE_FORMAT(CURDATE(), '%Y') = r.rsv_year AND DATE_FORMAT(CURDATE(), '%m') = r.rsv_month 
         	AND DATE_FORMAT(CURDATE(), '%e') > r.rsv_date
         	
-        ORDER BY r.rsv_month ASC, r.rsv_date ASC;
+        ORDER BY r.rsv_month DESC, r.rsv_date DESC;
 	</select>
 	<select id="getkeywordListCancel" resultMap="getmyreserveList">
 		SELECT 
@@ -352,7 +352,7 @@
         WHERE r.user_num = #{userNum}
 		AND a.rsv_refund_yn IN('2','3') 
 		AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC
+		ORDER BY r.rsv_month DESC, r.rsv_date DESC
 
 		
 	</select>
