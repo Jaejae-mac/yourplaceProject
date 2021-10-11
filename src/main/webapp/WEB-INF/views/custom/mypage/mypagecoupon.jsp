@@ -30,10 +30,12 @@
 		<!-- 쿠폰이 없다면 출력 -->
         <div style="width: 1160px;">
             <c:if test="${fn:length(couponList) == 0 }">
+            	<div style="margin-top: 20px; width: 100%; height: 1px;background: #E7EAEE;"></div>
 	            <div class="h_center" style="width: 1160px; height: 1000px;">
+	            
 	                <div class="h_column_center">
 	                    <div class="h_center" style="width: 80px;height: 80px;background-color: #eff3f5;border-radius: 40px;">
-	                        <img src="//s3.hourplace.co.kr/web/images/emoji/16.svg" style="margin-left: 3px; margin-bottom: 17px;width: 70px;height: 70px;" />
+	                        <img src="<c:url value="/resources/img/icon/register/nocoupon.PNG"/>" style="width: 60px;height: 60px;" />
 	                    </div>
 	                    <p style="margin-top: 20px;font-size: 24px;font-weight: 500;font-stretch: normal;font-style: normal;line-height: 1.33;letter-spacing: -0.3px;text-align: center;color: #1b1d1f;">
 	                       	 보유중인 쿠폰이 없어요
@@ -42,6 +44,7 @@
 	            </div>
             </c:if>
             <!-- 끝 -->
+            <c:if test="${fn:length(couponList) != 0 }">
             <div class="h_column_center" style="width: 100%; margin-top: 50px;">
                 <div style="width: 100%; height: 1px;background: #E7EAEE;"></div>
 
@@ -49,7 +52,7 @@
 
                     <div class="h_row_center" style="margin-bottom: 24px;margin-top: 64px;margin-left: 10px;">
                         <p style="font-style: normal;font-weight: bold;font-size: 16px;line-height: 22px;letter-spacing: -0.1px;color: #1B1D1F;">
-                            전체
+                            	전체
                         </p>
                         <p style="margin-left: 6px; font-style: normal;font-weight: bold;font-size: 15px;line-height: 14px;letter-spacing: -0.5px;color: #246FF8;">
                            ${fn:length(couponList)}
@@ -88,6 +91,7 @@
                     </div>
                 </div>
             </div>
+            </c:if>
         </div>
     </div>
     <!-- Footer -->
