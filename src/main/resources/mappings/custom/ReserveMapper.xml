@@ -216,8 +216,7 @@
 			r.rsv_start_t,r.rsv_end_t,a.rsv_refund_yn,r.inv_bf_tax,r.rsv_review_yn,
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
-        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn = 2
-        OR r.user_num = #{userNum} AND a.rsv_refund_yn = 3
+        WHERE r.user_num = #{userNum} AND a.rsv_refund_yn IN ('2','3')
 		ORDER BY r.rsv_month ASC, r.rsv_date ASC;
 	</select>
 	<!-- JJ 작성부. -->
@@ -351,10 +350,10 @@
 			p.user_id,p.place_area,p.place_name,p.place_thumb
 		FROM reservation r join place p using(place_num) join payment a using(rsv_num) 
         WHERE r.user_num = #{userNum}
-		AND a.rsv_refund_yn = 2 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
+		AND a.rsv_refund_yn IN('2','3') 
+		AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
 		ORDER BY r.rsv_month ASC, r.rsv_date ASC
-		OR a.rsv_refund_yn = 3 AND p.place_name LIKE CONCAT('%',#{searchKeyword},'%')
-		ORDER BY r.rsv_month ASC, r.rsv_date ASC
+
 		
 	</select>
 </mapper>
