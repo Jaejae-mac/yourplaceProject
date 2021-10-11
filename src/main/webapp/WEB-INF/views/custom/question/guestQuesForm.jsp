@@ -51,7 +51,7 @@
 			<div class="h_column_center"
 				style="width: 400px; height: 240px; border-radius: 16px; box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.06); background-color: #ffffff;">
 				<img
-					src="https://s3.hourplace.co.kr/web/images/emoji/service_guest.png"
+					src="<c:url value="/resources/img/icon/register/service_guest.png" />"
 					style="margin-top: 50px; width: 44px; height: 44px;" />
 				<div class="h_center"
 					style="margin-top: 13px; height: 24px; width: 86px; border-radius: 12px; background-color: #1b1d1f;">
@@ -69,7 +69,7 @@
 						</label> <input type="button" id="guest_using"
 							onclick="window.location.href='login.html'"
 							style="display: none; cursor: pointer;"> <img
-							src="https://s3.hourplace.co.kr/web/images/icon/before.svg"
+							src="<c:url value="/resources/img/icon/register/before.png"/>"
 							style="margin-left: 8px; width: 20px; height: 20px; -webkit-transform: rotate(180deg)">
 					</div>
 				</div>
@@ -80,7 +80,7 @@
 			<div class="h_column_center"
 				style="margin-left: 40px; width: 400px; height: 240px; border-radius: 16px; box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.06); background-color: #ffffff;">
 				<img
-					src="https://s3.hourplace.co.kr/web/images/emoji/service_host.png"
+					src="<c:url value="/resources/img/icon/register/service_host.png"/>"
 					style="margin-top: 50px; width: 44px; height: 44px;" />
 				<div class="h_center"
 					style="margin-top: 13px; height: 24px; width: 86px; border-radius: 12px; background-color: #1b1d1f;">
@@ -98,7 +98,7 @@
 						</label> <input type="button" id="host_using"
 							onclick="window.location.href='login.html'"
 							style="display: none; cursor: pointer;"> <img
-							src="https://s3.hourplace.co.kr/web/images/icon/before.svg"
+							src="<c:url value="/resources/img/icon/register/before.png"/>"
 							style="margin-left: 8px; width: 20px; height: 20px; -webkit-transform: rotate(180deg)">
 					</div>
 				</div>
@@ -111,7 +111,7 @@
 		<div class="h_column_center">
 			<div class="h_center"
 				style="width: 80px; height: 80px; background-color: #eff3f5; border-radius: 50%;">
-				<img src="//s3.hourplace.co.kr/web/images/emoji/14.svg"
+				<img src="<c:url value="/resources/img/icon/register/14.png"/>"
 					style="width: 80px; height: 80px; padding: 0 0 16px 14px;">
 			</div>
 			<p
@@ -167,7 +167,7 @@
 			<div class="h_center"
 				style="width: 24px; height: 24px; position: absolute; right: 40px; top: 30px; cursor: pointer;"
 				onclick="close_direct()">
-				<img src="https://s3.hourplace.co.kr/web/images/icon/close.svg"
+				<img src="<c:url value="/resources/img/icon/register/close.png"/>"
 					style="width: 24px; height: 24px;" />
 			</div>
 
@@ -222,7 +222,7 @@
 			<div class="h_center"
 				style="width: 24px; height: 24px; position: absolute; right: 40px; top: 30px; cursor: pointer;"
 				onclick="close_direct_two()">
-				<img src="https://s3.hourplace.co.kr/web/images/icon/close.svg"
+				<img src="<c:url value="/resources/img/icon/register/close.png"/>"
 					style="width: 24px; height: 24px;" />
 			</div>
 
