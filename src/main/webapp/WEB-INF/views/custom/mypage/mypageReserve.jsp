@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Yourplace Reserve</title>
+<title>YourPlace 예약 내역</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/user-register.css" />" />
 <link rel="stylesheet" type="text/css"

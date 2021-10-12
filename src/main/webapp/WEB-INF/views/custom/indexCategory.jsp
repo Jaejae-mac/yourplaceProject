@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>place</title>
+<title>YourPlace 장소목록</title>
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/page.css" />">

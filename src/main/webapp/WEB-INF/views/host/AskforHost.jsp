@@ -15,7 +15,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>고객문의</title>
+    <title>YourPlace 고객문의</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"

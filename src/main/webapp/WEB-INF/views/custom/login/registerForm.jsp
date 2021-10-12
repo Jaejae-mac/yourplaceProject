@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
-<title>register</title>
+<title>YourPlace 회원가입</title>
  
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user-register-style.css?alter" />">

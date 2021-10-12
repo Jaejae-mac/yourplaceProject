@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Password Reset - yourplace</title>
+<title>YourPlace 비밀번호 재설정</title>
 <link href="<c:url value="/resources/custom/css/reset-pw-style.css" />"
 	rel="stylesheet" />
 <script

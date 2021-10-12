@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Reserve</title>
+    <title>YourPlace 장소 수정</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"

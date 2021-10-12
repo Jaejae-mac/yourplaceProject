@@ -21,7 +21,7 @@
 		reviewList();
 	});
 </script>
-<title>Yourplace MyPage</title>
+<title>YourPlace 마이페이지</title>
 </head>
 <body>
 	

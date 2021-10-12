@@ -30,7 +30,7 @@
 
 
 
-<title>Login</title>
+<title>YourPlace 게스트 로그인</title>
 <style>
 #login_host, #login_guest, #login_kakao {
 	display: none;
