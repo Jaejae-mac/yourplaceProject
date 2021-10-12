@@ -35,6 +35,7 @@ public class refundController {
 		String id = (String) session.getAttribute("userId");
 		vo.setUserId(id);
 		List<RefundVO> list = service.getAllDate(vo);
+		System.out.println(list.toString());
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 
@@ -58,7 +59,6 @@ public class refundController {
 
 			if(today.before(reserveDate)) {
 			
-					String rId = list.get(i).getReserveId();
 					String placeName = list.get(i).getPlaceName();
 					String placeNum = list.get(i).getPlaceNum();
 					String reserveNum = list.get(i).getReserveNum();
@@ -69,7 +69,6 @@ public class refundController {
 					String reserveDatee = sdf.format(reserveDate);
 					
 					RefundVO voo = new RefundVO();
-					voo.setReserveId(rId);
 					voo.setPlaceName(placeName);
 					voo.setPlaceNum(placeNum);
 					voo.setReserveNum(reserveNum);

@@ -72,6 +72,9 @@ public class HostReviewController {
 		vo.setReservNum(reserveNum);
 		
 		service.insertReviewForHost(vo);
+		service.updateReviewYN(vo);
+		
+		
 		
 	}
 		

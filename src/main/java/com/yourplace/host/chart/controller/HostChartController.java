@@ -1,8 +1,11 @@
 package com.yourplace.host.chart.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -149,25 +152,25 @@ public class HostChartController {
 		vo.setUserId(userId);
 
 		List<HostChartVO> list = service.getChartData(vo);
-		List<Integer> paylist = new ArrayList<Integer>();
+		List<Integer> chartData = new ArrayList<Integer>();
+		System.out.println(list.toString());
 	
-		try {
-			for(int i=0; i<=list.size(); i++) {
-				int getAfterTax = Integer.parseInt(list.get(i).getAfterTax());
-				paylist.add(getAfterTax);
-				}
-					
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
+		
+		for(int i=0; i<list.size(); i++) {
+			String payYear = list.get(i).getPayYear();
+			String payMonth = list.get(i).getPayMonth();
+			String paydate = list.get(i).getPayDate();
 			
-		}catch(Exception e) {
 			
+				
 		}
-
-			int sum = paylist.stream().mapToInt(Integer::intValue).sum();
-
-		System.out.println(sum);
-		System.out.println(paylist);
-
-		mav.addObject("map", sum);
+		System.out.println(chartData);
+		
+		
+		
+		
+//		mav.addObject("map", sum);
 		mav.setViewName("HostChartInvoice");
 		return mav;
 	}

@@ -17,15 +17,18 @@
 
 	
 	<select id="getAllReview" resultMap="getAllReview">
-	SELECT * FROM reviewGuest INNER JOIN place ON reviewGuest.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id =#{memId};
+	SELECT * FROM reviewGuest INNER JOIN place ON reviewGuest.place_num = place.place_num inner join member on place.user_id= member.user_id where member.user_id =#{memId}
 	</select>
 	
 	
 	<insert id="insertReview">
 	insert Ignore into reviewHost(rsv_num, place_num, user_id, review_guest_rate, review_guest_wr, rsv_id)
-	values(#{reservNum},#{placeNum}, #{memId}, #{star}, #{review}, #{reserveId});
+	values(#{reservNum},#{placeNum}, #{memId}, #{star}, #{review}, #{reserveId})
 	</insert>
 	
+	<update id="updateReviewY">
+	UPDATE reservation SET rsv_review_yn='Y' WHERE rsv_num=#{reservNum}
+	</update>
 	
 
 

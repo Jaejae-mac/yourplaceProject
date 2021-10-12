@@ -25,5 +25,12 @@ public class HostReservVO {
 	private int endTime;
 	private int personNum;
 	private int payPrice;
+	private int userNum;
+	private String reservePurpose;
+	private String reserveRequest;
+	private String reserveReviewYN;
+	private String couponNum;
+	private String reserveTel;
+	private String placeDetailNum;
 	private String reserveDatee;
 }

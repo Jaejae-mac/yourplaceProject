@@ -206,7 +206,7 @@
 					var reserveNum = td.eq(2).text();
 					var reserveId = td.eq(3).text();
 				
-					
+				
 				
 					
 					arr1.push(placeNum);
@@ -214,7 +214,7 @@
 					arr3.push(reserveId);
 					
 					
-					console.log(arr2);
+					console.log(arr3);
 					
 					  $(document).on("click", "button[name='review']", function () {
 						  $.ajax({

@@ -25,4 +25,10 @@ public class HostReviewServiceImpl implements HostReviewService{
 		dao.insertReviewForHost(vo);
 		
 	}
+
+	@Override
+	public void updateReviewYN(HostReviewVO vo) throws Exception {
+		dao.updateReviewYN(vo);
+		
+	}
 }

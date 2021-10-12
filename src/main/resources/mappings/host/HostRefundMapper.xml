@@ -6,33 +6,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="HostRefundMapper">
 
-<resultMap type="RefundVO" id="refund">
+	<resultMap type="RefundVO" id="refund">
 		<result property="placeName" column="place_Name" />
 		<result property="reserveNum" column="rsv_num" />
-		<result property="reserveId" column="rsv_id"/>
+		<result property="reserveId" column="rsv_id" />
 		<result property="reserveName" column="rsv_name" />
-		<result property="placeNum" column="place_num"/>
+		<result property="placeNum" column="place_num" />
 		<result property="startTime" column="rsv_start_t" />
 		<result property="endTime" column="rsv_end_t" />
 		<result property="personNum" column="personNum" />
-		<result property="payPrice" column="rsv_pay"/>
+		<result property="payPrice" column="inv_bf_tax" />
 		<result property="reserveYear" column="rsv_year" />
 		<result property="reserveMonth" column="rsv_month" />
-		<result property="reserveDate" column="rsv_date" />	
-		<result property="userId" column="user_id"/>
+		<result property="reserveDate" column="rsv_date" />
+		<result property="RefundReason" column="rsv_refund_reason" />
+		<result property="userId" column="user_id" />
 	</resultMap>
 
 	<select id="getAllReserveDate" resultMap="refund">
-	select reserve.*, place.place_num, place.user_id from reserve inner join place on place.place_num = reserve.place_num where place.user_id=#{userId} and rsv_refund_yn=0
+	select reservation.*, place.place_num, place.user_id, place.place_name, payment.* from reservation inner join place on place.place_num = reservation.place_num inner join payment on payment.rsv_num = reservation.rsv_num where place.user_id=#{userId} and payment.rsv_refund_yn=0
 	</select>
 
 
 <update id="updateRefund">
-UPDATE reserve SET rsv_refund_yn=3, rsv_refund_reason=#{RefundReason} WHERE rsv_num =#{reserveNum}
+UPDATE payment SET rsv_refund_yn=3, rsv_refund_reason=#{RefundReason} WHERE rsv_num =#{reserveNum}
 </update>
 
 <select id="getRefundConfirm" resultMap="refund">
-select * from reserve join place on reserve.place_num = place.place_num join member on member.user_id = place.user_id where member.user_id=#{userId} and rsv_refund_yn=3
+select * from reservation join place on reservation.place_num = place.place_num join member on member.user_id = place.user_id inner join payment on payment.rsv_num = reservation.rsv_num where member.user_id=#{userId} and payment.rsv_refund_yn=3
+
 </select>
 	
 

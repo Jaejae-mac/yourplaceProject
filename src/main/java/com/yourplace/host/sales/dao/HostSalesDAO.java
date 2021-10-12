@@ -5,5 +5,5 @@ import java.util.List;
 import com.yourplace.host.sales.vo.HostSalesVO;
 
 public interface HostSalesDAO {
-List<HostSalesVO> getAllSales() throws Exception;
+List<HostSalesVO> getAllSales(HostSalesVO vo) throws Exception;
 }

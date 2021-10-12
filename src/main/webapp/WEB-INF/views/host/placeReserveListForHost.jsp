@@ -44,46 +44,6 @@
 <script
 	src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10" defer></script>
-<script>
-      $(document).on("click", ".trigger", function () {
-        Swal.fire("리뷰보기 입니다.");
-      });
-      $(function () {
-        $("#toggle-one").bootstrapToggle({
-          on: "게스트리뷰",
-          off: "호스트리뷰",
-          offstyle: "success",
-        });
-      });
-      $(document).ready(function () {
-        var lang_kor = {
-          decimal: "",
-          emptyTable: "데이터가 없습니다.",
-          info: "_START_ - _END_ (총 _TOTAL_ 개)",
-          infoEmpty: "0명",
-          infoFiltered: "(전체 _MAX_ 명 중 검색결과)",
-          infoPostFix: "",
-          thousands: ",",
-          lengthMenu: "_MENU_ 개씩 보기",
-          loadingRecords: "로딩중...",
-          processing: "처리중...",
-          search: "검색 : ",
-          zeroRecords: "검색된 데이터가 없습니다.",
-          paginate: {
-            first: "첫 페이지",
-            last: "마지막 페이지",
-            next: "다음",
-            previous: "이전",
-          },
-          aria: {
-            sortAscending: " :  오름차순 정렬",
-            sortDescending: " :  내림차순 정렬",
-          },
-        };
-      
-
-      
-    </script>
 
 
 
@@ -95,20 +55,23 @@
 			<div class="container-fluid px-4">
 				<h1 class="mt-4">예약 목록</h1>
 				<div class="card mb-4">
-					<div class="card-body">최근 예약 목록을 볼 수있습니다.</div>
+					<div class="card-body">최근 예약 목록을 볼 수있습니다.
+					</div>
 				</div>
 
 				<table id="mainPageTable" class="table table-bordered display"
 					width="100%">
 					<colgroup>
-						<col width="50px">
-						<col width="50px">
+						<col width="120px">
+						<col width="20px">
 						<col width="50px" style="background: rgb(231, 231, 231, 0.3)">
-						<col width="70px">
+						<col width="80px">
 						<col width="40px" style="background: rgb(231, 231, 231, 0.3)">
 						<col width="40px" style="background: rgb(231, 231, 231, 0.3)">
 						<col width="40px">
 						<col width="40px">
+							<col width="40px">
+					
 					</colgroup>
 					<thead>
 						<tr>
@@ -120,6 +83,8 @@
 							<th>퇴실</th>
 							<th>인원</th>
 							<th>금액</th>
+							<th></th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -133,6 +98,10 @@
 								<td>${test.endTime }시</td>
 								<td>${test.personNum}명</td>
 								<td>${test.payPrice}₩</td>
+								<td><button type="button" class="btn btn-primary" onclick=" a();"
+					name="detail" id="detail"
+					style="font-size: 10px; margin-left: 10px;">상세보기</button></td>
+							
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -156,16 +125,69 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
+	
 	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
 		crossorigin="anonymous"></script>
 	<script
 		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
 </body>
+<script>
+$(document).on("click","#detail",function()
+		{
+
+	var c = $(this);
+
+	var tr = c.parent().parent();
+	var td = tr.children();
+
+	var active = td.eq(0).text();
+	var no = td.eq(1).text();
+	
+	var arr1 = new Array();
+	arr1.push(no);
+	
+	console.log(arr1);
+	
+	window.name = "reserveDetail";
+
+	var url = "/reserveDetail.hdo";
+
+	var width = '580';
+	var height = '700';
+
+	var left = Math.ceil((window.screen.width - width) / 2);
+	var top = Math.ceil((window.screen.height - height) / 2);
+	window.open('/reserveDetail.hdo', 'pop', 'width=' + width
+			+ ', height=' + height + ', left=' + left
+			+ ', top=' + top);
+	
+	
+	$.ajax(
+
+			{
+					url : '/reserveNum.hdo',
+					dataType : 'text',
+					async    : false,
+					type : 'POST',
+					 async: false,
+					 data: {
+						 reserveNum: arr1,	      	
+				      },
+				      
+				      success: function(data){
+				  
+				          	 	  	 	 
+				             
+				      }
+				})
+});
+
+
+
+</script>
+
+
+
 </html>
 <!-- 
 

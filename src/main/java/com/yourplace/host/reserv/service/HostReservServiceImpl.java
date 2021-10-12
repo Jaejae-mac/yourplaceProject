@@ -27,9 +27,10 @@ public class HostReservServiceImpl implements HostReservService{
 	}
 
 	@Override
-	public List<HostReservVO> lastAllReserve(HostReservVO vo) throws Exception {
-		return dao.lastAllReserve(vo);
+	public List<HostReservVO> lastReserve(HostReservVO vo) throws Exception {
+		return dao.lastReserve(vo);
 	}
+
 
 	
 }

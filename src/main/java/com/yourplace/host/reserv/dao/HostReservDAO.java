@@ -7,5 +7,5 @@ import com.yourplace.host.reserv.vo.HostReservVO;
 public interface HostReservDAO {
 	List<HostReservVO> getAllReserve(HostReservVO vo) throws Exception;
 	void updatePlaceDetail() throws Exception;
-	List<HostReservVO> lastAllReserve(HostReservVO vo) throws Exception;
+	List<HostReservVO> lastReserve(HostReservVO vo) throws Exception;
 }
