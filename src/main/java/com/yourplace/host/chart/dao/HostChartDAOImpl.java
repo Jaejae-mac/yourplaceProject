@@ -19,6 +19,11 @@ public class HostChartDAOImpl implements HostChartDAO{
 	public List<HostChartVO> getChartData(HostChartVO vo) throws Exception {
 		return session.selectList("HostChartMapper.getAllChart", vo);
 	}
+
+	@Override
+	public List<HostChartVO> getInvoiceChart(HostChartVO vo) throws Exception {
+		return session.selectList("HostChartMapper.getinvoiceChart", vo);
+	}
 	
 
 }

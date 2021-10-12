@@ -62,18 +62,28 @@ th,td{
 			</div>
 		</footer>
 	</div>
-	<script>
 
-var datas=[${map}];
+<script>
 
+var datas=[];
+<c:forEach items="${map}" var="data">
+datas.push(${data});
+</c:forEach>
+</script>
+
+
+<script>
+
+$(function() { 
 var ctx = document.getElementById("myChart").getContext('2d');
 
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: ["1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일", "11일", "12일", "13일", "14일" , "15일", "16일", "17일", "18일", "19일", "20일", "21일", "22일", "23일", "24일", "25일","26일","27일", "28일", "29일", "30일", "31일"],
+
+    	 labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" , "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25","26","27", "28", "29", "30", "31"],
         datasets: [{
-            label: '#한달 간 매출 현황',
+            label: '#가장 예약이 많은 달',
             data: datas,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -111,7 +121,9 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-});
+})});
+
 </script>
+
 </body>
 </html>

@@ -16,6 +16,7 @@ public class HostChartVO {
 	private String payDate;
 	private String AfterTax;
 	private String invTax;
+	private int beforeTax;
 	private String reserveYear;
 	private String reserveMonth;
 	private String reserveDate;
@@ -23,5 +24,5 @@ public class HostChartVO {
 	private String endTime;
 	private String placeName;
 	private String AfterReview;
-
+	private int reserveValue;
 }
