@@ -41,7 +41,7 @@ th,td{
 			<div class="container-fluid px-4">
 				<h1 class="mt-4">매출 차트</h1>
 				<div class="card mb-4">
-					<div class="card-body">최근 몇개월 간의 매출을 조회할 수 있습니다.</div>
+					<div class="card-body">최근 한달 간의 일별 매출을 조회할 수 있습니다.</div>
 
 				</div>
 
@@ -83,7 +83,7 @@ var myChart = new Chart(ctx, {
 
     	 labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" , "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25","26","27", "28", "29", "30", "31"],
         datasets: [{
-            label: '#가장 예약이 많은 달',
+            label: '#일 매출',
             data: datas,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
