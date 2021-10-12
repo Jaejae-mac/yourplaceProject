@@ -213,39 +213,41 @@
 	    			 
 	    }
 	 //컨트롤러에서 가져온 리뷰 값을 출력하기위한 함수
-	 function getreivewListCallmoreHostReviews(){
-	            	console.log("데이터 전송");
-	            if(data.length != 0){
-	            	$("#row_num").val(rowNum);
-	            	console.log(data);
-	            	for(i = 0; i < data.length ; i++){
-	            		var res = "";
-	            		var rsvNum = data[i].rsvNum;
-	            		var rsvId = data[i].rsvId;
-	            		var userId = data[i].userId;
-	           			var placeNum = data[i].placeNum;
-	            		var reviewGuestRate = data[i].reviewGuestRate;
-	            		var reviewGuestWr = data[i].reviewGuestWr;
-	            		var reviewGuestRegd = data[i].reviewGuestRegd;
+	 function getreivewListCallmoreHostReviews(data){
+		 var list = data;
+         var listLen = data.length;
+         var star = 0;
+         var res = "";
+         if(listLen > 0){
+        	 $("#row_num").val(rowNum);
+        	 console.log(data);
+	         for(i = 0; i < listLen ; i++){
+	            var rsvNum = list[i].rsvNum;
+	            var rsvId = list[i].rsvId;
+	            var userId = list[i].userId;
+	           	var placeNum = list[i].placeNum;
+	            var reviewGuestRate = list[i].reviewGuestRate;
+	            var reviewGuestWr = list[i].reviewGuestWr;
+	            var reviewGuestRegd = list[i].reviewGuestRegd;
 	            				
-	           			res += '<div style="padding-top: 16px; padding-bottom: 28px;">';
-	           			res += '<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">';
-	           			res += "<div class='h_row' style='justify-content: space-between;'' >"
-	           			res += "<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>"
-	           			res += userId + "</p></div>"
-	           			res += '<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">';
-	                    res += reviewGuestRegd + '</p>'
-	           			res += '<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">';
-	            		res += '<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">';
-	            		res += reviewGuestRate + '</p></div>';
-	                    res += '<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">';
-	                    res += reviewGuestWr + '</p></div>';
-	                    $("#reviewList").append(res);
-	            		}
-	            	}else{
-	            		swal("","더이상 리뷰가 존재하지 않습니다.","warning");
-	            	}	            	
-	            }
+	           	res += '<div style="padding-top: 16px; padding-bottom: 28px;">';
+	           	res += '<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">';
+	           	res += "<div class='h_row' style='justify-content: space-between;'' >"
+	           	res += "<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>"
+	           	res += userId + "</p></div>"
+	           	res += '<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">';
+	            res += reviewGuestRegd + '</p>'
+	           	res += '<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">';
+	            res += '<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">';
+	            res += reviewGuestRate + '</p></div>';
+	            res += '<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">';
+	            res += reviewGuestWr + '</p></div>';
+	         }
+	      $("#reviewList").append(res);   
+	      }else{
+	         swal("","더이상 리뷰가 존재하지 않습니다.","warning");
+	      }	            	
+	 }
 	</script>
 </body>
 </html>
