@@ -58,14 +58,13 @@
             <h1 class="mt-4">공지사항 추가등록 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">공지사항 등록</li>
+              <li class="breadcrumb-item active">Add Information(Guest)</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                blank
-                
+                	공지사항을 등록할 수 있는 페이지입니다.
               </div>
             </div>
             <div class="card-header">

@@ -53,7 +53,7 @@
                 
                   <thead>
                     <tr>
-                      <th>장소번호</th>
+                      <th style="background: rgb(231,231,231,0.4)">장소번호</th>
                       <th>호스트 아이디</th>
                       <th>장소지역</th>
                       <th>메인 카테고리</th>
@@ -64,7 +64,7 @@
                   <tbody>
                   <c:forEach var="a" items="${AllowList}">
                     <tr>
-                      <td>${a.placeNum }</td>
+                      <td style="background: rgb(231,231,231,0.4)">${a.placeNum }</td>
                       <td>${a.userId }</td>
                       <td>${a.placeArea }</td>
                       <td>${a.placeMaincate }</td>
@@ -104,11 +104,33 @@
               <div class="col-xl-6">
                 <div class="card mb-4">
                   <div class="card-header">
-                    <i class="fas fa-chart-bar me-1"></i>
-                    	성별별 인기 장소
+                   <i class="fas fa-chart-bar me-1"></i>
+                    	인기 예약 장소
                   </div>
                   <div class="card-body">
-                    <canvas id="myBarChart2" width="100%" height="40"></canvas>
+                  <div>
+                    <table id="datatablesSimple" class="table table-hover">
+	                  <thead>
+	                    <tr>
+	                      <th style="background: rgb(231,231,231,0.4); align:center">장소번호</th>
+	                      <th>장소이름</th>
+	                      <th>예약건수</th>
+	                    </tr>
+	                  </thead>
+	
+	                  <tbody>
+	                  <c:forEach var="b" items="${PlaceRank}">
+	                    <tr>
+	                    
+	                      <td style="background: rgb(231,231,231,0.4)">${b.payNum }</td>
+	                      <td>${b.placeCate }</td>
+	                      <td>${b.cnt }</td>
+	                     
+	                    </tr>
+	                    </c:forEach>
+	                  </tbody>
+	                </table>
+                  </div>  
                   </div>
                 </div>
               </div>
@@ -229,8 +251,8 @@
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
-                'rgba(120, 110, 220, 0.2)',
-                'rgba(110, 90, 90, 0.2)'];
+                'rgba(255, 202, 213, 0.2)',
+                'rgba(255, 202, 213, 0.2)'];
             
             var borderColor =
             	['rgba(255, 99, 132, 1)',
@@ -239,8 +261,8 @@
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
-                'rgba(120, 110, 220, 1)',
-                'rgba(110, 90, 90, 1)'];
+                'rgba(255, 202, 213, 1)',
+                'rgba(255, 202, 213, 1)'];
             
             //foreach 문으로 값 세팅
                 <c:forEach items="${MainCateRank}" var="mainrank">
@@ -292,6 +314,7 @@
 	        var Year = [2020, 2021];
 	        var labelName = new Array();
 	        var firstData = new Array();
+
 	        
 	        var backgroundcolor =
             	['rgba(255, 99, 132, 0.2)',
@@ -300,8 +323,31 @@
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)',
-                'rgba(120, 110, 220, 0.2)',
-                'rgba(110, 90, 90, 0.2)'];
+                'rgba(255, 202, 213, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 202, 213, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 202, 213, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 202, 213, 0.2)',
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'];
             
             var borderColor =
             	['rgba(255, 99, 132, 1)',
@@ -310,13 +356,38 @@
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)',
-                'rgba(120, 110, 220, 1)',
-                'rgba(110, 90, 90, 1)'];
+                'rgba(255, 202, 213, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 202, 213, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 202, 213, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 202, 213, 1)',
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)'
+                ];
 	        
 	        //foreach 문으로 값 세팅
 	            <c:forEach items="${FirstList}" var="first">
 	            	firstData.push('${first.revenue}');
-	            	labelName.push('${first.payMonth}')
+	            	labelName.push('${first.payDate}');
+	            
 	            </c:forEach> 	
 	        
 	        console.log(firstData);
@@ -330,9 +401,9 @@
                 type: 'bar', // 차트의 형태
                 data: { // 차트에 들어갈 데이터
                     labels: labelName,
+                    //labelName
                     
-                    datasets: [
-                        
+                    datasets: [ 
                         {
                             label: "월별 데이터",
                             fill: false,

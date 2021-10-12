@@ -30,20 +30,21 @@
   <body class="sb-nav-fixed">
     <%@ include file="adminNavigation.jsp" %>
     
+    
       <div id="layoutSidenav_content">
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">Tables</h1>
+            <h1 class="mt-4">호스트 공지사항</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">메인으로</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Tables</li>
+              <li class="breadcrumb-item active">Information for Host</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
                 
-                test
+                	호스트용으로 등록된 공지사항을 확인하는 테이블입니다.
                 <!-- <a target="_blank" href="https://datatables.net/"
                   >official DataTables documentation</a
                 > -->

@@ -40,4 +40,11 @@ public class RevenueCntServiceImpl implements RevenueCntService {
 		return list;
 	}
 
+	@Override
+	public List<RevenueVO> indexTable() {
+		System.out.println("[Service] index용 인기장소 테이블 조회");
+		List<RevenueVO> list = revenueDAO.indexTable();
+		return list;
+	}
+
 }

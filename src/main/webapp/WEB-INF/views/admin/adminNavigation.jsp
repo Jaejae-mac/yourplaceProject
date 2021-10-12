@@ -332,8 +332,9 @@
             </div>
             <div class="sb-sidenav-footer">
               <div class="small">Logged in as:</div>
-              root
+             ${adminId}
             </div>
+<%--             <input type="hidden" value="${AdminId }" name="adminId" id="admin_id" /> --%>
           </nav>
           <!--사이드바 nav태그((사이드메뉴)) 끝-->
       </div>

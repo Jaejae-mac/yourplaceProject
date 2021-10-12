@@ -64,7 +64,11 @@ public class RevenueMonthServiceImpl implements RevenueMonthService {
 		
 	}
 	 
-		
+	@Override
+	public List<RevenueVO> indexChart() {
+		System.out.println("[Service] indexChart 서비스 실행");
+		return revenueDAO.indexChart();
+	}	
 		
 }
 

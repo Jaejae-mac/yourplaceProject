@@ -41,9 +41,9 @@
             <h1 class="mt-4">회원관리</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="indexOurPlace.html">Go Home</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Member</li>
+              <li class="breadcrumb-item active">User Management</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
@@ -58,11 +58,11 @@
                 	전체 회원 관리
               </div>
               <div class="card-body">
-	              <select class="dataTable-selector" onchange="checkMem">
-	              	<option>전체 회원 보기</option>
-	              	<option value="0">게스트만 보기</option>
-	              	<option value="1">호스트만 보기</option>
-	              </select>
+<!-- 	              <select class="dataTable-selector" onchange="checkMem"> -->
+<!-- 	              	<option>전체 회원 보기</option> -->
+<!-- 	              	<option value="0">게스트만 보기</option> -->
+<!-- 	              	<option value="1">호스트만 보기</option> -->
+<!-- 	              </select> -->
                 <table id="datatablesSimple">
 
                   <thead>

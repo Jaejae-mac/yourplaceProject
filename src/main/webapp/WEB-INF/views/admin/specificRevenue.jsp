@@ -173,13 +173,13 @@
             <h1 class="mt-4">기간조회 차트</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">차트</li>
+              <li class="breadcrumb-item active">Sales Check</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                차트입니다.
+                차트를 조회하고 엑셀 파일로 다운로드 받을 수 있는 페이지입니다.
               </div>
             </div>
 

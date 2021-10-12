@@ -44,9 +44,9 @@
             <h1 class="mt-4">문의사항 확인</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">메인으로</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Question</li>
+              <li class="breadcrumb-item active">Question and Answer</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">

@@ -39,7 +39,10 @@
             $("#userfile").val(filename);
          });
       });
+      
    </script>
+   
+
      
   <!-- ///////////////// -->
   </head>
@@ -51,17 +54,17 @@
 
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">배너관리</h1>
+            <h1 class="mt-4">배너 등록 및 고나리</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="/index-admin.mdo">메인으로</a>
+                <a href="/index-admin.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Coupon</li>
+              <li class="breadcrumb-item active">Banner Management</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
                 
-		                쿠폰 생성 및 조회가 가능한 페이지입니다.
+		                배너 등록 및 Yourplace 메인 페이지 공개여부를 관리하는 페이지입니다.
                 <!-- <a target="_blank" href="https://datatables.net/"
                   >official DataTables documentation</a
                 > -->
@@ -171,9 +174,10 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
+                  
                     <tr>
 <!--                     	<th style="width:100px">전송</th> -->
-						<th>선택</th>
+						<th style="width:100px">선택</th>
                         <th>이미지번호</th>
                         <th>미리보기</th>
                         <th>연결된 주소</th>
@@ -185,15 +189,23 @@
                   <tbody>
                   <c:forEach var="ban" items="${bannerList }">
                     <tr>
-                      <td style="width:100px"><input type="checkbox" name="banner_check" value="banner_check" /></td>
+                    
+                    <c:if test="${ban.bannerShow eq '0'}">
+                      <td style="width:100px"><input type="checkbox" class="ch" name="banner_check" value="banner_check" /></td>
+                    </c:if>
+                    
+                    <c:if test="${ban.bannerShow eq '1'}">
+                      <td style="width:100px"><input type="checkbox" checked=checked class="ch" name="banner_check" value="banner_check" /></td>
+                    </c:if>
+                    
                       <td>${ban.bannerNum }</td>
                       <td><a href="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }">${ban.originalFileName }</a></td> <!-- KEY -->
                       <td>${ban.bannerUrl }</td>
                       <td><fmt:formatDate value="${ban.fileRegDate}" pattern="yyyy-MM-dd" /></td>
-                      <td id="show">
-                      	<c:if test="${ban.bannerShow eq '0'}">비공개</c:if>
-                      	<c:if test="${ban.bannerShow eq '1'}">공개</c:if>
-                      </td>
+                      
+                      	<c:if test="${ban.bannerShow eq '0'}"><td>비공개</td></c:if>
+                      	<c:if test="${ban.bannerShow eq '1'}"><td id="show" style="background-color: #B4FBFF;">공개</td></c:if>
+                      
                       <!--  <td><button type="button" class="btn btn-danger"
                       style="font-size: 10px;margin-left: 10px;" id="delete_btn">
                       	Delete
@@ -248,6 +260,7 @@
     }
     
     </script>
+
     
 	<script>
 	$(document).on("click","#file_upload_btn",function()

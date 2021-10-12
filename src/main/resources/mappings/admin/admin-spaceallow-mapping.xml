@@ -77,7 +77,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select
 			place_num, user_id, place_area, place_maincate, place_reg_date
 		from place
-			where place_allow = '1';
+			where place_allow = '0';
 	</select>
 
 </mapper>

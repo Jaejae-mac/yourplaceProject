@@ -97,10 +97,18 @@ public class RevenueDAOImpl implements RevenueDAO {
 		return list;
 	}
 
+	@Override
+	public List<RevenueVO> indexChart() {
+		System.out.println("---> MyBatis 로 indexChart 기능 처리");
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.indexChart");
+		return list;
+	}
 
-	
-
-	
-
+	@Override
+	public List<RevenueVO> indexTable() {
+		System.out.println("---> MyBatis 로 indexTable 기능 처리");
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.indexTable");
+		return list;
+	}
 
 }

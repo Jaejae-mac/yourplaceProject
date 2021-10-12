@@ -23,5 +23,6 @@ public class SpaceVO {
 	private String s3FileName;
 	private Date placeRegDate;
 	private String placeArea;
+	private int rsvRefundYn;
 	
 }

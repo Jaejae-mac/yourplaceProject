@@ -57,14 +57,13 @@
             <h1 class="mt-4">관리자 추가 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">관리자 추가</li>
+              <li class="breadcrumb-item active">Admin Account Management</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                blank
-                
+	               관리자 계정을 등록할 수 있는 페이지입니다.
               </div>
             </div>
             <div class="card-header">

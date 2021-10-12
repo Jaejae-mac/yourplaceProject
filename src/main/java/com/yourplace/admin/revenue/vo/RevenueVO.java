@@ -16,6 +16,7 @@ public class RevenueVO {
 	private int payYear;
 	private int payMonth;
 	private int payDate;
+	private int rsvRefundYn;
 
 	private int invCost;
 	private int coupDisRate;

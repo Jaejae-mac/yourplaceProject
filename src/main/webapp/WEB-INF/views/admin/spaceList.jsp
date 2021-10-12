@@ -13,7 +13,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Space Allow and View</title>
+    <title>장소 관리 및 승인</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -52,9 +52,9 @@
             <h1 class="mt-4">장소등록 조회 및 승인 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html"> 메인으로 </a>
+                <a href="/home.mdo"> Admin Home </a>
               </li>
-              <li class="breadcrumb-item active">Tables</li>
+              <li class="breadcrumb-item active">Shared Space List</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
@@ -104,7 +104,8 @@
                       <td>${spc.userId}</td>
                       <td>${spc.userName}</td>
                       <td>${spc.placeMaincate }</td> <!--클릭시 장소 상세보기 페이지로 이동.-->
-                      <td><a href="#" style="color: black;">${spc.placeName }</a></td>
+                      <td><a href="/detailPlaceForm.do?placeNum=${spc.placeNum}" target="_blank"
+                      	style="color: black;">${spc.placeName }</a></td>
                       <td>${spc.userTel }</td>
                       <td>${spc.userEmail }</td>
                       

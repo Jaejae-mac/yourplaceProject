@@ -22,9 +22,8 @@ public interface CouponUserDAO {
 	
 	void addCoupon(CouponUserVO vo);
 	
-	
 	int checkCountInt(String couponNum);
 	
-	
+	void deleteUser(String couponNum);
 	
 }
