@@ -47,7 +47,7 @@
 		    calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
 		    clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
 		    datesDisabled : [],//선택 불가능한 일 설정 하는 배열 위에 있는 format 과 형식이 같아야함. '2019-06-24','2019-06-26'
-		    daysOfWeekDisabled : [0,6],	//선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
+// 		    daysOfWeekDisabled : [],	//선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
 		    //daysOfWeekHighlighted : [3], //강조 되어야 하는 요일 설정
 		    disableTouchKeyboard : false,	//모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
 		    immediateUpdates: false,	//사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
@@ -80,7 +80,7 @@ $(function() {
 	    calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
 	    clearBtn : false, //날짜 선택한 값 초기화 해주는 버튼 보여주는 옵션 기본값 false 보여주려면 true
 	    datesDisabled : [],//선택 불가능한 일 설정 하는 배열 위에 있는 format 과 형식이 같아야함. '2019-06-24','2019-06-26'
-	    daysOfWeekDisabled : [0,6],	//선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
+// 	    daysOfWeekDisabled : [0,6],	//선택 불가능한 요일 설정 0 : 일요일 ~ 6 : 토요일
 	    //daysOfWeekHighlighted : [3], //강조 되어야 하는 요일 설정
 	    disableTouchKeyboard : false,	//모바일에서 플러그인 작동 여부 기본값 false 가 작동 true가 작동 안함.
 	    immediateUpdates: false,	//사용자가 보는 화면으로 바로바로 날짜를 변경할지 여부 기본값 :false 
@@ -115,7 +115,7 @@ $(function() {
       <%@ include file="adminNavigation.jsp" %>
       
       <div id="layoutSidenav_content">
-      <form action="/couponRegist.mdo" method="POST">
+      <form action="/couponRegist.mdo" method="POST" name="frm">
         <main>
           <div class="container-fluid px-4">
            
@@ -124,13 +124,13 @@ $(function() {
             <h1 class="mt-4">쿠폰 등록 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">쿠폰 등록</li>
+              <li class="breadcrumb-item active">Coupon Regist</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                blank
+                	발급할 쿠폰을 생성하는 페이지입니다.
                 
               </div>
             </div>
@@ -178,9 +178,9 @@ $(function() {
                 
                 
                 <td>
-	                <input type="submit" class="btn btn-primary" id="couponRegistDone" style="font-size: 10px;margin-left: 10px;">
-	                	쿠폰 등록하기
-	                </input>
+	                <input type="submit" class="btn btn-primary" id="couponRegistDone" value="쿠폰등록"
+	                style="font-size: 10px;margin-left: 10px;">
+
                 </td>
               
               </div>
@@ -191,20 +191,7 @@ $(function() {
             </div>
           </div>
         </main>
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script
@@ -218,6 +205,36 @@ $(function() {
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
 
+	<script>
+	
+	 $("#couponRegistDone").click(function(){
+		 
+		    if($.trim($("#coupName").val())==''){
+		      alert("쿠폰 이름을 입력해주세요.");
+		      return false;
+		    }
+		    
+		    if($.trim($("#coupDisRate").val())==''){
+			      alert("할인율을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#datePicker").val())==''){
+			      alert("시작일을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#datePicker2").val())==''){
+			      alert("종료일을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    $("#couponRegistDone").submit();
+		    
+		  });
+	
+
+	</script>
 
   </body>
 </html>

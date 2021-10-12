@@ -73,10 +73,17 @@ public class BannerController {
 	
 	//배너 공개 처리
 	@PostMapping(value="/applyBanner.mdo")
-	public String openBanner(@RequestParam("sendBannerName") String bannerNum)
+	public String openBanner(@RequestParam("sendBannerName") List<String>bannerNum)
 	{
 		System.out.println("[Controller] 배너 상태 : 공개로 전환");
-		avilableService.ableBanner(bannerNum);
+		System.out.println(bannerNum.toString());
+		
+		for(int i = 0; i < bannerNum.size(); i++)
+		{
+			String num = bannerNum.get(i);
+			avilableService.ableBanner(num);
+		}
+		
 		System.out.println("정상 처리되었습니다.");
 		
 		return "redirect:controlBanner.mdo";
@@ -92,10 +99,17 @@ public class BannerController {
 	
 	//배너 비공개 처리
 	@PostMapping(value="/nonapplyBanner.mdo")
-	public String sendCoupon(@RequestParam("disableBannerName") String bannerNum)
+	public String sendCoupon(@RequestParam("disableBannerName") List<String>bannerNum)
 	{
 		System.out.println("[Controller] 배너 상태 : 비공개로 전환");
-		avilableService.disableBanner(bannerNum);
+		System.out.println(bannerNum.toString());
+		
+		for(int i = 0; i < bannerNum.size(); i++)
+		{
+			String num = bannerNum.get(i);
+			avilableService.disableBanner(num);
+		}
+		
 		System.out.println("정상 처리되었습니다.");
 		
 		return "redirect:controlBanner.mdo";

@@ -37,15 +37,13 @@
             <h1 class="mt-4">환불 내역 확인 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html"> 메인으로 </a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Tables</li>
+              <li class="breadcrumb-item active">Refund Management</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
                 환불 내역을 조회하고, 쿠폰을 재발급하는 페이지입니다.
-              </br>
-
               </br>
 
               </div>
@@ -78,13 +76,13 @@
                     <tr>
                       <td> <!-- 0 -->
 	                      	<c:if test="${refund.rsvRefundYn eq 1}">
-	                      		환불 진행중
+	                      		<font color="orange">환불 진행중</font>
 	                      	</c:if>
 	                      	<c:if test="${refund.rsvRefundYn eq 2}">
-	                      		환불 완료
+	                      		<font color="green">환불 완료</font>
 	                      	</c:if>
 	                      	<c:if test="${refund.rsvRefundYn eq 3}">
-	                      		호스트에 의한 환불
+	                      		<font color="red">호스트에 의한 환불</font>
 	                      	</c:if>
 	                  </td>
                       
@@ -140,20 +138,7 @@
        	<input type="hidden" id="refundOrderNumHidden" name="refudnNumName">
        </form>
         
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     
@@ -193,10 +178,18 @@
 				tdArr.push(td.eq(i).text());
 			});
 			
-			alert("order Number" + order);
 			
-			$("#refundOrderNumHidden").val(order);
-			$("#submitForm").submit();
+			var result = confirm("환불처리 하시겠습니까?")
+			
+			if(result)
+				{
+					$("#refundOrderNumHidden").val(order);
+					$("#submitForm").submit();
+					alert("처리되었습니다.")
+				} else {
+					alert("취소되었습니다.")
+				}
+			
 			
 		});
 		

@@ -45,5 +45,11 @@ public interface RevenueDAO {
 	List<RevenueVO> getTermAllMonthNDate(RevenueVO vo);
 	
 	
+	//인덱스용 차트
+	List<RevenueVO> indexChart();
+	
+	//인덱스용 차트2
+	List<RevenueVO> indexTable();
+	
 	
 }

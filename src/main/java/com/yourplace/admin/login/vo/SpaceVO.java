@@ -22,5 +22,7 @@ public class SpaceVO {
 	private String placeThumb;
 	private String s3FileName;
 	private Date placeRegDate;
+	private String placeArea;
+	private int rsvRefundYn;
 	
 }

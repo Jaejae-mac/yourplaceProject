@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="payYear" column="pay_year" />
 		<result property="payMonth" column="pay_month" />
 		<result property="payDate" column="pay_date" />
+		<result property="rsvRefundYn" column="rsv_refund_yn"/>
 		
 		<result property="payStartMonth" column="pay_start_month" />
 		<result property="payEndMonth" column="pay_end_month" />
@@ -32,42 +33,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 월매출 -->
 	
 	<select id="getMonthSum" resultMap="revenueResult">
-		select pay_month, sum(inv_aft_tax) AS revenue from test_invoice
-		GROUP BY pay_month ORDER BY pay_month ASC;
+		select
+			pay_month, sum(inv_aft_tax) AS revenue
+		from payment
+			where rsv_refund_yn = 0
+			GROUP BY pay_month ORDER BY pay_month ASC;
 	</select>
 
 	
 	<!-- 월매출 + 연도 -->
 	
 	<select id="getMonthSumwithYear" resultMap="revenueResult">
-		select pay_year, pay_month, sum(inv_aft_tax) AS revenue
-		from test_invoice GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
+		select
+			pay_year, pay_month, sum(inv_aft_tax) AS revenue
+		from payment
+			where rsv_refund_yn = 0
+			GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
 	<select id="getMonthSumFirst" resultMap="revenueResult">
-		select pay_year, pay_month,
-		sum(inv_aft_tax) AS revenue
-		from test_invoice
-		WHERE pay_year = #{payYear}
-		GROUP BY pay_month ORDER BY pay_month ASC;
+		select
+			pay_year,
+			pay_month,
+			sum(inv_aft_tax) AS revenue
+		from payment
+			WHERE rsv_refund_yn = 0
+			and pay_year = #{payYear}
+			GROUP BY pay_month ORDER BY pay_month ASC;
 	</select>
 	
 	
 	<!-- 선택 기간별 정보 + 매출 -->
 	
 	<select id="getTermMonth" resultMap="revenueResult">
-		select pay_year, pay_month, pay_date, inv_aft_tax
-		from test_invoice
-    	where pay_year = #{payYear}
-    	and
-    	pay_month between #{payStartMonth} and #{payEndMonth}
+    	select
+    		pay_year, pay_month, pay_date, inv_aft_tax
+		from payment
+	    	where pay_year = #{payYear}
+	    	and
+	    	rsv_refund_yn = 0
+	    	and
+	    	pay_month between #{payStartMonth} and #{payEndMonth}
     	order by pay_year, pay_month, pay_date asc;
 	</select>
 
 	<select id="getTermMonthNDate" resultMap="revenueResult">
-		select pay_year, pay_month, pay_date, inv_aft_tax
-		from test_invoice
+		select
+			pay_year, pay_month, pay_date, inv_aft_tax
+		from payment
 	    where pay_year = #{payYear}
+	    and
+	    rsv_refund_yn = 0
 	    and
 	    pay_month between #{payStartMonth} and #{payEndMonth}
 	    and
@@ -77,8 +93,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getTermAllMonth" resultMap="revenueResult">
 		select * 
-		from test_invoice
+		from payment
     	where pay_year = #{payYear}
+    	and
+    	rsv_refund_yn = 0
     	and
     	pay_month between #{payStartMonth} and #{payEndMonth}
     	order by pay_year, pay_month, pay_date asc;
@@ -86,9 +104,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getTermAllMonthNDate" resultMap="revenueResult">
 		select *
-		from test_invoice
+		from payment
 	    where pay_year = #{payYear}
 	    and
+	    rsv_refund_yn = 0
+    	and
 	    pay_month between #{payStartMonth} and #{payEndMonth}
 	    and
 	    pay_date between #{payStartDate} and #{payEndDate}
@@ -99,24 +119,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- YoY -->
 	<select id="getYearSum" resultMap="revenueResult">
-		select pay_year, sum(inv_aft_tax) AS revenue from test_invoice GROUP BY pay_year;
+		select pay_year, sum(inv_aft_tax) AS revenue from payment where rsv_refund_yn = 0 GROUP BY pay_year;
 	</select>
 	
 	<select id="getYearSumMap" resultType="HashMap">
-		select pay_year, sum(inv_aft_tax) AS revenue from test_invoice GROUP BY pay_year;
+		select pay_year, sum(inv_aft_tax) AS revenue from payment where rsv_refund_yn = 0 GROUP BY pay_year;
 	</select>
 	
 	
 	<!-- Monthly Count -->
 	
 	<select id="getRsvCount" resultMap="revenueResult">
-		select pay_year, pay_month, (count(rsv_num)) AS cnt from test_invoice
+		select pay_year, pay_month, (count(rsv_num)) AS cnt from payment where rsv_refund_yn = 0
 		GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
 	<select id="getRsvCountFirst" resultMap="revenueResult">
-		select pay_year, pay_month, (count(rsv_num)) AS cnt from test_invoice
-		WHERE pay_year = #{payYear}
+		select pay_year, pay_month, (count(rsv_num)) AS cnt from payment where rsv_refund_yn = 0
+		and pay_year = #{payYear}
 		GROUP BY pay_month, pay_year ORDER BY pay_year, pay_month ASC;
 	</select>
 	
@@ -125,23 +145,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMainCateRank" resultMap="revenueResult">
 		select place_maincate, (count(place_maincate)) as cnt
-		from test_invoice where pay_year = #{payYear} group by place_maincate order by cnt desc;
+		from payment where pay_year = #{payYear} and rsv_refund_yn = 0
+		group by place_maincate order by cnt desc;
 	</select>
 	
 	
 	<!-- Sub Category count -->
 	<select id="getSubCateRank" resultMap="revenueResult">
 		select place_maincate, place_cate, (count(place_cate)) as cnt
-		from test_invoice where pay_year = #{payYear} group by place_maincate order by cnt desc;
+		from payment where pay_year = #{payYear} and rsv_refund_yn = 0
+		group by place_maincate order by cnt desc;
 	</select>
 	
 	
-	<!-- Category count with sex -->
+	<select id="indexChart" resultMap="revenueResult">
+		select pay_year, pay_month, pay_date, sum(inv_aft_tax) as revenue
+		from payment
+		where pay_year = year(current_date()) and rsv_refund_yn = 0
+		and pay_month = month(current_date())
+		group by pay_date order by pay_year, pay_month, pay_date asc;
+	</select>
 	
+	<select id="indexTable" resultMap="revenueResult">
+		select place_num as pay_num,
+		(select place_name from place b where a.place_num = b.place_num) as place_cate,
+		(count(place_num)) as cnt
+		from reservation a group by place_num order by cnt desc limit 7;
+	</select>
 	
-	
-	<!-- Monthly Average Revenue -->
-	
-
 
 </mapper>

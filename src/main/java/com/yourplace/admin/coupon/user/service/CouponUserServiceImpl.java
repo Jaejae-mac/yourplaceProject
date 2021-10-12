@@ -7,7 +7,7 @@ import com.yourplace.admin.coupon.all.vo.CouponAllVO;
 import com.yourplace.admin.coupon.user.dao.CouponUserDAO;
 import com.yourplace.admin.coupon.user.vo.CouponUserVO;
 
-@Service("coupUserSend")
+@Service("coupUserService")
 public class CouponUserServiceImpl implements CouponUserService {
 
 	@Autowired
@@ -18,6 +18,12 @@ public class CouponUserServiceImpl implements CouponUserService {
 		
 		System.out.println("Coupon User Service 실행");
 		couponUserDAO.sendCoupon(vo, sendCoupName);
+		
+	}
+
+	@Override
+	public void deleteUser(String couponNum) {
+		couponUserDAO.deleteUser(couponNum);
 		
 	}
 }

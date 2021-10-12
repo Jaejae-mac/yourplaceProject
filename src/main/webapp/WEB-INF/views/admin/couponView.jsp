@@ -14,7 +14,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>쿠폰관리 TABLE</title>
+    <title>쿠폰 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -43,14 +43,14 @@
             <h1 class="mt-4">Tables</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">메인으로</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Coupon</li>
+              <li class="breadcrumb-item active">Coupon View</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
                 
-		                쿠폰 생성 및 조회가 가능한 페이지입니다.
+		                쿠폰 발송과 조회가 가능한 페이지입니다.
                 <!-- <a target="_blank" href="https://datatables.net/"
                   >official DataTables documentation</a
                 > -->
@@ -75,8 +75,8 @@
 	                </button>
                 </td>
                 <td>
-	                <button type="button" class="btn btn-danger"
-	                style="font-size: 10px;margin-left: 10px;">
+	                <button type="button" class="btn btn-danger" onclick="deleteall()"
+	                style="font-size: 10px;margin-left: 10px;" id="alldelete" name="alldel">
 	                	기한만료쿠폰 전체삭제
 	                </button>
                 </td>
@@ -125,6 +125,7 @@
         <!-- delete -->
        <form id="submitForm" method="POST" action="/deleteCoupon.mdo" hidden="hidden">
        	<input type="hidden" id="deleteCoupHidden" name="deleteCoupName">
+       	<input type="hidden" id="deleteNumHidden" name="deleteCoupNum">
        </form>
        
        <form id="submitForm2" method="POST" action="/couponSend.mdo" hidden="hidden">
@@ -132,21 +133,11 @@
        	<input type="hidden" id="start_date" name="startD" >
        	<input type="hidden" id="end_date" name="endD" >
        </form>
+       
+       <form id="submitForm3" method="POST" action="/alldelete.mdo" hidden="hidden">
+       </form>
         
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script
@@ -183,8 +174,21 @@
 			
 			console.log("쿠폰이름 text : " + name);
 		
-			$("#deleteCoupHidden").val(name);
-			$("#submitForm").submit();
+			var result = confirm("쿠폰을 삭제하시겠습니까?");
+			
+			if(result)
+			{
+				$("#deleteCoupHidden").val(no);
+				$("#deleteNumHidden").val(no);
+				$("#submitForm").submit();
+				
+				alert("삭제되었습니다.")
+			}
+			else
+			{
+				
+			}
+			
 			
 		});
 		
@@ -234,20 +238,48 @@
 		   	console.log("체크된 쿠폰 종료일= " + tdAr[3]);
 		   	
 		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo);
+		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo[0]);
+		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo[1]);
 		   	
 		   	$("#coup_num").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
 		   	$("#start_date").val(tdAr[2]);
 		   	$("#end_date").val(tdAr[3]);
 		   	
-		   	$("#submitForm2").submit();
+		   	var result = confirm("선택한 쿠폰을 전송하시겠습니까?")
 		   	
-		   	alert(tdAr[0] + tdAr[1] + tdAr[2] + tdAr[3]);
+		   	if(result)
+		   	{
+		   		alert("전송이 완료되었습니다.")
+		   		$("#submitForm2").submit();
+		   		
+		   	}else
+		   	{
+		   		alert("선택한 쿠폰이 없습니다.")	
+		   	}
+		   	
+		   	
 		    
 		});
 		    
     </script>
+    
+    <script>
+    $(document).on("click","#alldelete",function(){
+    	
+    	var result = confirm("기한만료된 쿠폰을 일괄 삭제하시겠습니까?")
+    	
+    	if(result)
+		   	{
+    			$("#submitForm3").submit();
+		   		alert("삭제가 완료되었습니다.")
+		   	}else
+		   	{
+		   		alert("취소되었습니다.")	
+		   	}
+    	
+    });
+    </script>
 	
-
 	
   </body>
 </html>

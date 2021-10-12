@@ -58,14 +58,13 @@
             <h1 class="mt-4">공지사항 추가등록 페이지</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">Dashboard</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">공지사항 등록</li>
+              <li class="breadcrumb-item active">Add Information(Guest)</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                blank
-                
+                	공지사항을 등록할 수 있는 페이지입니다.
               </div>
             </div>
             <div class="card-header">
@@ -117,7 +116,8 @@
                 
                 
                 <td>
-	                <input type="submit" class="btn btn-primary" id="regist" style="font-size: 10px;margin-left: 10px;" />
+	                <input type="submit" class="btn btn-primary" value="등록하기"
+	                id="regist" style="font-size: 10px;margin-left: 10px;" />
                 </td>
               
               </div>
@@ -128,20 +128,7 @@
             </div>
           </div>
         </main>
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script
@@ -155,6 +142,26 @@
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
 
+	<script>
+	
+	 $("#regist").click(function(){
+		 
+		    if($.trim($("#infoTitle").val())==''){
+		      alert("공지사항 제목을 입력해 주세요.");
+		      return false;
+		    }
+		    
+		    if($.trim($("#infoContent").val())==''){
+			      alert("공지사항 내용을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    $("#regist").submit();
+		    
+		  });
+	
+
+	</script>
 
   </body>
 </html>

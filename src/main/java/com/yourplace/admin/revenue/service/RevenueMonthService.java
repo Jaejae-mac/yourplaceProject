@@ -10,4 +10,6 @@ public interface RevenueMonthService {
 	
 	List<Double> getMoM(int year);
 	
+	List<RevenueVO> indexChart();
+	
 }

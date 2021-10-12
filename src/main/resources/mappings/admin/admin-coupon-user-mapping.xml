@@ -84,4 +84,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where m.user_type = '0' and c.user_coup_id is null;
 	</select>
 
+	<!-- 쿠폰 삭제 -->
+	<delete id="deleteUser">
+		DELETE FROM coupon_user WHERE coup_num = #{coupNum}
+	</delete>
+
 </mapper>
