@@ -113,6 +113,10 @@ public class HomeDAOImpl implements HomeDAO{
 		return sqlSessionTemplate.selectList("HomeDAO.getnewCategoryList");
 	}
 	@Override
+	public List<PlaceCardVO> getpopCategoryList() {		
+		return sqlSessionTemplate.selectList("HomeDAO.getpopCategoryList");
+	}
+	@Override
 	public List<PlaceCardVO> getCatePlaceListAll() {
 		
 		return sqlSessionTemplate.selectList("HomeDAO.getCatePlaceListAll");

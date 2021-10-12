@@ -7,6 +7,8 @@ import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
 
 public interface MyPageReviewDAO {
 	List<MyPageHostReviewVO> getReviewList(MyPageHostReviewVO vo);
+
+	MyPageHostReviewVO reviewCntAvg(MyPageHostReviewVO vo);
 	
 	void insertGuestReview(MyPageGuestReviewVO vo);
 	
