@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
@@ -169,14 +170,13 @@ public class MypageController {
 
 	}
 	//리뷰 더보기.
-		@PostMapping(value="/moreHostReviews.do")
-		@CrossOrigin(origins = "*")
-		public List<MyPageHostReviewVO> additionalReviews(@RequestParam(value ="rn", required=false) String rowNum,
-				@RequestParam(value ="ui", required=false) String userId){
+		@GetMapping(value="/moreHostReviews.do")
+		@ResponseBody
+		public List<MyPageHostReviewVO> additionalReviews(int rowNum, String userId){
 			System.out.println(rowNum);
 			System.out.println(userId);
 			MyPageHostReviewVO vo = new MyPageHostReviewVO();
-			vo.setRowNum(Integer.parseInt(rowNum));
+			vo.setRowNum(rowNum);
 			vo.setRsvId(userId);
 			List<MyPageHostReviewVO> moreReviewList = mypagereviewService.getReviewList(vo);
 			return moreReviewList;

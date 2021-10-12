@@ -180,13 +180,17 @@
 	<script>
 	function moreHostReviews(){
 		var rowNum = parseInt($("#row_num").val())+3;
+		var userId = "${userId}";
+		console.log(rowNum)
 		 $.ajax({
-       	url:"/moreHostReviews.do?rn="+ rowNum +"&ui=${user.userId}",
-       	type:"post",
-       	dataType : "json",
-       	success : function(data){
-       		getreivewListCall(data);
-       	}
+       		url:"/moreHostReviews.do",
+       		data:{"rowNum":rowNum,"userId":userId},
+       		type:"get",
+       		dataType : "json",
+       		success : function(data){
+       			console.log("성공")
+       			getreivewListCall(data);
+       		}
        });
 	 }
 	 //회원 탈퇴 기능
@@ -213,10 +217,10 @@
 	    			 
 	    }
 	 //컨트롤러에서 가져온 리뷰 값을 출력하기위한 함수
-	 function getreivewListCallmoreHostReviews(data){
+	 function getreivewListCall(data){
+		 var rowNum = parseInt($("#row_num").val())+3;
 		 var list = data;
          var listLen = data.length;
-         var star = 0;
          var res = "";
          if(listLen > 0){
         	 $("#row_num").val(rowNum);
