@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>YourPlace 내 장소 관리</title>
+    <title>Yourplace_내 장소 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"

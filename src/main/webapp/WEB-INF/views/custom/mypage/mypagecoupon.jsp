@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YourPlace 쿠폰 조회</title>
+<title>Yourplace_쿠폰 조회</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css" />" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>

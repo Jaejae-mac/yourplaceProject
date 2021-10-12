@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/detail-place.css" />" />
-<title>YourPlace 결제 완료 페이지</title>
+<title>Yourplace_결제 완료 페이지</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 

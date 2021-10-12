@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>YourPlace 비밀번호 변경</title>
+<title>Yourplace_비밀번호 변경</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css" />" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet"

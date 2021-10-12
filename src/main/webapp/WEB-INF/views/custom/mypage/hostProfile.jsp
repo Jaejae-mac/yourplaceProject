@@ -21,7 +21,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-<title>YourPlace 호스트 프로필</title>
+<title>Yourplace_호스트 프로필</title>
 </head>
 <body>
 

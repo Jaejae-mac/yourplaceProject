@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>YourPlace 매출 관리</title>
+    <title>Yourplace_매출 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"

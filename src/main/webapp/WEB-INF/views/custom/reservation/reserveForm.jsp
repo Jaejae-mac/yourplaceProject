@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
     <link rel="stylesheet" href="<c:url value="/resources/custom/css/detail-place.css" />" />
-    <title>YourPlace 예약 진행 하기</title>
+    <title>Yourplace_예약 진행 하기</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
