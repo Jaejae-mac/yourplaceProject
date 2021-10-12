@@ -178,7 +178,7 @@
 			
 			if(result)
 			{
-				$("#deleteCoupHidden").val(name);
+				$("#deleteCoupHidden").val(no);
 				$("#deleteNumHidden").val(no);
 				$("#submitForm").submit();
 				
@@ -245,11 +245,19 @@
 		   	$("#start_date").val(tdAr[2]);
 		   	$("#end_date").val(tdAr[3]);
 		   	
-		   	$("#submitForm2").submit();
+		   	var result = confirm("선택한 쿠폰을 전송하시겠습니까?")
 		   	
-		   	alert(rowNo[0]);
-		   	alert(rowwNo[1]);
-		   	alert(tdAr[0] + tdAr[1] + tdAr[2] + tdAr[3]);
+		   	if(result)
+		   	{
+		   		alert("전송이 완료되었습니다.")
+		   		$("#submitForm2").submit();
+		   		
+		   	}else
+		   	{
+		   		alert("선택한 쿠폰이 없습니다.")	
+		   	}
+		   	
+		   	
 		    
 		});
 		    
@@ -257,7 +265,18 @@
     
     <script>
     $(document).on("click","#alldelete",function(){
-    	$("#submitForm3").submit();
+    	
+    	var result = confirm("기한만료된 쿠폰을 일괄 삭제하시겠습니까?")
+    	
+    	if(result)
+		   	{
+    			$("#submitForm3").submit();
+		   		alert("삭제가 완료되었습니다.")
+		   	}else
+		   	{
+		   		alert("취소되었습니다.")	
+		   	}
+    	
     });
     </script>
 	

@@ -143,6 +143,23 @@
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
 
+	<script>
+	$("#regist").click(function(){
+		 
+	    if($.trim($("#infoTitle").val())==''){
+	      alert("공지사항 제목을 입력해 주세요.");
+	      return false;
+	    }
+	    
+	    if($.trim($("#infoContent").val())==''){
+		      alert("공지사항 내용을 입력해주세요.");
+		      return false;
+		   }
+	    
+	    $("#regist").submit();
+	    
+	  });
+	</script>
 
   </body>
 </html>

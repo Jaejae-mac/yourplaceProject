@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 쿠폰 삭제 -->
 	<delete id="deleteCoupon">
-		DELETE FROM coupon_all WHERE coup_name = #{coupName}
+		DELETE FROM coupon_all WHERE coup_num = #{coupNum}
 	</delete>
 
 	<delete id="deleteAllCoupon">

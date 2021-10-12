@@ -178,10 +178,18 @@
 				tdArr.push(td.eq(i).text());
 			});
 			
-			alert("order Number" + order);
 			
-			$("#refundOrderNumHidden").val(order);
-			$("#submitForm").submit();
+			var result = confirm("환불처리 하시겠습니까?")
+			
+			if(result)
+				{
+					$("#refundOrderNumHidden").val(order);
+					$("#submitForm").submit();
+					alert("처리되었습니다.")
+				} else {
+					alert("취소되었습니다.")
+				}
+			
 			
 		});
 		

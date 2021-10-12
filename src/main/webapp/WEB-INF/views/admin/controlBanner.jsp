@@ -152,9 +152,7 @@
 				                      
 				                      <!-- 전송버튼 -->
 				                      <input type="submit" class="btn btn-primary" id="sendResponse" value="전송"/>
-				                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-				                      	닫기
-				                      </button>
+				                      
 				
 	                      			</div>
 				                     </form>				                      	
@@ -299,9 +297,9 @@
 		   	console.log("체크된 배너 이름= " + tdAr[0]);
 		   	console.log("체크된 배너 이름(배열)= " + rowNo);
 		   	
-		   	alert("선택한" + tdAr[0] + " 번 이미지가 배너로 공개되었습니다.");
+		   	alert("선택한 " + rowNo + " 번 이미지가 배너로 공개되었습니다.");
 		   	
-		   	$("#sendBannerHidden").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+		   	$("#sendBannerHidden").val(rowNo); //tdAr[1]=name값을 담고 있는 배열객체
 			$("#submitForm2").submit();
 		    
 		});
@@ -330,16 +328,14 @@
 					
 					rowNo.push(no);
 					
-					console.log("each 문 안에서 돌려지는 쿠폰 번호= " + no)
-					
 		    	});
 
 		   	console.log("체크된 배너 이름= " + tdAr[0]);
 		   	console.log("체크된 배너 이름(배열)= " + rowNo);
 		   	
-		   	alert("선택한" + tdAr[0] + " 번 이미지가 비공개 처리되었습니다.");
+		   	alert("선택한 " + rowNo + " 번 이미지가 비공개 처리되었습니다.");
 		   	
-		   	$("#disableBannerHidden").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+		   	$("#disableBannerHidden").val(rowNo); //tdAr[1]=name값을 담고 있는 배열객체
 			$("#submitForm3").submit();
 		    
 		});

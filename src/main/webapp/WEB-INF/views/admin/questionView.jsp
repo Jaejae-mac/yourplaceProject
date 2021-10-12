@@ -155,9 +155,7 @@
 				                      
 				                      <!-- 전송버튼 -->
 				                      <input type="submit" class="btn btn-primary" id="sendResponse" value="전송"/>
-				                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-				                      	닫기
-				                      </button>
+				                      
 				
 	                      			</div>
 				                     </form>				                      	

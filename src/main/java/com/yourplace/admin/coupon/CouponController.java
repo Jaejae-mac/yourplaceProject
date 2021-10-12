@@ -56,11 +56,11 @@ public class CouponController {
 	
 	//쿠폰 삭제 요청 처리
 	@PostMapping(value="/deleteCoupon.mdo")
-	public String deleteCoupon(@RequestParam("deleteCoupName") String deleteCoupName, @RequestParam("deleteCoupNum") String deleteNum)
+	public String deleteCoupon(@RequestParam("deleteCoupName") String deleteCoupNum, @RequestParam("deleteCoupNum") String deleteNum)
 	{
 		System.out.println("------- 삭제할 쿠폰이름 조회 -------");
-		System.out.println("Parameter Value: " + deleteCoupName);
-		coupDelete.deleteCoupon(deleteCoupName);
+		System.out.println("Parameter Value: " + deleteCoupNum);
+		coupDelete.deleteCoupon(deleteCoupNum);
 		coupUserService.deleteUser(deleteNum);
 		return "redirect:couponView.mdo";
 	}

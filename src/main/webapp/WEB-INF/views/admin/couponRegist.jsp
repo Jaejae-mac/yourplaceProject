@@ -115,7 +115,7 @@ $(function() {
       <%@ include file="adminNavigation.jsp" %>
       
       <div id="layoutSidenav_content">
-      <form action="/couponRegist.mdo" method="POST">
+      <form action="/couponRegist.mdo" method="POST" name="frm">
         <main>
           <div class="container-fluid px-4">
            
@@ -178,9 +178,9 @@ $(function() {
                 
                 
                 <td>
-	                <input type="submit" class="btn btn-primary" id="couponRegistDone" style="font-size: 10px;margin-left: 10px;">
-	                	쿠폰 등록하기
-	                </input>
+	                <input type="submit" class="btn btn-primary" id="couponRegistDone" value="쿠폰등록"
+	                style="font-size: 10px;margin-left: 10px;">
+
                 </td>
               
               </div>
@@ -205,6 +205,36 @@ $(function() {
     ></script>
     <script src="resources/css/admin/js/datatables-simple-demo.js"></script>
 
+	<script>
+	
+	 $("#couponRegistDone").click(function(){
+		 
+		    if($.trim($("#coupName").val())==''){
+		      alert("쿠폰 이름을 입력해주세요.");
+		      return false;
+		    }
+		    
+		    if($.trim($("#coupDisRate").val())==''){
+			      alert("할인율을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#datePicker").val())==''){
+			      alert("시작일을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#datePicker2").val())==''){
+			      alert("종료일을 입력해주세요.");
+			      return false;
+			   }
+		    
+		    $("#couponRegistDone").submit();
+		    
+		  });
+	
+
+	</script>
 
   </body>
 </html>
