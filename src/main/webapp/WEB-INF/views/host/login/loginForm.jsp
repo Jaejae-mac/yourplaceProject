@@ -118,7 +118,7 @@ input:focus{
 							<div class="input_container2 bottom"
 								style="width: 480px; margin-top: 10px; margin-left: 50px;">
 								<input type="password" placeholder="비밀번호" value="" id="password"
-									name="userPw" required>
+									name="userPw" onkeyup="enterkey();" required>
 								<div class="delete" style="margin-left: 50px;" onclick="delete_password()">
 									<img
 										src="<c:url value="/resources/img/icon/register/round_delete_g.png" />"
@@ -258,6 +258,12 @@ input:focus{
 		function delete_id() {
             $('#id').val('');
         }
+		// 엔터키 입력시
+		function enterkey() {
+	        if (window.event.keyCode == 13) {
+	        	loginHostHdo();
+	        }
+		}
 	</script>
 </body>
 </html>
