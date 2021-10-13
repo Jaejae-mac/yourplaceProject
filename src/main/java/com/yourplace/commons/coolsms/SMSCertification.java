@@ -38,7 +38,7 @@ public class SMSCertification {
 		params.put("to", phoneNumber);
 		params.put("from","01043022840");
 		params.put("type","SMS" );
-		params.put("text","휴대폰 인증 테스트 메세지 : 인증번호는"+"[ "+cerNum + " ]" +" 입니다." ); 
+		params.put("text","[ Yourplce ]\n 휴대폰 인증 번호 메세지 : 인증번호는"+"[ "+cerNum + " ]" +" 입니다." ); 
 		params.put("app_version","test app 1.2" );
 		
 		try {
