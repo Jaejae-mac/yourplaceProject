@@ -1221,13 +1221,12 @@
     });
     </script>
 	<script>
-   
       //날짜  . 시간 . 종료시간 . 선택 후 완료 클릭 시 
       $("#time_btn").click(function(){
         var stArr = $("#start_time").val().split(":");
         var etArr = $("#end_time").val().split(":");
         console.log(parseInt(etArr[0])-parseInt(stArr[0]));
-        if(parseInt(etArr[0])-parseInt(stArr[0]) == 1){
+        if(parseInt(etArr[0])-parseInt(stArr[0]) < parseInt("${placeInfo.placeMinTime }")){
           swal("","최소 예약시간 이상 선택해주세요.","warning");
           $("#start_time").focus();
         }else{
@@ -1250,7 +1249,7 @@
 	<script>
       $("#reserve_btn").click(function(){
         //예약하기 버튼 클릭시.
-        if(parseInt($("#people_cnt").text()) < ${placeInfo.placeCapa}){
+        if(parseInt($("#people_cnt").text()) < parseInt("${placeInfo.placeCapa}")){
         	swal("","기본 ${placeInfo.placeCapa}인 이상 부터 예약 가능합니다.","warning");
         	$("#people_cnt").focus();
         	

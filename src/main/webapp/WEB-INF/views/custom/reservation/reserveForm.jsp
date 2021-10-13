@@ -1245,10 +1245,9 @@
 					        var valueList = "?placeName=${placeInfo.placeName}&placeNum=${placeInfo.placeNum}";
 					        var couponInfo=$("#coupon_list").val().split("#");//쿠폰정보.
 					        var coupName = couponInfo[2];//쿠폰 이름.
+					        var pp = $("#place_price").text(); //현재 적용되어있는 가격. 
 					        console.log("coupName = " + coupName);
-					        if(!coupName){
-	    						valueList += ("&coupName="+coupName);    			
-			        		}
+	    					valueList += ("&coupName="+coupName);    			
 					        valueList+=("&rsvName="+$("#user_name").val());
 					        valueList+=("&rsvEmail="+$("#user_email").val());
 					        valueList+=("&rsvTel="+$("#user_tel").val());
@@ -1257,22 +1256,17 @@
 					        valueList+=("&reservationTime=${placeInfo.rsvStartT }:00 ~ ${placeInfo.rsvEndT }:00 (${placeInfo.rsvEndT-placeInfo.rsvStartT }시간)");
 					        valueList+=("&reservationDate=${placeInfo.rsvYear}년 ${placeInfo.rsvMonth }월 ${placeInfo.rsvDate}일");
 					        valueList+=("&headCount=${placeInfo.headCount }");
-					        valueList+=("&placePrice=${placeInfo.placePrice }");
+					        valueList+=("&placePrice="+pp);
 					        
 					        location.href="/rsvResult.do"+valueList;
 				    	}
 				     }
 					});
-	        		Swal.fire({
-		    		      title : '결제가 완료',
-		    		      text : '성공적으로 결제가 완료되었습니다.',
-		    		      icon :'success'
-	        		})
 	        	} else {
 	        		Swal.fire({
 	           			icon: 'error',
 	            		title: '결제 실패',
-	            		text: '결제에 실패되었습니다.',
+	            		text: '결제를 실패하였습니다.',
 	            	})
 	        	}
 	        });
