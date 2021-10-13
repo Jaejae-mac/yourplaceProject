@@ -95,10 +95,10 @@
                     <tr>
                       <td>
                       		<c:if test="${spc.placeAllow eq '1'}">
-	                      		승인
+	                      		<font style="text-align:center">승인</font>
 	                      	</c:if>
 	                      	<c:if test="${spc.placeAllow ne '1'}">
-	                      		미승인
+	                      		<font color="red" style="text-align:center">미승인</font>
 	                      	</c:if>
 	                  </td>
 	                  
@@ -125,14 +125,14 @@
                       
 	                   <c:if test="${spc.placeAllow eq '0' && spc.userType eq '1'}">
 	                        <button type="button" class="btn btn-primary"
-	                        style="font-size: 10px;margin-left: 10px;" id="allow_btn">
+	                        style="font-size: 10px;" id="allow_btn">
 	                        	승인하기
 	                        </button>
 	                   </c:if>
                    
 	                   <c:if test="${spc.placeAllow eq '1'}">
 	                        <button type="button" class="btn btn-danger"
-	                        style="font-size: 10px;margin-left: 10px;" id="deny_btn">
+	                        style="font-size: 10px;" id="deny_btn">
 	                        	승인취소
 	                        </button>
 	                   </c:if>
@@ -146,7 +146,7 @@
                       
                       <td align="center">
                       <button type="button" class="btn btn-danger"
-                      style="font-size: 10px;margin-left: 10px;" id="delete_btn">
+                      style="font-size: 10px;" id="delete_btn">
                       	삭제
                       </button></td>
                     </tr>

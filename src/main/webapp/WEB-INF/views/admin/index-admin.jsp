@@ -52,12 +52,12 @@
                 <table id="datatablesSimple">
                 
                   <thead>
-                    <tr>
-                      <th style="background: rgb(231,231,231,0.4)">장소번호</th>
-                      <th>호스트 아이디</th>
-                      <th>장소지역</th>
-                      <th>메인 카테고리</th>
-                      <th>장소 등록일자</th>
+                    <tr style="background: rgb(231,231,231,0.4)">
+                      <th style="text-align:center">장소번호</th>
+                      <th style="text-align:center">호스트 아이디</th>
+                      <th style="text-align:center">장소지역</th>
+                      <th style="text-align:center">메인 카테고리</th>
+                      <th style="text-align:center">장소 등록일자</th>
                     </tr>
                   </thead>
 

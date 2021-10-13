@@ -56,15 +56,15 @@
                 <table id="datatablesSimple">
 
                   <thead>
-                    <tr>
-                      <th>결제상태</th> <!-- 0 payRefundYn -->
-                      <th>주문번호</th>
-                      <th>승인번호</th> <!-- 1 payNum -->
-                      <th>장소번호</th> <!-- 5 placeNum -->
-                      <th>결제일시</th> <!-- 2 payYear + payMonth + payDate -->
-                      <th>결제금액</th> <!-- 3 invBfTax -->
-                      <th>결제자 아이디</th>
-                      <th>결제자 이름</th> <!-- 7 rsvName -->
+                    <tr style="background: rgba(231,231,231,0.4)">
+                      <th style="text-align:center">결제상태</th> <!-- 0 payRefundYn -->
+                      <th style="text-align:center">주문번호</th>
+                      <th style="text-align:center">승인번호</th> <!-- 1 payNum -->
+                      <th style="text-align:center">장소번호</th> <!-- 5 placeNum -->
+                      <th style="text-align:center">결제일시</th> <!-- 2 payYear + payMonth + payDate -->
+                      <th style="text-align:center">결제금액</th> <!-- 3 invBfTax -->
+                      <th style="text-align:center">결제자 아이디</th>
+                      <th style="text-align:center">결제자 이름</th> <!-- 7 rsvName -->
                       
                     </tr>
                   </thead>

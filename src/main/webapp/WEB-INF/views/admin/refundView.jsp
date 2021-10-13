@@ -57,16 +57,16 @@
                 <table id="datatablesSimple">
 
                   <thead>
-                    <tr>
-                      <th>환불상태</th> <!-- 0 -->
-                      <th>주문번호</th> <!-- 1 -->
-                      <th>승인번호</th>
-                      <th>회원번호</th>
-                      <th>환불금액</th> <!-- 5 -->
-                      <th>환불사유</th>
-                      <th>환불일자</th>
-                      <th>사용한 쿠폰</th> <!-- 6 -->
-                      <th>처리</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                      <th style="text-align:center">환불상태</th> <!-- 0 -->
+                      <th style="text-align:center">주문번호</th> <!-- 1 -->
+                      <th style="text-align:center">승인번호</th>
+                      <th style="text-align:center">회원번호</th>
+                      <th style="text-align:center">환불금액</th> <!-- 5 -->
+                      <th style="text-align:center">환불사유</th>
+                      <th style="text-align:center">환불일자</th>
+                      <th style="text-align:center">사용한 쿠폰</th> <!-- 6 -->
+                      <th style="text-align:center">처리</th>
                     </tr>
                   </thead>
                   
@@ -106,13 +106,13 @@
                       <td><fmt:formatDate value="${refund.refundDate }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
                       <td>${refund.payCoupNum }(${refund.coupDisRate }%)</td>
                    
-                      <td>
+                      <td align="center">
 
                       <c:if test="${refund.rsvRefundYn < 2}">
                       <!-- 버튼 누르면 쿠폰 다시 입력 + rsvRefundYn 상태 2로 변경 + 메일 발송 -->
                       	  <button type="button"
 	                      class="btn btn-danger"
-	                      style="font-size: 10px; margin-left: 10px;" id="refund_btn"> 
+	                      style="font-size: 10px; " id="refund_btn"> 
 	                      	환불 처리
 	                      </button>
                       </c:if>

@@ -87,14 +87,14 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
-                    <tr>
-                    	<th style="width:100px">전송</th>
-                        <th>쿠폰코드</th>
-                        <th>쿠폰명</th>
-                        <th>할인율</th>
-                        <th>쿠폰시작일</th>
-                        <th>쿠폰만료일</th>
-                        <th>쿠폰삭제</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                    	<th style="width:100px; text-align:center">전송</th>
+                        <th style="text-align:center">쿠폰코드</th>
+                        <th style="text-align:center">쿠폰명</th>
+                        <th style="text-align:center">할인율</th>
+                        <th style="text-align:center">쿠폰시작일</th>
+                        <th style="text-align:center">쿠폰만료일</th>
+                        <th style="width:80px; text-align:center">쿠폰삭제</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -106,8 +106,9 @@
                       <td>${cp.coupDisRate }%</td>
                       <td><fmt:formatDate value="${cp.coupStartD }" pattern="yyyy-MM-dd" /></td>
                       <td><fmt:formatDate value="${cp.coupEndD }" pattern="yyyy-MM-dd" /></td>
-                      <td><button type="button" class="btn btn-danger"
-                      style="font-size: 10px;margin-left: 10px;" id="delete_btn">
+                      
+                      <td align="center"><button type="button" class="btn btn-danger"
+                      style="font-size: 10px;" id="delete_btn">
                       	Delete
                       </button></td>
                     </tr>
