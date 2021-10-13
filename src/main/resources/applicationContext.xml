@@ -23,6 +23,15 @@
 	<context:property-placeholder
 		location="classpath:config/database.properties" />
 
+<!-- 	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean> -->
+
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		destroy-method="close">
@@ -30,69 +39,71 @@
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-	</bean>
+	</bean> 
 
-	<!-- Transaction 관리자 설정 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-		p:dataSource-ref="dataSource" />
+			
 
-
-	<tx:advice id="txAdvice"
-		transaction-manager="transactionManager">
-		<tx:attributes>
-			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" />
-		</tx:attributes>
-	</tx:advice>
+			<!-- Transaction 관리자 설정 -->
+			<bean id="transactionManager"
+				class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+				p:dataSource-ref="dataSource" />
 
 
-	<!-- myBatis 사용을 위한 설정 -->
-	<bean id="sessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml" />
-	</bean>
-
-	<bean id="sqlSessionTemplate"
-		class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sessionFactory" />
-	</bean>
-	
-	<bean id="bcryptPasswordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+			<tx:advice id="txAdvice"
+				transaction-manager="transactionManager">
+				<tx:attributes>
+					<tx:method name="get*" read-only="true" />
+					<tx:method name="*" />
+				</tx:attributes>
+			</tx:advice>
 
 
+			<!-- myBatis 사용을 위한 설정 -->
+			<bean id="sessionFactory"
+				class="org.mybatis.spring.SqlSessionFactoryBean">
+				<property name="dataSource" ref="dataSource" />
+				<property name="configLocation"
+					value="classpath:mybatis-config.xml" />
+			</bean>
 
-	<bean id="mailSender"
-		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="465" />
-		<property name="username" value="${email.id}" />
-		<property name="password" value="${email.pw}" />
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.host">smtp.gmail.com</prop>
-				<prop key="mail.transport.protocol">smtp</prop>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.debug">true</prop>
-				<prop key="mail.smtp.ssl.enable">true</prop>
-			</props>
-		</property>
-	</bean>
+			<bean id="sqlSessionTemplate"
+				class="org.mybatis.spring.SqlSessionTemplate">
+				<constructor-arg ref="sessionFactory" />
+			</bean>
 
-	<!-- 멀티파트 리졸버 -->
+			<bean id="bcryptPasswordEncoder"
+				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<!-- 최대업로드 가능한 바이트크기 -->
-		<property name="maxUploadSize" value="52428800" />
-		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
-		<!-- property name="maxInMemorySize" value="52428800" / -->
-		<!-- defaultEncoding -->
-		<property name="defaultEncoding" value="utf-8" />
-	</bean>
+
+
+			<bean id="mailSender"
+				class="org.springframework.mail.javamail.JavaMailSenderImpl">
+				<property name="host" value="smtp.gmail.com" />
+				<property name="port" value="465" />
+				<property name="username" value="${email.id}" />
+				<property name="password" value="${email.pw}" />
+				<property name="javaMailProperties">
+					<props>
+						<prop key="mail.smtp.host">smtp.gmail.com</prop>
+						<prop key="mail.transport.protocol">smtp</prop>
+						<prop key="mail.smtp.auth">true</prop>
+						<prop key="mail.smtp.starttls.enable">true</prop>
+						<prop key="mail.debug">true</prop>
+						<prop key="mail.smtp.ssl.enable">true</prop>
+					</props>
+				</property>
+			</bean>
+
+			<!-- 멀티파트 리졸버 -->
+
+			<bean id="multipartResolver"
+				class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+				<!-- 최대업로드 가능한 바이트크기 -->
+				<property name="maxUploadSize" value="52428800" />
+				<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+				<!-- property name="maxInMemorySize" value="52428800" / -->
+				<!-- defaultEncoding -->
+				<property name="defaultEncoding" value="utf-8" />
+			</bean>
 
 </beans>
