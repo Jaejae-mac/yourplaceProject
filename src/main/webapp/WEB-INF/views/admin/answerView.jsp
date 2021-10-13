@@ -202,9 +202,6 @@
           	$("#reportquestion").val(report);
           	$("#reportNum").val(no); //신고번호
           	
-          	
-// 			$("#deleteInfoHidden").val(title);
-// 			$("#submitForm").submit();
           
 		});
 		

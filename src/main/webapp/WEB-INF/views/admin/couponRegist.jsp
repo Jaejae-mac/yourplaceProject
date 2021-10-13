@@ -232,11 +232,8 @@ $(function() {
 			   }
 		    
 		    $("#couponRegistDone").submit();
-<<<<<<< HEAD
-=======
 		    alert("쿠폰 등록이 완료 되었습니다.")
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
-		    
+
 		  });
 	
 

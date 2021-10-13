@@ -367,17 +367,7 @@
 
 	<script>
       $(document).on("click", "#excelDownload", function(){
-    	  
-    	  if($.trim($("#datePicker").val())==''){
-		      alert("조회할 시작일을 입력해 주세요.");
-		      return false;
-		    }
-    	  
-    	  if($.trim($("#datePicker2").val())==''){
-		      alert("조회할 종료일을 입력해 주세요.");
-		      return false;
-		    }
- 
+
          var wb = XLSX.utils.table_to_book(document.getElementById('datatablesSimple'), {sheet:"매출조회",raw:true});
          XLSX.writeFile(wb, ('매출조회.xlsx'));
          
