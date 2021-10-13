@@ -17,11 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="s3FileName" column="s3_file_name" />
 		<result property="placeRegDate" column="place_reg_date" />
 		<result property="placeArea" column="place_area" />
-<<<<<<< HEAD
-=======
 		<result property="userType" column="user_type" />
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
-
 	</resultMap>
 
 	<!-- 전체조회 -->

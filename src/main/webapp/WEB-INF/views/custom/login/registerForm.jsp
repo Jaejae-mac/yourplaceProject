@@ -250,8 +250,7 @@
                		text: '아이디를 입력해주시거나 중복확인을 해주시기 바랍니다.'
                 })
                	return false;
-            }else if(!chk
-            		PW()){
+            }else if(!chkPW()){
             	Swal.fire({
                		icon: 'error',
                 	title: '회원가입을 하실수 없습니다.',

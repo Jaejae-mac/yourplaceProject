@@ -22,11 +22,6 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
-
 
 <title>Yourplace_호스트 로그인</title>
 
@@ -43,8 +38,6 @@
 		})
 	</script>
 </c:if>
-
-<<<<<<< HEAD
 <title>Yourplace_호스트 로그인</title>
 
 <!-- 전달된 파라미터가 0 이라면 아이디또는 비밀번호의 불일치 이므로. -->
@@ -61,8 +54,7 @@
 	</script>
 </c:if>
 
-=======
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
+
 <style>
 #login_host, #login_guest, #login_kakao {
 	display: none;
@@ -168,30 +160,15 @@ input:focus{
 							<!-- 로그인 버튼 -->
 							<!-- Login v-on:click="login()" -->
 							<div
-<<<<<<< HEAD
-								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;">
-=======
 								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
 								onclick="loginHostHdo()">
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
 								<label for="login_guest" class="login_guest_lb">호스트 로그인</label> <input
 									type="button" id="login_guest" >
 							</div>
 
 							<div
 								style="margin-top: 20px; height: 52px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-<<<<<<< HEAD
 
-								<label for="login_kakao" class="login_kakao"><img
-									src="<c:url value="/resources/img/kakao/kakao_login_btn.png" />"
-									alt="" style="height: 50px;"></label> <input type="button"
-									id="login_kakao" onclick="loginGuestKakaoDo()"
-									style="display: none;">
-									<input type="hidden" name="kakaoid" id="kakaoid" />
-								<input type="hidden" name="kakaoemail" id="kakaoemail" />
-								<input type="hidden" name="kakaoname" id="kakaoname" />
-=======
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
 							</div>
 
 						</form>

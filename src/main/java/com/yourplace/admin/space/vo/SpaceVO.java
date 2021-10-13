@@ -23,9 +23,6 @@ public class SpaceVO {
 	private String s3FileName;
 	private Date placeRegDate;
 	private String placeArea;
-<<<<<<< HEAD
-=======
 	private int userType;
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
 	
 }
