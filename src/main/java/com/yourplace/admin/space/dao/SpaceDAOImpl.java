@@ -85,4 +85,12 @@ public class SpaceDAOImpl implements SpaceDAO {
 		return list;
 	}
 
+
+	@Override
+	public void disableSpaceWithId(String userId) {
+		System.out.println("---> MyBatis 로 disableSpaceWithId 기능 처리 : 멤버 정지시 사용");
+		sqlSessionTemplate.update("SpaceDAO.disableUserId", userId);
+		
+	}
+
 }

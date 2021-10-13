@@ -25,17 +25,12 @@
     ></script>
   	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   
-    <script>
-    $(document).on("click","#sendRegist",function()
-	{
-		alert("입력하신 사용자 정보가 관리자 계정으로 등록되었습니다.");
-	});
-	</script>
-  
   </head>
   
   <body class="sb-nav-fixed">
-	
+  
+	<c:set var="authority" scope="session" value="${AdminAuthority }"/>
+
     <%@ include file="adminNavigation.jsp" %>
 
       <!-- 회원관리 테이블 시작 -->
@@ -52,12 +47,7 @@
             </ol>
             <div class="card mb-4">
               <div class="card-body">
-                	관리자 계정을 조회할 수 있는 페이지입니다.
-                	</br>
-                	Root(1) : delete 제한: 장소삭제, 멤버삭제, 쿠폰삭제, 공지사항 삭제
-                	</br>
-                	Admin(2) : delete 및 create 제한: 장소삭제, 멤버삭제, 쿠폰등록/삭제, 공지사항 등록/삭제 제한
-                	</br>
+                	관리자 계정을 조회할 수 있는 페이지입니다. </br>
                 	Root 계정의 생성은 반드시 0번 ROOT 계정을 통해 생성하시기 바랍니다.
               </div>
             </div>
@@ -69,15 +59,18 @@
                 	관리자 계정 조회
               </div>
               
+           <c:choose>   
+			<c:when test="${authority eq 0}">
               <!-- 계정 추가 및 Modal -->
-              <div class="promotion-coupon">
-              	
-              	<!-- 계정추가 버튼 -->
+              <div class="promotion-coupon" style="padding-top: 10px">
+              
+              	<!-- 계정추가 버튼 --> 
 	                <button type="button" id="regist" name="accountRegist" class="btn btn-primary"
 	                style="font-size: 10px;margin-left: 10px;"
 	                data-toggle="modal" data-target="#registAdmin">
 	                	계정 추가
 	                </button>
+	              
 	                
 	                <!-- Modal -->
 	                      <div class="modal fade" id="registAdmin"
@@ -87,15 +80,12 @@
 	                      			
 	                      			<div class="modal-header">
 				                      <h5 class="modal-title" id="staticBackdropLabel"> 관리자 계정 추가 </h5>
-				                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				                      <span aria-hidden="true">&times;</span>
-				                      </button>
+				                      
 				                    </div>
 				                      
 				                      <div class="modal-body">
 				                      	<form role="form" action="/adminRegist.mdo" method="POST">
 				                      		<div class="form-group">
-				                      	
 
 				                      			<!-- 추가할 계정의 아이디, 이름, 타입 -->
 				                      			<label for="authority"><span class="auth"></span>권한 지정</label>
@@ -137,9 +127,7 @@
 				                      
 				                      <!-- 등록버튼 -->
 				                      <input type="submit" class="btn btn-primary" id="sendRegist" value="등록"/>
-				                      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-				                      	닫기
-				                      </button>
+				                      
 				
 	                      			</div>
 				                     </form>				                      	
@@ -149,13 +137,18 @@
 	                      </div>
 	                      <!-- modal 끝 -->
 	        	 </div>
-              
+	        
+              </c:when>
+
+		          <c:when test="${authority ne 0}">
+		          </c:when>
+		          
+		          <c:otherwise></c:otherwise>
+		          
+	       </c:choose>
+	          
               <div class="card-body">
-<!-- 	              <select class="dataTable-selector">
-	              	<option>전체 회원 보기</option>
-	              	<option>게스트만 보기</option>
- 	              	<option>호스트만 보기</option>
- 	              </select> -->
+
                 <table id="datatablesSimple">
                   <thead>
                     <tr>
@@ -164,6 +157,9 @@
                         <th>아이디</th> <!-- adminId -->
                         <th>이메일</th> <!-- adminEmail -->
                         <th>연락처</th> <!-- adminTel -->
+                        
+	                        <th>삭제</th>
+	                        
                     </tr>
                   </thead>
 
@@ -187,21 +183,12 @@
                       <td>${root.adminEmail }</td>
                       <td>${root.adminTel }</td>
                       
-                      <!-- <td>
-	                      <button type="button"
-	                      class="btn btn-danger"
-	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
-	                      	제한
-	                      </button>
-                      </td>
-                      <td>
-	                      <button type="button"
-	                      class="btn btn-danger"
-	                      style="font-size: 10px; margin-left: 10px;" id="delete_btn">
-	                      	삭제
-	                      </button>
-                      </td> -->
-                      
+	                      <td style="width:120px"><button type="button"
+		                      class="btn btn-danger"
+		                      style="font-size: 10px; margin-left: 10px;" id="delete_btn"> 
+		                      	계정 삭제
+		                      </button></td>
+	                      
                     </tr>
                   </c:forEach>
 				</tbody>
@@ -214,10 +201,10 @@
           </div>
         </main>
        
-       <!-- delete -->
-<!--        <form id = "submitForm" method="POST" action="/deleteMember.mdo" hidden="hidden"> -->
-<!--        	<input type="hidden" id="deleteUserHidden" name="deleteUserId"> -->
-<!--        </form> -->
+<!--        delete -->
+       <form id = "submitForm" method="POST" action="/deleteAdmin.mdo" hidden="hidden">
+       	<input type="hidden" id="deleteAdminHidden" name="deleteAdmin">
+       </form>
        
 <!--        <form id="submitForm2" method="POST" action="/disableMember.mdo" hidden="hidden"> -->
 <!--        	<input type="hidden" id="disableUserHidden" name="disableUserId"> -->
@@ -225,7 +212,7 @@
        
         
       </div>
-    </div>
+    
     
 
     
@@ -251,6 +238,80 @@
 			  	myModal.show();
 			});
 	</script>
+	
+	<script>
+	
+	 $("#sendRegist").click(function(){
+		 
+		    if($.trim($("#id").val())==''){
+		      alert("아이디를 입력해 주세요.");
+		      return false;
+		    }
+		    
+		    if($.trim($("#pw").val())==''){
+			      alert("비밀번호를 입력해 주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#name").val())==''){
+			      alert("관리자 이름을 입력해 주세요.");
+			      return false;
+			   }
+		    
+		    if($.trim($("#email").val())==''){
+			      alert("이메일을 입력해 주세요.");
+			      return false;
+			   } 
+		    
+		    if($.trim($("#tel").val())==''){
+			      alert("연락처를 입력해 주세요.");
+			      return false;
+			   } 
+		    
+		    $("#sendRegist").submit();
+		    
+		    alert("입력하신 정보가 관리자 계정으로 등록되었습니다.")
+		    
+		  });
+	
+
+	</script>
+	
+    <script>
+
+		$(document).on("click","#delete_btn",function()
+		{
+// 			console.log('삭제버튼 클릭');
+			
+			var tdArr = new Array();
+			var checkBtn = $(this);
+			
+			var tr = checkBtn.parent().parent();
+			var td = tr.children();
+
+			var authority = td.eq(0).text();
+			var adminno = td.eq(1).text();
+
+			td.each(function(i)
+			{
+				tdArr.push(td.eq(i).text());
+			});
+			
+			
+			var result = confirm("해당 관리자 계정을 삭제하시겠습니까?")
+			
+			if(result)
+				{
+					$("#deleteAdminHidden").val(adminno);
+					$("#submitForm").submit();
+					alert("계정이 삭제 처리되었습니다.")
+				} else {
+					alert("취소되었습니다.")
+				}
+			
+			
+		});
 		
+	</script>	
   </body>
 </html>

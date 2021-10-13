@@ -98,7 +98,7 @@
 
         <script>
 	    function login_guest_do() {
-	      $("#form_login").attr("action", "/login.mdo").submit();
+	      $("#form_login").attr("action", "/main.mdo").submit();
 	
 	   }
     </script>

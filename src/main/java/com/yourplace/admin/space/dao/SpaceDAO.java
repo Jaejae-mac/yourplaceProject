@@ -21,6 +21,8 @@ public interface SpaceDAO {
 	//장소 승인
 	void enableSpace(String spaceNum);
 	
+	void disableSpaceWithId(String userId);
+	
 	//장소 미승인
 	void disableSpace(String spaceNum);
 	

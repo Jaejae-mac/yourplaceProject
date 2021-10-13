@@ -28,4 +28,11 @@ public class AccountDAOImpl implements AccountDAO {
 		
 	}
 
+	@Override
+	public void deleteAdmin(int num) {
+		System.out.println("---> MyBatis 로 insertAccount 기능 처리 ");
+		sqlSessionTemplate.insert("AccountDAO.deleteAdmin", num);
+		
+	}
+
 }

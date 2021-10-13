@@ -37,9 +37,9 @@
             <h1 class="mt-4">답변목록 확인</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="index.html">메인으로</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Question</li>
+              <li class="breadcrumb-item active">Response</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
