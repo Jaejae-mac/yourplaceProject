@@ -6,13 +6,22 @@
 <c:if test="${param.result == 0}">
 	<script>
 		//alert 를 내보낸다.
-		alert('아이디 또는 비밀번호를 확인해주세요.');
+		var result = ${param.result}
+		$(document).ready(function(){
+			if(result == 0){
+				Swal.fire({
+        		  icon: 'error',
+       			  title: '아이디 또는 비밀번호를 확인해주세요.',
+        		})
+			}
+			
+		})
 	</script>
 </c:if>
 <c:if test="${accessDenied == 'accessDenied' }">
 	<script>
 		//alert 를 내보낸다.
-		alert('로그인 후 이용해주세요.');
+		$(document).ready(function(){})
 	</script>
 </c:if>
 
