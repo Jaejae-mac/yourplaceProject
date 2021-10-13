@@ -3,6 +3,7 @@ package com.yourplace.host.management.vo;
 import java.util.Date;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 import lombok.Getter;
@@ -36,4 +37,5 @@ public class HostManagementVO {
 	private String placeAllow; //승인여부 0이 승인대기 1 승인
 	private Date placeRegDate;
 	private String s3FileUrl;
+	private MultipartFile placePic;
 }

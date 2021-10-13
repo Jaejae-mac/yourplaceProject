@@ -158,7 +158,6 @@ public class HostChartController {
 				String payDate = list.get(i).getPayDate();
 				System.out.println(pay);
 				System.out.println(payDate);
-	
 				chartData.put(payDate, pay);			
 	
 			}
@@ -384,6 +383,7 @@ public class HostChartController {
 		
 		System.out.println("su" + su.toString());
 		mav.addObject("map", su);
+		
 		mav.setViewName("HostChartInvoice");
 		return mav;
 	}

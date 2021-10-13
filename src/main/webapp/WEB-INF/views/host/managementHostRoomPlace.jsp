@@ -133,7 +133,7 @@
 				{
 			var chk = confirm("삭제하시겠습니까?");
 
-			if (chk) {
+			if (chk==true) {
 				var tdArr = new Array();
 				var c = $(this);
 				

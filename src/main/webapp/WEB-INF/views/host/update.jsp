@@ -54,14 +54,28 @@
 
 <link href="<c:url value="/resources/host/css/styles.css" />"
 	rel="stylesheet" />
-<%-- 	<link rel="stylesheet"
-	href="<c:url value="/resources/place/css/style-regist.css" />" /> --%>
+
 <link rel="stylesheet"
 	href="<c:url value="/resources/place/css/regist-style.css" />" />
-<script src="<c:url value="/resources/place/js/regist.js" />"></script>
-<script>
-	history.scrollRestoration = "manual"
-</script>
+
+
+<style>
+
+.button {
+    display: flex;
+    justify-content: center;
+}
+label {
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* 못생긴 기존 input 숨기기 */
+#chooseFile {
+    visibility: hidden;
+}
+
+</style>
 </head>
 <body class="sb-nav-fixed">
 <%@include file="hostnav.jsp" %>
@@ -69,10 +83,7 @@
 	<div id="layoutSidenav_content">
 		<main style="width: 70%; margin: 0 auto;">
 			<h1 style="text-align: center;">장소 등록</h1>
-			<!-- 전송 폼태그. -->
-			<form method="POST" enctype="multipart/form-data"
-				action="/regist/place/registPlace.hdo" id="regist_form">
-				
+
 		    <c:forEach var="update" items="${updatePlace}">
 		    
 				<h3>지역 </h3>
@@ -103,8 +114,7 @@
 				<div>
 					<input type="text" style="width: 100%; min-height: 40px;font-size: 16px; 
 										border:1px solid black; border-radius:10px;padding-left:10px;" 
-					name="placeName"
-						id="place_name" value="${update.placeName}">
+					name="placeName" id="placeName" value="${update.placeName}">
 				</div>
 				<hr>
 				<!--소개-->
@@ -130,7 +140,7 @@
 				<div class="choose-floor">
 					
 			<input type="text" value="${update.placeFloor}"
-						style="width: 100%; min-height: 40px;" name="placeFloor">
+						style="width: 100%; min-height: 40px;" name="placeFloor" readonly="readonly">
 					
 				</div>
 				<hr>
@@ -165,28 +175,13 @@
 					</div>
 				</div>
 				<hr>
-	<hr>
-				<!-- 파일전송 시작. -->
-				<div class="file">
-					<h3>이미지 등록</h3>
-					<p>사진은 최대 10장 등록 가능합니다.</p>
-					<div class="file-name-div">
-						<ul id="file-name" class="file-name"></ul>
-					</div>
-					<div class="form-group2" style="display: inline; width: 30px;">
-						<label for="input-file" class="input-file-button">업로드</label> <input
-							type="file" class="form-control-file" id="input-file"
-							accept="image/*" multiple onchange="processSelectedFiles(this)"
-							name="file" style="display: none;" />
-					</div>
-				</div>
-				<hr>
+				
 				<!--시간당 대여 금액-->
 				<h3>시간당 대여 금액</h3>
 				<div clsaa="price-per-hour">
 					<div
 						style="width: 100%; border-radius: 8px; background-color: lightgray; margin-bottom: 5px; padding-left: 14px; line-height: 30px;">
-						<p>유어플레이스의 시간당 금액은 호스트가 설정한 시간당 디여 금액과 게스트 수수료, PG 수수료,
+						<p>유어플레이스의 시간당 금액은 호스트가 설정한 시간당 대여 금액과 게스트 수수료, PG 수수료,
 							부가세(VAT)를 바탕으로 산정되어 설정하신 금액보다 높게 노출됩니다.</p>
 					</div>
 					<div
@@ -253,10 +248,12 @@
 				
 				
 				<hr>
-				<input type="button" class="btn btn-primary" id="submit-btn"
+				<input type="submit" class="btn btn-primary" id="submit-btn" onclick="a();"
 					value="장소 등록하기" style="width: 100%; height: 50px;">
-				<div style="min-height: 100px;" onclick="func()"></div>
-			</form>
+				<div style="min-height: 100px;"></div>
+
+			
+
 
 		</main>
 	</div>
@@ -267,8 +264,65 @@
 
 
 <script>
-function func(){
-console.log($('input-file').val());
-};
+var arr1 = new Array();
+var arr2 = new Array();
+var arr3 = new Array();
+var arr4 = new Array();
+var arr5 = new Array();
+var arr6 = new Array();
+var arr7 = new Array();
+var arr8 = new Array();
+var arr9 = new Array();
+
+
+	function a() {
+		var placeName = $('#placeName').val();
+		var placeIntro = $('#place_intro').val();
+		var placeRule = $('#place_rule').val();
+		var placeSubInfo = $('#place_surinfo').val();
+		var placePrice = $('#place_price').val();
+		var placeMinTime = $('#place_min_time').val();
+		var placeCarNum = $('#place_capa_car').val();
+		var personNum = $('#place_capa').val();
+		
+		arr2.push(placeName);
+		arr3.push(placeIntro);
+		arr4.push(placeRule);
+		arr5.push(placeSubInfo);
+		arr6.push(placePrice);
+		arr7.push(placeMinTime);
+		arr8.push(placeCarNum);
+		arr9.push(personNum);
+		
+		$.ajax(
+
+				{
+						url : '/updatepLace.hdo',
+						dataType : 'text',
+						async    : false,
+						type : 'POST',
+						 data: {
+							 placeName: arr2,	      	
+							 placeIntro: arr3,
+							 placeRule: arr4,
+							 placeSubInfo: arr5,
+							 placePrice: arr6,	
+							 placeMinTime: arr7,
+							 placeCarNum: arr8,
+							 placePersonNum: arr9,
+					      },
+					
+					      success: function(data){
+					   
+					          	 	  	 	 
+					             
+					      }
+					})
+		
+		
+		
+	}
 </script>
+
 </html>
+		

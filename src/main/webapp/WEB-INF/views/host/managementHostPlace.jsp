@@ -151,7 +151,7 @@
 
 					
 					console.log(no);
-					 arr1.push(no);
+					arr1.push(no);
 					console.log(arr1);
 					 
 					 
