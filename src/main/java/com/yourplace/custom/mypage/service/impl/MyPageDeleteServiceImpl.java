@@ -7,6 +7,7 @@ import com.yourplace.commons.awss3.AwsS3;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.MyPageDAO;
 import com.yourplace.custom.mypage.service.MyPageDeleteService;
+import com.yourplace.host.regist.vo.PlaceVO;
 @Service("MyPageDeleteService")
 public class MyPageDeleteServiceImpl implements MyPageDeleteService {
 	@Autowired
@@ -21,5 +22,9 @@ public class MyPageDeleteServiceImpl implements MyPageDeleteService {
 	@Override
 	public void deleteInterest(UserVO vo) {
 		mypagedao.deleteInterest(vo);
+	}
+	@Override
+	public void deletePlace(PlaceVO vo) {
+		mypagedao.deletePlace(vo);
 	}
 }

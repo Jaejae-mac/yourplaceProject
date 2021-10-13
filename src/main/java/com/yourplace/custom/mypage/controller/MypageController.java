@@ -9,10 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.custom.login.service.LoginUserService;
@@ -25,6 +23,7 @@ import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
 import com.yourplace.custom.mypage.vo.MyPageGuestReviewVO;
 import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
+import com.yourplace.host.regist.vo.PlaceVO;
 
 @Controller
 public class MypageController {
@@ -98,6 +97,7 @@ public class MypageController {
 		String userId = (String)session.getAttribute("userId");
 		String userImg = uvo.getUserProfileImg();
 		int num = uvo.getUserNum();
+		int type = uvo.getUserType();
 		UserVO vo = new UserVO();
 		// 디폴트이미지일 경우 해당유저 프로필 경로로 재설정
 		if(userImg.equals("profile/default/defaultprofile.png")) {
@@ -107,7 +107,9 @@ public class MypageController {
 		System.out.println("유저 아이디 : " + userId + "이미지 :" + userImg);
 		vo.setUserId(userId);
 		mypagedeleteService.deleteUser(vo);
-		mypagedeleteService.deleteInterest(vo);
+		if(type == 0) {
+			mypagedeleteService.deleteInterest(vo);
+		}
 		MyPageCouponVO cvo = new MyPageCouponVO();
 		cvo.setUserCoupId(userId);
 		couponservice.deleteCoupon(cvo);
@@ -117,6 +119,11 @@ public class MypageController {
 		MyPageHostReviewVO hrvo = new MyPageHostReviewVO();
 		hrvo.setRsvId(userId);
 		mypagereviewService.deleteHostReview(hrvo);
+		if(type == 1) {
+			PlaceVO pvo = new PlaceVO();
+			pvo.setUserId(userId);
+			mypagedeleteService.deletePlace(pvo);
+		}
 		session.invalidate();
 		return "redirect:home.do";
 	}

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.MyPageDAO;
+import com.yourplace.host.regist.vo.PlaceVO;
 
 @Repository("MyPageDAO")
 public class MyPageDAOImpl implements MyPageDAO {
@@ -30,5 +31,10 @@ public class MyPageDAOImpl implements MyPageDAO {
 	public void deleteInterest(UserVO vo) {
 		System.out.println("--> MyBatis로 deleteInterest() 기능 처리");
 		sqlSessionTemplate.delete("InterestDAO.deleteInterestUser", vo);
+	}
+	@Override
+	public void deletePlace(PlaceVO vo) {
+		System.out.println("--> MyBatis로 deleteUser() 기능 처리");
+		sqlSessionTemplate.delete("RegistPlaceDAO.deletePlace", vo);
 	}
 }

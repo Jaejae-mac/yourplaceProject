@@ -134,6 +134,7 @@
 	        <form action="" id="delete_form" method="post">
 	        	<input type="hidden" name="userNum" value="${userNum}"/>
 	        	<input type="hidden" name="userProfileImg" value="${userImg}"/>
+	        	<input type="hidden" name="userType" value="1"/>
 	        </form>
     		</main>
 		</div>
