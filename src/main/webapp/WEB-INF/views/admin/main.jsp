@@ -30,7 +30,8 @@
                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                   <div class="card-header">
                     <h3 class="text-center font-weight-light my-4">
-                      Yourplace 관리자 로그인
+                      <img src="<c:url value="/resources/img/logo/adminlogo.png" />"
+                      style="width: 50%; cursor: pointer;">
                     </h3>
                   </div>
                   <div class="card-body">
@@ -77,7 +78,7 @@
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      YourPlace Admin
+                      @Team Connect
                     </div>
                   </div>
                 </div>

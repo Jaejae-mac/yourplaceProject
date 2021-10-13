@@ -54,7 +54,7 @@
 
         <main>
           <div class="container-fluid px-4">
-            <h1 class="mt-4">배너 등록 및 고나리</h1>
+            <h1 class="mt-4">배너 등록 관리</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
                 <a href="/index-admin.mdo">Admin Home</a>
@@ -65,9 +65,7 @@
               <div class="card-body">
                 
 		                배너 등록 및 Yourplace 메인 페이지 공개여부를 관리하는 페이지입니다.
-                <!-- <a target="_blank" href="https://datatables.net/"
-                  >official DataTables documentation</a
-                > -->
+                
               </div>
             </div>
             <!-- 테이블 시작 -->
@@ -79,11 +77,7 @@
               <div class="promotion-coupon">
               
                 <td>
-                <!-- 
-	                <button type="button" id="coup_regist_form" name="coup_regist_form" class="btn btn-success"
-	                style="font-size: 10px;margin-left: 10px; size:13px;" onclick="">
-	                	이미지 등록
-	                </button>  -->
+                
 	                
 	                <button type="button" class="btn btn-primary" id="file_upload_btn"
 	                      data-toggle="modal" data-target="fileUploadModal"
@@ -172,27 +166,14 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
-                  
-<<<<<<< HEAD
-                    <tr>
-<!--                     	<th style="width:100px">전송</th> -->
-						<th style="width:100px">선택</th>
-                        <th>이미지번호</th>
-                        <th>미리보기</th>
-                        <th>연결된 주소</th>
-                        <th>등록일자</th>
-                        <th>공개상태</th>
-=======
-                    <tr style="background: rgba(231,231,231,0.4)">
-<!--                     	<th style="width:100px">전송</th> -->
+
+					<tr style="background: rgba(231,231,231,0.4)">
 						<th style="width:70px; text-align:center">선택</th>
                         <th style="width:100px; text-align:center">이미지번호</th>
                         <th style="text-align:center">미리보기</th>
                         <th style="text-align:center">연결된 주소</th>
                         <th style="text-align:center">등록일자</th>
                         <th style="text-align:center">공개상태</th>
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
-<!--                         <th>파일삭제</th> -->
                     </tr>
                   </thead>
                   <tbody>
@@ -200,19 +181,11 @@
                     <tr>
                     
                     <c:if test="${ban.bannerShow eq '0'}">
-<<<<<<< HEAD
-                      <td style="width:100px"><input type="checkbox" class="ch" name="banner_check" value="banner_check" /></td>
-                    </c:if>
-                    
-                    <c:if test="${ban.bannerShow eq '1'}">
-                      <td style="width:100px"><input type="checkbox" checked=checked class="ch" name="banner_check" value="banner_check" /></td>
-=======
                       <td style="width:100px; align:center;"><input type="checkbox" style="align:center;" class="ch" name="banner_check" value="banner_check" /></td>
                     </c:if>
                     
                     <c:if test="${ban.bannerShow eq '1'}">
                       <td style="width:100px; align:center;"><input type="checkbox" style="align:center;" checked=checked class="ch" name="banner_check" value="banner_check" /></td>
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
                     </c:if>
                     
                       <td>${ban.bannerNum }</td>
@@ -221,13 +194,8 @@
                       <td><fmt:formatDate value="${ban.fileRegDate}" pattern="yyyy-MM-dd" /></td>
                       
                       	<c:if test="${ban.bannerShow eq '0'}"><td>비공개</td></c:if>
-<<<<<<< HEAD
-                      	<c:if test="${ban.bannerShow eq '1'}"><td id="show" style="background-color: #B4FBFF;">공개</td></c:if>
-=======
                       	<c:if test="${ban.bannerShow eq '1'}"><td id="show" style="background-color: #00CC78;">공개</td></c:if>
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
-                      
-                      <!--  <td><button type="button" class="btn btn-danger"
+					<!--  <td><button type="button" class="btn btn-danger"
                       style="font-size: 10px;margin-left: 10px;" id="delete_btn">
                       	Delete
                       </button></td> -->

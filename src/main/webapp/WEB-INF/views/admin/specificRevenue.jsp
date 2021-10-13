@@ -51,7 +51,7 @@
 	$(function() {	
 		$('#datePicker').datepicker({
 		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-		    startDate: '-365d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+		    startDate: '-730d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 		    endDate: '0d',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
 		    autoclose : true,	//사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
 		    calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
@@ -83,7 +83,7 @@
 	$(function() {	
 		$('#datePicker2').datepicker({
 		    format: "yyyy-mm-dd",	//데이터 포맷 형식(yyyy : 년 mm : 월 dd : 일 )
-		    startDate: '-365d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
+		    startDate: '-730d',	//달력에서 선택 할 수 있는 가장 빠른 날짜. 이전으로는 선택 불가능 ( d : 일 m : 달 y : 년 w : 주)
 		    endDate: '0d',	//달력에서 선택 할 수 있는 가장 느린 날짜. 이후로 선택 불가 ( d : 일 m : 달 y : 년 w : 주)
 		    autoclose : true,	//사용자가 날짜를 클릭하면 자동 캘린더가 닫히는 옵션
 		    calendarWeeks : false, //캘린더 옆에 몇 주차인지 보여주는 옵션 기본값 false 보여주려면 true
@@ -111,54 +111,7 @@
 	
 </script>
 	
-<!--  <script>
 
-		function s2ab(s) { 
-		    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
-		    var view = new Uint8Array(buf);  //create uint8array as viewer
-		    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
-		    return buf;    
-		}
-		
-		function exportExcel(){ 
-		    // step 1. workbook 생성
-		    var wb = XLSX.utils.book_new();
-		
-		    // step 2. 시트 만들기 
-		    var newWorksheet = excelHandler.getWorksheet();
-		    
-		    // step 3. workbook에 새로만든 워크시트에 이름을 주고 붙인다.  
-		    XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler.getSheetName());
-		
-		    // step 4. 엑셀 파일 만들기 
-		    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
-		
-		    // step 5. 엑셀 파일 내보내기 
-		    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), excelHandler.getExcelFileName());
-		}
-		$(document).ready(function() { 
-		    $("#excelDownload").click(function(){
-		        exportExcel();
-		    });
-		});
-	</script>
-	
-	<script>
-		var excelHandler = {
-		        getExcelFileName : function(){
-		            return 'table-test.xlsx';
-		        },
-		        getSheetName : function(){
-		            return 'Table Test Sheet';
-		        },
-		        getExcelData : function(){
-		            return document.getElementById('tableData'); 
-		        },
-		        getWorksheet : function(){
-		            return XLSX.utils.table_to_sheet(this.getExcelData());
-		        }
-		}
-	</script>  -->
 
   </head>
   <body class="sb-nav-fixed">
@@ -424,12 +377,13 @@
 		      alert("조회할 종료일을 입력해 주세요.");
 		      return false;
 		    }
-    	  
+ 
          var wb = XLSX.utils.table_to_book(document.getElementById('datatablesSimple'), {sheet:"매출조회",raw:true});
          XLSX.writeFile(wb, ('매출조회.xlsx'));
          
       });
     </script>
+
 
   </body>
 </html>

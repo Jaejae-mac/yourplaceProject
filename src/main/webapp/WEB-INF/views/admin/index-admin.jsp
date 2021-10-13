@@ -223,6 +223,10 @@
                     ]
                 },
                 options: {
+                	legend : 
+        			{
+            			display: false
+            		},
                     scales: {
                         yAxes: [
                             {
@@ -295,6 +299,10 @@
                     ]
                 },
                 options: {
+                	legend: 
+                	{
+                		position: 'bottom'
+                	},
                     scales: {
                         yAxes: [
                             {
@@ -415,6 +423,10 @@
                     ]
                 },
                 options: {
+                	legend : 
+                		{
+                		display: false
+                		},
                     scales: {
                         yAxes: [
                             {
