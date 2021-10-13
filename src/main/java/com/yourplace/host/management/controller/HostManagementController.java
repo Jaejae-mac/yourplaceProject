@@ -152,8 +152,10 @@ public class HostManagementController {
 		String userId= (String)session.getAttribute("userId");
 		vo.setUserId(userId);
 		
+		
 		int placeNum = Integer.parseInt(request.getParameter("placeNum"));
 		vo.setPlaceNum(placeNum);
+		session.setAttribute("placeNum", placeNum);
 		System.out.println(placeNum);
 		List<HostManagementVO> getList = service.getOneHostPlace(vo);
 		System.out.println(getList.toString());
@@ -171,6 +173,7 @@ public class HostManagementController {
 		vo.setPlaceNum(placeNum);
 		System.out.println(vo.toString());
 		service.updatePlace(placeNum, vo);
+		session.removeAttribute("placeNum");
 		return "redirect:/managementHostPlace.hdo";
 	}
 
