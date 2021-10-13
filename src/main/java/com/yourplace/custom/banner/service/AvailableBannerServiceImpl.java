@@ -16,7 +16,6 @@ public class AvailableBannerServiceImpl implements AvailableBannerService {
 	
 	@Override
 	public List<BannerVO> displayBanner() {
-		System.out.println("[Service] Custom - 공개된 배너 이미지가 home 에 display");
 		return bannerdao.displayBanner();
 	}
 

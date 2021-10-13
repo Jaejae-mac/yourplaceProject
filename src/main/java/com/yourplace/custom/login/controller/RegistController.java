@@ -54,7 +54,6 @@ public class RegistController {
 	@PostMapping("/idcheck.do")
 	@ResponseBody
 	public String idCheck(String id) {
-		System.out.println("[RegistController] AJAX ID for IDCHECK : " + id);
 		UserVO vo = new UserVO();
 		vo.setUserId(id);
 		String result = idCheckService.idCheck(vo);
@@ -66,7 +65,6 @@ public class RegistController {
 	@GetMapping("/authentication.do")
 	@ResponseBody
 	public String authNum(String userTel) {//전화번호 확인 메서드.
-		System.out.println("[RegistController] 사용자 전화번호 : " + userTel);
 		String phoneNumber= userTel;
 		Random rand = new Random();
 		String numStr = "";
@@ -86,7 +84,6 @@ public class RegistController {
 	@PostMapping("/regist.do")
 	public String regist(UserVO vo, HttpServletRequest request, RedirectAttributes redirect) {
 		//제대로된 아이디와 비밀번호 가 전송되었을 경우.
-		System.out.println(vo.toString());
 		if(vo.getUserId().length() > 0 && vo.getUserPw().length() > 0) {
 			if(vo.getUserType() == 0) {
 				CouponVO welcomeCoupon = new CouponVO();

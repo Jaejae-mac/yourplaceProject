@@ -106,20 +106,15 @@ public class CateController {
 				break;
 			}
 		}
-		System.out.println(maincate);
-		System.out.println(subcate);
-		System.out.println(model);
 		return "indexCategory";
 	}
 	//검색 기능
 	@GetMapping("/gocateSearch.do")
 	public String categorySearchForm(@RequestParam String keyword, Model model) {
-		System.out.println(keyword);
 		PlaceCardVO vo = new PlaceCardVO();
 		vo.setKeyword(keyword);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("placeCateList", categorykeywordService.getKeywordList(vo));
-		System.out.println(model);
 		return "indexCategory";
 	}
 	//신규 등록 장소리스트 컨트롤러
@@ -130,7 +125,6 @@ public class CateController {
 		vo.setKeyword(keyword);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("placeCateList", categorykeywordService.getnewCategoryList());
-		System.out.println(model);
 		return "indexCategory";
 	}
 	//인기 등록 장소리스트 컨트롤러
@@ -141,14 +135,12 @@ public class CateController {
 			vo.setKeyword(keyword);
 			model.addAttribute("keyword", keyword);
 			model.addAttribute("placeCateList", categorykeywordService.getpopCategoryList());
-			System.out.println(model);
 			return "indexCategory";
 	}
 	// 사람 인원수에 따른 장소리스트
 	@GetMapping("/placeListP.do")
 	public String placeListPeopleForm(@RequestParam int num, @RequestParam String maincate, 
 			@RequestParam String subcate,@RequestParam String sort, Model model, HttpSession session) {
-		System.out.println("숫자"+ num +"메인" + maincate + "서브" + subcate);
 		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
 		
@@ -219,7 +211,6 @@ public class CateController {
 	@GetMapping("/placeListPrice.do")
 	public String placeListPriceForm(@RequestParam int min, @RequestParam int max, @RequestParam String maincate, 
 			@RequestParam String subcate,@RequestParam String sort, Model model,HttpSession session) {
-		System.out.println("min"+ min + "max"+ max +"메인" + maincate + "서브" + subcate);
 		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
 		
@@ -285,14 +276,12 @@ public class CateController {
 				break;
 			}
 		}
-		System.out.println(list);
 		return "indexCategory";
 	}
 	// 주소에 따른 장소리스트
 	@GetMapping("/placeListAddr.do")
 	public String placeListAddrForm(@RequestParam String addr, @RequestParam String maincate, 
 			@RequestParam String subcate,@RequestParam String sort, Model model,HttpSession session) {
-		System.out.println("주소"+ addr + "메인" + maincate + "서브" + subcate);
 		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
 		
@@ -357,7 +346,6 @@ public class CateController {
 				break;
 			}
 		}
-		System.out.println(list);
 		return "indexCategory";
 	} 
 }

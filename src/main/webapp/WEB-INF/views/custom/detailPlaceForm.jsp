@@ -10,7 +10,8 @@
 <title>${placeInfo.placeName}</title>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/detail-place.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -46,7 +47,7 @@
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f1145e3da7175bb2ed15571464168022&libraries=services"></script>
 
-	
+
 <style>
 .flipsnap_sub_list .next {
 	top: 50%;
@@ -367,15 +368,15 @@
 						<div class="h_row_center"
 							style="margin-top: 40px; position: relative">
 							<p
-								style="font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);margin-bottom:2px">
+								style="font-size: 24px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31); margin-bottom: 2px">
 								장소 리뷰</p>
 							<p
-								style="margin-left: 9px; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);margin-bottok:2px">
+								style="margin-left: 9px; font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248); margin-bottok: 2px">
 								${reviewCnt }</p>
 							<img src=" <c:url value="/resources/custom/icon/gold_star.png"/>"
 								style="width: 24px; height: 24px; margin-left: 13px" />
 							<p
-								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43);margin-bottom:2px;">
+								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43); margin-bottom: 2px;">
 								${avgReview }</p>
 							<div class="h_row_center" style="position: absolute; right: 0px">
 								<!--<p class="align_btn"
@@ -553,9 +554,8 @@
 												value="${placeInfo.placePrice}" /> <input type="hidden"
 												name="placeMaincate" value="${placeInfo.placeMaincate}" />
 											<input type="hidden" name="placeCate"
-												value="${placeInfo.placeCate}" />
-											<input type="hidden" name="placeThumb"
-												value="${placeInfo.placeThumb}" />
+												value="${placeInfo.placeCate}" /> <input type="hidden"
+												name="placeThumb" value="${placeInfo.placeThumb}" />
 										</form>
 										<div class="date_picker"
 											style="margin: 10px 10px; position: relative; display: inline-block;">
@@ -565,14 +565,16 @@
 											<div
 												style="margin-top: 20px; margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
 												<p style="color: gray">시작 시간</p>
-												<input type="text" style="padding-left:5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
+												<input type="text"
+													style="padding-left: 5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
 													id="start_time" placeholder="시작 시간을 선택해주세요." readonly>
 											</div>
 											<br>
 											<div
 												style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
 												<p style="color: gray">종료 시간</p>
-												<input type="text" style="padding-left:5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
+												<input type="text"
+													style="padding-left: 5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
 													id="end_time" placeholder="종료 시간을 선택해주세요." readonly>
 											</div>
 										</div>
@@ -704,18 +706,16 @@
 										관심장소</p>
 								</div>
 							</div>
-							<div
-								onclick="hourplace_v2.userLog('W', '/place/29386', 'click', 'place', 'share')"
-								data-clipboard-text="https://hourplace.co.kr/place/29386"
-								class="h_center btn_share"
+							<div class="h_center btn_share"
 								style="width: 193px; height: 100%; border-radius: 8px; background-color: rgb(250, 251, 251); cursor: pointer;">
-								<div class="h_row_center" onclick="copyUrl()">
+								<div class="h_row_center" onclick="CopyUrlToClipboard()">
 									<img
 										src=" <c:url value="/resources/custom/icon/share_454B50.svg"/>"
 										style="width: 24px; height: 24px; margin-right: 10px" />
 									<p
 										style="font-size: 16px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(69, 75, 80); margin-bottom: 0px;">
 										공유하기</p>
+									<input type="hidden" id="shareBtn" />
 								</div>
 							</div>
 						</div>
@@ -805,12 +805,23 @@
 			<div id="bookmark_29386" class="h_center bookmark"
 				style="width: 48px; height: 48px; cursor: pointer"
 				onclick="yourplaceBookmark()">
-				<img
-					src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
-					style="width: 24px; height: 24px" id="bookmark_img2" />
+				
+
+				<c:choose>
+					<c:when test="${bookmark eq false}">
+						<img src="<c:url value="/resources/custom/icon/bookmark_bl_v4.svg"/>"
+							style="width: 24px; height: 24px;"
+							id="bookmark_img2" />
+					</c:when>
+					<c:otherwise>
+						<img
+							src=" <c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
+							style="width: 24px; height: 24px; "
+							id="bookmark_img2" />
+					</c:otherwise>
+				</c:choose>
 			</div>
-			<div data-clipboard-text="https://hourplace.co.kr/place/29386"
-				class="h_center btn_share"
+			<div onclick="CopyUrlToClipboard()" class="h_center btn_share"
 				style="width: 48px; height: 48px; cursor: pointer">
 				<img src="<c:url value="/resources/custom/icon/share_v5.svg"/>"
 					style="width: 24px; height: 24px" />
@@ -1528,6 +1539,21 @@
 			console.log("프로필페이지클릭"+Id);
 			location.href="/hostProfile.do?hostId="+Id;			
 		}
+	</script>
+
+	<script>
+	//클립보드에 url 복사
+	function CopyUrlToClipboard(){
+        var dummy   = document.createElement("input");
+        var text    = window.document.location.href;
+        
+        document.body.appendChild(dummy);
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+        swal("","클립보드에 URL을 복사했습니다.","info")
+    }
 	</script>
 	<%@ include file="footer.jsp"%>
 </body>

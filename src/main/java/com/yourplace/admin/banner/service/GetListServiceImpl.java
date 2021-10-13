@@ -16,7 +16,6 @@ public class GetListServiceImpl implements GetListService {
 	
 	@Override
 	public List<BannerVO> getBannerList() {
-		System.out.println("[Service] getList 서비스 호출 - 리스트를 불러옵니다.");
 		return bannerDAO.getBannerList();
 	}
 

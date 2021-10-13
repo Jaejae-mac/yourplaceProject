@@ -54,9 +54,6 @@ public class BannerController {
 		int bannerNum = getBannerNum.getBannerNum();
 		String url = request.getParameter("url");
 		
-		System.out.println("setting 할 번호: " + bannerNum);
-		System.out.println("기재한 url: " + url);
-		
 		
 		uploadService.uploadFile(mtfRequest, bannerNum, url); //uploadFile 안에서 insertUploadImg 까지 처리
 		
@@ -75,7 +72,6 @@ public class BannerController {
 	@PostMapping(value="/applyBanner.mdo")
 	public String openBanner(@RequestParam("sendBannerName") List<String>bannerNum)
 	{
-		System.out.println("[Controller] 배너 상태 : 공개로 전환");
 		System.out.println(bannerNum.toString());
 		
 		for(int i = 0; i < bannerNum.size(); i++)
@@ -83,8 +79,6 @@ public class BannerController {
 			String num = bannerNum.get(i);
 			avilableService.ableBanner(num);
 		}
-		
-		System.out.println("정상 처리되었습니다.");
 		
 		return "redirect:controlBanner.mdo";
 	}
@@ -109,8 +103,6 @@ public class BannerController {
 			String num = bannerNum.get(i);
 			avilableService.disableBanner(num);
 		}
-		
-		System.out.println("정상 처리되었습니다.");
 		
 		return "redirect:controlBanner.mdo";
 	}

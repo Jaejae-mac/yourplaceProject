@@ -16,7 +16,6 @@ public class BannerDAOImpl implements BannerDAO {
 	
 	@Override
 	public List<BannerVO> displayBanner() {
-		System.out.println("---> MyBatis 로 displayBanner 기능 처리");
 		List<BannerVO> list = sqlSessionTemplate.selectList("BannerDAO.displayBanner");
 		return list;
 	}

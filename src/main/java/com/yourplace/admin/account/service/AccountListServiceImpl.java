@@ -16,7 +16,6 @@ public class AccountListServiceImpl implements AccountListService {
 	
 	@Override
 	public List<AccountVO> getAccountList() {
-		System.out.println("[Service] 모든 어드민 리스트를 조회합니다.");
 		return accountDAO.getAccountList();
 	}
 

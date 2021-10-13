@@ -25,8 +25,6 @@ public class ProfileController {
 		HostVO vo = new HostVO();	
 		vo.setUserId(hostId);
 		HostVO Host = htProfileService.hostProfile(vo);
-		System.out.println(vo.toString());
-		System.out.println("호스트 리스트: "+ Host);
 		List<PlaceCardVO> hostPlaces = htProfileService.getHostPlaceList(vo);
 		model.addAttribute("hostInfo", Host);
 		model.addAttribute("hostPlaceInfo", hostPlaces);

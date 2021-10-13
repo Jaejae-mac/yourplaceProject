@@ -43,7 +43,6 @@ public class MailSendService {
 
 	//비밀번호 재설정 메일 보내기
 	public String sendResetPwMail(String email,String tokenNum) {
-		System.out.println(mailSender);
 		
 		MimeMessage message = mailSender.createMimeMessage();
 		

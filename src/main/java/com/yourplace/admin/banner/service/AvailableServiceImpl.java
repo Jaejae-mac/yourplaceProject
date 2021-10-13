@@ -16,19 +16,16 @@ public class AvailableServiceImpl implements AvailableService{
 	
 	@Override
 	public int availableBanner(String bannerNum) {
-		System.out.println("[Service] " + bannerNum + " 번 이미지 현재 상태 조회");
 		return bannerDAO.availableBanner(bannerNum);
 	}
 
 	@Override
 	public void ableBanner(String bannerNum) {
-		System.out.println("[Service] 선택한 이미지를 공개로 전환합니다.");
 		bannerDAO.ableBanner(bannerNum);
 	}
 
 	@Override
 	public void disableBanner(String bannerNum) {
-		System.out.println("[Service] 선택한 이미지를 비공개로 전환합니다.");
 		bannerDAO.disableBanner(bannerNum);
 	}
 

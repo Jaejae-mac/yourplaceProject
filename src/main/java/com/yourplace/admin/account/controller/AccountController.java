@@ -82,7 +82,6 @@ public class AccountController {
 	public String deleteAccount(@RequestParam("deleteAdmin") String num)
 	{
 		System.out.println("[Controller] Delete Admin 기능 수행");
-		System.out.println("입력받은 admin num: " + num);
 		
 		int adminNum = Integer.parseInt(num);
 		deleteAdmin.deleteAdmin(adminNum);

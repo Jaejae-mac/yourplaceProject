@@ -13,7 +13,6 @@ public class BannerNumServiceImpl implements BannerNumService {
 	
 	@Override
 	public int getBannerNum() {
-		System.out.println("[Service] 배너 번호 조회");
 		return bannerDAO.getBannerNum();
 	}
 

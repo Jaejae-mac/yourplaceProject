@@ -21,8 +21,6 @@ public class InvoiceController {
 	}
 	@GetMapping("/invoice.do")
 	public String invoiceForm(Model model, InvoiceVO vo) {
-		System.out.println("invoice.jsp 호출 ");
-		System.out.println(vo.toString());
 		model.addAttribute("payment", invoiceService.invoiceView(vo));
 		System.out.println(model);
 		return "invoice";

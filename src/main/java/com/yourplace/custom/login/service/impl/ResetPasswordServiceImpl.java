@@ -32,7 +32,6 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
 	//이메일에 전송할 링크뷰에 같이 담아 보낸다.
 	@Override
 	public String setAccessNum() {
-		System.out.println("[Service] 토큰 생성및 저장 수행.");
 		Random random = new Random();
 		String tokenNum = "";
 		for(int i = 0 ; i < 6; i++) {
@@ -45,24 +44,22 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
 	//DB에 저장된 임시번호를 조회하여 가져올 서비스 메서드.
 	@Override
 	public String getAccessNum(String tokenNum) {
-		System.out.println("[Service] 토큰 조회 수행.");
 		int result = loginDAO.getAccessNum(tokenNum);
 		//조회된 행이 있다면.
 		if(result == 1) {
 			//DB의 해당 토큰 행을 삭제하고.
-			System.out.println("존재하는 토큰입니다.");
 			//존재하는토큰으로 접근했기 때문에 링크의 유효성을 위해 삭제.
 			deleteAccessNum(tokenNum);
 			return "1";
 		}else {
-			System.out.println("존재하지 않는 토큰입니다.");
+			//토큰이 존재하지 않을 때.
 			return "0";
 		}
 		
 	}
 	@Override
 	public void deleteAccessNum(String tokenNum) {
-		System.out.println("[Service] 토큰 삭제 수행.");
+		//토큰을 삭제하는 서비스를 호출해 해당하는 토큰을 삭제한다.
 		loginDAO.deleteAccessNum(tokenNum);
 		
 	}

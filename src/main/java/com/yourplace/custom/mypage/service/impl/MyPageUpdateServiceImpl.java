@@ -26,10 +26,10 @@ public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 	@Override
 	public void updateUser(UserVO vo) {
 		// 프로필 업로드
-		System.out.println("업데이트 테스트");
+		
 		MultipartFile mf = vo.getProfile();
 		String Profile = mf.getOriginalFilename();
-		System.out.println("테스트"+Profile);
+		
 		if(Profile != "") {
 			
 			String fileType = Profile.substring(Profile.lastIndexOf(".") + 1);
@@ -41,7 +41,7 @@ public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println(file);
+			
 			AwsS3 awsS3 = AwsS3.getInstance();
 			int dw = 450;
 			int dh = 450;
@@ -58,9 +58,9 @@ public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 				}
 				BufferedImage cropImg = Scalr.crop(srcImg, (ow - nw) / 2, (oh - nh) / 2, nw, nh);
 				BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
-				System.out.println("업로드할 이미지 = "+srcImg);
+				
 				String key = "profile/guest/"+userNum +"/ThumbImg."+ fileType;
-				System.out.println("key값 = " + key);
+				
 				awsS3.uploadBufferedImageToServer(destImg, key, fileType);
 				vo.setUserProfileImg(key);
 				mypageDAO.updateUser(vo);

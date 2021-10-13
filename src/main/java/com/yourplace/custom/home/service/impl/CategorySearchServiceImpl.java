@@ -15,7 +15,6 @@ public class CategorySearchServiceImpl implements CategorySearchService {
 	private HomeDAO homeDAO;
 	@Override
 	public List<PlaceCardVO> getPlacePeople(int num, String maincate, String subcate, String sort) {
-		System.out.println("CategoryServiceImpl called");
 		List<PlaceCardVO> list = homeDAO.getPlacePeopleList(num, maincate, subcate, sort);
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
 		for(PlaceCardVO vo : list) {
@@ -57,7 +56,6 @@ public class CategorySearchServiceImpl implements CategorySearchService {
 	}
 	@Override
 	public List<PlaceCardVO> getPlacePrice(int min, int max, String maincate, String subcate, String sort) {
-		System.out.println("CategoryServiceImpl called");
 		List<PlaceCardVO> list = homeDAO.getPlacePriceList(min, max, maincate, subcate, sort);
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
 		for(PlaceCardVO vo : list) {
@@ -99,7 +97,6 @@ public class CategorySearchServiceImpl implements CategorySearchService {
 	}
 	@Override
 	public List<PlaceCardVO> getPlaceAddr(String addr, String maincate, String subcate, String sort) {
-		System.out.println("CategoryServiceImpl called");
 		List<PlaceCardVO> list = homeDAO.getPlaceAddrList(addr, maincate, subcate, sort);
 		DecimalFormat dc = new DecimalFormat("###,###,###,###");
 		for(PlaceCardVO vo : list) {

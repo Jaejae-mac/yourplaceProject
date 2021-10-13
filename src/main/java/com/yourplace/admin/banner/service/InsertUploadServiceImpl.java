@@ -14,8 +14,6 @@ public class InsertUploadServiceImpl implements InsertUploadService {
 	
 	@Override
 	public void insertUploadImg(BannerVO vo) {
-		
-		System.out.println("[Service] 등록된 이미지 정보를 테이블에 insert");
 		bannerDAO.insertUploadImg(vo);
 
 	}

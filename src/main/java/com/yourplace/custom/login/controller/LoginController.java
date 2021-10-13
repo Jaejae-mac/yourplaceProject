@@ -26,7 +26,6 @@ public class LoginController {
 
 	@GetMapping("/loginForm.do")
 	public String loginForm(HttpServletRequest request) {
-		System.out.println("[ 로그인 폼 호출 ]");
 		return "login/loginForm";
 	}
 	
@@ -59,10 +58,6 @@ public class LoginController {
 	//카카오 로그인을 처리해주는 컨트롤러.
 	@PostMapping("/kakao/login.do")
 	public String loginKakao(HttpServletRequest request, Model model) {
-		System.out.println("[ 카카오 로그인 시도]");
-//		System.out.println(request.getParameter("kakaoid"));
-//		System.out.println(request.getParameter("kakaoemail"));
-//		System.out.println(request.getParameter("kakaoname"));
 
 		String kakaoId = request.getParameter("kakaoid");
 		UserVO vo = new UserVO();
@@ -100,7 +95,6 @@ public class LoginController {
 	public String logout(HttpServletRequest request) {
 		//로그아웃시 현존하는 유저와 관련된 세션을 모두 삭제해 주어야 하기 때문에 invalidate 해준다.
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("userId") +"님이 로그아웃 되었습니다.");
 		session.invalidate();
 		return "redirect:home.do";
 	}

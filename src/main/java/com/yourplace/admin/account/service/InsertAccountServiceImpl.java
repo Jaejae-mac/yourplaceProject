@@ -15,7 +15,6 @@ public class InsertAccountServiceImpl implements InsertAccountService {
 	
 	@Override
 	public void insertAccount(AccountVO vo) {
-		System.out.println("[Service] 추가된 계정에 대해 insert 수행");
 		accountDAO.insertAccount(vo);
 
 	}

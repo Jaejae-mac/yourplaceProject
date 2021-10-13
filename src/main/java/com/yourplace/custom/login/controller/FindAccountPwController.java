@@ -54,10 +54,6 @@ public class FindAccountPwController {
 	public String sendEmail(HttpServletRequest request) {
 		String email = request.getParameter("email");
 		String id = request.getParameter("id");
-		System.out.println("[ RESET PW ]");
-		System.out.println("사용자 아이디 : " + id);
-		System.out.println("사용자 이메일 : " + email);
-		System.out.println();
 		UserVO vo = new UserVO();
 		vo.setUserId(id);
 		vo.setUserEmail(email);
@@ -85,7 +81,6 @@ public class FindAccountPwController {
 	//이용자에게 
 	@GetMapping("/reset/resetPwForm.do")
 	public String resetPwForm(@RequestParam("email") String email, @RequestParam("tnum") String tnum, HttpServletRequest request) {
-		System.out.println("사용자가 이메일에서 링크를 클릭했습니다.");
 		String result = resetPasswordService.getAccessNum(tnum);
 		if(result.equals("1")) {
 			return"reset/resetPwForm";
@@ -125,7 +120,6 @@ public class FindAccountPwController {
 	@PostMapping("/find/account/result.do")
 	public String getAccount(UserVO vo, Model model,HttpSession session) {
 		session.invalidate();
-		System.out.println(vo.toString());
 		UserVO findAccount = findAccountService.getAccount(vo);
 		if(findAccount != null) {//빈 객체가 오지 않았다면, 전화번호가 DB에 있다는 것.
 			String foundAccount = findAccount.getUserId(); // 찾아온 아이디.
@@ -145,8 +139,6 @@ public class FindAccountPwController {
 			DateFormat format = new SimpleDateFormat("yyyy년 MM월 dd일");
 			//변환된 날짜를 다시 문자열 형식으로 변환해준다.
 			String dateStr = format.format(foundRegDate);
-			
-			System.out.println("[ FindAccountController ] "+foundAccount + " 님이 가입하신 날짜는 " + dateStr + " 입니다.");
 			
 			model.addAttribute("foundUserId", foundAccount);
 			model.addAttribute("userRegDate", dateStr);

@@ -15,7 +15,6 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	
 	@Override
 	public InvoiceVO invoiceView(InvoiceVO vo) {
-		System.out.println("---> MyBatis로 invoiceView() 기능 처리");
 		return (InvoiceVO) sqlSessionTemplate.selectOne("InvoiceDAO.invoiceView", vo);
 	}
 

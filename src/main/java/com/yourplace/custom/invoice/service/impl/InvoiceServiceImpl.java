@@ -15,7 +15,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 	private InvoiceDAO invoiceDAO;
 	@Override
 	public InvoiceVO invoiceView(InvoiceVO vo) {
-		System.out.println("[InvoiceServiceImpl]"+ vo.toString());
 		return invoiceDAO.invoiceView(vo);
 	}
 

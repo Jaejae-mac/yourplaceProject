@@ -49,7 +49,7 @@ public class MypageController {
 	public String mypageForm(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
-		System.out.println(userId);
+
 		UserVO vo = new UserVO();
 		MyPageHostReviewVO rvo = new MyPageHostReviewVO();
 		int num = 0;
@@ -74,22 +74,19 @@ public class MypageController {
 		UserVO vo = new UserVO();
 		vo.setUserId(userId);
 		model.addAttribute("user", mypageService.getUser(vo));
-		System.out.println(model);
 		return "mypage/mypagefix";
 	}
 	// 프로필 수정
 	@RequestMapping("/updateUser.do")
 	public String updateUser(UserVO vo) throws IOException{
-		System.out.println("[mypageController] updateUser 기능");
-		System.out.println(vo.toString());
 		int type = vo.getUserType();
 		if(type==0) {
 			mypageupdateService.updateUser(vo);
-			System.out.println("업데이트 완료");
+
 			return "redirect:mypage.do";
 		}else {
 			mypageupdateService.updateUser(vo);
-			System.out.println("업데이트 완료");
+
 			return "redirect:myProfile.hdo";
 		}
 
@@ -97,7 +94,6 @@ public class MypageController {
 	// 회원 탈퇴 기능 
 	@RequestMapping("/deleteUser.do")
 	public String deleteBoard(HttpServletRequest request, UserVO uvo) {
-		System.out.println("[mypageController] deleteUser 기능");
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		String userImg = uvo.getUserProfileImg();
@@ -110,7 +106,7 @@ public class MypageController {
 			userImg = "profile/guest/"+num+"/ThumbImg.png";
 			vo.setUserProfileImg(userImg);
 		}
-		System.out.println("유저 아이디 : " + userId + "이미지 :" + userImg);
+
 		vo.setUserId(userId);
 		if(type == 1) {
 			PlaceVO pvo = new PlaceVO();
@@ -148,14 +144,14 @@ public class MypageController {
 	// 쿠폰 페이지 이동
 	@RequestMapping("/gocoupon.do")
 	public String getCouponList(HttpServletRequest request, Model model) {
-		System.out.println("[coupcontroller getCouponList 기능 수행]");
+
 		HttpSession session = request.getSession();
 		String userId = (String)session.getAttribute("userId");
 		MyPageCouponVO vo = new MyPageCouponVO();
 		vo.setUserCoupId(userId);
-		System.out.println(vo.toString());
+
 		model.addAttribute("couponList",couponservice.getCouponList(vo) );
-		System.out.println(model);
+
 		return "mypage/mypagecoupon";
 	}
 	//비밀번호 확인 페이지 이동
@@ -169,8 +165,8 @@ public class MypageController {
 	//비밀번호 변경페이지 이동
 	@RequestMapping("/gochangPw.do")
 	public String MypageChangPw(UserVO vo, HttpServletRequest request, Model model) {
-		System.out.println("[MypageController MypageChangPw 기능 수행]");
-		System.out.println(vo.toString());
+
+
 		UserVO result = loginUserService.getUser(vo);
 		if(result.getLoginCheck() == 1) {
 			HttpSession session = request.getSession();
@@ -183,7 +179,7 @@ public class MypageController {
 	//비밀번호 변경
 	@RequestMapping("/updatePw.do")
 	public String UpdatePw(UserVO vo) {
-		System.out.println("[Mypagecontroller UpdatePw 기능 수행]");
+
 		int type = vo.getUserType();
 		if(type==0) {
 			mypageupdateService.updatePw(vo);
@@ -198,8 +194,7 @@ public class MypageController {
 		@GetMapping(value="/moreHostReviews.do")
 		@ResponseBody
 		public List<MyPageHostReviewVO> additionalReviews(int rowNum, String userId){
-			System.out.println(rowNum);
-			System.out.println(userId);
+
 			MyPageHostReviewVO vo = new MyPageHostReviewVO();
 			vo.setRowNum(rowNum);
 			vo.setRsvId(userId);
