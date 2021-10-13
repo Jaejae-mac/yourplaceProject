@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <c:if test="${adminId == null }">
+	
+	<script>
+		location.href="/main.mdo";
+	</script>
+</c:if>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +14,7 @@
 
 </head>
 <body>
+
  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
         <a class="navbar-brand ps-3" href="/home.mdo">Yourplace Admin</a>
