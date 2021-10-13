@@ -64,11 +64,11 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
-                    <tr>
-                        <th>분류</th>
-                        <th>제목</th>
-                        <th>내용</th>
-                        <th>삭제</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                        <th style="text-align:center">분류</th>
+                        <th style="text-align:center">제목</th>
+                        <th style="text-align:center">내용</th>
+                        <th style="text-align:center">삭제</th>
                         
                     </tr>
                   </thead>
@@ -101,9 +101,9 @@
                       </td>
                       <td>${faq.infoGueTitle}</td>
                       <td>${faq.infoGueContent}</td>
-                      <td>
+                      <td align="center">
 	                      <button type="button" class="btn btn-danger" id="delete_btn"
-	                      style="font-size: 10px;margin-left: 10px;">
+	                      style="font-size: 10px;">
 	                      	삭제
 	                      </button>
                       </td>

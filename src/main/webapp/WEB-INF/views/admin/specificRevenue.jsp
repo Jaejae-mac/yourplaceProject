@@ -249,20 +249,20 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
-                    <tr>
-                        <th>예약번호</th>
-                        <th>결제번호</th>
-                        <th>상위 카테고리</th>
-                        <th>하위 카테고리</th>
-                        <th>결제년도</th>
-                        <th>결제월</th>
-                        <th>결제일</th>
-                        <th>정가</th>
-                        <th>할인율</th>
-                        <th>결제금액</th>
-                        <th>부과세</th>
-                        <th>세후금액</th>
-                        <th>게스트번호</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                        <th style="text-align:center">예약번호</th>
+                        <th style="text-align:center">결제번호</th>
+                        <th style="text-align:center">상위 카테고리</th>
+                        <th style="text-align:center">하위 카테고리</th>
+                        <th style="text-align:center">결제년도</th>
+                        <th style="text-align:center">결제월</th>
+                        <th style="text-align:center">결제일</th>
+                        <th style="text-align:center">정가</th>
+                        <th style="text-align:center">할인율</th>
+                        <th style="text-align:center">결제금액</th>
+                        <th style="text-align:center">부과세</th>
+                        <th style="text-align:center">세후금액</th>
+                        <th style="text-align:center">게스트번호</th>
                     </tr>
                   </thead>
 
