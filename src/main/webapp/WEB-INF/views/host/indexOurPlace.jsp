@@ -215,6 +215,7 @@
 		</div>
 	</div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
@@ -230,6 +231,9 @@
 		crossorigin="anonymous"></script>
 	<script
 		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
+=======
+
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 		
 <script>
 
@@ -293,7 +297,11 @@ var myChart = new Chart(ctx, {
 
 </script>
 		
+<<<<<<< HEAD
 =======
 >>>>>>> 91f5b66da5720cfad78930b91891a96353c193d7
+=======
+
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 </body>
 </html>

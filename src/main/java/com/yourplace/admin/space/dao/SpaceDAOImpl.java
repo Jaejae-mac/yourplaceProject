@@ -85,6 +85,8 @@ public class SpaceDAOImpl implements SpaceDAO {
 		return list;
 	}
 
+<<<<<<< HEAD
+=======
 
 	@Override
 	public void disableSpaceWithId(String userId) {
@@ -93,4 +95,5 @@ public class SpaceDAOImpl implements SpaceDAO {
 		
 	}
 
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 }

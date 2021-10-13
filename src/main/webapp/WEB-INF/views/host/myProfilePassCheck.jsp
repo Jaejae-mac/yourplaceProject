@@ -92,8 +92,12 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
+<<<<<<< HEAD
                 <div class="text-muted">Copyright &copy; YourPlace</div>
                 	
+=======
+              
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
             </div>
         </div>
     </footer>

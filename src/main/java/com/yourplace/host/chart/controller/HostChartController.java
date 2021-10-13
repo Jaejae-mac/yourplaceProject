@@ -156,12 +156,17 @@ public class HostChartController {
 			for (int i = 0; i <list.size(); i++) {
 				int pay = list.get(i).getReserveValue();
 				String payDate = list.get(i).getPayDate();
+<<<<<<< HEAD
 
 				
 				
 				System.out.println(pay);
 				System.out.println(payDate);
 	
+=======
+				System.out.println(pay);
+				System.out.println(payDate);
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 				chartData.put(payDate, pay);			
 	
 			}
@@ -383,6 +388,7 @@ public class HostChartController {
 					value = 0;
 					su.add(value);
 				}
+<<<<<<< HEAD
 				
 				
 				
@@ -407,6 +413,13 @@ public class HostChartController {
 			
 		System.out.println("su" + su.toString());
 		mav.addObject("map", su);
+=======
+
+		
+		System.out.println("su" + su.toString());
+		mav.addObject("map", su);
+		
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 		mav.setViewName("HostChartInvoice");
 		return mav;
 	}
