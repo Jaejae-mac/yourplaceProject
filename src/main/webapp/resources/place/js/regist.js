@@ -74,7 +74,7 @@ function processSelectedFiles(fileInput) {
                 files[i].name +
                 "<span class='del-btn-file' idx='" +
                 counterFile +
-                "'> X</span></li>"
+                "'></span></li>"
             );
             addTag(files[i].name);
         }

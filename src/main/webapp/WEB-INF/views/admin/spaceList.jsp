@@ -74,17 +74,18 @@
                 <table id="datatablesSimple">
 
                   <thead>
-                    <tr>
-                      <th>승인상태</th>
-                      <th>장소번호</th>
-                      <th>아이디</th>
-                      <th>이름</th>
-                      <th>장소분류</th>
-                      <th>장소명</th>
-                      <th>연락처</th>
-                      <th>이메일</th>
-                      <th>승인처리</th>
-                      <th>장소삭제</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                      <th style="text-align:center">승인상태</th>
+                      <th style="text-align:center">장소번호</th>
+                      <th style="text-align:center">아이디</th>
+                      <th style="text-align:center">이름</th>
+                      <th style="text-align:center">장소분류</th>
+                      <th style="text-align:center">장소명</th>
+                      <th style="text-align:center">연락처</th>
+                      <th style="text-align:center">이메일</th>
+                      <th style="text-align:center">승인처리</th>
+                      <th style="text-align:center">장소삭제</th>
+                      
                     </tr>
                   </thead>
                   
@@ -100,8 +101,19 @@
 	                      		미승인
 	                      	</c:if>
 	                  </td>
+	                  
                       <td>${spc.placeNum }</td>
-                      <td>${spc.userId}</td>
+                      
+                      <td>
+                      	<c:if test="${spc.userType eq '1' }">
+                      		${spc.userId}
+                      	</c:if>
+                      	
+                      	<c:if test="${spc.userType eq '0'}">
+                      		<font color="red">${spc.userId}</font>
+                      	</c:if>
+                      </td>
+                      
                       <td>${spc.userName}</td>
                       <td>${spc.placeMaincate }</td> <!--클릭시 장소 상세보기 페이지로 이동.-->
                       <td><a href="/detailPlaceForm.do?placeNum=${spc.placeNum}" target="_blank"
@@ -109,27 +121,30 @@
                       <td>${spc.userTel }</td>
                       <td>${spc.userEmail }</td>
                       
-                      <td align="left">
+                      <td align="center">
                       
-<!--                         <select name="allowOption" id="allowOption" style="width: 100px;"> -->
-<!-- 	                      		<option value="1">승인</option> -->
-<!-- 	                      		<option value="0">미승인</option> -->
-<!--                         </select> -->
-                   <c:if test="${spc.placeAllow eq '0'}">
-                        <button type="button" class="btn btn-primary"
-                        style="font-size: 10px;margin-left: 10px;" id="allow_btn">
-                        	승인하기
-                        </button>
-                   </c:if>
-                   <c:if test="${spc.placeAllow eq '1'}">
-                        <button type="button" class="btn btn-danger"
-                        style="font-size: 10px;margin-left: 10px;" id="deny_btn">
-                        	승인취소
-                        </button>
-                   </c:if>     
+	                   <c:if test="${spc.placeAllow eq '0' && spc.userType eq '1'}">
+	                        <button type="button" class="btn btn-primary"
+	                        style="font-size: 10px;margin-left: 10px;" id="allow_btn">
+	                        	승인하기
+	                        </button>
+	                   </c:if>
+                   
+	                   <c:if test="${spc.placeAllow eq '1'}">
+	                        <button type="button" class="btn btn-danger"
+	                        style="font-size: 10px;margin-left: 10px;" id="deny_btn">
+	                        	승인취소
+	                        </button>
+	                   </c:if>
+                      
+	                   <c:if test="${spc.placeAllow eq '0' && spc.userType eq '0'}">
+	                        <font color="red" align="center">정지된 계정</font>
+	                   </c:if>
+                     
                       </td>
                       
-                      <td>
+                      
+                      <td align="center">
                       <button type="button" class="btn btn-danger"
                       style="font-size: 10px;margin-left: 10px;" id="delete_btn">
                       	삭제

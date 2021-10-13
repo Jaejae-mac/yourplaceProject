@@ -34,7 +34,7 @@
 				</div>
 				<!-- 서버로부터 전달 받은 아이디가 있다면 전달받은 정보를 보여준다. -->
 				<c:choose>
-					<c:when test="${userId != null}">
+					<c:when test="${foundUserId != null}">
 						<div id="main_vue" class="h_column_center"
 							style="width: 100%; margin-top: 30px; margin-bottom: 200px"
 							v-cloak>
@@ -42,7 +42,7 @@
 								style="width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff; padding: 40px 50px;">
 								<div class="h_column_center" style="margin: 10px 10px">
 									<p align="center">
-										가입하신 날짜는<strong>${userRegDate}</strong> 이며,<br /> 가입하신 아이디는 <strong>${userId}</strong> 입니다.
+										가입하신 날짜는<strong>${userRegDate}</strong> 이며,<br /> 가입하신 아이디는 <strong>${foundUserId}</strong> 입니다.
 									</p>
 								</div>
 							</div>

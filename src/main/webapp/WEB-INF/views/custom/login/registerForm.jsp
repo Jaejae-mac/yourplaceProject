@@ -250,8 +250,7 @@
                		text: '아이디를 입력해주시거나 중복확인을 해주시기 바랍니다.'
                 })
                	return false;
-            }else if(!chk
-            		PW()){
+            }else if(!chkPW()){
             	Swal.fire({
                		icon: 'error',
                 	title: '회원가입을 하실수 없습니다.',
@@ -748,9 +747,13 @@
             			  icon:'error',
             			  title:'인증번호가 일치하지 않습니다.',
             			  text:'다시 인증해주세요.'
-            	});
+            	}).then(function(isConfirm){
+            		$('#telcheck').val("N");
+            		window.location.reload();		
+                	
+                });
                 console.log("다릅니다.");
-                $('#telcheck').val("N")
+                
             }
             });
         });

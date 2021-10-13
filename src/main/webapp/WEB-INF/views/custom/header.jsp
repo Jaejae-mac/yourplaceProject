@@ -91,6 +91,27 @@
                                 </div>              
                       </div>
 					<c:choose>
+					<c:when test="${userVO == null }">
+							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
+							<div onclick="location.href='/loginForm.hdo'"
+								class="h_center h_header_button"
+								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
+								<p
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									호스트 로그인</p>
+							</div>
+							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);">
+                    		</div>
+							<!-- 로그인 기능 show_login() -->
+							<div onclick="location.href='/loginForm.do'"
+								class="h_center h_header_button"
+								style="padding: 0px 13px; height: 50px; cursor: pointer;">
+								<p
+									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
+									게스트 로그인</p>
+							</div>
+							<!-- 로그인 기능 끝 -->
+						</c:when>
 						<c:when test="${userVO.userType == 0}">
 							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
 							<div onclick="window.location.href='/interest.do'"
@@ -157,27 +178,7 @@
 							<!-- 로그인 기능 끝 -->
 
 						</c:when>
-						<c:otherwise>
-							<!-- 호스트 페이지로 이동, 장소등록 hourplace_v2.userLog('W', '/place/29464', 'click', 'tab', 'hosting');window.location.href='/info/hosting -->
-							<div onclick="location.href='/loginForm.hdo'"
-								class="h_center h_header_button"
-								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
-								<p
-									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
-									호스트 로그인</p>
-							</div>
-							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);">
-                    		</div>
-							<!-- 로그인 기능 show_login() -->
-							<div onclick="location.href='/loginForm.do'"
-								class="h_center h_header_button"
-								style="padding: 0px 13px; height: 50px; cursor: pointer;">
-								<p
-									style="margin-bottom:15px;margin-top:15px;font-style: normal; font-weight: normal; font-size: 15px; line-height: 20px; text-align: center; color: rgb(114, 120, 127);">
-									게스트 로그인</p>
-							</div>
-							<!-- 로그인 기능 끝 -->
-						</c:otherwise>
+						
 					</c:choose>
 
 					<!-- Toggle test 용 마이 페이지 -->

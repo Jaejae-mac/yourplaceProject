@@ -27,4 +27,10 @@ public class AllowSpaceServiceImpl implements AllowSpaceService {
 
 	}
 
+	@Override
+	public void denySpacewithId(String id) {
+		System.out.println("[Service] 장소 전부 비승인 처리 : 정지된 유저의 장소");
+		spaceDAO.disableSpaceWithId(id);
+	}
+
 }
