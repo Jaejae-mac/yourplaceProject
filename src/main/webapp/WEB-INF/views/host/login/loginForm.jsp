@@ -146,22 +146,14 @@ input:focus{
 							<!-- 로그인 버튼 -->
 							<!-- Login v-on:click="login()" -->
 							<div
-								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;">
+								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
+								onclick="loginHostHdo()">
 								<label for="login_guest" class="login_guest_lb">호스트 로그인</label> <input
-									type="button" id="login_guest" onclick="loginHostHdo()">
+									type="button" id="login_guest" >
 							</div>
 
 							<div
 								style="margin-top: 20px; height: 52px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
-
-								<label for="login_kakao" class="login_kakao"><img
-									src="<c:url value="/resources/img/kakao/kakao_login_btn.png" />"
-									alt="" style="height: 50px;"></label> <input type="button"
-									id="login_kakao" onclick="loginGuestKakaoDo()"
-									style="display: none;">
-									<input type="hidden" name="kakaoid" id="kakaoid" />
-								<input type="hidden" name="kakaoemail" id="kakaoemail" />
-								<input type="hidden" name="kakaoname" id="kakaoname" />
 							</div>
 
 						</form>
@@ -236,33 +228,6 @@ input:focus{
 		function loginHostHdo() {
 			console.log("host btn click");
 			$("#form_login").attr("action", "/login.hdo").submit();
-		}
-		function loginGuestKakaoDo() {
-			console.log("kakao btn click");
-			window.Kakao.Auth.login({
-				/* scope:'profile,account_email', */
-				success:function(authObj){
-					window.Kakao.API.request({
-						url:'/v2/user/me',
-						success: res => {
-							const id = res.id;
-							const email = res.kakao_account.email;
-							const name = res.properties.nickname;
-							
-							console.log(id);
-							console.log(email);
-							console.log(name);
-							console.log(res.ACCESS_TOKEN);
-
-							$('#kakaoid').val(id);
-							$('#kakaoemail').val(email);
-							$('#kakaoname').val(name);
-							$("#form_login").attr("action", "/kakao/login.do").submit();
-						}
-					});
-				}
-			});
-
 		}
 
 		function callRegisterFormHost() {
