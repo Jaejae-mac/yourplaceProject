@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>yourplace host page</title>
+<title>Yourplace_호스트</title>
 
 
 <link

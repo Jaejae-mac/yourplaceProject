@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>YourPlace HostProfile</title>
+    <title>Yourplace_호스트 프로필</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
    <link href="<c:url value="/resources/host/css/styles.css" />"

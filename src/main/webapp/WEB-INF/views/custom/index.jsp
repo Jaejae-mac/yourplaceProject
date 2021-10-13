@@ -34,7 +34,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
 
-<title>YourPlace Home</title>
+<title>Yourplace_홈</title>
 </head>
 <body>
 

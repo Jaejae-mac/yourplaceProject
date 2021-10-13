@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="chrome" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>YourPlace</title>
+<title>Yourplace_게스트 FAQ</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/Info.css" />" />
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
@@ -87,7 +87,7 @@
 			<div style="margin-top: 50px"></div>
 			<p class="h_info_container_title">예약하기</p>
 			<div style="margin-top: 50px"></div>
-			
+
 			<div class="faq-content">
 				<c:forEach var="guestjoin" items="${guestInfoList}" begin="0"
 					end="0" step="1" varStatus="status">
@@ -266,7 +266,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Footer -->
 	<%@ include file="../../footer.jsp"%>
 	<!-- Footer 끝 -->

@@ -13,7 +13,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Reviews</title>
+    <title>Yourplace_리뷰 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
