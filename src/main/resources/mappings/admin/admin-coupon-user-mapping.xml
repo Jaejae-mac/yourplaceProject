@@ -80,7 +80,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idMinus" resultMap="couponUserResult">
 		SELECT m.user_id as user_coup_id
 		from member as m
-			Left join coupon_user as c on c.user_coup_id = m.user_id and c.coup_num != #{coupNum}
+			Left join coupon_user as c on c.user_coup_id = m.user_id and c.coup_num = #{coupNum}
 		where m.user_type = '0' and c.user_coup_id is null;
 	</select>
 
