@@ -111,19 +111,15 @@
 	
 </script>
 	
+<!--  <script>
 
-		
-		
-	<!--  <script>
-		
-		//공통
-		// 참고 출처 : https://redstapler.co/sheetjs-tutorial-create-xlsx/
 		function s2ab(s) { 
 		    var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
 		    var view = new Uint8Array(buf);  //create uint8array as viewer
 		    for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF; //convert to octet
 		    return buf;    
 		}
+		
 		function exportExcel(){ 
 		    // step 1. workbook 생성
 		    var wb = XLSX.utils.book_new();
@@ -145,8 +141,9 @@
 		        exportExcel();
 		    });
 		});
-		</script>
-		<script>
+	</script>
+	
+	<script>
 		var excelHandler = {
 		        getExcelFileName : function(){
 		            return 'table-test.xlsx';
@@ -320,6 +317,16 @@
 	<script>
 		$(document).on("click", "#checkSubmit", function(){
 
+			if($.trim($("#datePicker").val())==''){
+			      alert("조회할 시작일을 입력해 주세요.");
+			      return false;
+			    }
+	    	  
+	    	  if($.trim($("#datePicker2").val())==''){
+			      alert("조회할 종료일을 입력해 주세요.");
+			      return false;
+			    }
+			
 			var date = new Date($("#datePicker").datepicker({dateFormat:"yyyy-mm-dd"}).val());
 			var date2 = new Date($("#datePicker2").datepicker({dateFormat:"yyyy-mm-dd"}).val());
 			
@@ -339,10 +346,7 @@
 			
 			$("#payEndMonth").val(date2Month);
 			$("#payEndDate").val(date2Date);
-			
-			//console.log("보내주는 값 조회: " + year + dateMonth + dateDate + date2Month + date2Date);
-			
-			
+
 		});
 	</script>
 
@@ -407,13 +411,25 @@
             });
         </script>
 
-		 <script>
+
+	<script>
       $(document).on("click", "#excelDownload", function(){
+    	  
+    	  if($.trim($("#datePicker").val())==''){
+		      alert("조회할 시작일을 입력해 주세요.");
+		      return false;
+		    }
+    	  
+    	  if($.trim($("#datePicker2").val())==''){
+		      alert("조회할 종료일을 입력해 주세요.");
+		      return false;
+		    }
+    	  
          var wb = XLSX.utils.table_to_book(document.getElementById('datatablesSimple'), {sheet:"매출조회",raw:true});
          XLSX.writeFile(wb, ('매출조회.xlsx'));
+         
       });
-     </script>
-
+    </script>
 
   </body>
 </html>

@@ -93,17 +93,6 @@ public class CouponController {
 		return "couponSend";
 	}
 	
-	//쿠폰 전송 처리
-/*	@PostMapping(value="/couponSend.mdo")
-	public String sendCoupon(@RequestParam("numCoup") String sendCoupName, CouponUserVO vo)
-	{
-		System.out.println("[Controller] 쿠폰을 전송합니다.");
-		//coupUserSend.sendCoupon(vo, sendCoupName);
-		System.out.println("정상적으로 전송되었습니다.");
-		return "redirect:couponView.mdo";
-	}
-*/
-	
 	//수정한 쿠폰전송 controller
 	@PostMapping(value="/couponSend.mdo")
 	public String modifiedSendCoup(HttpServletRequest request) throws ParseException {

@@ -47,5 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values
 		(#{adminId}, #{adminPw}, #{adminEmail}, #{adminName}, #{adminTel}, #{adminRegDate})
 	</insert>
+	
+	<delete id="deleteAdmin">
+		delete from member_admin where admin_num = #{adminNum}
+	</delete>
 
 </mapper>

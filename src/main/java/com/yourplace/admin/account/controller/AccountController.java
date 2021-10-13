@@ -3,15 +3,17 @@ package com.yourplace.admin.account.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yourplace.admin.account.service.AccountListService;
+import com.yourplace.admin.account.service.DeleteAccountService;
 import com.yourplace.admin.account.service.InsertAccountService;
 import com.yourplace.admin.account.vo.AccountVO;
 
@@ -27,9 +29,12 @@ public class AccountController {
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	
+	@Autowired
+	private DeleteAccountService deleteAdmin;
+	
 	//모든 admin 조회.
 	@GetMapping(value="/rootAccountView.mdo")
-	public void accountListView(Model model)
+	public void accountListView(Model model, HttpServletRequest request)
 	{
 		System.out.println("[Controller] Admin List View 호출");
 		List<AccountVO> list = accountList.getAccountList();
@@ -69,6 +74,18 @@ public class AccountController {
 		
 		//service 수행
 		insertAdmin.insertAccount(vo);
+		
+		return "redirect:rootAccountView.mdo";
+	}
+	
+	@PostMapping(value="/deleteAdmin.mdo")
+	public String deleteAccount(@RequestParam("deleteAdmin") String num)
+	{
+		System.out.println("[Controller] Delete Admin 기능 수행");
+		System.out.println("입력받은 admin num: " + num);
+		
+		int adminNum = Integer.parseInt(num);
+		deleteAdmin.deleteAdmin(adminNum);
 		
 		return "redirect:rootAccountView.mdo";
 	}

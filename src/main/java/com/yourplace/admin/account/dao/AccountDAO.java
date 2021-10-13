@@ -9,5 +9,6 @@ public interface AccountDAO {
 	List<AccountVO> getAccountList();
 	
 	void insertAccount(AccountVO vo);
-	
+
+	void deleteAdmin(int num);
 }

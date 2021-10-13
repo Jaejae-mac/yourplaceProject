@@ -6,4 +6,6 @@ public interface AllowSpaceService {
 	
 	void denySpace(String spaceNum);
 	
+	void denySpacewithId(String id);
+	
 }
