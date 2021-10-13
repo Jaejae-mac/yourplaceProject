@@ -48,69 +48,71 @@
 							
 						</div>
 						<div class="card-body">
-							<table id="datatablesSimple">
-								<thead>
-									<tr>
-										<th>장소 번호</th>
-										<th>장소 이름</th>
-										<th>시간당 대여금액</th>
-										<th>기본 인원</th>
-									</tr>
-								</thead>
-								<tfoot>
-								</tfoot>
-								<tbody>
-									<c:forEach var="mana" items="${list}">
-										<tr class="placeList">
-											<td>${mana.placeNum}</td>
-									
-											<td>${mana.placeName}</td>
-											<td>${mana.placePrice }</td>
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>장소 번호</th>
+									<th>장소 이름</th>
+									<th>시간당 대여금액</th>
+									<th>기본 인원</th>
+								</tr>
+							</thead>
+							<tfoot>
+							</tfoot>
+							<tbody>
+								<c:forEach var="mana" items="${list}">
+									<tr class="placeList">
+										<td>${mana.placeNum}</td>
 
-											<td>${mana.placePersonNum }</td>
+										<td>${mana.placeName}</td>
+										<td>${mana.placePrice }</td>
 
-											<td>
-										   <!-- delete -->
-									
-												<input type="submit" class="btn btn-danger"	onclick="location.href='/deletePlace.hdo?placeNum=${mana.placeNum}'" name="delete" id="delete" style="font-size: 10px; margin-left: 10px;" value="삭제"/>
-												<button type="button" class="btn btn-primary" name="change" id="change"
+										<td>${mana.placePersonNum }</td>
+
+										<td>
+											<!-- delete --> <input type="button" class="btn btn-danger"
+											name="delete" id="delete"
+											style="font-size: 10px; margin-left: 10px;" value="삭제" />
+											<button type="button" class="btn btn-primary" name="change"
+												id="change"
 												onclick="location.href='/updatePlaceDetail.hdo?placeNum=${mana.placeNum}'"
-													style="font-size: 10px; margin-left: 10px;">수정</button>
-													
-												
-											</td>
-
-										</tr>
+												style="font-size: 10px; margin-left: 10px;">수정</button>
 
 
-									</c:forEach>
+										</td>
+
+									</tr>
 
 
-								</tbody>
-								<tfoot>
+								</c:forEach>
 
 
-
-								
-				
-
-								</tfoot>
-							</table>
+							</tbody>
+							<tfoot>
 
 
 
 
-						</div>
+
+
+							</tfoot>
+						</table>
+						<form id="sub" method="Post" action="/deletePlace.hdo"
+							hidden="hidden">
+							<input type="hidden" name="placeNumm" id="placeNumm" value="">
+						</form>
+
+
+
+
+					</div>
 					</div>
 				</div>
 				
 
 			
 
-			<form id="sub" name="sub" method="get" action="/deletePlace.hdo" hidden="hidden">
-				<input type="hidden" name="placeNumm" id="placeNum" value="" >
-					</form>
-
+		
 		</main>
     
         
@@ -132,13 +134,13 @@
   <script>
   
   
+  var arr1 = new Array();
+ 
   
-  $(document).on("click","#delete",function()
-			{
+  $(document).on("click","#delete",function() {
 		var chk = confirm("삭제하시겠습니까?");
-
-	
-			if (chk) {
+		
+			if (chk == true) {
 					var c = $(this);
 
 					var tr = c.parent().parent();
@@ -149,9 +151,33 @@
 
 					
 					console.log(no);
-					$("#placeNum").val(no);
-					console.log($("#placeNum").val());
-					$('sub').submit();				}
-			});
+					 arr1.push(no);
+					console.log(arr1);
+					 
+					 
+					$.ajax(
+
+							{
+									url : '/deletePlace.hdo',
+									dataType : 'text',
+									async    : false,
+									type : 'POST',
+									 async: false,
+									 data: {
+										 placeNum: arr1,	      	
+								      },
+								      
+								      success: function(data){
+								 
+								          	 	  	 	 
+								             
+								      }
+								})
+			}else{
+				return false;
+			}
+			
+  
+  });
 		</script>
 </html>

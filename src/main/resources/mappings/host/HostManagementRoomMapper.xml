@@ -20,7 +20,7 @@
 	</select>
 	
 	<delete id="deleteRoom">
-	 delete from place_detail where detail_num=#{detailNum};
+	 delete from place_detail where detail_num=#{detailNum}
 	</delete>
 	
 	<insert id="insertRoom">

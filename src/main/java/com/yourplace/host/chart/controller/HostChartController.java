@@ -156,9 +156,6 @@ public class HostChartController {
 			for (int i = 0; i <list.size(); i++) {
 				int pay = list.get(i).getReserveValue();
 				String payDate = list.get(i).getPayDate();
-
-				
-				
 				System.out.println(pay);
 				System.out.println(payDate);
 	
@@ -383,28 +380,8 @@ public class HostChartController {
 					value = 0;
 					su.add(value);
 				}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			
+
+		
 		System.out.println("su" + su.toString());
 		mav.addObject("map", su);
 		mav.setViewName("HostChartInvoice");

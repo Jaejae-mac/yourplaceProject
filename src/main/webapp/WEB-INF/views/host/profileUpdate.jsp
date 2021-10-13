@@ -140,11 +140,10 @@
 							</form>
 				</div>
 
--->
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
-                <div class="text-muted">Copyright &copy; YourPlace</div>
+
                 <div>
 
 
@@ -175,7 +174,7 @@ function readImage(input) {
 }
 const inputImage = document.getElementById("input")
 inputImage.addEventListener("change", e => {
-    readImage(e.target)					    
+    readImage(e.target)
 })
 // 프로필 미리보기 끝
 // 내용 삭제 기능

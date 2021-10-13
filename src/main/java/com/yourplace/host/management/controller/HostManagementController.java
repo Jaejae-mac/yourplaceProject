@@ -64,10 +64,12 @@ public class HostManagementController {
 	}
 
 
-	@RequestMapping(value = "/deletePlace.hdo", method = RequestMethod.GET)
-	public String deletePlace(HttpServletRequest request, @RequestParam("placeNum")int placeNum) throws Exception {
+	@RequestMapping(value = "/deletePlace.hdo", method = RequestMethod.POST)
+	public String deletePlace(HttpServletRequest request, Map<String, Object> param, HostManagementVO vo) throws Exception {
 		
-		System.out.println(placeNum + "번 장소");
+		System.out.println(vo.getPlaceNum());
+		int placeNum = vo.getPlaceNum();
+		
 		
 		AwsS3 awsS3 = AwsS3.getInstance();
 
@@ -75,16 +77,15 @@ public class HostManagementController {
 		List<HostManagementImgVO> getS3 = service3.getDeleteList(placeNum);
 		System.out.println(getS3.size());
 		System.out.println(getS3.toString());
-		try {
+	
 			
 		
-		for(int i=0; i<=getS3.size(); i++) {
+		for(int i=0; i<getS3.size(); i++) {
 			System.out.println(getS3.get(i).getOriginFileName());
 			System.out.println("s3 ->");
 			awsS3.delete(getS3.get(i).getS3FileName()); // 등록된 모든 key 확인하며 삭제
-			service.deletePlace(placeNum);
-		}
-		}catch(Exception e) {
+			service.deletePlace(placeNum);	
+		
 			
 		}
 		return "redirect:/managementHostPlace.hdo";
