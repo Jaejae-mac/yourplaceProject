@@ -106,7 +106,9 @@
                   data-bs-parent="#sidenavAccordion"
                 >
                   <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="/rootAccountView.mdo">관리자 조회</a>
+                  <c:if test="${adminLevel == 0 }">
+                  	  <a class="nav-link" href="/rootAccountView.mdo">관리자 조회</a>
+                  </c:if>
                     <a class="nav-link" href="/memberView.mdo">회원 관리</a>
                     <!-- <a class="nav-link" href="/reportedMember.mdo"
                       >신고 회원 관리</a

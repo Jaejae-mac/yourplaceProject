@@ -53,8 +53,12 @@ public class AdminController {
 		if (login.getLoginSuccess() == 1) {
 			
 			HttpSession session = request.getSession(); //세션 생성
-			
+			System.out.println("어드민 권한은 : " + login.getAdminAuthority());
+			if(!vo.getAdminId().equals("root")) {
+				login.setAdminAuthority(1);
+			}
 			session.setAttribute("adminVO", vo);
+			session.setAttribute("adminLevel", login.getAdminAuthority());
 			session.setAttribute("adminId", vo.getAdminId());
 			session.setAttribute("AdminNum", vo.getAdminNum());
 			session.setAttribute("AdminAuthority", vo.getAdminAuthority());

@@ -91,7 +91,6 @@
 				                      			<label for="authority"><span class="auth"></span>권한 지정</label>
 				                      			<select class="form-control" name="adminAuthority" id="authority">
 				                      				<option value="1">SUB-ROOT</option>
-				                      				<option value="2">SUB ADMIN</option>
 				                      			</select>
 												<!-- <input type="text" class="form-control" id="reportUserType" /> -->
 
