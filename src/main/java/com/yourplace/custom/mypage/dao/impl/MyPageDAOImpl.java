@@ -1,5 +1,7 @@
 package com.yourplace.custom.mypage.dao.impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,7 +36,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	}
 	@Override
 	public void deletePlace(PlaceVO vo) {
-		System.out.println("--> MyBatis로 deleteUser() 기능 처리");
+		System.out.println("--> MyBatis로 deletePlace() 기능 처리");
 		sqlSessionTemplate.delete("RegistPlaceDAO.deletePlace", vo);
+	}
+	@Override
+	public List<PlaceVO> getPlace(PlaceVO vo){
+		return sqlSessionTemplate.selectList("RegistPlaceDAO.getPlaceNum", vo);
 	}
 }

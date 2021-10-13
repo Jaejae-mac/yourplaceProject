@@ -106,6 +106,12 @@ public class MypageController {
 		}
 		System.out.println("유저 아이디 : " + userId + "이미지 :" + userImg);
 		vo.setUserId(userId);
+		if(type == 1) {
+			PlaceVO pvo = new PlaceVO();
+			pvo.setUserId(userId);
+			List<PlaceVO> numList = mypageService.getPlace(pvo);
+			mypagedeleteService.deletePlace(pvo);
+		}
 		mypagedeleteService.deleteUser(vo);
 		if(type == 0) {
 			mypagedeleteService.deleteInterest(vo);
@@ -119,11 +125,7 @@ public class MypageController {
 		MyPageHostReviewVO hrvo = new MyPageHostReviewVO();
 		hrvo.setRsvId(userId);
 		mypagereviewService.deleteHostReview(hrvo);
-		if(type == 1) {
-			PlaceVO pvo = new PlaceVO();
-			pvo.setUserId(userId);
-			mypagedeleteService.deletePlace(pvo);
-		}
+		
 		session.invalidate();
 		return "redirect:home.do";
 	}

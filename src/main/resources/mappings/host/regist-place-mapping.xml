@@ -93,7 +93,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</selectKey>
 		UPDATE place SET place_thumb=#{placeThumb} WHERE place_num=#{placeNum}
 	</update>
+	<select id="getPlaceNum" resultMap="placeResult" >
+		SELECT place_num FROM place where user_id = #{userId}
+	</select>
 	<delete id="deletePlace" parameterType="myPlace">
-		DELETE FROM place WHERE user_id = #{userId}
+		DELETE FROM place 
+		JOIN place_detail USING (place_num)
+		JOIN place_img USING (place_num)
+		WHERE user_id = #{userId}
 	</delete>
 </mapper>
