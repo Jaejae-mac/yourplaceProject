@@ -56,11 +56,7 @@
 					<a href="/guestInfo1.do"
 						style="text-decoration: none; color: black;">예약</a>
 				</div>
-				<div class="h_center h_info_sub_button" style="margin-right: 16px"
-					id="guestInfo-2" onclick="guestInfo-2()">
-					<a href="/guestInfo2.do"
-						style="text-decoration: none; color: black;">예약 확정</a>
-				</div>
+
 				<div class="h_center h_info_sub_button" style="margin-right: 16px"
 					id="guestInfo-3" onclick="guestInfo-3()">
 					<a href="/guestInfo3.do"

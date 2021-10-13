@@ -134,7 +134,7 @@
 
 			<!-- div 사이 공간 값 -->
 			<div style="margin-top: 30px"></div>
-			<p class="h_info_container_title">예약 거절하기</p>
+			<p class="h_info_container_title">예약 거절(취소)하기</p>
 			<div style="margin-top: 30px"></div>
 
 			<div class="faq-content">
@@ -148,38 +148,7 @@
 						<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
 				</c:forEach>
 			</div>
-
-			<!-- div 사이 공간 값 -->
-			<div style="margin-top: 30px"></div>
-			<p class="h_info_container_title">예약 확정하기</p>
-			<div style="margin-top: 30px"></div>
 			
-			<div class="faq-content">
-				<c:forEach var="hostjoin" items="${hostInfoList}" begin="4" end="4"
-					step="1" varStatus="status">
-					<button class="question" id="que-5">
-						<span id="que-5-toggle">+</span><span>Q.
-							<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostTitle}</span>
-					</button>
-					<div class="answer" id="ans-5">
-						<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
-				</c:forEach>
-			</div>
-			<!-- div 사이 공간 값 -->
-			<div style="margin-top: 30px"></div>
-			<p class="h_info_container_title">예약 취소하기</p>
-			<div style="margin-top: 30px"></div>
-			<div class="faq-content">
-				<c:forEach var="hostjoin" items="${hostInfoList}" begin="5" end="5"
-					step="1" varStatus="status">
-					<button class="question" id="que-6">
-						<span id="que-6-toggle">+</span><span>Q.
-							<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostTitle}</span>
-					</button>
-					<div class="answer" id="ans-6">
-						<td><input type="hidden" name="${status.index}" /></td>${hostjoin.infoHostContent}</div>
-				</c:forEach>
-			</div>
 		</div>
 	</div>
 	<!-- Footer -->
