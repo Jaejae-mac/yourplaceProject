@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Password Reset - yourplace</title>
+<title>Yourplace_비밀번호 재설정</title>
 <link href="<c:url value="/resources/custom/css/reset-pw-style.css" />"
 	rel="stylesheet" />
 <script
@@ -121,7 +121,7 @@ main, #layoutAuthentication_content {
 											name="password" id="password" class="password" required />
 										<div class="delete">
 											<img
-												src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
+												src="<c:url value="/resources/img/icon/register/round_delete_g.png"/>"
 												style="width: 16px; height: 16px" />
 										</div>
 									</div>
@@ -137,7 +137,7 @@ main, #layoutAuthentication_content {
 											class="password-confirm" id="confirm_password" required />
 										<div class="delete">
 											<img
-												src="https://s3.hourplace.co.kr/web/images/icon/round_delete_g.svg"
+												src="<c:url value="/resources/img/icon/register/round_delete_g.png"/>"
 												style="width: 16px; height: 16px" />
 										</div>
 									</div>

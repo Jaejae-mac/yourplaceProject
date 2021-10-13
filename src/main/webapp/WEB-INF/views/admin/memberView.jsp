@@ -41,9 +41,9 @@
             <h1 class="mt-4">회원관리</h1>
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item">
-                <a href="indexOurPlace.html">Go Home</a>
+                <a href="/home.mdo">Admin Home</a>
               </li>
-              <li class="breadcrumb-item active">Member</li>
+              <li class="breadcrumb-item active">User Management</li>
             </ol>
             <div class="card mb-4">
               <div class="card-body">
@@ -58,12 +58,13 @@
                 	전체 회원 관리
               </div>
               <div class="card-body">
-	              <select class="dataTable-selector" onchange="checkMem">
-	              	<option>전체 회원 보기</option>
-	              	<option value="0">게스트만 보기</option>
-	              	<option value="1">호스트만 보기</option>
-	              </select>
+<!-- 	              <select class="dataTable-selector" onchange="checkMem"> -->
+<!-- 	              	<option>전체 회원 보기</option> -->
+<!-- 	              	<option value="0">게스트만 보기</option> -->
+<!-- 	              	<option value="1">호스트만 보기</option> -->
+<!-- 	              </select> -->
                 <table id="datatablesSimple">
+
                   <thead>
                     <tr>
                     	<th>정지 여부</th>
@@ -85,19 +86,15 @@
 				<tbody>
                   <c:forEach var="mem" items="${memberList}">
                     <tr>
-                    	<td id="active"><c:if test="${mem.userActive eq '0'}">제한된 이용자</c:if><c:if test="${mem.userActive eq '1'}">사용가능</c:if>
+                    	<td id="active"><c:if test="${mem.userActive eq '0'}"><font color="red">제한된 이용자</font></c:if><c:if test="${mem.userActive eq '1'}">사용가능</c:if>
                      	</td>
                     
                       <td>${mem.userNum }</td>
                       
-                      <td id="memberType">
-                      	<c:if test="${mem.userType eq '0'}">
-                      	게스트
-                      	</c:if>
-                      	<c:if test="${mem.userType eq '1'}">
-                      	호스트
-                      	</c:if>
-                      </td>
+                      
+                      <c:if test="${mem.userType eq '0'}"><td>게스트</td></c:if>
+                      <c:if test="${mem.userType eq '1'}"><td id="userType_host" style="color: blue">호스트</td></c:if>
+                      
                       
                       <td>${mem.userId  }</td>
                       <td>${mem.userName }</td>
@@ -155,20 +152,7 @@
        	<input type="hidden" id="disableUserHidden" name="disableUserId">
        </form>
        
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     
@@ -260,15 +244,19 @@
 			$("#disableUserHidden").val(id);
 			$("#submitForm2").submit();
 			
+			
+			var result = confirm("선택한 이용자의 상태를 변경하시겠습니까?");
 
-			if(active == '제한된 이용자')
-				{
-					alert("사용 가능으로 변경되었습니다.");
-				}
-			else(active == '사용가능')
-				{
-					alert("선택한 사용자는 접근이 제한되었습니다.");
-				}
+			if(result)
+			{
+				alert("변경되었습니다.")
+			
+			}else
+			{
+			    alert("취소되었습니다.");
+			}
+			
+			
 			
 		});
 			
@@ -286,6 +274,7 @@
 		}
 		
 	</script>
+
 	
   </body>
 </html>

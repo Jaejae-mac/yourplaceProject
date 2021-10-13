@@ -10,7 +10,7 @@ import lombok.ToString;
 public class ReserveVO {
 	
 	private String rsvRefundYn;
-	private int rsvNum;
+	private Long rsvNum;
 	private int placeNum;
 	
 	private String userNum; //예약자 회원번호 -> 이걸로 id 조회

@@ -15,7 +15,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>고객문의</title>
+    <title>Yourplace_고객문의</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -127,17 +127,6 @@
         </div>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-      crossorigin="anonymous"
-    ></script>
-	<script src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
-
 	<script>
 	
 		

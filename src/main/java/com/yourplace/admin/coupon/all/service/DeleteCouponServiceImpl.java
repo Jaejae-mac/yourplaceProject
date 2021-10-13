@@ -17,4 +17,10 @@ public class DeleteCouponServiceImpl implements DeleteCouponService {
 			couponDAO.deleteCoupon(deleteCoupName);
 		}
 
+		@Override
+		public void deleteAllCoupon() {
+			couponDAO.deleteAllCoupon();
+			
+		}
+
 }

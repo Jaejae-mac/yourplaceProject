@@ -5,22 +5,31 @@
 
 
 	<resultMap type="HostChartVO" id="getAllHostChart">
-		<result property="userId" column="user_id" />
-		<result property="mainCategory" column="place_maincate" />
-		<result property="placeCategory" column="place_cate" />
-		<result property="payYear" column="pay_year" />
-		<result property="payMonth" column="pay_month" />
-		<result property="payDate" column="pay_date" />
-		<result property="AfterTax" column="inv_aft_tax" />
-		<result property="invTax" column="inv_tax" />
-		<result property="reserveYear" column="rsv_year" />
-		<result property="reserveMonth" column="rsv_month" />
-	</resultMap>
+	<result property="userId" column="user_id" />
+	<result property="mainCategory" column="place_maincate" />
+	<result property="placeCategory" column="place_cate" />
+	<result property="payYear" column="pay_year" />
+	<result property="payMonth" column="pay_month" />
+	<result property="payDate" column="pay_date" />
+	<result property="AfterTax" column="inv_aft_tax" />
+	<result property="invTax" column="inv_tax" />
+	<result property="beforeTax" column="inv_bf_tax" />
+	<result property="reserveYear" column="rsv_year" />
+	<result property="reserveMonth" column="rsv_month" />
+	<result property="reserveValue" column="value" />
+</resultMap>
 
 	
 	<select id="getAllChart" resultMap="getAllHostChart">
-select test_invoice.*, reserve.* from test_invoice inner join reserve on reserve.pay_num = test_invoice.pay_num inner join place on place.place_num = reserve.place_num where place.user_id=#{userId} and reserve.rsv_refund_yn=0
+ select payment.*, reservation.* from payment inner join reservation
+ on reservation.pay_num = payment.pay_num inner join place
+ on place.place_num = reservation.place_num where place.user_id=#{userId} and payment.rsv_refund_yn=0
+        
 	</select>
 	
+	<select id="getinvoiceChart" resultMap="getAllHostChart">
+	 select sum(payment.inv_bf_tax) as value, payment.* from payment inner join reservation on payment.rsv_num = reservation.rsv_num
+ inner join place on place.place_num = reservation.place_num where place.user_id=#{userId} and payment.rsv_refund_yn=0 group by pay_date
+	</select>
 
 </mapper>

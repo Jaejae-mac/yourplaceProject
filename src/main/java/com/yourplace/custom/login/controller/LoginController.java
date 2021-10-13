@@ -32,7 +32,7 @@ public class LoginController {
 	
 	
 	//로그인 처리를 해주는 컨트롤러.
-	@GetMapping("/login.do")
+	@PostMapping("/login.do")
 	public String login(UserVO vo, HttpServletRequest request, Model model) {
 		String idresult = idCheckService.idCheck(vo);
 		if(idresult == "1") {
@@ -88,7 +88,7 @@ public class LoginController {
 			
 
 			// 로그인 성공시에는 호스트의 홈페이지로 이동시켜준다.
-			return "index";
+			return "redirect:/home.do";
 
 		}
 

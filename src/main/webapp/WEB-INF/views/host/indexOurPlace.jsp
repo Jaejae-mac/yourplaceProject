@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>yourplace host page</title>
+<title>Yourplace_호스트</title>
 
 
 <link
@@ -17,8 +17,8 @@
 	rel="stylesheet" />
 <link href="<c:url value="/resources/host/css/styles.css" />"
 	rel="stylesheet" />
-
-
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous">
@@ -175,12 +175,28 @@
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
+								
+										
 								</div>
 							</div>
+							
+							
+							
 						</div>
 					</div>
+								<div class="container-fluid px-4">
+				
+				
+									<div style="width: 900px; position: relative; left: 200px;">
+										<canvas id="myChart"></canvas>
+										</div>
+										
 					
 					</div>
+					
+					
+					
+					
 					
 					
 			</main>
@@ -198,6 +214,7 @@
 			</footer>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
@@ -213,5 +230,70 @@
 		crossorigin="anonymous"></script>
 	<script
 		src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
+		
+<script>
+
+var datas=[];
+<c:forEach items="${map}" var="data">
+datas.push(${data});
+</c:forEach>
+</script>
+
+
+<script>
+
+$(function() { 
+var ctx = document.getElementById("myChart").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+
+    	 labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" , "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25","26","27", "28", "29", "30", "31"],
+        datasets: [{
+            label: '#일 매출',
+            data: datas,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)'
+             
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+})});
+
+</script>
+		
+=======
+>>>>>>> 91f5b66da5720cfad78930b91891a96353c193d7
 </body>
 </html>

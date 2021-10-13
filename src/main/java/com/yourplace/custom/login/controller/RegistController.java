@@ -39,6 +39,14 @@ public class RegistController {
 	//회원 가입 모듈로 보내주는 메서드.
 	@GetMapping("/register.do")
 	public String registerForm(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("userType", 0);
+		return "login/registerForm";
+	}
+	@GetMapping("/Hostregister.do")
+	public String registerFormH(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.setAttribute("userType", 1);
 		return "login/registerForm";
 	}
 	
@@ -78,20 +86,26 @@ public class RegistController {
 	@PostMapping("/regist.do")
 	public String regist(UserVO vo, HttpServletRequest request, RedirectAttributes redirect) {
 		//제대로된 아이디와 비밀번호 가 전송되었을 경우.
+		System.out.println(vo.toString());
 		if(vo.getUserId().length() > 0 && vo.getUserPw().length() > 0) {
-			CouponVO welcomeCoupon = new CouponVO();
-			welcomeCoupon.setUserCoupId(vo.getUserId());
-			//회원정보를 멤버테이블에 등록.
-			registService.insertUser(vo);
-			//가입환영 쿠폰을 넣어준다.
-			insertCouponService.welcomeCoupon(welcomeCoupon);
-			UserVO userVO = loginUserService.getUser(vo);
-			//회원가입 완료후 아이디 세션 생성.
-			HttpSession session = request.getSession();
-			redirect.addAttribute("welcomeCoupon", "welcomeCoupon");
-			session.setAttribute("userId", userVO.getUserId());
-			session.setAttribute("userVO", userVO);
-			
+			if(vo.getUserType() == 0) {
+				CouponVO welcomeCoupon = new CouponVO();
+				welcomeCoupon.setUserCoupId(vo.getUserId());
+				//회원정보를 멤버테이블에 등록.
+				registService.insertUser(vo);
+				//가입환영 쿠폰을 넣어준다.
+				insertCouponService.welcomeCoupon(welcomeCoupon);
+				UserVO userVO = loginUserService.getUser(vo);
+				//회원가입 완료후 아이디 세션 생성.
+				HttpSession session = request.getSession();
+				redirect.addAttribute("welcomeCoupon", "welcomeCoupon");
+				session.setAttribute("userId", userVO.getUserId());
+				session.setAttribute("userVO", userVO);
+				return "redirect:home.do";
+			}else {
+				registService.insertUser(vo);
+				return "redirect:loginForm.hdo";
+			}
 		}
 		
 		//회원가입후 홈으로 보내주고, 쿠폰을 발급해 주어야 한다. - 미구현.

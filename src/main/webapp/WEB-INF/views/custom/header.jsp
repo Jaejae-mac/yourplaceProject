@@ -77,7 +77,7 @@
 	                            <div style="height: 45px; width: 100%;">
 	                                <div class="h_row_center" style="right: 10px; height: 40px;border: solid 2px rgb(114, 120, 127); border-radius: 30px;">
 	                                    <div class="h_center" style="left:15px; width: 30px;height: 30px;">
-	                                        <img src="<c:url value="/resources/img/icon/search_v3.png" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
+	                                        <img src="<c:url value="/resources/img/icon/search_v3.svg" />" style="width: 30px;height: 30px;"onclick="gocateSearch()" />
 	                                    </div>
 	                                    <div style="position:absolute;right: 77px;left: 57px;">
 	                                        <input id="search_input" onkeyup="enterkey();" 
@@ -147,7 +147,7 @@
 							<div style="width: 1px; height: 20px; margin-left: 7px; margin-right: 5px; background-color: rgb(114, 120, 127);"></div>
 							
 							<!-- 로그인 기능 show_login() -->
-							<div onclick="window.location.href='/updateProfileforHost.hdo'"
+							<div onclick="window.location.href='/myProfile.hdo'"
 								class="h_center h_header_button"
 								style="padding: 0px 13px; height: 50px; margin-left: 8px; cursor: pointer;">
 								<p

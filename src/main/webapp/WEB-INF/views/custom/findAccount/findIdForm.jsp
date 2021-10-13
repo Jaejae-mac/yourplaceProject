@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Find My Id - yourplace</title>
+<title>Yourplace_아이디 찾기</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -44,10 +44,10 @@
 				</div>
 
 				<div id="main_vue" class="h_column_center"
-					style="width: 100%; margin-top: 30px; margin-bottom: 200px" v-cloak>
+					style="width: 100%; margin-top: 30px; margin-bottom: 200px">
 					<div
 						style="width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff; padding: 40px 50px;">
-						<div class="h_column_center" v-show="step === 0">
+						<div class="h_column_center">
 							<!-- password 재설정 -->
 							<div
 								style="border-radius: 15px; background-color: rgb(0, 0, 0, 0.1); margin-bottom: 10px;">
@@ -59,7 +59,7 @@
 								action="/reset/password" style="width: 100%">
 								<div class="h_row" style="margin-top: 20px">
 									<p
-										style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+										style="margin-bottom: 0; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 										본인 인증</p>
 								</div>
 								<div class="input_container disabled"

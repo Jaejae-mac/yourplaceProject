@@ -30,7 +30,7 @@ public class RevenueController {
 	private RevenueTermService revenueTermService;
 	
 	
-	@PostMapping(value="/revenueView.mdo")
+	@GetMapping(value="/revenueView.mdo")
 	public String viewForm(Model model)
 	{
 		int thisYear = 2021;

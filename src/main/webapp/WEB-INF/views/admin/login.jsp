@@ -56,19 +56,7 @@
                         />
                         <label for="inputPassword">Password</label>
                       </div>
-                      <div class="form-check mb-3">
-                        <input
-                          class="form-check-input"
-                          id="inputRememberPassword"
-                          type="checkbox"
-                          value=""
-                        />
-                        <label
-                          class="form-check-label"
-                          for="inputRememberPassword"
-                          >Remember Password</label
-                        >
-                      </div>
+                      
                       <div
                         class="
                           d-flex
@@ -79,7 +67,7 @@
                         "
                       >
                         <a class="small" href="password.html"
-                          >Forgot Password?</a
+                          ></a
                         >
 <!--                         <a id="form_login" class="btn btn-primary" >Login</a> -->
                         <input type="submit" class="btn btn-primary"
@@ -89,7 +77,7 @@
                   </div>
                   <div class="card-footer text-center py-3">
                     <div class="small">
-                      <a href="/register.mdo">Need an account? Sign up!</a>
+                      YourPlace Admin
                     </div>
                   </div>
                 </div>
@@ -99,20 +87,7 @@
         </main>
       </div>
       <div id="layoutAuthentication_footer">
-        <footer class="py-4 bg-light mt-auto">
-          <div class="container-fluid px-4">
-            <div
-              class="d-flex align-items-center justify-content-between small"
-            >
-              <div class="text-muted">Copyright &copy; Your Website 2021</div>
-              <div>
-                <a href="#">Privacy Policy</a>
-                &middot;
-                <a href="#">Terms &amp; Conditions</a>
-              </div>
-            </div>
-          </div>
-        </footer>
+        
       </div>
     </div>
     <script

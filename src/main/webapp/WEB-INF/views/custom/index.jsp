@@ -6,31 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <!-- <script src="//code.jquery.com/jquery-3.3.1.min.js"></script> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 <script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<!-- <script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
+
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/card.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/sample.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/banner.css" />" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/custom/css/mainHome.css" />" />
+<%-- <link rel="stylesheet"
+	href="<c:url value="/resources/custom/css/mainHome.css" />" /> --%>
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/bodyfont.css" />" />
-	
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-	
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
 
-<title>YourPlace Home</title>
+<title>Yourplace_홈</title>
 </head>
 <body>
 
@@ -76,7 +80,7 @@
 					})		
 		</script>
 	</c:if>
-	
+
 	<!--배너 스크립트-->
 	<script>
 		let banner = {
@@ -136,7 +140,7 @@
 			banner.rollInit(4000); // 배너 롤링
 		});
 	</script>
-
+	
 	<!-- Banner -->
 	<!--슬라이드 배너 테스트-->
 	<div id="banner" style="position: relative; top: 100px;">
@@ -146,16 +150,17 @@
 				<div class="container h_column_center">
 					<div class="img_wrap">
 						<ul class="rollimgs">
-						<!-- a href="#" : 이미지 클릭시 url mapping-->
-						<!-- for each 문 시작 -->
-						<c:forEach var="ban" items="${banner}">
-							<li>
-								<a href='/category.do?maincate=&subcate=&sort=최신순'>
-								<c:if test="${ban.bannerShow eq '1'}"><img src="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }" /></c:if>
-							</a>
-							</li>
-						</c:forEach>
-						<!-- for each 문 완료 -->
+							<!-- a href="#" : 이미지 클릭시 url mapping-->
+							<!-- for each 문 시작 -->
+							<c:forEach var="ban" items="${banner}">
+								<li><a href='/category.do?maincate=&subcate=&sort=최신순'>
+										<c:if test="${ban.bannerShow eq '1'}">
+											<img
+												src="https://s3.ap-northeast-2.amazonaws.com/yourplacebuc/${ban.s3FileName }" />
+										</c:if>
+								</a></li>
+							</c:forEach>
+							<!-- for each 문 완료 -->
 						</ul>
 					</div>
 				</div>
@@ -167,7 +172,8 @@
 	<!-- 모든 카테고리-->
 	<!-- Main body 시작 -->
 	<!--메인 바디 카드 레이아웃-->
-	<div class="main_card" style="position: relative; top: 100px; margin-bottom:40px">
+	<div class="main_card"
+		style="position: relative; top: 100px; margin-bottom: 40px">
 		<div
 			style="flex-direction: row; display: flex; justify-content: center; position: relative;">
 			<div
@@ -598,7 +604,8 @@
 						onclick="hourplace_v2.userLog('W', '/', 'click', 'category', 'all');window.location.href='/category';"
 						class="h_center h_hover_button"
 						style="width: 280px; height: 56px; border-radius: 8px; background-color: rgb(245, 249, 255); cursor: pointer;">
-						<div class="h_row_center show_all_category" onclick="location.href='/category.do?maincate=&subcate=&sort=최신순'">
+						<div class="h_row_center show_all_category"
+							onclick="location.href='/category.do?maincate=&subcate=&sort=최신순'">
 							<p>아워플레이스 모든 장소 보기</p>
 							<img
 								src="<c:url value="/resources/custom/icon/before_blue.svg" />"
@@ -619,7 +626,8 @@
 		<div style="margin-top: 80px; margin-bottom: 80px; width: 1176px;">
 			<div class="h_row_center">
 				<!--onclick="" 신규 등록 장소 목록-->
-				<div onclick="new_category()" style="padding-left: 10px; cursor: pointer;">
+				<div onclick="new_category()"
+					style="padding-left: 10px; cursor: pointer;">
 					<div class="h_row_center new_reco_m_title"
 						style="padding: 0px 0px 0px 0px;">
 
@@ -633,22 +641,22 @@
 				</div>
 				<div class="h_row_center" style="position: absolute; right: 12px;">
 					<div id="flipsnap_prev" class="h_center prev"
-							style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; cursor: default;">
-							<img
-								src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
-								id="flipsnap_prev_img" style="width: 16px; height: 16px" />
-						</div>
-						<div id="flipsnap_next" class="h_center next"
-							style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; cursor: pointer;">
-							<img
-								src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
-								id="flipsnap_next_img"
-								style="width: 16px; height: 16px; transform: rotate(180deg)" />
+						style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; margin-right: 10px; cursor: default;">
+						<img
+							src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
+							id="flipsnap_prev_img" style="width: 16px; height: 16px" />
+					</div>
+					<div id="flipsnap_next" class="h_center next"
+						style="width: 40px; height: 40px; border: 1px solid rgb(239, 243, 245); background-color: rgb(255, 255, 255); border-radius: 20px; cursor: pointer;">
+						<img
+							src="<c:url value="/resources/custom/icon/chevron_left_b.svg"/>"
+							id="flipsnap_next_img"
+							style="width: 16px; height: 16px; transform: rotate(180deg)" />
 					</div>
 				</div>
 			</div>
-			
-			<div class="total_card_layout newestPlace">	
+
+			<div class="total_card_layout newestPlace">
 				<!--신규등록 장소 추천 반복 시작. -->
 				<c:forEach var="latestPlace" items="${latestPlaces }"
 					varStatus="status">
@@ -733,6 +741,7 @@
 					<input type="hidden" id="place_num${status.index }"
 						value="${latestPlace.placeNum} " />
 				</c:forEach>
+				
 			</div>
 			<!--total_card_layout END-->
 		</div>
@@ -751,34 +760,33 @@
 				<div onclick=" " style="padding-left: 10px; cursor: pointer;">
 					<p>YourPlace 인기 장소</p>
 					<div class="h_row_center rating_reco_s_title"
-						style="margin-top: -32px;">
+						style="margin-top: -32px;"onclick="popular_category()">
 						<p>인기 장소 더보기</p>
 					</div>
 				</div>
-				
 			</div>
 
 
 			<div class="total_card_layout">
-				<c:forEach var="latestPlace" items="${popularPlaces }"
+				<c:forEach var="popularPlace" items="${popularPlaces }"
 					varStatus="status">
 					<div class="card_layout" style="padding: 0px 7.5px 0px 0px;">
 						<input type="hidden" id="place_num" name="place_num"
-							value="${latestPlace.placeNum}" /> <input type="hidden"
-							id="user_id" name="user_id" value="${latestPlace.userId }" />
+							value="${popularPlace.placeNum}" /> <input type="hidden"
+							id="user_id" name="user_id" value="${popularPlace.userId }" />
 
 						<div class="card">
 							<div class="card_header"
-								onclick="gotoDetail('#place_num${status.index }')">
+								onclick="gotoDetail('#p_place_num${status.index }')">
 
-								<img src="${latestPlace.placeThumb}" alt="이미지 넣는 곳" />
+								<img src="${popularPlace.placeThumb}" alt="이미지 넣는 곳" />
 								<!-- 데이터 베이스의 해당 image 가져오기-->
 							</div>
 							<div class="card_body"
-								onclick="gotoDetail('#place_num${status.index }')">
+								onclick="gotoDetail('#p_place_num${status.index }')">
 								<div class="card_body_header">
 									<p>
-										${latestPlace.placeCate } · ${latestPlace.placeArea }
+										${popularPlace.placeCate } · ${popularPlace.placeArea }
 										<!-- 데이터 베이스 연동시 예 {{ place.category_sub }} · {{ place.local }} -->
 									</p>
 									<div class="card_body_header_right">
@@ -786,7 +794,7 @@
 											<img
 												src="<c:url value="/resources/custom/icon/person.png" />">
 											<p>
-												${latestPlace.placeCapa}
+												${popularPlace.placeCapa}
 												<!-- {{ place.people }} -->
 											</p>
 										</div>
@@ -794,14 +802,14 @@
 											<img
 												src="<c:url value="/resources/custom/icon/parking.png" />">
 											<p>
-												${latestPlace.placeCapaCar }
+												${popularPlace.placeCapaCar }
 												<!-- {{ place.parking }} -->
 											</p>
 										</div>
 									</div>
 								</div>
 								<div class="card_body_title">
-									${latestPlace.placeName }
+									${popularPlace.placeName }
 									<!-- 데이터 베이스 연동시 예 {{ place.title }} -->
 								</div>
 							</div>
@@ -810,38 +818,38 @@
 								<img
 									src="<c:url value="/resources/custom/icon/gold_star.png" />">
 								<p class="card_body_footer_star">
-									${latestPlace.avgRate }
+									${popularPlace.avgRate }
 									<!-- {{ place.feedback_rating }} -->
 								</p>
 								<p class="card_body_footer_review">
-									리뷰 ${latestPlace.reviewCnt }
+									리뷰 ${popularPlace.reviewCnt }
 									<!-- 리뷰 {{ place.feedback_count }} -->
 								</p>
 								<p class="card_body_footer_price">
-									${latestPlace.placePrice }원
+									${popularPlace.placePrice }원
 									<!-- {{ place.price_guest }}원 -->
 								</p>
 								<c:choose>
-									<c:when test="${latestPlace.bookmark eq false}">
+									<c:when test="${popularPlace.bookmark eq false}">
 										<img class=“card_body_footer_booking”
 											src="<c:url value="/resources/custom/icon/bookmark_g.png"/>"
 											style="width: 24px; height: 24px; margin-left: auto; text-align: center;"
-											id="bookmark_img${latestPlace.placeNum }"
-											onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')" />
+											id="bookmark_img${popularPlace.placeNum }"
+											onclick="yourplaceBookmark(${popularPlace.placeNum},'bookmark_img${popularPlace.placeNum }')" />
 									</c:when>
 									<c:otherwise>
 										<img class=“card_body_footer_booking”
 											src="<c:url value="/resources/custom/icon/bookmark_b_v4.svg"/>"
 											style="width: 24px; height: 24px; margin-left: auto; text-align: center;"
-											id="bookmark_img${latestPlace.placeNum }"
-											onclick="yourplaceBookmark(${latestPlace.placeNum},'bookmark_img${latestPlace.placeNum }')" />
+											id="bookmark_img${popularPlace.placeNum }"
+											onclick="yourplaceBookmark(${popularPlace.placeNum},'bookmark_img${popularPlace.placeNum }')" />
 									</c:otherwise>
 								</c:choose>
 							</div>
 						</div>
 					</div>
-					<input type="hidden" id="place_num${status.index }"
-						value="${latestPlace.placeNum} " />
+					<input type="hidden" id="p_place_num${status.index }"
+						value="${popularPlace.placeNum} " /> 
 				</c:forEach>
 			</div>
 			<!--total_card_layout END-->
@@ -855,17 +863,59 @@
 
 	<!-- script 시작 -->
 	<script type="text/javascript">
-      $.noConflict();
-      
+	$.noConflict();
 	$(".newestPlace").slick({
-		  infinite:true,
-	      slidesToShow: 4,
-	      slidesToScroll: 4,
-	      nextArrow:$('#flipsnap_next'),
-          prevArrow:$('#flipsnap_prev'),
-          speed: 500,
-	    });
-</script>
+  	  infinite:false,
+ 		  nextArrow:$('#flipsnap_next'),
+        prevArrow:$('#flipsnap_prev'),
+ 	      slidesToShow: 4,
+ 	      slidesToScroll: 4,
+        speed: 500
+ 	    });
+	
+	$(document).ready(function(){
+		$('#flipsnap_prev').hide();
+		$.noConflict();
+		var currentSlide = $('.newestPlace').slick('slickCurrentSlide');
+		console.log(currentSlide);
+		$("#flipsnap_next").click(function(){
+			$('#flipsnap_prev').show();
+			currentSlide = $('.newestPlace').slick('slickCurrentSlide');
+			console.log(currentSlide);
+			if(currentSlide==8)
+		    {
+		        $('#flipsnap_next').hide();
+		    }else{
+		    	$('#flipsnap_next').show();
+		    }
+		});
+		
+		$("#flipsnap_prev").click(function(){
+			$('#flipsnap_next').show();
+			currentSlide = $('.newestPlace').slick('slickCurrentSlide');
+			console.log(currentSlide);
+			if(currentSlide==0)
+		    {
+		        $('#flipsnap_prev').hide();
+		    }else{
+		    	$('#flipsnap_prev').show();
+		    }
+		});
+		
+		if(currentSlide==0)
+	    {
+	        $('.slick-prev').hide();
+	    }
+	    else if(currentSlide==2)
+	    {
+	        $('.slick-next').hide();
+	    }
+		
+	});
+	
+    
+    	 
+	</script>
 	<script>
 		var message_id = ''
 
@@ -924,17 +974,14 @@ function gotoDetail(e){
     	
     }
 </script>
-<script type="text/javascript">
-      $.noConflict();
-	$("#newestPlace").slick({
-	      slidesToShow: 4,
-	      slidesToScroll: 4,
-	    });
-</script>
+
 <!-- 신규 버튼 -->
 <script>
 	function new_category(){
 		location.href = "/newcategory.do"
+	}
+	function popular_category(){
+		location.href = "/popularcategory.do"
 	}
 </script>
 </html>

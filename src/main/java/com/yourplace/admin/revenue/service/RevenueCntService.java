@@ -18,4 +18,7 @@ public interface RevenueCntService {
 		//서브 카테고리 예약건수
 		List<RevenueVO> getSubCateRank(int year);
 	
+		//index 인기장소
+		List<RevenueVO> indexTable();
+		
 }

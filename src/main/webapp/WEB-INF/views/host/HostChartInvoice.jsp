@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Yourplace_매출 차트</title>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@ th,td{
 			<div class="container-fluid px-4">
 				<h1 class="mt-4">매출 차트</h1>
 				<div class="card mb-4">
-					<div class="card-body">최근 몇개월 간의 매출을 조회할 수 있습니다.</div>
+					<div class="card-body">최근 한달 간의 일별 매출을 조회할 수 있습니다.</div>
 
 				</div>
 
@@ -62,18 +62,28 @@ th,td{
 			</div>
 		</footer>
 	</div>
-	<script>
 
-var datas=[${map}];
+<script>
 
+var datas=[];
+<c:forEach items="${map}" var="data">
+datas.push(${data});
+</c:forEach>
+</script>
+
+
+<script>
+
+$(function() { 
 var ctx = document.getElementById("myChart").getContext('2d');
 
 var myChart = new Chart(ctx, {
-    type: 'line',
+    type: 'bar',
     data: {
-        labels: ["1일", "2일", "3일", "4일", "5일", "6일", "7일", "8일", "9일", "10일", "11일", "12일", "13일", "14일" , "15일", "16일", "17일", "18일", "19일", "20일", "21일", "22일", "23일", "24일", "25일","26일","27일", "28일", "29일", "30일", "31일"],
+
+    	 labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" , "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25","26","27", "28", "29", "30", "31"],
         datasets: [{
-            label: '#한달 간 매출 현황',
+            label: '#일 매출',
             data: datas,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -111,7 +121,9 @@ var myChart = new Chart(ctx, {
             }]
         }
     }
-});
+})});
+
 </script>
+
 </body>
 </html>

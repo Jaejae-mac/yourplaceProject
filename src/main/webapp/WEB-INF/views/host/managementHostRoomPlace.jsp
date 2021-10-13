@@ -12,7 +12,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>내 장소 관리</title>
+    <title>Yourplace_내 장소 관리</title>
     <link
       href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
       rel="stylesheet"
@@ -236,18 +236,6 @@
         </footer>
       </div>
     </div>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="<c:url value="/resources/host/js/scripts.js" />"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-      crossorigin="anonymous"
-    ></script>
- 
-    <script src="<c:url value="/resources/host/js/datatables-simple-demo.js" />"></script>
-
   </body>
 
 </html>

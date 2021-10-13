@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.yourplace.commons.awss3.AwsS3;
-import com.yourplace.custom.login.dao.LoginDAO;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.dao.MyPageDAO;
 import com.yourplace.custom.mypage.service.MyPageUpdateService;
@@ -22,8 +21,6 @@ import com.yourplace.custom.mypage.service.MyPageUpdateService;
 public class MyPageUpdateServiceImpl implements MyPageUpdateService {
 	@Autowired
 	private MyPageDAO mypageDAO;
-	@Autowired
-	private LoginDAO loginDAO;
 	@Autowired
 	private BCryptPasswordEncoder passEncoder;
 	@Override

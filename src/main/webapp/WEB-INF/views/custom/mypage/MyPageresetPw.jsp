@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css"/>" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<title>MyPage Change Password</title>
+<title>Yourplace_비밀번호 변경</title>
 </head>
 <body>
 	<c:if test="${userVO != null}">
@@ -32,6 +32,7 @@
             <div style="margin: 40px 50px;">
 
                 <form action="" id="updatepassword" method="POST" >
+                	<input type="hidden" name="userType" id="userType" value="${userVO.userType}">
                 	<input type="hidden" name="userId" id="userId" value="${userVO.userId}">
                     <div style="font-size: 12px;font-weight: bold;font-stretch: normal;font-style: normal;line-height: 1.17;letter-spacing: normal;color: #9ea4aa;">
                         	새 비밀번호

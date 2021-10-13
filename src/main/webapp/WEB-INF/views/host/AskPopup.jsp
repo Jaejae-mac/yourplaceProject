@@ -45,9 +45,9 @@ function popupClose(form){
 				
 				<input type="hidden" name="type" value="direct">
 				<div
-					style="padding: 12px 14px; border-radius: 8px; background-color: var(- -grey-010);">
+					style="padding: 12px 14px; border-radius: 8px; background-color: #f5f7f8;">
 					<p
-						style="font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: var(- -grey-060); text-align: center;">
+						style="font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #454b50; text-align: center;">
 						문의 사항을 남겨주세요 <br> 문의 내역은 고객 문의에서 확인하실 수있습니다.
 					</p>
 				</div>
@@ -64,12 +64,12 @@ function popupClose(form){
 
 
 				<p
-					style="margin-top: 20px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: var(- -grey-040);">
+					style="margin-top: 20px; font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 					내용</p>
 				<div
-					style="margin-top: 8px; height: 192px; padding: 14px; border-radius: 4px; border: solid 1px var(- -grey-025);">
+					style="margin-top: 8px; height: 192px; padding: 14px; border-radius: 4px; border: solid 1px #dfe2e7;">
 					<textarea placeholder="문의사항을 남겨주세요" id="content" name="content"
-						style="width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: var(- -grey-080);"></textarea>
+						style="width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; color: #1b1d1f;"></textarea>
 				</div>
 				<div class="riview" style="margin-top: 30px; text-align: center;">
 					<p>

@@ -29,11 +29,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 전체조회 test_invoice -->
 	<select id="getPaymentTest" resultMap="paymentResult">
 		SELECT 
-			(SELECT rsv_refund_yn FROM reserve WHERE rsv_num = a.rsv_num) AS pay_refund_yn,
+			rsv_refund_yn,
 			order_num, pay_num, pay_year, pay_month, pay_date, inv_bf_tax, rsv_num,
 	    	(SELECT place_num FROM reserve WHERE rsv_num = a.rsv_num) AS place_num,
 	        (SELECT rsv_name FROM reserve WHERE rsv_num = a.rsv_num) AS rsv_name
-		FROM test_invoice a;
+		FROM payment a;
 	</select>
 	
 	<!-- 전체조회 payment-->

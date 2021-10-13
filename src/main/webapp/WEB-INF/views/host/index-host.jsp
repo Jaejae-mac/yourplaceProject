@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Your Place Host</title>
+<title>Yourplace_호스트</title>
 </head>
 <body>
 <h1>Your place host page</h1>

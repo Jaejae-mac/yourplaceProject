@@ -81,5 +81,12 @@ public class CouponUserDAOImpl implements CouponUserDAO {
 	}
 
 
+	@Override
+	public void deleteUser(String couponNum) {
+		System.out.println("---> MyBatis 로 deleteUser 기능 처리");
+		sqlSessionTemplate.delete("CouponUserDAO.deleteUser", couponNum);
+	}
+
+
 	
 }

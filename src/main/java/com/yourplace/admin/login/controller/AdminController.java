@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.yourplace.admin.login.service.AdminService;
 import com.yourplace.admin.login.service.LoginAdminService;
@@ -46,19 +47,22 @@ public class AdminController {
 	}
 	
 	@PostMapping("/login.mdo")
-	public String login(AdminVO vo, HttpServletRequest request, Model model)
+	public String login(AdminVO vo, HttpServletRequest request, Model model,RedirectAttributes redirect)
 	{
 		AdminVO login = loginService.loginAdmin(vo);
 		if (login.getLoginSuccess() == 1) {
 			
 			HttpSession session = request.getSession(); //세션 생성
 			
-			session.setAttribute("AdminId", login);
-			session.setAttribute("AdminNum", login.getAdminNum());
-			session.setAttribute("AdminAuthority", login.getAdminAuthority());
+			session.setAttribute("adminVO", vo);
+			session.setAttribute("adminId", vo.getAdminId());
+			session.setAttribute("AdminNum", vo.getAdminNum());
+			session.setAttribute("AdminAuthority", vo.getAdminAuthority());
+			redirect.addAttribute("adminId", login.getAdminId());
+			
 			
 			// 로그인 성공시에는 return의 홈페이지로 이동시켜준다.
-			return "index-admin";
+			return "redirect:index-admin.mdo";
 		}
 		
 		model.addAttribute("login", "0");
@@ -66,55 +70,46 @@ public class AdminController {
 		
 	}
 	
-	
-	//Index-admin
-	
-	@GetMapping("/index-admin.mdo")
-	public String directIndex(HttpServletRequest request, Model model)
+	@GetMapping(value="/home.mdo")
+	public String homeClick()
 	{
-		System.out.println("[Controller] index-admin 으로 직접 접근");
-		return "login";
-	} 
+		return "redirect:index-admin.mdo";
+	}
 	
-	@PostMapping(value="/index-admin.mdo")
-	public String viewForm(Model model)
-	{
-		//매출 조회 시작
-		int thisYear = 2021;
-		int lastYear = 2020;
-		
-		System.out.println("[Controller] index page 의 Chart 호출");
-		
+	@GetMapping(value="/index-admin.mdo")
+	public void viewForm(HttpServletRequest request, Model model, AdminVO vo)
+	{	
 		//월대비 매출 관련
-		List<Double> list1 = revenueMonthService.getMoM(thisYear);
+		List<Double> list1 = revenueMonthService.getMoM(2021);
 		model.addAttribute("MoMList", list1); // 2021 월대비
 
 		//인기 카테고리
-		List<RevenueVO> list2 = revenueCntService.getMainCateRank(thisYear); // 메인
-//		List<RevenueVO> list3 = revenueCntService.getSubCateRank(thisYear); // 서브
+		List<RevenueVO> list2 = revenueCntService.getMainCateRank(2021); // 메인
 		model.addAttribute("MainCateRank", list2);
-//		model.addAttribute("SubCateRank", list3);
 		
-		/////////Table
+		//인기장소
+		List<RevenueVO> list5 = revenueCntService.indexTable();
+		model.addAttribute("PlaceRank", list5);
 		
+		//월별
+		List<RevenueVO> list3 = revenueMonthService.indexChart();
+		System.out.println(list3.toString());
+		model.addAttribute("FirstList", list3);
+		
+		/////////Table			
 		//승인 대기중인 테이블 조회
-		
 		List<SpaceVO> list4 = spaceList.beforeAllow();
 		model.addAttribute("AllowList", list4);
 		
-		return "index-admin";
 	}
 	
-
+	//로그아웃
+	@GetMapping("/adminLogout.mdo")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("AdminId") +"님이 로그아웃");
+		session.invalidate();
+		return "redirect:login.mdo";
+	}
 	
-//	@RequestMapping("/login.mdo")
-//	public void test() {
-//		AdminVO vo = new AdminVO();
-//		
-//		vo.setAdminId("");
-//		vo.setAdminPw("");
-//		AdminVO admin = adminService.getAdmin(vo);
-//		System.out.println(admin.toString());
-//		
-//	}
 }

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>place</title>
+<title>Yourplace_장소목록</title>
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/custom/css/page.css" />">
@@ -119,7 +119,7 @@
 								id="people_minus">
 							<img src=" <c:url value="/resources/custom/icon/minus.svg"/>" style="width: 20px; height: 20px" />
 						</div>
-						<div style="width: 60px; margin: 0px 14px; padding: 0px 2px; height: 44px; border-radius: 4px; border: solid 1px var(- -grey-025); display: flex; flex-direction: row; align-items: center; justify-content: center;">
+						<div style="width: 60px; margin: 0px 14px; padding: 0px 2px; height: 44px; border-radius: 4px; border: solid 1px #dfe2e7; display: flex; flex-direction: row; align-items: center; justify-content: center;">
 							<input type="text" pattern="[0-9]*" id="select_search_people" placeholder="1"
 								style="width: 100%; height: 100%; border-width: 0px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: normal; text-align: center; color: #1b1d1f;"value="1" />
 						</div>

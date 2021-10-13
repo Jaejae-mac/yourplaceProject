@@ -9,7 +9,7 @@
 <body>
  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/index-admin.mdo">Yourplace Admin</a>
+        <a class="navbar-brand ps-3" href="/home.mdo">Yourplace Admin</a>
         <!-- Sidebar Toggle-->
         <button
           class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
@@ -71,13 +71,7 @@
             <!--사이드바 nav태그(사이드메뉴) 시작-->
             <div class="sb-sidenav-menu">
               <div class="nav">
-                <div class="sb-sidenav-menu-heading">Link</div>
-                <a class="nav-link" href="/home.do">
-                  <div class="sb-nav-link-icon">
-                    <i class="fas fa-tachometer-alt"></i>
-                  </div>
-                  	메인 홈페이지
-                </a>
+                
   
                 <div class="sb-sidenav-menu-heading">Menu</div>
                 
@@ -225,7 +219,7 @@
                 >
                   <nav class="sb-sidenav-menu-nested nav">
                     
-                    <a class="nav-link" href="/revenueView.mdo">매출 현황</a>
+<!--                     <a class="nav-link" href="/revenueView.mdo">매출 현황</a> -->
                     <a class="nav-link" href="/specificRevenue.mdo">매출 조회</a>
                     
                   </nav>
@@ -272,7 +266,7 @@
                   <div class="sb-nav-link-icon">
                     <i class="fas fa-question-circle"></i>
                   </div>
-                  문의사항 관리
+                  		문의사항 관리
                   <div class="sb-sidenav-collapse-arrow">
                     <i class="fas fa-angle-down"></i>
                   </div>
@@ -339,8 +333,9 @@
             </div>
             <div class="sb-sidenav-footer">
               <div class="small">Logged in as:</div>
-              root
+             ${adminId}
             </div>
+<%--             <input type="hidden" value="${AdminId }" name="adminId" id="admin_id" /> --%>
           </nav>
           <!--사이드바 nav태그((사이드메뉴)) 끝-->
       </div>

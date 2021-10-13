@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Regist Place - yourplace</title>
+<title>Yourplace_장소 등록</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />

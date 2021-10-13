@@ -1,5 +1,6 @@
 package com.yourplace.custom.home.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,7 +37,7 @@ public class CateController {
 	public String categoryForm(@RequestParam String maincate, @RequestParam String subcate, @RequestParam(value="sort" ,required=false) String sort, Model model,HttpSession session) {
 		List<PlaceCardVO> list = null;
 		List<InterestVO> bookmarks = null;
-		
+		List<PlaceCardVO> tempList = new ArrayList<PlaceCardVO>();
 		if(maincate != "" && subcate !="") {
 			list = categoryService.getCatePlace(maincate, subcate, sort);
 		}else {
@@ -52,12 +53,19 @@ public class CateController {
 				for(InterestVO bookmark : bookmarks) {
 					if(card.getPlaceNum() == bookmark.getPlaceNum()) {
 						card.setBookmark(true);
+						break;
 					}else {
 						card.setBookmark(false);
 					}
 				}
+				tempList.add(card);
 			}
+			
+		}else {
+			tempList = list;
+			
 		}
+		
 
 		String[][] menuList = {
 				{"가정집", "아파트", "주택", "빌라", "원룸", "한옥", "홈오피스" },
@@ -70,7 +78,7 @@ public class CateController {
 				{"대형공간/야외", "공장", "창고", "지하실", "빈 공간", "옥상", "정원", "캠핑장"},
 		};
 		if(list != null) {
-			model.addAttribute("placeCateList", list);
+			model.addAttribute("placeCateList", tempList);
 			model.addAttribute("mainCategory",maincate);
 			model.addAttribute("subCategory", subcate);
 			model.addAttribute("placeSort", sort);
@@ -124,6 +132,17 @@ public class CateController {
 		model.addAttribute("placeCateList", categorykeywordService.getnewCategoryList());
 		System.out.println(model);
 		return "indexCategory";
+	}
+	//인기 등록 장소리스트 컨트롤러
+		@GetMapping("/popularcategory.do")
+		public String popularCategoryForm(Model model) {
+			String keyword = "인기 장소 TOP 20";
+			PlaceCardVO vo = new PlaceCardVO();
+			vo.setKeyword(keyword);
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("placeCateList", categorykeywordService.getpopCategoryList());
+			System.out.println(model);
+			return "indexCategory";
 	}
 	// 사람 인원수에 따른 장소리스트
 	@GetMapping("/placeListP.do")

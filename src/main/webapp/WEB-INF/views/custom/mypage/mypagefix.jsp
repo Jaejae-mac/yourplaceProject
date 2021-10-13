@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Yourplace MyPagefix</title>
+<title>Yourplace_프로필 편집</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css" />" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -65,6 +65,7 @@
 							style="margin-bottom: 0; font-size: 14px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal; color: #454b50;">
 							이름과 연락처, 이메일 및 비밀번호 등의 개인 정보 수정은 마이페이지 하단의 설정에서 변경 가능합니다.</p>
 					</div>
+					<input type="hidden" name="userType" value="${user.userType}">
 					<input type="hidden" name="userNum" value="${user.userNum}">
 					<input type="hidden" id="userId" name="userId" value="${user.userId}"/> 
 					<div
@@ -168,6 +169,7 @@
 					</div>
 				</div>
 				</form>
+				</div>
 				<script>
 				// 프로필 미리보기를 위한 function
 					$(document).ready(function() {

@@ -35,7 +35,7 @@ public class CouponController {
 	private InsertCouponService coupInsert;
 	
 	@Autowired
-	private CouponUserService coupUserSend;
+	private CouponUserService coupUserService;
 	
 	@Autowired
 	private SendCouponService sendService;
@@ -56,11 +56,12 @@ public class CouponController {
 	
 	//쿠폰 삭제 요청 처리
 	@PostMapping(value="/deleteCoupon.mdo")
-	public String deleteCoupon(@RequestParam("deleteCoupName") String deleteCoupName)
+	public String deleteCoupon(@RequestParam("deleteCoupName") String deleteCoupNum, @RequestParam("deleteCoupNum") String deleteNum)
 	{
 		System.out.println("------- 삭제할 쿠폰이름 조회 -------");
-		System.out.println("Parameter Value: " + deleteCoupName);
-		coupDelete.deleteCoupon(deleteCoupName);
+		System.out.println("Parameter Value: " + deleteCoupNum);
+		coupDelete.deleteCoupon(deleteCoupNum);
+		coupUserService.deleteUser(deleteNum);
 		return "redirect:couponView.mdo";
 	}
 	
@@ -127,6 +128,12 @@ public class CouponController {
 		
 		return "redirect:couponView.mdo";
 	}
-
 	
+	@PostMapping(value="/alldelete.mdo")
+	public String alldelete()
+	{
+		System.out.println("[Controller] 기한만료 전체삭제");
+		coupDelete.deleteAllCoupon();
+		return "redirect:couponView.mdo";
+	}
 }
