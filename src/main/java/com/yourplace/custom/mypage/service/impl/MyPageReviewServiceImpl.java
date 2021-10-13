@@ -9,6 +9,7 @@ import com.yourplace.custom.mypage.dao.MyPageReviewDAO;
 import com.yourplace.custom.mypage.service.MyPageReviewService;
 import com.yourplace.custom.mypage.vo.MyPageGuestReviewVO;
 import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
+import com.yourplace.custom.reservation.vo.ReviewVO;
 @Service("MyPageReviewService")
 public class MyPageReviewServiceImpl implements MyPageReviewService {
 	@Autowired
@@ -16,6 +17,9 @@ public class MyPageReviewServiceImpl implements MyPageReviewService {
 	@Override
 	public List<MyPageHostReviewVO> getReviewList(MyPageHostReviewVO vo) {
 		return dao.getReviewList(vo);
+	}
+	public MyPageHostReviewVO getAvgCng(MyPageHostReviewVO vo) {
+		return dao.reviewCntAvg(vo);
 	}
 	@Override
 	public void insertGuestReview(MyPageGuestReviewVO vo) {

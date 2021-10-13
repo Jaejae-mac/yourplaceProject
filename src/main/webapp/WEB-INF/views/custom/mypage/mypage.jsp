@@ -22,6 +22,7 @@
 	});
 </script>
 <title>Yourplace_마이페이지</title>
+
 </head>
 <body>
 	
@@ -133,25 +134,50 @@
 	                </p>
 				</div>
                 <div style="margin-top: 40px; height: 1px; background-color: rgb(231, 234, 238);"></div>
-                <div style="margin-top: 40px;">
+                <div style="margin-top: 40px;"id="reviewList">
                     <div
                         style="position: relative; height: 34px; display: flex; flex-direction: row; align-items: center; margin-bottom: 10px;">
                         <p style="font-size: 24px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: -0.3px; color: rgb(27, 29, 31);">
                         	호스트에게 받은 리뷰
                             <label id="reviewlength" style="font-size: 20px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 0.7; letter-spacing: -0.67px; text-align: center; color: rgb(36, 111, 248);">
+                            ${reviewCnt}
                             </label>
                         </p>
                         <div style="display: flex; flex-direction: row; align-items: center; position: absolute; right: 0px;">
                             <img src="<c:url value="/resources/img/icon/register/review_star.png" />"
                                 style="width: 24px; height: 24px;">
                             <p id="totalstar" style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
-                                0.0 <!-- 해당 아이디의 평점총합 / 평점갯수 -->
+                            ${avgReview }
                             </p>
                         </div>
                     </div>
-                    <div id="reviewList">
-                    </div>
+                    <c:forEach var="review" items="${reviewList }">
+                    	<div style="padding-top: 16px; padding-bottom: 28px;">
+   							<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">
+   								<div class='h_row' style='justify-content: space-between;' >
+   									<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>
+   										${review.userId }
+   									</p>
+   								</div>
+   								<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">
+									${review.reviewGuestRegd }
+								</p>
+    							<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">
+    								<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">
+    			 						${review.reviewGuestRate }
+    			 					</p>
+    			 			</div>
+               					<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">
+               						${review.reviewGuestWr }
+               					</p>
+               				</div>
+                    </c:forEach>
+                    <input type="hidden" value="${rowNum }" id="row_num" />
                 </div>
+                <div onclick="moreHostReviews()">
+					<p style="width: fit-content; margin-top: 40px; margin-bottom: 40px; font-size: 15px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.33; letter-spacing: normal; text-align: center; color: rgb(27, 29, 31); cursor: pointer; text-decoration: underline;">
+						리뷰 더보기</p>
+				</div>
             </div>
         </div>
     </div>
@@ -159,16 +185,20 @@
 	<%@ include file="../footer.jsp" %>
 	<!-- Footer 끝 -->
 	<script>
-	//리뷰 컨트롤러에서 값을 가져우기
-	 function reviewList(){
+	function moreHostReviews(){
+		var rowNum = parseInt($("#row_num").val())+3;
+		var userId = "${userId}";
+		console.log(rowNum)
 		 $.ajax({
-        	url:"/mypagereviewList.do",
-        	type:"post",
-        	dataType : "json",
-        	success : function(data){
-        		getreivewListCall(data);
-        	}
-        });
+       		url:"/moreHostReviews.do",
+       		data:{"rowNum":rowNum,"userId":userId},
+       		type:"get",
+       		dataType : "json",
+       		success : function(data){
+       			console.log("성공")
+       			getreivewListCall(data);
+       		}
+       });
 	 }
 	 //회원 탈퇴 기능
 	 function deleteUser(){
@@ -195,48 +225,39 @@
 	    }
 	 //컨트롤러에서 가져온 리뷰 값을 출력하기위한 함수
 	 function getreivewListCall(data){
+		 var rowNum = parseInt($("#row_num").val())+3;
 		 var list = data;
          var listLen = data.length;
-         var star = 0;
          var res = "";
          if(listLen > 0){
-        	
-    		for(var i=0;i<listLen; i++){
-    			var rsvNum = list[i].rsvNum;
-    			var rsvId = list[i].rsvId;
-    			var userId = list[i].userId;
-   				var placeNum = list[i].placeNum;
-    			var reviewGuestRate = list[i].reviewGuestRate;
-    			star += reviewGuestRate;
-    			var reviewGuestWr = list[i].reviewGuestWr;
-    			var date = list[i].reviewGuestRegd;
-    			var Regd = new Date(date)
-    			var reviewGuestRegd = Regd.getFullYear() + "-" + (Regd.getMonth()+1) +"-"+ Regd.getDate();
-    				
-   				res += '<div style="padding-top: 16px; padding-bottom: 28px;">';
-   				res += '<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">';
-   				res += "<div class='h_row' style='justify-content: space-between;'' >"
-   				res += "<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>"
-   				res += userId + "</p></div>"
-   				res += '<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">';
-                res += reviewGuestRegd + '</p>'
-    			res += '<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">';
-    			res += '<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">';
-    			res += reviewGuestRate + '</p></div>';
-               	res += '<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">';
-                res += reviewGuestWr + '</p></div>';
-    		}
-    		var totalstar = star/listLen
-    		totalstar = totalstar.toFixed(1);
-         	document.getElementById('reviewlength').innerHTML=listLen;
-         	document.getElementById('totalstar').innerHTML=totalstar ;
-         }else{
-        	document.getElementById('reviewlength').innerHTML='0';
-          	document.getElementById('totalstar').innerHTML='0'; 
-         }
-         $("#reviewList").html(res);
-			     	 
-         
+        	 $("#row_num").val(rowNum);
+        	 console.log(data);
+	         for(i = 0; i < listLen ; i++){
+	            var rsvNum = list[i].rsvNum;
+	            var rsvId = list[i].rsvId;
+	            var userId = list[i].userId;
+	           	var placeNum = list[i].placeNum;
+	            var reviewGuestRate = list[i].reviewGuestRate;
+	            var reviewGuestWr = list[i].reviewGuestWr;
+	            var reviewGuestRegd = list[i].reviewGuestRegd;
+	            				
+	           	res += '<div style="padding-top: 16px; padding-bottom: 28px;">';
+	           	res += '<div style="margin-top: 18px; display: flex; flex-direction: row; align-items: center;">';
+	           	res += "<div class='h_row' style='justify-content: space-between;'' >"
+	           	res += "<p style='font-size: 16px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(27, 29, 31);'>"
+	           	res += userId + "</p></div>"
+	           	res += '<p style="position: absolute; right: 0px; left: 110px; text-align: right; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.29; letter-spacing: normal; color: rgb(158, 164, 170);">';
+	            res += reviewGuestRegd + '</p>'
+	           	res += '<img src="<c:url value="/resources/img/icon/register/review_star.png" />" style="width: 24px; height: 24px;">';
+	            res += '<p style="font-size: 15px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.6; letter-spacing: -0.1px; color: rgb(27, 29, 31);">';
+	            res += reviewGuestRate + '</p></div>';
+	            res += '<p style="font-size: 16px; font-weight: normal; font-stretch: normal; font-style: normal; line-height: 1.38; letter-spacing: -0.1px; color: rgb(114, 120, 127);">';
+	            res += reviewGuestWr + '</p></div>';
+	         }
+	      $("#reviewList").append(res);   
+	      }else{
+	         swal("","더이상 리뷰가 존재하지 않습니다.","warning");
+	      }	            	
 	 }
 	</script>
 </body>

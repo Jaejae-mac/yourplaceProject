@@ -760,7 +760,7 @@
 				<div onclick=" " style="padding-left: 10px; cursor: pointer;">
 					<p>YourPlace 인기 장소</p>
 					<div class="h_row_center rating_reco_s_title"
-						style="margin-top: -32px;">
+						style="margin-top: -32px;"onclick="popular_category()">
 						<p>인기 장소 더보기</p>
 					</div>
 				</div>
@@ -979,6 +979,9 @@ function gotoDetail(e){
 <script>
 	function new_category(){
 		location.href = "/newcategory.do"
+	}
+	function popular_category(){
+		location.href = "/popularcategory.do"
 	}
 </script>
 </html>

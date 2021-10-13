@@ -5,6 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="ReviewDAO">
 	<resultMap type="MyPageHostReviewVO" id="getreviewHostList">
+		<result property="rowNum" column="no" />
 		<result property="rsvNum" column="rsv_num" />
 		<result property="rsvId" column="rsv_id" />
 		<result property="userId" column="user_id" />
@@ -13,11 +14,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="reviewGuestWr" column="review_guest_wr" />
 		<result property="reviewGuestRegd" column="review_guest_regd" />
 	</resultMap>
-	<select id="getMyReviewList" resultMap="getreviewHostList">
-		SELECT *
-		FROM reviewHost
-        WHERE rsv_id = #{rsvId}
+	<select id="getReviewRate" resultMap="getreviewHostList">
+		select count(*)as reviewCnt, round(avg(review_guest_rate),1) as avgReview from reviewHost where rsv_id = #{rsvId};
 	</select>
+	<select id="getMyReviewList" resultMap="getreviewHostList">
+		SELECT b.* FROM (
+			SELECT @rownum:=@rownum+1 as no, 
+				a.rsv_num,
+        		a.user_id,
+        		a.place_num,
+        		a.review_guest_wr,
+        		a.review_guest_rate, 
+        		DATE_FORMAT(a.review_guest_regd, '%Y. %m. %d') as review_guest_regd
+					FROM reviewHost a, (select @rownum:=0) temp
+					WHERE rsv_id = #{rsvId} ) b
+			WHERE b.no > #{rowNum}
+			limit 3;
+	</select>
+	
 	<delete id="deleteHostReview" parameterType="MyPageHostReviewVO">
 		DELETE FROM reviewHost WHERE rsv_id = #{rsvId}
 	</delete>
