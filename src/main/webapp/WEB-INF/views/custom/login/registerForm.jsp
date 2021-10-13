@@ -748,9 +748,13 @@
             			  icon:'error',
             			  title:'인증번호가 일치하지 않습니다.',
             			  text:'다시 인증해주세요.'
-            	});
+            	}).then(function(isConfirm){
+            		$('#telcheck').val("N");
+            		window.location.reload();		
+                	
+                });
                 console.log("다릅니다.");
-                $('#telcheck').val("N")
+                
             }
             });
         });

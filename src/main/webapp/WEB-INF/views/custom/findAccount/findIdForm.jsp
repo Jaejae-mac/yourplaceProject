@@ -99,18 +99,18 @@
           let timerInterval;
           Swal.fire({
             title: "인증번호 입력",
-            html:
-              "I will close in <b></b> milliseconds." +
-              '<br/><br/><input type="text" placeholder="number" id="auth_num" class="form-control">' +
-              '<br/><input type="button" class="btn btn-primary" id="auth_num_btn" style="widht:100%;" value="인증 확인">',
-            timer: 1000 * 60 * 3,
+            title: '전송된 인증번호 입력',
+            html: '<b></b> 후에 종료됩니다.'+
+            '<br/><br/><input type="text" placeholder="전송된 인증 번호를 입력해주세요." id="auth_num" class="form-control">'+
+            '<br/><input type="button" class="btn btn-primary" id="auth_num_btn" style="widht:100%;" value="인증 확인">',
+            timer: 1000*60*3,
             timerProgressBar: true,
             didOpen: () => {
-              Swal.showLoading();
-              const b = Swal.getHtmlContainer().querySelector("b");
-              timerInterval = setInterval(() => {
-                b.textContent = Swal.getTimerLeft();
-              }, 100);
+                Swal.showLoading()
+                const b = Swal.getHtmlContainer().querySelector('b')
+                timerInterval = setInterval(() => {
+                b.textContent = millisToMinutesAndSeconds(Swal.getTimerLeft())
+                }, 100)
             },
             willClose: () => {
               clearInterval(timerInterval);
@@ -142,20 +142,29 @@
             Swal.fire({
               icon: "success",
               title: "인증번호 일치합니다.",
+            }).then(function(){
+            	 $("#userTel").val(userTel);
+                 $("#sendTel").submit();
             });
-            $("#userTel").val(userTel);
-            $("#sendTel").submit();
-            
           } else {
             Swal.fire({
               icon: "error",
               title: "인증번호가 일치하지 않습니다.",
               text: "다시 인증해주세요.",
+              closeOnClickOutside: false,
+             
+            }).then(function(isConfirm){
+            		window.location.reload();		
+            	
             });
-            console.log("다릅니다.");
           }
         });
       });
+      function millisToMinutesAndSeconds(millis) {
+    	  var minutes = Math.floor(millis / 60000);
+    	  var seconds = ((millis % 60000) / 1000).toFixed(0);
+    	  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    	}
     </script>
     <%@ include file="../footer.jsp" %>
 </body>
