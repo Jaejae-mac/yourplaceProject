@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -122,7 +123,8 @@ public class FindAccountPwController {
 	//리턴할 정보 : 아이디, 가입일.
 	//아이디는 80%는 보여주고 20%는 '*' 처리하여 보여준다.
 	@PostMapping("/find/account/result.do")
-	public String getAccount(UserVO vo, Model model) {
+	public String getAccount(UserVO vo, Model model,HttpSession session) {
+		session.invalidate();
 		System.out.println(vo.toString());
 		UserVO findAccount = findAccountService.getAccount(vo);
 		if(findAccount != null) {//빈 객체가 오지 않았다면, 전화번호가 DB에 있다는 것.
@@ -146,7 +148,7 @@ public class FindAccountPwController {
 			
 			System.out.println("[ FindAccountController ] "+foundAccount + " 님이 가입하신 날짜는 " + dateStr + " 입니다.");
 			
-			model.addAttribute("userId", foundAccount);
+			model.addAttribute("foundUserId", foundAccount);
 			model.addAttribute("userRegDate", dateStr);
 		}
 		return "findAccount/resultForm";

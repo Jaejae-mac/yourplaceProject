@@ -1,5 +1,6 @@
 package com.yourplace.host.management.controller;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.commons.awss3.AwsS3;
@@ -64,27 +66,28 @@ public class HostManagementController {
 	}
 
 
-	@RequestMapping(value = "/deletePlace.hdo", method = RequestMethod.GET)
-	public String deletePlace(HttpServletRequest request, @RequestParam("placeNum")int placeNum) throws Exception {
+	@RequestMapping(value = "/deletePlace.hdo", method = RequestMethod.POST)
+	public String deletePlace(HttpServletRequest request, Map<String, Object> param, HostManagementVO vo) throws Exception {
 		
-		System.out.println(placeNum + "번 장소");
+		System.out.println(vo.getPlaceNum());
+		int placeNum = vo.getPlaceNum();
+		
 		
 		AwsS3 awsS3 = AwsS3.getInstance();
 
-		
+		vo.setPlaceNum(placeNum);
 		List<HostManagementImgVO> getS3 = service3.getDeleteList(placeNum);
 		System.out.println(getS3.size());
 		System.out.println(getS3.toString());
-		try {
+	
 			
 		
-		for(int i=0; i<=getS3.size(); i++) {
+		for(int i=0; i<getS3.size(); i++) {
 			System.out.println(getS3.get(i).getOriginFileName());
 			System.out.println("s3 ->");
 			awsS3.delete(getS3.get(i).getS3FileName()); // 등록된 모든 key 확인하며 삭제
-			service.deletePlace(placeNum);
-		}
-		}catch(Exception e) {
+			service.deletePlace(placeNum);	
+		
 			
 		}
 		return "redirect:/managementHostPlace.hdo";
@@ -153,8 +156,6 @@ public class HostManagementController {
 		vo.setPlaceNum(placeNum);
 		System.out.println(placeNum);
 		List<HostManagementVO> getList = service.getOneHostPlace(vo);
-		
-		
 		System.out.println(getList.toString());
 		mav.addObject("updatePlace", getList);
 		mav.setViewName("update");
@@ -162,71 +163,15 @@ public class HostManagementController {
 		
 	}
 
-	
 	@PostMapping("/updatepLace.hdo")
-	public String getUpdatePlace(HttpServletRequest request, HostManagementVO vo) throws Exception{
-		String placeName = (String) request.getParameter("placeName");
-		
-		String hashList = request.getParameter("tag");
-		
-		try {
-			for(int i=0; i<=hashList.length(); i++)
-				System.out.println("해시태그:" + hashList);
-		}catch(Exception e) {
-			
-		}
-		
-		String placeIntro = (String)request.getParameter("placeIntro");  //장소소개
-		String placeArea = (String)request.getParameter("placeArea"); //평수
-		String placeFloor = (String)request.getParameter("placeFloor"); //층
-		String placeRule = (String)request.getParameter("placeRule"); //규칙
-		
-		String placePrice = (String)request.getParameter("placePrice"); //가격
-		String placeMinTime = (String) request.getParameter("placeMinTime"); //최소대여시간
-		String placeCarNum = (String)request.getParameter("placeCarNum"); //주차 가능 수
-		
-		String placePersonNum = (String)request.getParameter("placePersonNum"); //최소인원
-		String placeSubInfo = (String)request.getParameter("placeSubInfo"); //주변정보
-		
-		int placeNum = Integer.parseInt(request.getParameter("placeNum"));
-		
-		System.out.println("장소 이름 :" + placeName);
-		System.out.println("장소 소개 :" + placeIntro);
-		System.out.println("장소 전용면적" + placeArea);
-		System.out.println("장소 층 :" + placeFloor);
-		System.out.println("장소 규칙 : " + placeRule);
-		System.out.println("가격 :" + placePrice );
-		System.out.println("최소 대여 시간 : " + placeMinTime);
-		System.out.println("주차가능 대수:" + placeCarNum);
-		System.out.println("인원" + placePersonNum);
-		System.out.println("장소 주변 :" + placeSubInfo);
-		
-		//평수 계산
-		double m2 = 3.305;
-		BigDecimal a = new BigDecimal(String.valueOf(placeArea));
-		BigDecimal c = new BigDecimal(String.valueOf(m2));
-		
-		BigDecimal m2math= c.multiply(a);
-		System.out.println(m2math);
-	
-		//끝
-		vo.setPlaceName(placeName);
-		vo.setPlaceArea(placeArea +"평" + "/"+ m2math + "m2");
-		vo.setPlaceFloor(placeFloor);
-		vo.setPlaceIntro(placeIntro);
-		vo.setPlaceRule(placeRule);
-		vo.setPlacePrice(placePrice);
-		vo.setPlaceMinTime(placeMinTime);
-		vo.setPlacePersonNum(placePersonNum);
-		vo.setPlaceCarNum(placeCarNum);
-		vo.setPlaceSubInfo(placeSubInfo);
+	public String getUpdatePlace(HttpServletRequest request, HostManagementVO vo, Map<String, Object> param)throws Exception {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("userId");
+		int placeNum = (Integer) session.getAttribute("placeNum");
 		vo.setPlaceNum(placeNum);
-
+		System.out.println(vo.toString());
 		service.updatePlace(placeNum, vo);
-		
 		return "redirect:/managementHostPlace.hdo";
 	}
-
-	
 
 }

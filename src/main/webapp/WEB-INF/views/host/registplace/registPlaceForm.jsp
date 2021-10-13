@@ -68,7 +68,7 @@
 
 	<div id="layoutSidenav_content">
 		<main style="width: 70%; margin: 0 auto;">
-			<h1 style="text-align: center;">장소 등록</h1>
+			<h1 style="text-align: center; margin-top:20px">장소 등록</h1>
 			<!-- 전송 폼태그. -->
 			<form method="POST" enctype="multipart/form-data"
 				action="/regist/place/registPlace.hdo" id="regist_form">

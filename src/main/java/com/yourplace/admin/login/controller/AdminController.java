@@ -39,11 +39,11 @@ public class AdminController {
 	
 	//Login
 	
-	@GetMapping("/login.mdo")
+	@GetMapping("/main.mdo")
 	public String loginForm()
 	{
 		System.out.println("로그인 페이지 호출");
-		return "login";
+		return "main";
 	}
 	
 	@PostMapping("/login.mdo")
@@ -59,14 +59,18 @@ public class AdminController {
 			session.setAttribute("AdminNum", vo.getAdminNum());
 			session.setAttribute("AdminAuthority", vo.getAdminAuthority());
 			redirect.addAttribute("adminId", login.getAdminId());
+<<<<<<< HEAD
 			
+=======
+			redirect.addAttribute("adminAuthority", login.getAdminAuthority());
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 			
 			// 로그인 성공시에는 return의 홈페이지로 이동시켜준다.
 			return "redirect:index-admin.mdo";
 		}
 		
 		model.addAttribute("login", "0");
-		return "redirect:login.mdo";
+		return "redirect:main.mdo";
 		
 	}
 	
@@ -109,7 +113,11 @@ public class AdminController {
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("AdminId") +"님이 로그아웃");
 		session.invalidate();
+<<<<<<< HEAD
 		return "redirect:login.mdo";
+=======
+		return "redirect:main.mdo";
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 	}
 	
 }

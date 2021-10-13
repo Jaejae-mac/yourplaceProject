@@ -22,7 +22,10 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 
 
 <title>Yourplace_호스트 로그인</title>
@@ -41,6 +44,25 @@
 	</script>
 </c:if>
 
+<<<<<<< HEAD
+<title>Yourplace_호스트 로그인</title>
+
+<!-- 전달된 파라미터가 0 이라면 아이디또는 비밀번호의 불일치 이므로. -->
+<c:if test="${param.result == 0}">
+	<script>
+		//alert 를 내보낸다.
+		$(document).ready(function(){
+			Swal.fire({
+        		icon: 'error',
+       			title: '아이디 또는 비밀번호를 확인해주세요.',
+        	})
+			
+		})
+	</script>
+</c:if>
+
+=======
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 <style>
 #login_host, #login_guest, #login_kakao {
 	display: none;
@@ -146,13 +168,19 @@ input:focus{
 							<!-- 로그인 버튼 -->
 							<!-- Login v-on:click="login()" -->
 							<div
+<<<<<<< HEAD
 								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;">
+=======
+								style="margin-top: 40px; height: 52px; border-radius: 8px; background-color: #3c82fa; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; background: paleturquoise;"
+								onclick="loginHostHdo()">
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 								<label for="login_guest" class="login_guest_lb">호스트 로그인</label> <input
-									type="button" id="login_guest" onclick="loginHostHdo()">
+									type="button" id="login_guest" >
 							</div>
 
 							<div
 								style="margin-top: 20px; height: 52px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer;">
+<<<<<<< HEAD
 
 								<label for="login_kakao" class="login_kakao"><img
 									src="<c:url value="/resources/img/kakao/kakao_login_btn.png" />"
@@ -162,6 +190,8 @@ input:focus{
 									<input type="hidden" name="kakaoid" id="kakaoid" />
 								<input type="hidden" name="kakaoemail" id="kakaoemail" />
 								<input type="hidden" name="kakaoname" id="kakaoname" />
+=======
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 							</div>
 
 						</form>
@@ -236,33 +266,6 @@ input:focus{
 		function loginHostHdo() {
 			console.log("host btn click");
 			$("#form_login").attr("action", "/login.hdo").submit();
-		}
-		function loginGuestKakaoDo() {
-			console.log("kakao btn click");
-			window.Kakao.Auth.login({
-				/* scope:'profile,account_email', */
-				success:function(authObj){
-					window.Kakao.API.request({
-						url:'/v2/user/me',
-						success: res => {
-							const id = res.id;
-							const email = res.kakao_account.email;
-							const name = res.properties.nickname;
-							
-							console.log(id);
-							console.log(email);
-							console.log(name);
-							console.log(res.ACCESS_TOKEN);
-
-							$('#kakaoid').val(id);
-							$('#kakaoemail').val(email);
-							$('#kakaoname').val(name);
-							$("#form_login").attr("action", "/kakao/login.do").submit();
-						}
-					});
-				}
-			});
-
 		}
 
 		function callRegisterFormHost() {

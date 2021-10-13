@@ -5,6 +5,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<c:if test="${userVO == null}">
+	<script>
+		location.href="/home.do";
+	</script>
+</c:if>
 <style>
 th,td{
 	text-align:center;
