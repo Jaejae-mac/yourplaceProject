@@ -241,6 +241,27 @@
 		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo);
 		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo[0]);
 		   	console.log("체크된 쿠폰 이름(배열)= " + rowNo[1]);
+<<<<<<< HEAD
+		   	
+		   	$("#coup_num").val(tdAr[0]); //tdAr[1]=name값을 담고 있는 배열객체
+		   	$("#start_date").val(tdAr[2]);
+		   	$("#end_date").val(tdAr[3]);
+		   	
+		   	var result = confirm("선택한 쿠폰을 전송하시겠습니까?")
+		   	
+		   	if(result)
+		   	{
+		   		alert("전송이 완료되었습니다.")
+		   		$("#submitForm2").submit();
+		   		
+		   	}else
+		   	{
+		   		alert("선택한 쿠폰이 없습니다.")	
+		   	}
+		   	
+		   	
+		    
+=======
 
 		   		
 		   	alert("전송된 내용: " + tdAr[0] + "" + tdAr[2] + "" + tdAr[3])
@@ -253,6 +274,7 @@
 		   		
 		   	$("#submitForm2").submit();
 
+>>>>>>> c80984dff030de395546c1941133e0e677692cb9
 		});
 		    
     </script>
