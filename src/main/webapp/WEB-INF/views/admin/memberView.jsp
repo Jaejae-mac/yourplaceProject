@@ -66,20 +66,20 @@
                 <table id="datatablesSimple">
 
                   <thead>
-                    <tr>
-                    	<th>정지 여부</th>
-                        <th>회원번호</th>
-                        <th>회원타입</th>                
-                        <th>아이디</th>
-                        <th>이름</th>
-                        <th>전화번호</th>
-                        <th>이메일</th>
-                        <th>성별</th>
-                        <th>가입일자</th>
-                        <th>SMS 수신동의</th>
-                        <th>Email 수신동의</th>
-                        <th>접근제한여부</th>
-                        <th>회원탈퇴</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                    	<th style="text-align:center">정지 여부</th>
+                        <th style="text-align:center">회원번호</th>
+                        <th style="text-align:center">회원타입</th>                
+                        <th style="text-align:center">아이디</th>
+                        <th style="text-align:center">이름</th>
+                        <th style="text-align:center">전화번호</th>
+                        <th style="text-align:center">이메일</th>
+                        <th style="text-align:center">성별</th>
+                        <th style="text-align:center">가입일자</th>
+                        <th style="text-align:center">SMS 수신동의</th>
+                        <th style="text-align:center">Email 수신동의</th>
+                        <th style="text-align:center">접근제한여부</th>
+                        <th style="text-align:center">회원탈퇴</th>
                     </tr>
                   </thead>
 
@@ -104,12 +104,12 @@
                       <td>${mem.userRegDate }</td>
                       <td>${mem.userSmsAgree }</td>
                       <td>${mem.userEmailAgree }</td>
-                      <td>
+                      <td align="center">
                       
                       <c:if test="${mem.userActive eq '1'}">
 	                      <button type="button"
 	                      class="btn btn-danger"
-	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
+	                      style="font-size: 10px;" id="disable_btn">
 	                      	사용 제한
 	                      </button>
 	                  </c:if>
@@ -117,16 +117,16 @@
 	                  <c:if test="${mem.userActive eq '0'}">
 	                      <button type="button"
 	                      class="btn btn-primary"
-	                      style="font-size: 10px; margin-left: 10px;" id="disable_btn">
+	                      style="font-size: 10px;" id="disable_btn">
 	                      	제한 해제
 	                      </button>
 	                  </c:if>
 	                    
                       </td>
-                      <td>
+                      <td align="center">
 	                      <button type="button"
 	                      class="btn btn-danger"
-	                      style="font-size: 10px; margin-left: 10px;" id="delete_btn">
+	                      style="font-size: 10px;" id="delete_btn">
 	                      	삭제
 	                      </button>
                       </td>

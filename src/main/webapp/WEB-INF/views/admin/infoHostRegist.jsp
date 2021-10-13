@@ -94,12 +94,12 @@
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 제목</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">공지사항 제목</th>
                   <td><input type="text" id="infoTitle" name="infoHostTitle" size="40"></td>
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 내용</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">공지사항 내용</th>
                   <td><textarea id="infoContent" name="infoHostContent" style="width:410px; height:100px;"> </textarea></td>
                 </tr>
               

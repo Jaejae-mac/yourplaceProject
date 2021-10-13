@@ -56,16 +56,16 @@
                 <table id="datatablesSimple">
 
                   <thead>
-                    <tr>
-                      <th>예약상태</th> <!-- 0 -->
-                      <th>예약번호</th> <!-- 1 -->
-                      <th>장소번호</th> <!-- 2 -->
-                      <th>호스트 아이디</th> <!-- 3 -->
-                      <th>예약자 아이디</th> <!-- 4 -->
-                      <th>예약자 이름</th>
-                      <th>예약자 연락처</th> <!-- 5 -->
-                      <th>장소이용일</th> <!-- 6 -->
-                      <th>사용목적</th> <!-- 7 -->
+                    <tr style="background: rgba(231,231,231,0.4)">
+                      <th style="text-align:center">예약상태</th> <!-- 0 -->
+                      <th style="text-align:center">예약번호</th> <!-- 1 -->
+                      <th style="text-align:center">장소번호</th> <!-- 2 -->
+                      <th style="text-align:center">호스트 아이디</th> <!-- 3 -->
+                      <th style="text-align:center">예약자 아이디</th> <!-- 4 -->
+                      <th style="text-align:center">예약자 이름</th>
+                      <th style="text-align:center">예약자 연락처</th> <!-- 5 -->
+                      <th style="text-align:center">장소이용일</th> <!-- 6 -->
+                      <th style="text-align:center">사용목적</th> <!-- 7 -->
                       
                     </tr>
                   </thead>

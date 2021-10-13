@@ -76,7 +76,7 @@
                 <tbody>
                 
                 <tr>
-                  <th scope="col">카테고리</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">카테고리</th>
                   <td>
                   	<select name="infoGueCate">
                   		<option value="0">게스트 가입</option>
@@ -92,12 +92,12 @@
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 제목</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">공지사항 제목</th>
                   <td><input type="text" id="infoTitle" name="infoGueTitle" size="40"></td>
                 </tr>
                 
                 <tr>
-                  <th scope="col">공지사항 내용</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">공지사항 내용</th>
                   <td><textarea id="infoContent" name="infoGueContent" style="width:410px; height:100px;"> </textarea></td>
                 </tr>
               

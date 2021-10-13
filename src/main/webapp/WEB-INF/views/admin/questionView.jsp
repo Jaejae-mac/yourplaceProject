@@ -72,15 +72,15 @@
               <div class="card-body">
                 <table id="datatablesSimple">
                   <thead>
-                    <tr>
-                        <th>상태</th>
-                        <th>문의번호</th>
-                        <th>예약번호</th>
-                        <th>유저유형</th>
-                        <th>아이디</th>
-                        <th>이메일</th>
-                        <th>문의 내용</th>
-                        <th>답변</th>
+                    <tr style="background: rgba(231,231,231,0.4)">
+                        <th style="text-align:center">상태</th>
+                        <th style="text-align:center">문의번호</th>
+                        <th style="text-align:center">예약번호</th>
+                        <th style="text-align:center">유저유형</th>
+                        <th style="text-align:center">아이디</th>
+                        <th style="text-align:center">이메일</th>
+                        <th style="text-align:center">문의 내용</th>
+                        <th style="text-align:center">답변</th>
                     </tr>
                   </thead>
 
@@ -102,10 +102,10 @@
                       <td>${que.userId }</td>
                       <td>${que.userEmail }</td>
                       <td>${que.reprtContent }</td>
-                      <td>
+                      <td align="center">
 	                      <button type="button" class="btn btn-primary" id="response_btn"
 	                      data-toggle="modal" data-target="responseModal"
-	                      style="font-size: 10px;margin-left: 10px;">
+	                      style="font-size: 10px;">
 	                      	답변
 	                      </button>
 	                      

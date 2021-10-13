@@ -111,6 +111,7 @@ $(function() {
 <!--Boot Strap Date picker end-->
   </head>
   <body class="sb-nav-fixed">
+  
    
       <%@ include file="adminNavigation.jsp" %>
       
@@ -134,6 +135,7 @@ $(function() {
                 
               </div>
             </div>
+            
             <div class="card-header">
               <b>쿠폰 등록</b>
             </div>
@@ -143,24 +145,24 @@ $(function() {
                 <tbody>
                 
                 <tr>
-                  <th scope="col">쿠폰명</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">쿠폰명</th>
                   <td><input type="text" id="coupName" name="coupName" size="40"></td>
                 </tr>
                 
                 <tr>
-                  <th scope="col">할인율</th>
+                  <th scope="col" style="background: rgba(231,231,231,0.4)">할인율</th>
                   <td><input type="text" id="coupDisRate" name="coupDisRate" size="5"> %</td>
                 </tr>
                 
                 <tr>
-                  <th>쿠폰 시작일</th>
-                  <td><input type="text" id="datePicker" name="coupStartD" class="form-control">
+                  <th style="background: rgba(231,231,231,0.4)">쿠폰 시작일</th>
+                  <td><input type="text" id="datePicker" name="coupStartD" class="form-control" size="5">
                   </td>
               	</tr>
                 
                 <tr>
-                  <th>쿠폰 만료일</th>
-                  <td><input type="text" id="datePicker2" name="coupEndD" class="form-control">
+                  <th style="background: rgba(231,231,231,0.4)">쿠폰 만료일</th>
+                  <td><input type="text" id="datePicker2" name="coupEndD" class="form-control" size="5">
                   </td>
               	</tr>
               
@@ -186,7 +188,7 @@ $(function() {
               </div>
               
               </form>
-              
+              </div>
               <div class="clear"></div>
             </div>
           </div>
