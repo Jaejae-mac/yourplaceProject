@@ -41,6 +41,7 @@
         <form action="" id="mypagedelete_form" method="post">
         	<input type="hidden" name="userNum" value="${user.userNum}"/>
         	<input type="hidden" name="userProfileImg" value="${user.userProfileImg}"/>
+        	<input type="hidden" name="userType" value="0"/>
         </form>
         <div style="margin-top: 50px; width: 100%; height: 1px; background-color: #e7eaee;"></div>
         <div class="h_row" style="margin-top: 60px; margin-bottom: 200px;">
