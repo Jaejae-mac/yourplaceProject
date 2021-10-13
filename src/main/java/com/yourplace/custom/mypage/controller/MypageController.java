@@ -9,7 +9,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yourplace.custom.login.service.LoginUserService;
@@ -44,8 +47,18 @@ public class MypageController {
 		String userId = (String)session.getAttribute("userId");
 		System.out.println(userId);
 		UserVO vo = new UserVO();
+		MyPageHostReviewVO rvo = new MyPageHostReviewVO();
+		int num = 0;
 		vo.setUserId(userId);
+		rvo.setRsvId(userId);
+		rvo.setRowNum(num);
+		List<MyPageHostReviewVO> reviewList =mypagereviewService.getReviewList(rvo);
+		MyPageHostReviewVO avgAndCnt = mypagereviewService.getAvgCng(rvo);
 		model.addAttribute("user", mypageService.getUser(vo));
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("rowNum", num);
+		model.addAttribute("reviewCnt", avgAndCnt.getReviewCnt());
+		model.addAttribute("avgReview", avgAndCnt.getAvgReview());
 		return "mypage/mypage";
 	}
 	// 프로필 수정페이지 이동
@@ -156,16 +169,17 @@ public class MypageController {
 		}
 
 	}
-	//리뷰
-	@RequestMapping("/mypagereviewList.do")
-	@ResponseBody
-	public List<MyPageHostReviewVO> getreviewList(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		String userId = (String)session.getAttribute("userId");
-		MyPageHostReviewVO vo = new MyPageHostReviewVO();
-		vo.setRsvId(userId);
-		System.out.println(vo.toString());
-		List<MyPageHostReviewVO> tvo =mypagereviewService.getReviewList(vo);
-		return tvo;
-	}
+	//리뷰 더보기.
+		@GetMapping(value="/moreHostReviews.do")
+		@ResponseBody
+		public List<MyPageHostReviewVO> additionalReviews(int rowNum, String userId){
+			System.out.println(rowNum);
+			System.out.println(userId);
+			MyPageHostReviewVO vo = new MyPageHostReviewVO();
+			vo.setRowNum(rowNum);
+			vo.setRsvId(userId);
+			List<MyPageHostReviewVO> moreReviewList = mypagereviewService.getReviewList(vo);
+			return moreReviewList;
+		}
+
 }

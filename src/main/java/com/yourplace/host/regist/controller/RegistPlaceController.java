@@ -51,16 +51,14 @@ public class RegistPlaceController {
 		vo.setPlaceThumb("NOT YET");
 		if (roomTitle != null) {
 			// 상세 방번호는 장소번호 + "a" 이런식으로 이어간다.
-			
-//			vo.setUserId("testhost1");
-//			vo.setPlaceThumb("NOT YET");
 			registPlaceAck(mtfRequest, vo, roomTitle, defaultCapa, surcharge);
 		} else {
 			registPlaceAck(mtfRequest, vo);
 		}
 		return "redirect:/regist/place/form.hdo";
 	}
-
+	
+	
 	// 동시성 제어. - 세부 방 정보를 스킵한 유저라면 해당 메서드 호출.
 	public synchronized String registPlaceAck(MultipartHttpServletRequest mtfRequest, PlaceVO vo) {
 		String placeTitle = vo.getPlaceName();
@@ -84,7 +82,6 @@ public class RegistPlaceController {
 
 	// 세부 방 정보를 DB에 등록시킬 컨트롤러의 메서드.
 	public void registPlaceDetail(PlaceVO vo,List<String> roomTitle, List<String> defaultCapa, List<String> surcharge,int curSeq) {
-		
 		PlaceDetailVO detail =  null;
 		detail = new PlaceDetailVO();
 		detail.setDetailTitle("기본");

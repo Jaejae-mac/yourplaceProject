@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
-<title>register</title>
+<title>Yourplace_회원가입</title>
  
 <link rel="stylesheet"
 	href="<c:url value="/resources/css/user-register-style.css?alter" />">
@@ -250,20 +250,21 @@
                		text: '아이디를 입력해주시거나 중복확인을 해주시기 바랍니다.'
                 })
                	return false;
-            }else if(!chkPW()){
+            }else if(!chk
+            		PW()){
             	Swal.fire({
                		icon: 'error',
                 	title: '회원가입을 하실수 없습니다.',
                 	text: '비밀번호를 제대로 입력해주세요.'
                 })
                 return false;
-/*            }else if(telcheck == "N"){
+            }else if(telcheck == "N"){
                 Swal.fire({
                		icon: 'error',
                 	title: '회원가입을 하실수 없습니다.',
                 	text: '본인인증을 해주시기 바랍니다.'
                 })
-                return false;*/
+                return false;
             }else if(name == ""){ 
                 Swal.fire({
                		icon: 'error',

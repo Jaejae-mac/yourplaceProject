@@ -378,12 +378,12 @@
 								style="margin-left: 4px; font-style: normal; font-weight: bold; font-size: 15px; line-height: 24px; letter-spacing: -0.1px; color: rgb(38, 40, 43);margin-bottom:2px;">
 								${avgReview }</p>
 							<div class="h_row_center" style="position: absolute; right: 0px">
-								<p class="align_btn"
+								<!--<p class="align_btn"
 									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer;"
 									id="suggest">추천순</p>
 								<p class="align_btn"
 									style="font-style: normal; font-weight: bold; font-size: 14px; line-height: 20px; cursor: pointer; margin-left: 10px;"
-									id="newest">최신순</p>
+									id="newest">최신순</p>-->
 								<!-- color: rgb(174, 179, 184); -->
 							</div>
 						</div>
@@ -563,16 +563,16 @@
 										<div
 											style="margin: 10px 10px; position: relative; display: inline-block; vertical-align: top;">
 											<div
-												style="margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
+												style="margin-top: 20px; margin-bottom: 50px; margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
 												<p style="color: gray">시작 시간</p>
-												<input type="text" style="min-height: 30px; width: 200px"
+												<input type="text" style="padding-left:5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
 													id="start_time" placeholder="시작 시간을 선택해주세요." readonly>
 											</div>
 											<br>
 											<div
 												style="margin-left: 10px; position: relative; display: inline-block; vertical-align: top;">
 												<p style="color: gray">종료 시간</p>
-												<input type="text" style="min-height: 30px; width: 200px"
+												<input type="text" style="padding-left:5px; border-radius: 10px; font-size: 15px; min-height: 50px; width: 200px"
 													id="end_time" placeholder="종료 시간을 선택해주세요." readonly>
 											</div>
 										</div>
@@ -1221,13 +1221,12 @@
     });
     </script>
 	<script>
-   
       //날짜  . 시간 . 종료시간 . 선택 후 완료 클릭 시 
       $("#time_btn").click(function(){
         var stArr = $("#start_time").val().split(":");
         var etArr = $("#end_time").val().split(":");
         console.log(parseInt(etArr[0])-parseInt(stArr[0]));
-        if(parseInt(etArr[0])-parseInt(stArr[0]) == 1){
+        if(parseInt(etArr[0])-parseInt(stArr[0]) < parseInt("${placeInfo.placeMinTime }")){
           swal("","최소 예약시간 이상 선택해주세요.","warning");
           $("#start_time").focus();
         }else{
@@ -1235,12 +1234,19 @@
             
             $("#form_start_time").val(parseInt(stArr[0]));
             $("#form_end_time").val(parseInt(etArr[0]));
-            
+            $("#rsv_date_time").val(rst);
             $("#schedule").text(rst);
             hideBooking(".booking_calendar");
             console.log(rst);	
         }
         
+      });
+   // 외부영역 클릭 시 팝업 닫기
+      $(document).mouseup(function (e){
+        var LayerPopup = $("#schedule");
+        if(LayerPopup.has(e.target).length === 0){
+        	hideBooking(e)
+        }
       });
       function resetDateTime(){
         $("#start_time").val('');
@@ -1250,10 +1256,14 @@
 	<script>
       $("#reserve_btn").click(function(){
         //예약하기 버튼 클릭시.
-        if(parseInt($("#people_cnt").text()) < ${placeInfo.placeCapa}){
+
+        
+        if($("#rsv_date_time").val().length < 23){
+        	swal("","예약 시간을 제대로 선택해주세요.","warning");
+      		$("#people_cnt").focus();
+        }else if(parseInt($("#people_cnt").text()) < ${placeInfo.placeCapa} || $("#people_cnt").text() == "총인원 수를 입력하세요"){
         	swal("","기본 ${placeInfo.placeCapa}인 이상 부터 예약 가능합니다.","warning");
         	$("#people_cnt").focus();
-        	
         }else{
         	var beginTime = $("#form_start_time").val();
             var endTime = $("#form_end_time").val();
@@ -1265,10 +1275,8 @@
             $("#head_count").val(parseInt($("#people_cnt").text()));
             $("#form_detail_title").val(detailTitle);
             $("#host_nick_name").val($("#nickName").text());
-            $("#detail_form").submit();
-            	
-        }
-        
+            $("#detail_form").submit();            	
+        }   
       });
     </script>
 	<!-- 최신순, 추천순. -->

@@ -71,7 +71,7 @@ public class FindAccountPwController {
 			String tokenNum = resetPasswordService.setAccessNum();
 			//메일전송.
 			mailSendService.sendResetPwMail(email,tokenNum);
-			return "index";
+			return "redirect:/home.do";
 		}
 		else {
 			request.setAttribute("sendEmail", "0");//0을 아이디,이메일 입력 창에 전달해준다.
@@ -91,7 +91,7 @@ public class FindAccountPwController {
 		}
 		else {
 			request.setAttribute("noAccess", "1");
-			return "index";
+			return "redirect:/home.do";
 		}
 		
 	}
@@ -106,7 +106,7 @@ public class FindAccountPwController {
 		resetPasswordService.updatePassword(vo);
 		//비밀번호 변경은 sendEmail이라는 키 로 값은 2를 줘서 판단한다.
 		request.setAttribute("sendEmail", "2");
-		return "index";
+		return "redirect:/home.do";
 	}
 	
 	//------------------------------------------------------------

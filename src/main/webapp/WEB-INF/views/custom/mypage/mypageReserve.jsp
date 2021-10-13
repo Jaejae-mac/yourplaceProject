@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Yourplace Reserve</title>
+<title>Yourplace_예약 내역</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/user-register.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -27,6 +27,7 @@
       };
 </style>
 </head>
+
 
 <body>
 	<!-- 세션에 아이디 값이 존재 한다면 마이페이지를 불러주어라. -->

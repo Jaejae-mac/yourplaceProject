@@ -21,6 +21,10 @@ public class MyPageReviewDAOImpl implements MyPageReviewDAO {
 		return tvo;
 	}
 	@Override
+	public MyPageHostReviewVO reviewCntAvg(MyPageHostReviewVO vo) {
+		return sqlSessionTemplate.selectOne("ReviewDAO.getReviewRate",vo);
+	}
+	@Override
 	public void insertGuestReview(MyPageGuestReviewVO vo) {
 		sqlSessionTemplate.insert("ReviewDAO.insertGuestReview",vo);
 	}

@@ -10,7 +10,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Find My Id - yourplace</title>
+<title>Yourplace_아이디 찾기</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/css/user-register.css" />">
 <link rel="stylesheet"

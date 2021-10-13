@@ -133,6 +133,17 @@ public class CateController {
 		System.out.println(model);
 		return "indexCategory";
 	}
+	//인기 등록 장소리스트 컨트롤러
+		@GetMapping("/popularcategory.do")
+		public String popularCategoryForm(Model model) {
+			String keyword = "인기 장소 TOP 20";
+			PlaceCardVO vo = new PlaceCardVO();
+			vo.setKeyword(keyword);
+			model.addAttribute("keyword", keyword);
+			model.addAttribute("placeCateList", categorykeywordService.getpopCategoryList());
+			System.out.println(model);
+			return "indexCategory";
+	}
 	// 사람 인원수에 따른 장소리스트
 	@GetMapping("/placeListP.do")
 	public String placeListPeopleForm(@RequestParam int num, @RequestParam String maincate, 

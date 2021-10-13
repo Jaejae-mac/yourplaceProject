@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/user-register.css"/>" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<title>MyPage Change Password</title>
+<title>Yourplace_비밀번호 변경</title>
 </head>
 <body>
 	<c:if test="${userVO != null}">

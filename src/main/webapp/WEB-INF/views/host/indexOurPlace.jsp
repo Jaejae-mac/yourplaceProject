@@ -9,7 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>yourplace host page</title>
+<title>Yourplace_호스트</title>
 
 
 <link
@@ -214,6 +214,7 @@
 			</footer>
 		</div>
 	</div>
+<<<<<<< HEAD
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
@@ -292,5 +293,7 @@ var myChart = new Chart(ctx, {
 
 </script>
 		
+=======
+>>>>>>> 91f5b66da5720cfad78930b91891a96353c193d7
 </body>
 </html>

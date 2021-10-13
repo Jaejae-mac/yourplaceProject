@@ -124,7 +124,7 @@ public class DetailController {
 			if(((IUserVO)session.getAttribute("userVO")).getUserType() == 1) {
 				System.out.println("호스트 거부당했지렁.");
 				redirect.addAttribute("hostAccessDenied", "hostAccessDenied");
-				return "redirect:home.do";
+				return "redirect:/home.do";
 			}else {
 				System.out.println("HELOLOOOOOO");
 				DetailPlaceVO dvo = new DetailPlaceVO();
@@ -168,7 +168,9 @@ public class DetailController {
 		if(vo.getCoupName().equals("undefined")) {
 			vo.setCoupName("없음");
 		}
+		System.out.println("전달된 쿠폰 이름은 : " + vo.getCoupName());
 		model.addAttribute("placeInfo", vo);
+		System.out.println("COUPON NAME : "+ vo.getCoupName());
 		return "reservation/rsvResult";
 	}
 

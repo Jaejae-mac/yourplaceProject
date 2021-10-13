@@ -12,7 +12,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Reserve</title>
+<title>Yourplace_환불 내역</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
@@ -131,12 +131,7 @@
 		</div>
 	</footer>
 	</div>
-	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
-	
+	</div>	
 </body>
 
 
