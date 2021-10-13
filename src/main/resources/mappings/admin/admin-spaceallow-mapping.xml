@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="s3FileName" column="s3_file_name" />
 		<result property="placeRegDate" column="place_reg_date" />
 		<result property="placeArea" column="place_area" />
+		<result property="userType" column="user_type" />
 
 	</resultMap>
 
@@ -26,7 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			place_allow, place_num, user_id, place_maincate, place_name,
 		    (select user_name from member where user_id=a.user_id) as user_name,
 		    (select user_tel from member where user_id = a.user_id) as user_tel,
-		    (select user_email from member where user_id = a.user_id) as user_email
+		    (select user_email from member where user_id = a.user_id) as user_email,
+		    (select user_active from member where user_id = a.user_id) as user_type
 		FROM place a;
 	</select>
 	
@@ -82,5 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from place
 			where place_allow = '0';
 	</select>
+
+	
 
 </mapper>

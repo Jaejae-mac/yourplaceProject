@@ -74,7 +74,7 @@
                	</colgroup>
                	
                   <thead>
-                    <tr>
+                    <tr  style="background: rgba(231,231,231,0.4)">
                     	<th style="text-align:center">답변번호</th>
                         <th style="text-align:center">문의번호</th>
                         <th style="text-align:center">예약번호</th>

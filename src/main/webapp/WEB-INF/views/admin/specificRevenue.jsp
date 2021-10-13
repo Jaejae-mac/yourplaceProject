@@ -323,7 +323,7 @@
 			    }
 	    	  
 	    	  if($.trim($("#datePicker2").val())==''){
-			      alert("조회할 시작일을 입력해 주세요.");
+			      alert("조회할 종료일을 입력해 주세요.");
 			      return false;
 			    }
 			
@@ -421,7 +421,7 @@
 		    }
     	  
     	  if($.trim($("#datePicker2").val())==''){
-		      alert("조회할 시작일을 입력해 주세요.");
+		      alert("조회할 종료일을 입력해 주세요.");
 		      return false;
 		    }
     	  

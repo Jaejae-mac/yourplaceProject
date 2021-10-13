@@ -152,13 +152,12 @@
                 <table id="datatablesSimple">
                   <thead>
                     <tr>
-                    	<th>계정권한</th> <!-- adminAuthority -->
-                    	<th>관리자번호</th> <!-- adminNum -->
-                        <th>아이디</th> <!-- adminId -->
-                        <th>이메일</th> <!-- adminEmail -->
-                        <th>연락처</th> <!-- adminTel -->
-                        
-	                        <th>삭제</th>
+                    	<th style="text-align:center">계정권한</th> <!-- adminAuthority -->
+                    	<th style="text-align:center">관리자번호</th> <!-- adminNum -->
+                        <th style="text-align:center">아이디</th> <!-- adminId -->
+                        <th style="text-align:center">이메일</th> <!-- adminEmail -->
+                        <th style="text-align:center">연락처</th> <!-- adminTel -->
+                        <th style="text-align:center">삭제</th>
 	                        
                     </tr>
                   </thead>
@@ -185,7 +184,7 @@
                       
 	                      <td style="width:120px"><button type="button"
 		                      class="btn btn-danger"
-		                      style="font-size: 10px; margin-left: 10px;" id="delete_btn"> 
+		                      style="font-size: 10px; margin-left: 10px; " id="delete_btn"> 
 		                      	계정 삭제
 		                      </button></td>
 	                      
