@@ -40,6 +40,12 @@ public class MyPageDAOImpl implements MyPageDAO {
 		sqlSessionTemplate.delete("RegistPlaceDAO.deletePlace", vo);
 	}
 	@Override
+	public void deletePlaceImgDetail(PlaceVO vo) {
+		System.out.println("--> MyBatis로 deletePlace() 기능 처리");
+		sqlSessionTemplate.delete("RegistPlaceDAO.deletePlaceImg", vo);
+		sqlSessionTemplate.delete("RegistPlaceDAO.deletePlaceDetail", vo);
+	}
+	@Override
 	public List<PlaceVO> getPlace(PlaceVO vo){
 		return sqlSessionTemplate.selectList("RegistPlaceDAO.getPlaceNum", vo);
 	}

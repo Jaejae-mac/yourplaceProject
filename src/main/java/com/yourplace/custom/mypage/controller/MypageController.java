@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yourplace.commons.awss3.AwsS3;
 import com.yourplace.custom.login.service.LoginUserService;
 import com.yourplace.custom.login.vo.UserVO;
 import com.yourplace.custom.mypage.service.MyPageCouponService;
@@ -23,6 +24,8 @@ import com.yourplace.custom.mypage.service.MyPageUpdateService;
 import com.yourplace.custom.mypage.vo.MyPageCouponVO;
 import com.yourplace.custom.mypage.vo.MyPageGuestReviewVO;
 import com.yourplace.custom.mypage.vo.MyPageHostReviewVO;
+import com.yourplace.custom.reservation.service.GetImgInfoService;
+import com.yourplace.custom.reservation.vo.PlaceImgVO;
 import com.yourplace.host.regist.vo.PlaceVO;
 
 @Controller
@@ -39,6 +42,8 @@ public class MypageController {
 	private LoginUserService loginUserService;
 	@Autowired
 	private MyPageReviewService mypagereviewService;
+	@Autowired
+	private GetImgInfoService getImgInfoService;
 	// 마이페이지로 이동
 	@RequestMapping("/mypage.do")
 	public String mypageForm(HttpServletRequest request, Model model) {
@@ -51,7 +56,7 @@ public class MypageController {
 		vo.setUserId(userId);
 		rvo.setRsvId(userId);
 		rvo.setRowNum(num);
-		List<MyPageHostReviewVO> reviewList =mypagereviewService.getReviewList(rvo);
+		List<MyPageHostReviewVO> reviewList = mypagereviewService.getReviewList(rvo);
 		MyPageHostReviewVO avgAndCnt = mypagereviewService.getAvgCng(rvo);
 		model.addAttribute("user", mypageService.getUser(vo));
 		model.addAttribute("reviewList", reviewList);
@@ -99,6 +104,7 @@ public class MypageController {
 		int num = uvo.getUserNum();
 		int type = uvo.getUserType();
 		UserVO vo = new UserVO();
+		
 		// 디폴트이미지일 경우 해당유저 프로필 경로로 재설정
 		if(userImg.equals("profile/default/defaultprofile.png")) {
 			userImg = "profile/guest/"+num+"/ThumbImg.png";
@@ -109,7 +115,17 @@ public class MypageController {
 		if(type == 1) {
 			PlaceVO pvo = new PlaceVO();
 			pvo.setUserId(userId);
-			List<PlaceVO> numList = mypageService.getPlace(pvo);
+			List<PlaceVO> placeList = mypageService.getPlace(pvo);
+			AwsS3 awsS3 = AwsS3.getInstance();	
+			for(int i=0; i < placeList.size(); i ++) {
+				int placenum = placeList.get(i).getPlaceNum();
+				List<PlaceImgVO> imgList = getImgInfoService.getImgInfo(placenum);
+				for(int j=0; j < imgList.size(); j++) {
+					String key = imgList.get(j).getS3FileName();
+					awsS3.delete(key);
+				}
+				mypagedeleteService.deletePlaceImgDetail(placenum);
+			}
 			mypagedeleteService.deletePlace(pvo);
 		}
 		mypagedeleteService.deleteUser(vo);

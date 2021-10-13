@@ -98,8 +98,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<delete id="deletePlace" parameterType="myPlace">
 		DELETE FROM place 
-		JOIN place_detail USING (place_num)
-		JOIN place_img USING (place_num)
 		WHERE user_id = #{userId}
+	</delete>
+	<delete id="deletePlaceImg" parameterType="myPlace">
+		DELETE FROM place_img 
+		WHERE place_num = #{placeNum}
+	</delete>
+	<delete id="deletePlaceDetail" parameterType="myPlace">
+		DELETE FROM place_detail 
+		WHERE place_num = #{placeNum}
 	</delete>
 </mapper>

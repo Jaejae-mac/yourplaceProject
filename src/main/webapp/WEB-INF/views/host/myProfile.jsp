@@ -169,6 +169,7 @@ function deleteUser(){
 		      icon :'success'
 		    }).then((result) => {
 		    	$("#delete_form").attr("action","/deleteUser.do").submit();
+		    	
 		    })
 		  }
 		})

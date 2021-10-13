@@ -7,4 +7,5 @@ public interface MyPageDeleteService {
 	void deleteUser(UserVO vo);
 	void deleteInterest(UserVO vo);
 	void deletePlace(PlaceVO vo);
+	void deletePlaceImgDetail(int placenum);
 }	
