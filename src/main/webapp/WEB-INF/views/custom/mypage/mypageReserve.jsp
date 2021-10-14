@@ -464,7 +464,7 @@
        				res += '<p style="margin-left: 7px; font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += rsvRefundYnS +'</p></div>';
        				res += '<div class="h_center" style="width: 80px;">';
-       				res += '<p id="salesSip'+i+'" onclick="/invoice.do?rsvNum=' + rsvNum + '" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
+       				res += '<p id="salesSip'+i+'" onclick="goinvoice(' + rsvNum + ')" class="btn btn-primary btn-sm" style="font-size: 14px; font-weight: 500; font-stretch: normal; font-style: normal; line-height: 1.43; letter-spacing: normal;">';
        				res += '보기</p></div>';
        				res += '<div class="h_center" style="width: 85px;">';
        				// 환불 신청 상태 설정
@@ -507,6 +507,10 @@
        		}        	
        		$("#resList").html(res); //해당 id의 div에 값 넣기
         };
+        function goinvoice(i){
+        	var openNewWindow = window.open("about:blank");
+        	openNewWindow.location.href = '/invoice.do?rsvNum='+i ;
+        }
         // 환불신청
         function refundbtn(e,w){
         	//버튼 클릭시 시간계산
