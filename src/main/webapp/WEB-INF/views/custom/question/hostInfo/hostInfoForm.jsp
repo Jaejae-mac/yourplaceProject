@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="chrome" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Yourplace_호스트 FAQ</title>
+<title>YourPlace</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/Info.css" />" />
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>

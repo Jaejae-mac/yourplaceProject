@@ -80,7 +80,7 @@ public class QueController {
 		System.out.println("----------------------------------");
 		
 		//메일 전송 서비스
-//		sendResponse.sendResponse(id, number, email, content, question);
+		sendResponse.sendResponse(id, number, email, content, question);
 		System.out.println("문의답변 메일 정상 발송 완료");
 		
 		//답변 테이블에 값을 삽입하는과정.

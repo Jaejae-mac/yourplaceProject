@@ -313,10 +313,10 @@
             var dateLabel = new Array();
     		
             //foreach 문으로 값 세팅
-                <c:forEach items="${requestList}" var="req">
-                	firstData.push('${req.invAftTax}');
-                	monthLabel.push('${req.payMonth}');
-                	dateLabel.push('${req.payDate}');
+                <c:forEach items="${chartList}" var="cl">
+                	firstData.push('${cl.revenue}');
+                	monthLabel.push('${cl.payMonth}');
+                	dateLabel.push('${cl.payDate}');
                 </c:forEach>
             
             console.log(firstData);
