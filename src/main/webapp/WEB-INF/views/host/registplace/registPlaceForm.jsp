@@ -89,6 +89,11 @@
 						<option value="충북">충북</option>
 						<option value="충남">충남</option>
 						<option value="세종">세종</option>
+						<option value="전북">전북</option>
+						<option value="전남">전남</option>
+						<option value="경북">경북</option>
+						<option value="경남">경남</option>
+						<option value="제주">제주</option>
 
 					</select>
 				</div>
@@ -124,7 +129,7 @@
 					<select class="form-select form-select-lg mb-3"
 						style="width: 100%; min-height: 40px; margin-bottom: 10px;"
 						name="placeMaincate" id="place_maincate">
-						<option selected>지역을 선택하세요</option>
+						<option selected>메인 카테고리를 선택하세요</option>
 						<option value="가정집">가정집</option>
 						<option value="스튜디오">스튜디오</option>
 						<option value="상업공간">상업 공간</option>
@@ -138,7 +143,7 @@
 					<select class="form-select form-select-lg mb-3"
 						style="width: 100%; min-height: 40px;" name="placeCate"
 						id="place_cate">
-						<option selected>지역을 선택하세요</option>
+						<option selected>서브 카테고리를 선택하세요</option>
 					</select>
 				</div>
 				<hr>

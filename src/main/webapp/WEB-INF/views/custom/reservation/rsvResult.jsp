@@ -431,7 +431,7 @@
 										<!-- 예약 취소 버튼 예약 진행중 페이지로-->
 										<a href="/goreserve.do?userId=${userVO.userId}" style="text-decoration: none; color: black;">
 											<button class="btn_cancle"
-												style="width: 180px; height: 50px; font-size: 20px;">예약취소</button>
+												style="width: 180px; height: 50px; font-size: 20px;">예약내역 보기</button>
 												</a>
 											<!--메인으로 가는 버튼-->
 											<a href="/home.do" style="text-decoration: none; color: black;">
