@@ -31,4 +31,9 @@ public class HostReviewServiceImpl implements HostReviewService{
 		dao.updateReviewYN(vo);
 		
 	}
+
+	@Override
+	public List<HostReviewVO> getDetailReview(HostReviewVO vo) throws Exception {
+		return dao.getDetailReview(vo);
+	}
 }

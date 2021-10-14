@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.custom.login.service.LoginUserService;
@@ -26,6 +27,7 @@ public class HostProfileController {
 	@Inject
 	private HostProfileService service;
 
+	
 	@RequestMapping(value = "/myProfile.hdo")
 	public ModelAndView viewProfile(HttpServletRequest request, HostVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -88,6 +90,31 @@ public class HostProfileController {
 				return "myProfilePassCheck";
 			}
 		}	
+		
+		@RequestMapping(value="/updateProfile.hdo", method= {RequestMethod.POST, RequestMethod.GET}) //변경되는거 확인
+		public ModelAndView updateProfile(HostVO vo, HttpServletRequest request) throws Exception{
+			String testId = request.getParameter("userId");
+			String testnick = request.getParameter("name");
+			String testintro = request.getParameter("intro");
+			
+			ModelAndView mav = new ModelAndView();
+			
+			System.out.println(testId);
+			System.out.println(testnick);
+			System.out.println(testintro);
+			vo.setUserId(testId);
+			vo.setUserNickName(testnick);
+			vo.setUserIntro(testintro);
+			HttpSession session = request.getSession();
+			hostloginService.updateProfile(vo);
+			
+			session.getAttribute("userNick");
+		
+			
+			mav.setViewName("profileUpdate");
+			return mav;
+		}
+		
 
 }
 

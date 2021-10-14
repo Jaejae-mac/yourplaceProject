@@ -168,9 +168,7 @@
 								      },
 								      
 								      success: function(data){
-								 
-								          	 	  	 	 
-								             
+								    		alert("삭제되었습니다.");
 								      }
 								})
 			}else{

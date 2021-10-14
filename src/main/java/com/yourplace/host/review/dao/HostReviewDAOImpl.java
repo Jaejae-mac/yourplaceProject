@@ -35,6 +35,12 @@ public class HostReviewDAOImpl implements HostReviewDAO {
 		session.update("HostReviewMapper.updateReviewY", vo);
 		
 	}
+
+
+	@Override
+	public List<HostReviewVO> getDetailReview(HostReviewVO vo) throws Exception {
+		return session.selectList("HostReviewMapper.getDetailReview", vo);
+	}
 	
 
 }

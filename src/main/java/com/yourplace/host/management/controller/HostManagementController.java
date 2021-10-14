@@ -91,6 +91,7 @@ public class HostManagementController {
          
       }
       return "redirect:/managementHostPlace.hdo";
+      
    }
    
    @RequestMapping(value="/insertPlaceforHost.hdo")
@@ -103,8 +104,8 @@ public class HostManagementController {
       return mav;
    }
    
-   //방 등록 수정해야함
-   
+
+  
    @RequestMapping(value="/managementHostRoomPlace.hdo", method=RequestMethod.GET)
    public ModelAndView getRoom(HttpServletRequest request, HostManagementRoomVO vo) throws Exception{
       ModelAndView mav = new ModelAndView();
@@ -152,7 +153,6 @@ public class HostManagementController {
       String userId= (String)session.getAttribute("userId");
       vo.setUserId(userId);
       
-      
       int placeNum = Integer.parseInt(request.getParameter("placeNum"));
       vo.setPlaceNum(placeNum);
       session.setAttribute("placeNum", placeNum);
@@ -161,9 +161,11 @@ public class HostManagementController {
       System.out.println(getList.toString());
       mav.addObject("updatePlace", getList);
       mav.setViewName("update");
-      return mav;
       
+      return mav;
+        
    }
+   
 
    @PostMapping("/updatepLace.hdo")
    public String getUpdatePlace(HttpServletRequest request, HostManagementVO vo, Map<String, Object> param)throws Exception {

@@ -315,7 +315,7 @@ label {
 			},
 
 			success : function(data) {
-
+					alert("변경되었습니다.");
 			}
 		})
 
