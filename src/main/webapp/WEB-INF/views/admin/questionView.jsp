@@ -110,7 +110,7 @@
 	                      </button>
 	                      
 	                      <!-- Modal -->
-	                      <div class="modal fade" id="responseModal"
+	                      <div class="modal fade" id="responseModal" style="text-align:left"
 	                      tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	                      	<div class="modal-dialog" role="document">
 	                      		<div class="modal-content">
