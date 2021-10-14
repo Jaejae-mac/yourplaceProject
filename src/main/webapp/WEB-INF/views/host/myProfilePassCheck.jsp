@@ -58,7 +58,7 @@
 				<div style="margin-top: 50px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
 
 					<div style="margin: 40px 50px;">
-						<form action="" id="Hcheckpass_form" method="get">
+						<form action="" id="Hcheckpass_form" method="post">
 						<input type="hidden" id="userId" name="userId" value="${userId}">	
 						<div style="font-size: 12px; font-weight: bold; font-stretch: normal; font-style: normal; line-height: 1.17; letter-spacing: normal; color: #9ea4aa;">
 							현재 비밀번호</div>
@@ -92,22 +92,12 @@
     <footer class="py-4 bg-light mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">
-<<<<<<< HEAD
                 <div class="text-muted">Copyright &copy; YourPlace</div>
-                	
-=======
-              
->>>>>>> c80984dff030de395546c1941133e0e677692cb9
+
             </div>
         </div>
     </footer>
   
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-	<script src="<c:url value="/resources/host/js/scripts.js" />"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
     
 </body>
 

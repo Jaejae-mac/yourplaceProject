@@ -43,7 +43,7 @@
 			style="margin-top: 50px; width: 580px; border-radius: 10px; border: solid 1px #dfe2e7; background-color: #ffffff;">
 
 			<div style="margin: 40px 50px;">
-				<form action="" id="checkpass_form" method="get">
+				<form action="" id="checkpass_form" method="post">
 					<input type="hidden" name="userType" value="${userVO.userType}">
 					<input type="hidden" name="userId" value="${userVO.userId}">	
 					<div

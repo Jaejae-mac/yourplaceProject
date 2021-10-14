@@ -88,6 +88,41 @@ public class HostProfileController {
 				return "myProfilePassCheck";
 			}
 		}	
+		@RequestMapping(value="/updateProfileforHost.hdo")
+		public ModelAndView getHostInfo(HostVO vo, HttpServletRequest request)throws Exception{
+			ModelAndView mav = new ModelAndView();
+			HttpSession session = request.getSession();
+			String userId = (String)session.getAttribute("userId");
+			vo.setUserId(userId);
+			List<HostVO> getList = service.getHostInfo(vo);
+			
+			for(int i=0; i<getList.size(); i++) {
+				String userNickName = getList.get(i).getUserNickName();
+				String userTel = getList.get(i).getUserTel();
+				String userEmail = getList.get(i).getUserEmail();
+				String userProfile = getList.get(i).getUserProfileImg();
+				String userIntro = getList.get(i).getUserIntro();
+				int userNum = getList.get(i).getUserNum();
 
+			
+			if(userProfile == null) {
+				String img = "profile/default/defaultprofile.png";
+				mav.addObject("userImg", img);
+			}else {
+				mav.addObject("userImg", userProfile);
+			}
+			
+			System.out.println(userProfile);
+			mav.addObject("userId", userId);
+			mav.addObject("userNick", userNickName);
+			mav.addObject("userInfo", userIntro);
+			mav.addObject("userMail", userEmail);
+			mav.addObject("userTel", userTel);
+			mav.addObject("userNum", userNum);
+			
+			mav.setViewName("profileUpdate");	
+			}		
+			return mav;		
+		}
 }
 
