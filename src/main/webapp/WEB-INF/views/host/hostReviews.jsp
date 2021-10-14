@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -164,25 +166,27 @@
 
 
                     </thead>
-               
-                    <tbody align="center">
-                   
-  			<c:forEach var="test" items="${list}">
-  			<tr>
-  			<td>${test.reservNum }</td>
-  			<td>${test.placeNum }</td>
-  			<td>${test.memId }</td>
-  			<td>${test.star }</td>
-  			<td>${test.regDate }</td>
-  			<td><a href="">리뷰 보기</a></td>
-  			
-  			</tr>
 
-  				
-  			</c:forEach>
+							<tbody align="center">
 
-                    </tbody>
-                  </table>
+								<c:forEach var="test" items="${list}">
+									<tr>
+										<td>${test.reservNum }</td>
+										<td>${test.placeNum }</td>
+										<td>${test.memId }</td>
+										<td>${test.star }</td>
+										<td>${test.regDate}</td>
+										<td><button type="button" class="btn btn-primary"
+												name="reviewDetail" id="reviewDetail" onclick="showPop()"
+												style="font-size: 10px; margin-left: 10px;">리뷰 보기</button></td>
+
+									</tr>
+
+
+								</c:forEach>
+
+							</tbody>
+						</table>
                 </div>
               </div>
             </div>
@@ -204,7 +208,60 @@
         </div>
       </div>
     </div>
+  
   </body>
+  <script type="text/javascript">
+
+  $(document).on("click","#reviewDetail",function() {
+					var c = $(this);
+
+					var tr = c.parent().parent();
+					var td = tr.children();
+
+					var active = td.eq(0).text();
+					var no = td.eq(0).text();
+					console.log(no);
+					
+					
+					$.ajax(
+
+							{
+									url : '/reviewDetailForHostReserveNum.hdo',
+									dataType : 'text',
+									async    : false,
+									type : 'POST',
+									 async: false,
+									 data: {
+										 reservNum: no,
+								      },
+								      
+								      success: function(data){
+								 
+								          	 	  	 	 
+								             
+								      }
+								})
+  });
+  
+  
+  
+  function showPop() {
+		 
+		window.name="reviewDetailForHost.hdo"
+	    var width = '490';
+	    var height = '560';
+	 
+	    var left = Math.ceil(( window.screen.width - width )/2);
+	    var top = Math.ceil(( window.screen.height - height )/2); 
+	 
+	    window.open('/reviewDetailForHost.hdo', '리뷰 팝업', 'width='+ width +', height='+ height +', left=' + left + ', top='+ top );
+	   
+	}
+  
+  </script>
+  
+  
+  
 </html>
 <!-- 
 

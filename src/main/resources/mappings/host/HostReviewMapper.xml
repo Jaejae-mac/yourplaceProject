@@ -30,6 +30,11 @@
 	UPDATE reservation SET rsv_review_yn='Y' WHERE rsv_num=#{reservNum}
 	</update>
 	
+	
+	<select id="getDetailReview" resultMap="getAllReview">
+	 select * from reviewGuest inner join place on place.place_num = reviewGuest.place_num where place.user_id=#{memId} and rsv_num=#{reservNum}
+	</select>
+	
 
 
 

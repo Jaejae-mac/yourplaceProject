@@ -16,16 +16,4 @@ public class HostReviewVO {
 	private Date regDate; //날짜
 	private String review; //리뷰 내용
 	private String reserveId; //에약자 아이디
-	
-
-	/*
-	   { title: "예약번호" },
-          { title: "장소번호" },
-          { title: "장소명" },
-          { title: "회원아이디" },
-          { title: "별점" },
-          { title: "등록날짜" },
-          { title: "리뷰보기" },
-        ];
-	 */
 }

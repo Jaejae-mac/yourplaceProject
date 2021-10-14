@@ -77,7 +77,37 @@ public class HostReviewController {
 		
 		
 	}
+
+	
+	
+	@RequestMapping(value="/reviewDetailForHost.hdo", method= {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView detailReview(HostReviewVO vo, HttpServletRequest request, Map<String, Object> param) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		int reserveNum = (Integer)session.getAttribute("reserveNum");
+		String userId = (String)session.getAttribute("userId");
+		vo.setMemId(userId);
+		vo.setReservNum(reserveNum);
+		List<HostReviewVO> list = service.getDetailReview(vo);
 		
+		mav.addObject("list", list);
+		mav.setViewName("reviewDetail");
+		
+		System.out.println(mav.toString());
+		session.removeAttribute("reserveNum");
+		return mav;
+	}
+	
+	@RequestMapping(value="/reviewDetailForHostReserveNum.hdo", method= {RequestMethod.POST, RequestMethod.GET})
+	public void getReserveNum(HostReviewVO vo, HttpServletRequest request, Map<String, Object> param) throws Exception{
+		int reserveNum = vo.getReservNum();
+		System.out.println(reserveNum);
+		HttpSession session = request.getSession();
+		session.setAttribute("reserveNum", reserveNum);
+		
+	}
+	
+	
 	
 
 

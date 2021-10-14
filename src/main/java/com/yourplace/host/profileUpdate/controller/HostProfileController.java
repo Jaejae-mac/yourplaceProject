@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yourplace.custom.login.service.LoginUserService;
@@ -26,6 +27,7 @@ public class HostProfileController {
 	@Inject
 	private HostProfileService service;
 
+	
 	@RequestMapping(value = "/myProfile.hdo")
 	public ModelAndView viewProfile(HttpServletRequest request, HostVO vo) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -88,6 +90,7 @@ public class HostProfileController {
 				return "myProfilePassCheck";
 			}
 		}	
+
 		@RequestMapping(value="/updateProfileforHost.hdo")
 		public ModelAndView getHostInfo(HostVO vo, HttpServletRequest request)throws Exception{
 			ModelAndView mav = new ModelAndView();
@@ -103,7 +106,6 @@ public class HostProfileController {
 				String userProfile = getList.get(i).getUserProfileImg();
 				String userIntro = getList.get(i).getUserIntro();
 				int userNum = getList.get(i).getUserNum();
-
 			
 			if(userProfile == null) {
 				String img = "profile/default/defaultprofile.png";
