@@ -109,7 +109,7 @@ public class RevenueController {
 		List<RevenueVO> list3 = revenueTermService.getTermAllMonth(vo);
 		List<RevenueVO> list4 = revenueTermService.getTermAllMonthNDate(vo);
 		
-		System.out.println("출력되는 LIST: " + list4.toString());
+		model.addAttribute("chartList", list2);
 		model.addAttribute("requestList", list4);
 		
 		//return "redirect:specificRevenue.mdo";

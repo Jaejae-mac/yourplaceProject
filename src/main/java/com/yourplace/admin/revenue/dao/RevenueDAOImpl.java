@@ -79,7 +79,7 @@ public class RevenueDAOImpl implements RevenueDAO {
 	@Override
 	public List<RevenueVO> getTermMonthNDate(RevenueVO vo) {
 		System.out.println("---> MyBatis 로 getTermMonthNDate 기능 처리");
-		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.getTermMonthNDate", vo);
+		List<RevenueVO> list = sqlSessionTemplate.selectList("RevenueDAO.getTermMonthNDateSum", vo);
 		return list;
 	}
 

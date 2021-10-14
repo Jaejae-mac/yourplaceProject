@@ -91,6 +91,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	    order by pay_year, pay_month, pay_date asc;
 	</select>
 	
+	<select id="getTermMonthNDateSum" resultMap="revenueResult">
+		select
+			pay_year, pay_month, pay_date, sum(inv_aft_tax) as revenue
+		from payment
+	    where pay_year = #{payYear}
+	    and
+	    rsv_refund_yn = 0
+	    and
+	    pay_month between #{payStartMonth} and #{payEndMonth}
+	    and
+	    pay_date between #{payStartDate} and #{payEndDate}
+	    group by pay_date order by pay_year, pay_month, pay_date asc;
+	</select>
+	
 	<select id="getTermAllMonth" resultMap="revenueResult">
 		select * 
 		from payment
