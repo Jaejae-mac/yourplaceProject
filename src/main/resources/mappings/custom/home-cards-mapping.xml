@@ -80,11 +80,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			(select count(*) from reviewGuest where place_num=a.place_num) as review_cnt,
 			(select round(avg(review_guest_rate),1) from reviewGuest where place_num = a.place_num) as avg_rate
 		FROM place a
-		WHERE date(place_reg_date) >= date(subdate(now(), INTERVAL 7 DAY))
-		AND date(now()) >= date(place_reg_date)
-		AND a.place_allow = 1 
-		order by
-		place_reg_date desc
+		WHERE a.place_allow = 1
+		order by place_reg_date desc 
+		Limit 16;
+		
 
 	</select>
 	<select id="getCatePlaceListAll" resultMap="cardResult">
